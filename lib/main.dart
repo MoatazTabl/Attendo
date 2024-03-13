@@ -1,5 +1,8 @@
+import 'package:attendo/core/utils/app_theme.dart';
+import 'package:attendo/core/utils/router/router.dart';
 import 'package:flutter/material.dart';
-import 'main_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      home: MainScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(412, 894),
+      builder: (context, child) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: lightMode,
+        routerConfig: router,
+      ),
     );
   }
 }
