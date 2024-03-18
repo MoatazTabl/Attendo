@@ -1,5 +1,5 @@
 import 'package:attendo/features/Auth/SignIn/Presentation/view/sign_in_screen.dart';
-import 'package:attendo/features/Auth/SignUp/Presentation/view/sign_up.dart';
+import 'package:attendo/features/Auth/SignUp/Presentation/view/sign_up_screen.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
 

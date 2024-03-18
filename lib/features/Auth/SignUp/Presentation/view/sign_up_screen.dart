@@ -1,3 +1,4 @@
+import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,7 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(
                         height: 73.h,
                       ),
-                       Text(
+                      Text(
                         "Sign Up",
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
@@ -44,17 +45,19 @@ class SignUpScreen extends StatelessWidget {
                                 enabled: true,
                                 decoration: InputDecoration(
                                   hintText: "Enter First Name",
-                                  hintStyle: Theme.of(context).textTheme.labelSmall,
+                                  hintStyle:
+                                      Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12.w),
                                       borderSide: BorderSide.none),
                                   filled: true,
                                   fillColor: const Color(0xfff0f3ff),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 10),
                                 ),
                               ),
                             ),
                           ),
-
                           Container(
                             margin: EdgeInsets.only(bottom: 40.h),
                             height: 100.h,
@@ -66,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                               ),
                               image: const DecorationImage(
                                 image: AssetImage(
-                                  "assets/images/Group 2506.png",
+                                  "assets/images/picture_avatar.png",
                                 ),
                               ),
                             ),
@@ -84,12 +87,13 @@ class SignUpScreen extends StatelessWidget {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Enter Middle And Last Name",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -105,12 +109,13 @@ class SignUpScreen extends StatelessWidget {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Enter Email",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -126,12 +131,13 @@ class SignUpScreen extends StatelessWidget {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Enter Phone Number",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -147,12 +153,13 @@ class SignUpScreen extends StatelessWidget {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Enter Password",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -168,12 +175,13 @@ class SignUpScreen extends StatelessWidget {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Re Enter Password",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -190,10 +198,10 @@ class SignUpScreen extends StatelessWidget {
                           fixedSize: MaterialStateProperty.all(
                             Size(215.w, 56.h),
                           ),
-                          backgroundColor:
-                          MaterialStateProperty.all(const Color(0xff3746CC)),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xff3746CC)),
                           foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
+                              MaterialStateProperty.all(Colors.white),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(22.w),
@@ -209,11 +217,10 @@ class SignUpScreen extends StatelessWidget {
                             Text(
                               " Scan FingerPrint",
                               style: GoogleFonts.roboto(
-                                textStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white
-                                ),
+                                textStyle:  TextStyle(
+                                    fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 14),
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
                               ),
                             ),
                           ],
@@ -228,24 +235,26 @@ class SignUpScreen extends StatelessWidget {
                           fixedSize: MaterialStateProperty.all(
                             Size(215.w, 56.h),
                           ),
-                          backgroundColor:
-                          MaterialStateProperty.all(const Color(0xff3746CC)),
+                          backgroundColor: MaterialStateProperty.all(
+                            const Color(
+                              0xff3746CC,
+                            ),
+                          ),
                           foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
+                              MaterialStateProperty.all(Colors.white),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(22.w),
                             ),
                           ),
                         ),
-                        child:  Text(
+                        child: Text(
                           "Sign Up",
                           style: GoogleFonts.roboto(
-                            textStyle: const TextStyle(
-                                fontSize: 25,
+                            textStyle:  TextStyle(
+                                fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 25),
                                 fontWeight: FontWeight.w500,
-                                color: Colors.white
-                            ),
+                                color: Colors.white),
                           ),
                         ),
                       ),

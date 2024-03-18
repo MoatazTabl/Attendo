@@ -1,3 +1,4 @@
+import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -47,14 +48,28 @@ class _SignInScreenState extends State<SignInScreen> {
                         children: [
                           Text(
                             "Welcome to ",
-                            style: Theme.of(context).textTheme.headlineLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(
+                                  fontSize: FontAdaption()
+                                      .getResponsiveFontSize(context,
+                                          fontSize: 40),
+                                ),
                           ),
                           Text(
                             "Attendo",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!
-                                .copyWith(color: const Color(0xff3746CC)),
+                                .copyWith(
+                                  color: const Color(0xff3746CC),
+                                  fontSize:
+                                      FontAdaption().getResponsiveFontSize(
+                                    context,
+                                    fontSize: 40,
+                                  ),
+                                ),
                           ),
                         ],
                       ),
@@ -68,12 +83,20 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: "Enter Your Email or Phone Number",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(
+                                    fontSize: FontAdaption()
+                                        .getResponsiveFontSize(context,
+                                            fontSize: 18),
+                                  ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -89,12 +112,22 @@ class _SignInScreenState extends State<SignInScreen> {
                             enabled: true,
                             decoration: InputDecoration(
                               hintText: "Enter Your Password",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                    fontSize:
+                                        FontAdaption().getResponsiveFontSize(
+                                      context,
+                                      fontSize: 18,
+                                    ),
+                                  ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
                               filled: true,
                               fillColor: const Color(0xfff0f3ff),
+                              contentPadding: const EdgeInsets.only(left: 10),
                             ),
                           ),
                         ),
@@ -118,7 +151,16 @@ class _SignInScreenState extends State<SignInScreen> {
                               },
                               activeColor: const Color(0xff3746CC),
                             ),
-                            const Text("Remember Me"),
+                            Text(
+                              "Remember Me",
+                              style: GoogleFonts.roboto(
+                                textStyle: TextStyle(
+                                  fontSize: FontAdaption()
+                                      .getResponsiveFontSize(context,
+                                          fontSize: 12),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -127,8 +169,11 @@ class _SignInScreenState extends State<SignInScreen> {
                           fixedSize: MaterialStateProperty.all(
                             Size(240.w, 56.h),
                           ),
-                          backgroundColor:
-                              MaterialStateProperty.all(const Color(0xff3746CC)),
+                          backgroundColor: MaterialStateProperty.all(
+                            const Color(
+                              0xff3746CC,
+                            ),
+                          ),
                           foregroundColor:
                               MaterialStateProperty.all(Colors.white),
                           shape: MaterialStateProperty.all(
@@ -142,7 +187,15 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                         child: Text(
                           "Login",
-                          style: Theme.of(context).textTheme.labelMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge!
+                              .copyWith(
+                                fontSize: FontAdaption().getResponsiveFontSize(
+                                  context,
+                                  fontSize: 16,
+                                ),
+                              ),
                         ),
                       ),
                       const Spacer(),
@@ -154,8 +207,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             Text(
                               "Don't Have Account? ",
                               style: GoogleFonts.roboto(
-                                textStyle: const TextStyle(
-                                  fontSize: 16,
+                                textStyle: TextStyle(
+                                  fontSize: FontAdaption()
+                                      .getResponsiveFontSize(context,
+                                          fontSize: 16),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -166,13 +221,18 @@ class _SignInScreenState extends State<SignInScreen> {
                               },
                               child: Text(
                                 "Sign Up Now",
-                                style: GoogleFonts.roboto(
-                                  textStyle: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w900,
-                                    color: Color(0xff3746CC),
-                                  ),
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .copyWith(
+                                      color: const Color(0xff3746CC),
+                                      fontWeight: FontWeight.w900,
+                                      fontSize:
+                                          FontAdaption().getResponsiveFontSize(
+                                        context,
+                                        fontSize: 20,
+                                      ),
+                                    ),
                               ),
                             )
                           ],

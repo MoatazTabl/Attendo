@@ -24,11 +24,13 @@ class _MainScreenState extends State<MainScreen> {
       color: Color(0xff3746CC),
       size: 32,
     ),
-    const Icon(
-      Icons.settings,
-      color: Color(0xff3746CC),
+    const ImageIcon(
+      AssetImage(
+        "assets/images/settings_icon.png",
+      ),
       size: 32,
-    )
+      color: Color(0xff3746CC),
+    ),
   ];
 
   final List<Widget> screens = [
@@ -41,33 +43,34 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
+      child: Container(
         width: 1.sw,
         height: 1.sh,
         decoration: const BoxDecoration(
-        color: Colors.white,
-        image: DecorationImage(
-        image: AssetImage("assets/images/backGround_image.png"),
-    fit: BoxFit.fill),
-    ),
-    child: Scaffold(
-    backgroundColor: Colors.transparent,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: screens[index],
-      bottomNavigationBar: CurvedNavigationBar(
-
-        items: iconList,
-        backgroundColor: Colors.transparent,
-        color: Colors.white,
-        animationCurve: Curves.decelerate,
-        animationDuration: const Duration(milliseconds: 250),
-        onTap: (value) {
-          index = value;
-          setState(() {});
-        },
-        index: index,
+          color: Colors.white,
+          image: DecorationImage(
+              image: AssetImage("assets/images/backGround_image.png"),
+              fit: BoxFit.fill),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          extendBody: true,
+          extendBodyBehindAppBar: true,
+          body: screens[index],
+          bottomNavigationBar: CurvedNavigationBar(
+            items: iconList,
+            backgroundColor: Colors.transparent,
+            color: Colors.white,
+            animationCurve: Curves.decelerate,
+            animationDuration: const Duration(milliseconds: 250),
+            onTap: (value) {
+              index = value;
+              setState(() {});
+            },
+            index: index,
+          ),
+        ),
       ),
-    )));
+    );
   }
 }
