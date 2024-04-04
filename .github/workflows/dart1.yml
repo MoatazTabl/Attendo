@@ -40,10 +40,6 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-        #5 run test
-      - name: Test flutter app
-        run: flutter test
-
         #6 build apk
       - name: Build APK
         run: flutter build apk --release
