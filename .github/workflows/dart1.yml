@@ -45,13 +45,18 @@ jobs:
         run: flutter build apk --release
 
         #8 build ipa
-      - name: Build IPA
-        run:
-          flutter build ipa --no-codesign
-      - name: Compress Archives and IPAs
-        run: |
-          cd build
-          tar -czf ios_build.tar.gz ios
+      - run: flutter build ios --release --no-codesign
+
+      - run: mkdir Payload
+        working-directory: build/ios/iphoneos
+
+      - run: mv Runner.app/ Payload
+        working-directory: build/ios/iphoneos
+
+      - name: Zip output
+        run: zip -qq -r -9 FlutterIpaExport.ipa Payload
+        working-directory: build/ios/iphoneos
+
 
         #9 get those build to be available to download
       - name: Upload Artifacts
@@ -60,13 +65,12 @@ jobs:
           name: Releases
           path: |
             build/app/outputs/flutter-apk/app-release.apk
-            build/app/outputs/bundle/release/app-release.aab
-            build/ios_build.tar.gz
+            build/ios/iphoneos/FlutterIpaExport.ipa
 
         #10 create release with those builds 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios_build.tar.gz"
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/ios/iphoneos/FlutterIpaExport.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
