@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/utils/font_adapter.dart';
+import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,226 +27,137 @@ class SignUpScreen extends StatelessWidget {
               SliverToBoxAdapter(
                 child: SizedBox(
                   height: 1.sh,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 50.h,
-                      ),
-                      Text(
-                        "Sign Up",
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                     CircleAvatar(
-                       radius: 45.sp ,
-                       backgroundImage: const AssetImage(AppImages.addAvatarImage),
-                     ),
-                      SizedBox(
-                        height: 7.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Enter First Name",
-                              hintStyle:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding:
-                              const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                  child: Form(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 50.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Enter Middle And Last Name",
-                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding: const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                        Text(
+                          "Sign Up",
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headlineLarge,
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Enter Email",
-                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding: const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                        CircleAvatar(
+                          radius: 45.sp,
+                          backgroundImage: const AssetImage(
+                              AppImages.addAvatarImage),
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Enter Phone Number",
-                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding: const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                        SizedBox(
+                          height: 7.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Enter Password",
-                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding: const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                        const CustomTextFormField(hintText: "First Name",
+                            isPass: false,),
+                        SizedBox(
+                          height: 16.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.w),
-                        child: SizedBox(
-                          height: 54.h,
-                          child: TextField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                              hintText: "Re Enter Password",
-                              hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.w),
-                                  borderSide: BorderSide.none),
-                              filled: true,
-                              fillColor: const Color(0xfff0f3ff),
-                              contentPadding: const EdgeInsets.only(left: 10),
-                            ),
-                          ),
+                        const CustomTextFormField(hintText: "Last name",
+                          isPass: false,),
+                        SizedBox(
+                          height: 16.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      SizedBox(
-                        height: 32.h,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
-                            Size(215.w, 56.h),
-                          ),
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color(0xff3746CC)),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22.w),
-                            ),
-                          ),
+                        const CustomTextFormField(hintText: "Student ID",
+                          isPass: false,),
+                        SizedBox(
+                          height: 16.h,
                         ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.fingerprint,
-                              size: 42.h,
+                        const CustomTextFormField(hintText: "Student Email",
+                          isPass: false,),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        const CustomTextFormField(hintText: "Phone number",
+                          isPass: false,),
+
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        const CustomTextFormField(hintText: "Password",
+                          isPass: true,),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        const CustomTextFormField(hintText: "Re Enter Password",
+                          isPass: true,),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        SizedBox(
+                          height: 32.h,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all(
+                              Size(215.w, 56.h),
                             ),
-                            Text(
-                              " Scan FingerPrint",
-                              style: GoogleFonts.roboto(
-                                textStyle:  TextStyle(
-                                    fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 14),
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color(0xff3746CC)),
+                            foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(22.w),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 31.h,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
-                            Size(215.w, 56.h),
                           ),
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color(
-                              0xff3746CC,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.fingerprint,
+                                size: 42.h,
+                              ),
+                              Text(
+                                " Scan FingerPrint",
+                                style: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      fontSize: FontAdaption()
+                                          .getResponsiveFontSize(
+                                          context, fontSize: 14),
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 31.h,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all(
+                              Size(215.w, 56.h),
+                            ),
+                            backgroundColor: MaterialStateProperty.all(
+                              const Color(
+                                0xff3746CC,
+                              ),
+                            ),
+                            foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(22.w),
+                              ),
                             ),
                           ),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22.w),
+                          child: Text(
+                            "Sign Up",
+                            style: GoogleFonts.roboto(
+                              textStyle: TextStyle(
+                                  fontSize: FontAdaption().getResponsiveFontSize(
+                                      context, fontSize: 25),
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
                             ),
                           ),
                         ),
-                        child: Text(
-                          "Sign Up",
-                          style: GoogleFonts.roboto(
-                            textStyle:  TextStyle(
-                                fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 25),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

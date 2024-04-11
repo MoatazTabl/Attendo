@@ -7,10 +7,9 @@ class CustomTextFormField extends StatefulWidget {
   final String hintText;
 
   final bool isPass;
-  final TextEditingController? controller;
 
   const CustomTextFormField(
-      {super.key, required this.hintText, required this.isPass, required this.controller});
+      {super.key, required this.hintText, required this.isPass});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -19,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   void Function(String)? onChanged;
   bool obscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,10 +26,24 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: SizedBox(
         height: 54.h,
         child: TextFormField(
-          controller: widget.controller,
           obscureText: widget.isPass ? obscure : false,
           enabled: true,
           decoration: InputDecoration(
+            suffixIcon: widget.isPass
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscure = !obscure;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove_red_eye,
+                      color: obscure
+                          ? Colors.black
+                          : Color(0xff3746CC),
+                    ),
+                  )
+                : const SizedBox(),
             hintText: widget.hintText,
             hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                 fontSize: FontAdaption()
