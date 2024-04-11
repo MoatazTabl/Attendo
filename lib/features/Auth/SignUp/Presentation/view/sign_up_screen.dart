@@ -1,3 +1,4 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage("assets/images/backGround_image.png"),
+              image: AssetImage(AppImages.backgroundImage),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
@@ -34,47 +35,44 @@ class SignUpScreen extends StatelessWidget {
                         "Sign Up",
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
-                      Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.w),
-                            child: SizedBox(
-                              height: 54.h,
-                              child: TextField(
-                                enabled: true,
-                                decoration: InputDecoration(
-                                  hintText: "Enter First Name",
-                                  hintStyle:
-                                      Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12.w),
-                                      borderSide: BorderSide.none),
-                                  filled: true,
-                                  fillColor: const Color(0xfff0f3ff),
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 10),
-                                ),
-                              ),
+                      Container(
+                        height: 100.h,
+                        width: 100.h,
+                        alignment: Alignment.topCenter,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.w),
+                          ),
+                          image: const DecorationImage(
+                            image: AssetImage(
+                              AppImages.addAvatarImage
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 40.h),
-                            height: 100.h,
-                            width: 100.h,
-                            alignment: Alignment.topCenter,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.w),
-                              ),
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/picture_avatar.png",
-                                ),
-                              ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 7.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25.w),
+                        child: SizedBox(
+                          height: 54.h,
+                          child: TextField(
+                            enabled: true,
+                            decoration: InputDecoration(
+                              hintText: "Enter First Name",
+                              hintStyle:
+                              Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 18)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.w),
+                                  borderSide: BorderSide.none),
+                              filled: true,
+                              fillColor: const Color(0xfff0f3ff),
+                              contentPadding:
+                              const EdgeInsets.only(left: 10),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                       SizedBox(
                         height: 16.h,
