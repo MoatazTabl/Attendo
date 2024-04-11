@@ -83,7 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           height: 54.h,
                           child: TextField(
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person,color: Colors.black,),
+                              prefixIcon: const Icon(Icons.person,color: Colors.black,),
                               hintText: "Email or ID",
                               hintStyle: Theme.of(context)
                                   .textTheme
@@ -113,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: TextField(
                             enabled: true,
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.lock,color: Colors.black,),
+                              prefixIcon: const Icon(Icons.lock,color: Colors.black,),
                               hintText: "Password",
                               hintStyle: Theme.of(context)
                                   .textTheme
