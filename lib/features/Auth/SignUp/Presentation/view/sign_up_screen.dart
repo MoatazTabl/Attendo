@@ -29,27 +29,16 @@ class SignUpScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 73.h,
+                        height: 50.h,
                       ),
                       Text(
                         "Sign Up",
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
-                      Container(
-                        height: 100.h,
-                        width: 100.h,
-                        alignment: Alignment.topCenter,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.w),
-                          ),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              AppImages.addAvatarImage
-                            ),
-                          ),
-                        ),
-                      ),
+                     CircleAvatar(
+                       radius: 45.sp ,
+                       backgroundImage: const AssetImage(AppImages.addAvatarImage),
+                     ),
                       SizedBox(
                         height: 7.h,
                       ),
