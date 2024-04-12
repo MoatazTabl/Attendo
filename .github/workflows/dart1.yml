@@ -69,7 +69,7 @@ jobs:
 
         #10 create release with those builds 
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: svenstaro/upload-release-action@v2
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/ios/iphoneos/FlutterIpaExport.ipa"
           tag: v1.0.${{ github.run_number }}
