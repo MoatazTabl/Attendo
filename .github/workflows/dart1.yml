@@ -74,5 +74,6 @@ jobs:
           files: |
            build/app/outputs/flutter-apk/app-release.apk
            build/ios/iphoneos/FlutterIpaExport.ipa
-          
+
+          append_body: true
           tag_name: v1.0.${{ github.run_number }}
