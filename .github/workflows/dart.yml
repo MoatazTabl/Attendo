@@ -1,6 +1,16 @@
 name: iOS-ipa-build
 
 on:
+
+  pull_request:
+    branches:
+      - development
+      - master
+  push:
+    branches:
+      - development
+      - master
+      
   workflow_dispatch:
 
 jobs:
