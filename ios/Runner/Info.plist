@@ -29,10 +29,6 @@
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>UISupportedInterfaceOrientations</key>
-		<key>NSCameraUsageDescription</key>
-        <string>This app needs access to camera when used</string>
-        <key>NSMicrophoneUsageDescription</key>
-        <string>This app needs access to microphone when used</string>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
 			<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -51,5 +47,10 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+
+		<key>NSCameraUsageDescription</key>
+        <string>This app needs access to camera when used</string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>This app needs access to microphone when used</string>
 	</dict>
 </plist>
