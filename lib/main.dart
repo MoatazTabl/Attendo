@@ -1,10 +1,18 @@
 import 'package:attendo/core/utils/app_theme.dart';
+import 'package:attendo/core/utils/globals.dart';
 import 'package:attendo/core/utils/router/router.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-void main() {
+void main()async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    debugPrint("${e.code}, ${e.description}");
+  }
   runApp(const MyApp());
 }
 

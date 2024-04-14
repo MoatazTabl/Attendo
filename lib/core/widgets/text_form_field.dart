@@ -40,7 +40,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                       Icons.remove_red_eye,
                       color: obscure
                           ? Colors.black
-                          : Color(0xff3746CC),
+                          : const Color(0xff3746CC),
                     ),
                   )
                 : const SizedBox(),
