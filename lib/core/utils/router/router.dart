@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/cameraScreen",
-      builder: (context, state) => const CameraExampleHome(),
+      builder: (context, state) => const CameraScreen(),
     ),
   ],
 );
