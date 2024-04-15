@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,7 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   late CameraController controller;
+  bool _isRearCameraSelected = true;
 
   @override
   void initState() {
@@ -68,13 +70,30 @@ class _CameraScreenState extends State<CameraScreen>
                         controller,
                       ),
                     ),
-                    IconButton(
-                      onPressed: takePicture,
-                      iconSize: 50,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                      icon: const Icon(Icons.circle, color: Colors.white),
-                    ),
+                    Row(children: [
+                      IconButton(
+                        onPressed: takePicture,
+                        iconSize: 50,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(Icons.circle, color: Colors.white),
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        iconSize: 30,
+                        icon: Icon(
+                            _isRearCameraSelected
+                                ? CupertinoIcons.switch_camera
+                                : CupertinoIcons.switch_camera_solid,
+                            color: Colors.white),
+                        onPressed: () {
+                          setState(() => _isRearCameraSelected = !_isRearCameraSelected);
+                          _initializeCameraController(cameras[_isRearCameraSelected ? 0 : 1]);
+                          print(_isRearCameraSelected);
+                        },
+                      )
+                    ],)
                   ],
                 ),
               )
