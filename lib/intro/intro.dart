@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -19,7 +20,7 @@ class IntroScreen extends StatelessWidget {
                   onTap: () {
                     context.push('/SignInScreenStudent');
                   },
-                  child: Image.asset(AppImages.studentIntro)),
+                  child: SvgPicture.asset(AppImages.studentIntro)),
             ],
           ),
           Row(
@@ -29,7 +30,7 @@ class IntroScreen extends StatelessWidget {
                   onTap: () {
                     context.push("/SignInScreenInstructor");
                   },
-                  child: Image.asset(AppImages.instructorIntro)),
+                  child: SvgPicture.asset(AppImages.instructorIntro)),
             ],
           ),
           Row(
@@ -37,7 +38,7 @@ class IntroScreen extends StatelessWidget {
             children: [
               InkWell(onTap: () {
                 context.push("/signInScreenAdmin");
-              },child: Image.asset(AppImages.adminIntro)),
+              },child: SvgPicture.asset(AppImages.adminIntro)),
             ],
           ),
         ],
