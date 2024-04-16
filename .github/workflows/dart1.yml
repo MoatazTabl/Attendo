@@ -1,14 +1,14 @@
 name: "Build & Release"
 
-on:
-  pull_request:
-    branches:
-      - development
-      - master
-  push:
-    branches:
-      - development
-      - master
+# on:
+#   pull_request:
+#     branches:
+#       - development
+#       - master
+#   push:
+#     branches:
+#       - development
+#       - master
       
   workflow_dispatch:
 
