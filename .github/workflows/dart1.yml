@@ -9,7 +9,8 @@ name: "Build & Release"
 #     branches:
 #       - development
 #       - master
-      
+
+on:
   workflow_dispatch:
 
 
