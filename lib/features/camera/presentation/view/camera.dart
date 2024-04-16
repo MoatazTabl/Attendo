@@ -3,10 +3,13 @@ import 'dart:io';
 import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// CameraApp is the Main Application.
 class CameraScreen extends StatefulWidget {
@@ -18,15 +21,20 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State<CameraScreen>
-    with WidgetsBindingObserver, TickerProviderStateMixin {
+    with WidgetsBindingObserver {
   late CameraController controller;
-  bool _isRearCameraSelected = true;
+  bool _isRearCameraSelected = false;
 
   @override
   void initState() {
+    Permission.camera.request();
+    var photoStatus= Permission.photos;
+    Permission.storage.request();
+     photoStatus.request();
     _initializeCameraController(
       cameras[CameraLensDirection.back.index],
     );
+    controller.setFocusMode(FocusMode.auto);
     super.initState();
   }
 
@@ -63,37 +71,41 @@ class _CameraScreenState extends State<CameraScreen>
                 child: Stack(
                   children: [
                     GestureDetector(
-                      onTap:() {
-                        setFocusPoint(const Offset(0, 0));
-                      },
+                      onTap: () {},
                       child: CameraPreview(
                         controller,
                       ),
                     ),
-                    Row(children: [
-                      IconButton(
-                        onPressed: takePicture,
-                        iconSize: 50,
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        icon: const Icon(Icons.circle, color: Colors.white),
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        iconSize: 30,
-                        icon: Icon(
-                            _isRearCameraSelected
-                                ? CupertinoIcons.switch_camera
-                                : CupertinoIcons.switch_camera_solid,
-                            color: Colors.white),
-                        onPressed: () {
-                          setState(() => _isRearCameraSelected = !_isRearCameraSelected);
-                          _initializeCameraController(cameras[_isRearCameraSelected ? 0 : 1]);
-                          print(_isRearCameraSelected);
-                        },
-                      )
-                    ],)
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: takePicture,
+                          iconSize: 50,
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          icon: const Icon(Icons.circle, color: Colors.white),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          iconSize: 30,
+                          icon: Icon(
+                              _isRearCameraSelected
+                                  ? CupertinoIcons.switch_camera
+                                  : CupertinoIcons.switch_camera_solid,
+                              color: Colors.white),
+                          onPressed: () {
+                            setState(() =>
+                                _isRearCameraSelected = !_isRearCameraSelected);
+                            _initializeCameraController(
+                                cameras[_isRearCameraSelected ? 0 : 1]);
+                            if (kDebugMode) {
+                              print(_isRearCameraSelected);
+                            }
+                          },
+                        )
+                      ],
+                    )
                   ],
                 ),
               )
@@ -149,7 +161,6 @@ class _CameraScreenState extends State<CameraScreen>
           break;
       }
     }
-
     if (mounted) {
       setState(() {});
     }
@@ -163,38 +174,50 @@ class _CameraScreenState extends State<CameraScreen>
       return null;
     }
     try {
-      await controller.setFlashMode(FlashMode.off);
+      await controller.setFlashMode(FlashMode.torch);
       XFile picture = await controller.takePicture();
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PreviewPage(
-            picture: picture,
-          ),
-        ),
-      );
+      await savePicture(picture);
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => PreviewPage(
+      //       picture: picture,
+      //     ),
+      //   ),
+      // );
     } on CameraException catch (e) {
-      debugPrint('Error occured while taking picture: $e');
+      debugPrint('Error occurred while taking picture: $e');
       return null;
     }
   }
 
-
-    Future<void> setFocusPoint(Offset? point) async {
-      if (point != null &&
-          (point.dx < 0 || point.dx > 1 || point.dy < 0 || point.dy > 1)) {
-        throw ArgumentError(
-            'The values of point should be anywhere between (0,0) and (1,1).');
-      }
-      try {
-        await controller.setFocusPoint(
-          const Offset(0, 0)
-        );
-      } on PlatformException catch (e) {
-        throw CameraException(e.code, e.message);
-      }
+  Future<void> setFocusPoint(Offset? point) async {
+    if (point != null &&
+        (point.dx < 0 || point.dx > 1 || point.dy < 0 || point.dy > 1)) {
+      throw ArgumentError(
+          'The values of point should be anywhere between (0,0) and (1,1).');
     }
+    try {
+      await controller.setFocusPoint(const Offset(0, 0));
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+}
 
+Future<void> savePicture(XFile picture) async {
+  XFile picture1 = XFile(picture.path);
+  Uint8List convertedPicture = await picture1.readAsBytes();
+  if (kDebugMode) {
+    print(convertedPicture);
+  }
+  final result = await ImageGallerySaver.saveImage(
+    convertedPicture,
+    quality: 100,
+  );
+  if (kDebugMode) {
+    print(result);
+  }
 }
 
 class PreviewPage extends StatelessWidget {
@@ -206,7 +229,13 @@ class PreviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(child: Image.file(File(picture.path))),
+      body: Center(
+        child: Image.file(
+          File(
+            picture.path,
+          ),
+        ),
+      ),
     );
   }
 }
