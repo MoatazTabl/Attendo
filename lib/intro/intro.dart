@@ -15,9 +15,11 @@ class IntroScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(onTap: () {
-                context.push('/SignInScreenStudent');
-              },child: Image.asset(AppImages.studentIntro)),
+              InkWell(
+                  onTap: () {
+                    context.push('/SignInScreenStudent');
+                  },
+                  child: Image.asset(AppImages.studentIntro)),
             ],
           ),
           Row(
@@ -33,7 +35,9 @@ class IntroScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(AppImages.adminIntro),
+              InkWell(onTap: () {
+                context.push("/signInScreenAdmin");
+              },child: Image.asset(AppImages.adminIntro)),
             ],
           ),
         ],

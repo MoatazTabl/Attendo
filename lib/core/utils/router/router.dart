@@ -1,3 +1,4 @@
+import 'package:attendo/intro/admin/features/auth/sign_in/presentation/view/sign_in_screen_admin.dart';
 import 'package:attendo/intro/instructor/features/auth/sign_in/presentation/view/sign_in_instructor_screen.dart';
 import 'package:attendo/intro/intro.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
@@ -47,6 +48,10 @@ final GoRouter router = GoRouter(
 
     // -------------------- Admin route----------------------
 
+    GoRoute(
+      path: "/signInScreenAdmin",
+      builder: (context, state) => const SignInScreenAdmin(),
+    ),
 
 
   ],
