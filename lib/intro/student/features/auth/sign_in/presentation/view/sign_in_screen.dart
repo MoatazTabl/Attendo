@@ -220,7 +220,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                context.push("/sign_up");
+                                context.push("/sign_up_student");
                               },
                               child: Text(
                                 "Sign Up Now",

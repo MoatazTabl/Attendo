@@ -1,3 +1,4 @@
+import 'package:attendo/intro/instructor/features/auth/sign_in/presentation/view/sign_in_instructor_screen.dart';
 import 'package:attendo/intro/intro.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/main_screen.dart';
@@ -10,16 +11,17 @@ import '../../../intro/student/features/custom_paint.dart';
 final GoRouter router = GoRouter(
   initialLocation: "/",
   routes: [
+    //---------------- Student routes------------------
     GoRoute(
       path: "/",
       builder: (context, state) => const IntroScreen(),
     ),
     GoRoute(
-      path: "/SignInScreen",
+      path: "/SignInScreenStudent",
       builder: (context, state) => const SignInScreen(),
     ),
    GoRoute(
-      path: "/sign_up",
+      path: "/sign_up_student",
       builder: (context, state) => const SignUpScreen(),
     ),
 
@@ -35,5 +37,17 @@ final GoRouter router = GoRouter(
       path: "/4",
       builder: (context, state) => const customPaint(),
     ),
+
+  //  --------------------instructor routes-----------------
+    GoRoute(
+      path: "/SignInScreenInstructor",
+      builder: (context, state) => const SignInInstructorScreen(),
+    ),
+
+
+    // -------------------- Admin route----------------------
+
+
+
   ],
 );

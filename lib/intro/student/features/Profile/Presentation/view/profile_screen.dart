@@ -1,5 +1,6 @@
 import 'package:attendo/core/utils/font_adapter.dart';
-import 'package:attendo/features/auth/sign_up/Presentation/view/widgets/user_info_item.dart';
+import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/widgets/user_info_item.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
