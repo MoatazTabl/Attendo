@@ -1,10 +1,11 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/features/Home/Presentation/view/home_screen.dart';
-import 'package:attendo/features/Profile/Presentation/view/profile_screen.dart';
 import 'package:attendo/features/Settings/Presentation/view/settings_screen.dart';
+import 'package:attendo/intro/student/features/Profile/Presentation/view/profile_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'intro/student/features/Home/Presentation/view/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

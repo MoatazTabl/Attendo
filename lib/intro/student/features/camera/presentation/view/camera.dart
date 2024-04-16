@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:attendo/core/utils/globals.dart';
-import 'package:attendo/features/camera/camera_functions.dart';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../camera_functions.dart';
 
 /// CameraApp is the Main Application.
 class CameraScreen extends StatefulWidget {
