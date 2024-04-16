@@ -1,3 +1,4 @@
+import 'package:attendo/intro/intro.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +12,10 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: "/",
+      builder: (context, state) => const IntroScreen(),
+    ),
+    GoRoute(
+      path: "/SignInScreen",
       builder: (context, state) => const SignInScreen(),
     ),
    GoRoute(
