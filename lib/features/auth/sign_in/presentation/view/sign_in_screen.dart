@@ -1,3 +1,4 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage("assets/images/backGround_image.png"),
+              image: AssetImage(AppImages.backgroundImage),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
@@ -41,7 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       Center(
                         child:
-                            Image.asset("assets/images/Checklist-rafiki.png"),
+                            Image.asset(AppImages.welcomePageStudentImage),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +83,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           height: 54.h,
                           child: TextField(
                             decoration: InputDecoration(
-                              hintText: "Enter Your Email or Phone Number",
+                              prefixIcon: const Icon(Icons.person,color: Colors.black,),
+                              hintText: "Email or ID",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
@@ -111,7 +113,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: TextField(
                             enabled: true,
                             decoration: InputDecoration(
-                              hintText: "Enter Your Password",
+                              prefixIcon: const Icon(Icons.lock,color: Colors.black,),
+                              hintText: "Password",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall
@@ -141,7 +144,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 borderRadius: BorderRadius.circular(5.w),
                               ),
                               side: const BorderSide(
-                                color: Color(0xff3746CC),
+                                color: Colors.black,
                                 width: 2,
                               ),
                               value: rememberMe,
@@ -149,7 +152,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 rememberMe = !rememberMe;
                                 setState(() {});
                               },
-                              activeColor: const Color(0xff3746CC),
+                              activeColor: Colors.black,
                             ),
                             Text(
                               "Remember Me",

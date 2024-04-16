@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AttendanceCard extends StatefulWidget {
@@ -60,7 +61,9 @@ class _AttendanceCardState extends State<AttendanceCard> {
             ),
             SizedBox(height: 15.h,),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push("/cameraScreen");
+              },
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all(
                   Size(258.w, 89.h),

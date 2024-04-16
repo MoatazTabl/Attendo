@@ -1,3 +1,4 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/features/Home/Presentation/view/home_screen.dart';
 import 'package:attendo/features/Profile/Presentation/view/profile_screen.dart';
 import 'package:attendo/features/Settings/Presentation/view/settings_screen.dart';
@@ -49,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage("assets/images/backGround_image.png"),
+              image: AssetImage(AppImages.backgroundImage),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
