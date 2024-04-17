@@ -2,7 +2,6 @@ import 'package:attendo/core/app_images.dart';
 
 import 'package:attendo/intro/student/features/Profile/Presentation/view/profile_screen.dart';
 import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

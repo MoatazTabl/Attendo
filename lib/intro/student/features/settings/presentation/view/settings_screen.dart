@@ -171,7 +171,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     foregroundColor: MaterialStateProperty.all(
                       const Color(0xff3746CC),
                     ),
-                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 10))
+                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
                   ),
                   child: Row(
                     children: [
