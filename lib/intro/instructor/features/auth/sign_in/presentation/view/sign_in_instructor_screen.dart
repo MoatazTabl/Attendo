@@ -137,7 +137,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     ),
                   ),
                   onPressed: () {
-                    context.go("/mainScreen");
+                    context.push("/HomeInstructor");
                   },
                   child: Text(
                     "Login",

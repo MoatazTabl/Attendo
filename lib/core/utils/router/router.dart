@@ -8,6 +8,8 @@ import 'package:attendo/intro/student/features/custom_paint.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../intro/instructor/features/home/presentation/view/home_instructor.dart';
+
 
 final GoRouter router = GoRouter(
   initialLocation: "/",
@@ -47,6 +49,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/SignUpInstructorScreen",
       builder: (context, state) => const SignUpInstructorScreen(),
+    ),
+    GoRoute(
+      path: "/HomeInstructor",
+      builder: (context, state) => const HomeInstructor(),
     ),
 
 
