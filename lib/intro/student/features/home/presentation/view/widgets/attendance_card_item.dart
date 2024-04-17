@@ -1,10 +1,10 @@
+import 'package:attendo/intro/student/features/home/presentation/view/widgets/attendance_card_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video_player/video_player.dart';
 
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({
@@ -103,60 +103,3 @@ class AttendanceCard extends StatelessWidget {
   }
 }
 
-class AttendanceCardVideoPlayback extends StatefulWidget {
-  const AttendanceCardVideoPlayback({super.key});
-
-  @override
-  State<AttendanceCardVideoPlayback> createState() =>
-      _AttendanceCardVideoPlaybackState();
-}
-
-class _AttendanceCardVideoPlaybackState
-    extends State<AttendanceCardVideoPlayback> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
-    _controller = VideoPlayerController.asset(
-      "assets/videos/blue_shades.mp4",
-    );
-
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.play();
-    _controller.setLooping(true);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
-    _controller.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initializeVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Offstage(
-            offstage: false,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.w),
-                  child: VideoPlayer(_controller)));
-        } else {
-          return Container(
-            color: Colors.white,
-          );
-        }
-      },
-    );
-  }
-}
