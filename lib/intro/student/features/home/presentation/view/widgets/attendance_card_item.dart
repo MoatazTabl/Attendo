@@ -1,4 +1,4 @@
-import 'package:attendo/intro/student/features/home/presentation/view/widgets/attendance_card_background.dart';
+import 'package:attendo/intro/student/features/Home/Presentation/view/widgets/attendance_card_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
