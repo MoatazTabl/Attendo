@@ -8,8 +8,13 @@ class CustomTextFormField extends StatefulWidget {
 
   final bool isPass;
 
+  final IconData? prefixIcon;
+
   const CustomTextFormField(
-      {super.key, required this.hintText, required this.isPass});
+      {super.key,
+      required this.hintText,
+      required this.isPass,
+      this.prefixIcon});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -38,12 +43,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     },
                     icon: Icon(
                       Icons.remove_red_eye,
-                      color: obscure
-                          ? Colors.black
-                          : const Color(0xff3746CC),
+                      color: obscure ? Colors.black : const Color(0xff3746CC),
                     ),
                   )
                 : const SizedBox(),
+            prefixIcon: Icon(widget.prefixIcon),
             hintText: widget.hintText,
             hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                 fontSize: FontAdaption()
