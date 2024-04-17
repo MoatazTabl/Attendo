@@ -22,12 +22,10 @@ class SignUpInstructorScreen extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 1.sh,
-                  child: Form(
+          body: SizedBox(
+                height: 1.sh,
+                child: Form(
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
                         SizedBox(
@@ -58,22 +56,13 @@ class SignUpInstructorScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        const CustomTextFormField(hintText: "Student ID",
-                          isPass: false,),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        const CustomTextFormField(hintText: "Student Email",
-                          isPass: false,),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        const CustomTextFormField(hintText: "Phone number",
-                          isPass: false,),
 
+                        const CustomTextFormField(hintText: "Email",
+                          isPass: false,),
                         SizedBox(
                           height: 16.h,
                         ),
+
                         const CustomTextFormField(hintText: "Password",
                           isPass: true,),
                         SizedBox(
@@ -86,45 +75,6 @@ class SignUpInstructorScreen extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 32.h,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            fixedSize: MaterialStateProperty.all(
-                              Size(215.w, 56.h),
-                            ),
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color(0xff3746CC)),
-                            foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(22.w),
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.fingerprint,
-                                size: 42.h,
-                              ),
-                              Text(
-                                " Scan FingerPrint",
-                                style: GoogleFonts.roboto(
-                                  textStyle: TextStyle(
-                                      fontSize: FontAdaption()
-                                          .getResponsiveFontSize(
-                                          context, fontSize: 14),
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 31.h,
                         ),
                         ElevatedButton(
                           onPressed: () {},
@@ -161,8 +111,6 @@ class SignUpInstructorScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
         ),
       ),
     );
