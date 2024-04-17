@@ -5,7 +5,7 @@ import 'package:attendo/intro/student/features/settings/presentation/view/settin
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'intro/student/features/Home/Presentation/view/home_screen.dart';
 
@@ -17,25 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final iconList = [
-    const Icon(
-      Icons.home_filled,
-      color: Color(0xff3746CC),
-      size: 32,
-    ),
-    const Icon(
-      Icons.person,
-      color: Color(0xff3746CC),
-      size: 32,
-    ),
-    const ImageIcon(
-      AssetImage(
-        "assets/images/settings_icon.png",
-      ),
-      size: 32,
-      color: Color(0xff3746CC),
-    ),
-  ];
+  final iconList = [];
 
   final List<Widget> screens = [
     const HomeScreen(),
@@ -53,25 +35,55 @@ class _MainScreenState extends State<MainScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage),
+              image: AssetImage(AppImages.backgroundImageStudent),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          extendBody: true,
-          extendBodyBehindAppBar: true,
           body: screens[index],
-          bottomNavigationBar: CurvedNavigationBar(
-            items: iconList,
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: index,
+            iconSize: 32.w,
+            type: BottomNavigationBarType.fixed,
+            elevation: 0,
+            selectedItemColor: const Color(0xff001076),
+            items: [
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  "assets/images/svg/home_icon.svg",
+                ),
+                activeIcon: SvgPicture.asset(
+                  "assets/images/svg/selected_home.svg",
+                ),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  "assets/images/svg/profile_icon.svg",
+                ),
+                activeIcon: SvgPicture.asset(
+                  "assets/images/svg/selected_profile.svg",
+                ),
+                label: "Profile",
+              ),
+              BottomNavigationBarItem(
+                label: "Settings",
+
+                icon: SvgPicture.asset(
+                  "assets/images/svg/settings_icon.svg",
+                ),
+                activeIcon: SvgPicture.asset(
+                  "assets/images/svg/selected_settings.svg",
+
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
             backgroundColor: Colors.transparent,
-            color: Colors.white,
-            animationCurve: Curves.decelerate,
-            animationDuration: const Duration(milliseconds: 250),
             onTap: (value) {
               index = value;
               setState(() {});
             },
-            index: index,
           ),
         ),
       ),

@@ -110,7 +110,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   "English",
                                   style: GoogleFonts.roboto(
                                     textStyle: TextStyle(
-                                        fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 20)
+                                        fontSize:20.sp
                                     ),
                                   ),
                                 ),
@@ -159,7 +159,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
                       Size(
-                        120.w,
+                        123.w,
                         58.h,
                       ),
                     ),
@@ -171,6 +171,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     foregroundColor: MaterialStateProperty.all(
                       const Color(0xff3746CC),
                     ),
+                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 10))
                   ),
                   child: Row(
                     children: [
@@ -178,10 +179,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         "English",
                         style: GoogleFonts.roboto(
                           textStyle: TextStyle(
-                              fontSize: FontAdaption().getResponsiveFontSize(
-                                  context,
-                                  fontSize: 22)),
+                              fontSize: 22.sp),
                         ),
+
                       ),
                       const Spacer(),
                       const Icon(Icons.arrow_drop_down_outlined),
