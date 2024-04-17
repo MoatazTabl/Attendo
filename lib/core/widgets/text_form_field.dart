@@ -47,7 +47,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     ),
                   )
                 : const SizedBox(),
-            prefixIcon: Icon(widget.prefixIcon),
+            prefixIcon: Icon(widget.prefixIcon,color: Colors.black,),
             hintText: widget.hintText,
             hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                 fontSize: FontAdaption()
