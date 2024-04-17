@@ -167,7 +167,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          context.push("/sign_up_student");
+                          context.push("/SignUpInstructorScreen");
                         },
                         child: Text(
                           "Sign Up Now",
