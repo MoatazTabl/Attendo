@@ -33,17 +33,15 @@ class InstructorLectureDetails extends StatelessWidget {
                   children: [
                     Text(
                       "OOP Lecture",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                        fontSize: 30.sp,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 30.sp,
+                          ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Card(
                   color: Colors.white,
                   child: QrImageView(
@@ -52,6 +50,39 @@ class InstructorLectureDetails extends StatelessWidget {
                     size: 200,
                   ),
                 ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Container(
+                  width: 200.w,
+                  height: 140.h,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xFFF0F3FF),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text("Student Attending",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 18)),
+                      SizedBox(height: 18.h,),
+                      CircleAvatar(
+                        backgroundColor: Colors.black,
+                        radius: 30,
+                        child: Text(
+                          '150',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           )
