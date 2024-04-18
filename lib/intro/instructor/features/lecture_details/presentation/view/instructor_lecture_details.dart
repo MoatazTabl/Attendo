@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../../../core/app_images.dart';
@@ -71,7 +72,9 @@ class InstructorLectureDetails extends StatelessWidget {
                               .textTheme
                               .titleLarge!
                               .copyWith(fontSize: 18)),
-                      SizedBox(height: 18.h,),
+                      SizedBox(
+                        height: 18.h,
+                      ),
                       CircleAvatar(
                         backgroundColor: Colors.black,
                         radius: 30,
@@ -82,7 +85,10 @@ class InstructorLectureDetails extends StatelessWidget {
                       )
                     ],
                   ),
-                )
+                ),
+                InkWell(
+                    onTap: () {},
+                    child: SvgPicture.asset(AppImages.studentAttendingPopUp)),
               ],
             ),
           )

@@ -14,4 +14,5 @@ abstract class AppImages {
   static const String studentIntro = 'assets/images/svg/student_intro.svg';
   static const String instructorIntro = 'assets/images/svg/instructor_intro.svg';
   static const String adminIntro = 'assets/images/svg/admin_intro.svg';
+  static const String studentAttendingPopUp = 'assets/images/svg/student_attending_pop_up.svg';
 }
