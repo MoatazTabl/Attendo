@@ -1,5 +1,5 @@
 abstract class AppImages {
-  static const String backgroundImageStudent = "assets/images/background1.png";
+  static const String backgroundImageStudent = "assets/images/background.png";
 
   static const String addAvatarImage = "assets/images/picture_avatar.png";
 

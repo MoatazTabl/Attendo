@@ -38,13 +38,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
 
     super.initState();
   }
-  @override
-  void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
 
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
