@@ -1,26 +1,26 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-mixin CameraFunctions<T extends StatefulWidget> on State<T> {
+mixin CameraFunctions<T extends StatefulWidget> on State<T> implements WidgetsBindingObserver {
   late CameraController controller;
 
   @override
   void initState() {
-    Permission.camera.request();
-    var photoStatus = Permission.photos;
-    Permission.storage.request();
-    photoStatus.request();
+    WidgetsBinding.instance.addObserver(this);
+
     initializeCameraController(
       cameras[CameraLensDirection.back.index],
     );
-    controller.setFocusMode(FocusMode.auto);
 
     super.initState();
   }
@@ -44,50 +44,85 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T> {
     );
 
     controller = cameraController;
+    await askForCameraPermission(cameraController);
 
     // If the controller is updated then update the UI.
-    cameraController.addListener(() {
-      if (mounted) {
-        setState(() {});
-      }
-      if (cameraController.value.hasError) {
-        debugPrint('Camera error ${cameraController.value.errorDescription}');
-      }
-    });
+    cameraController.addListener(
+      () {
+        if (mounted) {
+          setState(() {});
+        }
+        if (cameraController.value.hasError) {
+          debugPrint('Camera error ${cameraController.value.errorDescription}');
+        }
+      },
+    );
 
-    try {
-      await cameraController.initialize();
-      await cameraController.setFlashMode(FlashMode.torch);
-    } on CameraException catch (e) {
-      switch (e.code) {
-        case 'CameraAccessDenied':
-          debugPrint('You have denied camera access.');
-        case 'CameraAccessDeniedWithoutPrompt':
-          // iOS only
-          debugPrint('Please go to Settings app to enable camera access.');
-        case 'CameraAccessRestricted':
-          // iOS only
-          debugPrint('Camera access is restricted.');
-        case 'AudioAccessDenied':
-          debugPrint('You have denied audio access.');
-        case 'AudioAccessDeniedWithoutPrompt':
-          // iOS only
-          debugPrint('Please go to Settings app to enable audio access.');
-        case 'AudioAccessRestricted':
-          // iOS only
-          debugPrint('Audio access is restricted.');
-        default:
-          debugPrint("${e.code},${e.description}");
-          break;
-      }
-    }
     if (mounted) {
       setState(() {});
     }
   }
 
+  Future<void> askForCameraPermission(
+      CameraController cameraController) async {
+
+
+    await Permission.camera.request();
+    if (await Permission.camera.isGranted) {
+      await cameraController.initialize();
+      await cameraController.setFlashMode(FlashMode.torch);
+      setState(()  {
+
+      });
+    }
+    if (await Permission.camera.isDenied) {
+          if (mounted) {
+            context.pop();
+          }
+
+    }
+    if (await Permission.camera.isPermanentlyDenied) {
+      showAdaptiveDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog.adaptive(
+            icon: const Icon(
+              Icons.error,
+              color: Colors.redAccent,
+            ),
+            title: const Text("Permission to open camera is denied"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  context.go("/mainScreen");
+                },
+                child: const Text("Ok"),
+              ),
+              TextButton(
+                onPressed: () async {
+                  await openAppSettings();
+                },
+                child: const Text("Open Settings"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  Future<void> askForStoragePermission()async
+  {
+    var photoStatus = Permission.photos;
+    await Permission.storage.request();
+    await photoStatus.request();
+  }
   /// takes picture using camera plugin
   Future takePicture() async {
+    if(await Permission.storage.isDenied||await Permission.photos.isDenied)
+      {
+       await askForStoragePermission();
+      }
     if (!controller.value.isInitialized) {
       return null;
     }
