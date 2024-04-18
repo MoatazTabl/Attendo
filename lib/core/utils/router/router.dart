@@ -1,6 +1,7 @@
 import 'package:attendo/intro/admin/features/auth/sign_in/presentation/view/sign_in_screen_admin.dart';
 import 'package:attendo/intro/instructor/features/auth/sign_in/presentation/view/sign_in_instructor_screen.dart';
 import 'package:attendo/intro/instructor/features/auth/sign_up/presentation/view/sign_up_instructor_screen.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/intro.dart';
 import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/sign_up_screen_student.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
@@ -53,6 +54,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/HomeInstructor",
       builder: (context, state) => const HomeInstructor(),
+    ),
+    GoRoute(
+      path: "/instructorLectureDetails",
+      builder: (context, state) => const InstructorLectureDetails(),
     ),
 
 

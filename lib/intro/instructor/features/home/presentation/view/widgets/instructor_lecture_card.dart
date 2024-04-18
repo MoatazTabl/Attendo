@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../../core/utils/font_adapter.dart';
 
 class InstructorLectureCard extends StatelessWidget {
-  const InstructorLectureCard({Key? key}) : super(key: key);
+  const InstructorLectureCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 15,
+      elevation: 6,
       child: Container(
         height: 280.h,
         width: double.infinity,
@@ -44,7 +45,7 @@ class InstructorLectureCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("22/4/2024", style: Theme.of(context)
+                  Text("22/04/2024", style: Theme.of(context)
                       .textTheme
                       .titleMedium!,),
                   Text("11 : 00 AM", style: Theme.of(context)
@@ -68,7 +69,9 @@ class InstructorLectureCard extends StatelessWidget {
                 height: 12.h,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.push("/instructorLectureDetails");
+                },
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all(
                     Size(215.w, 56.h),

@@ -42,13 +42,13 @@ class HomeInstructor extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 5.h,
                 ),
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
+                      return const Padding(
+                        padding: EdgeInsets.only(bottom: 12),
                         child: InstructorLectureCard(),
                       );
                     },
