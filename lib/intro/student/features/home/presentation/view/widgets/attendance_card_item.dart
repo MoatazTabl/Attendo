@@ -1,16 +1,33 @@
-import 'package:attendo/intro/student/features/Home/Presentation/view/widgets/attendance_card_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AttendanceCard extends StatelessWidget {
+class AttendanceCard extends StatefulWidget {
   const AttendanceCard({
     super.key,
   });
 
+  @override
+  State<AttendanceCard> createState() => _AttendanceCardState();
+}
+
+
+class _AttendanceCardState extends State<AttendanceCard> {
+
+  late Image myImage;
+
+  @override
+  void initState() {
+    super.initState();
+    myImage= Image.asset("assets/images/attendance_card_background.png");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(myImage.image, context);
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,85 +38,54 @@ class AttendanceCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.w),
           ),
+          image: const DecorationImage(
+            image:
+            AssetImage("assets/images/attendance_card_background.png"),
+          ),
         ),
-        child: Stack(
-          alignment: Alignment.center,
+        child: Column(
           children: [
-            const AttendanceCardVideoPlayback(),
-            Column(
-              children: [
-                SizedBox(
-                  height: 24.h,
-                ),
-                Text(
-                  "Oop Lecture",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 40.sp),
-                ),
-                Text(
-                  "Dr/Bahaa",
-                  style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .labelMedium!
-                        .copyWith(color: Colors.black),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.push("/cameraScreen");
-                  },
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(258.w, 89.h),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                        const Color(0xff2403F1).withOpacity(.42)),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.w),
-                      ),
-                    ),
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 7.h),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: SvgPicture.asset(
-                            "assets/images/svg/scan_qr.svg",
-                          ),
-                          iconSize: 30,
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
-                      Text(
-                        "Scan Qr",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 40.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+            SizedBox(
+              height: 24.h,
             ),
+            Text(
+              "Oop Lecture",
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                  color: Colors.white, fontWeight: FontWeight.w500),
+            ),
+            Text(
+              "Dr/Bahaa",
+              style: GoogleFonts.roboto(
+                textStyle: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
+            SizedBox(height: 15.h,),
+            ElevatedButton(
+              onPressed: () {
+                context.push("/cameraScreen");
+              },
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(
+                  Size(258.w, 89.h),
+                ),
+                backgroundColor: MaterialStateProperty.all(
+                    const Color(0xff2403F1).withOpacity(.42)),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.w),
+                  ),
+                ),
+              ),
+              child: Text(
+                "Scan Qr",
+                style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.w500),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 }
-
