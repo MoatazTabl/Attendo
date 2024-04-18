@@ -30,164 +30,164 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
               fit: BoxFit.fill),
         ),
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: SizedBox(
             height: 1.sh,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 25.h,
-                ),
-                Center(
-                  child: SvgPicture.asset(AppImages.welcomePageInstructorImage),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Welcome to ",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge!
-                          .copyWith(
-                            fontSize: FontAdaption()
-                                .getResponsiveFontSize(context, fontSize: 40),
-                          ),
-                    ),
-                    Text(
-                      "Attendo",
-                      style:
-                          Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                color: const Color(0xff3746CC),
-                                fontSize: FontAdaption().getResponsiveFontSize(
-                                  context,
-                                  fontSize: 40,
-                                ),
-                              ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 36.h,
-                ),
-                SizedBox(
-                    height: 54.h,
-                    child:
-                        CustomTextFormField(hintText: "Email Or ID", isPass: false , prefixIcon: Icons.person,),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 25.h,
                   ),
-
-                SizedBox(
-                  height: 16.h,
-                ),
-                SizedBox(
-                  height: 54.h,
-                  child: CustomTextFormField(hintText: 'Password', isPass: true,prefixIcon: Icons.lock,),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 22.w, right: 25.w),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.w),
-                        ),
-                        side: const BorderSide(
-                          color: Colors.black,
-                          width: 2,
-                        ),
-                        value: rememberMe,
-                        onChanged: (value) {
-                          rememberMe = !rememberMe;
-                          setState(() {});
-                        },
-                        activeColor: Colors.black,
-                      ),
-                      Text(
-                        "Remember Me",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                            fontSize: FontAdaption()
-                                .getResponsiveFontSize(context, fontSize: 12),
-                          ),
-                        ),
-                      ),
-                    ],
+                  Center(
+                    child: SvgPicture.asset(AppImages.welcomePageInstructorImage),
                   ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(240.w, 56.h),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                      const Color(
-                        0xff3746CC,
-                      ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.w),
-                      ),
-                    ),
+                  SizedBox(
+                    height: 16.h,
                   ),
-                  onPressed: () {
-                    context.push("/HomeInstructor");
-                  },
-                  child: Text(
-                    "Login",
-                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          fontSize: FontAdaption().getResponsiveFontSize(
-                            context,
-                            fontSize: 16,
-                          ),
-                        ),
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 46.h),
-                  child: Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't Have Account? ",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                            fontSize: FontAdaption()
-                                .getResponsiveFontSize(context, fontSize: 16),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        "Welcome to ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge!
+                            .copyWith(
+                              fontSize: FontAdaption()
+                                  .getResponsiveFontSize(context, fontSize: 40),
+                            ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          context.push("/SignUpInstructorScreen");
-                        },
-                        child: Text(
-                          "Sign Up Now",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium!
-                              .copyWith(
-                                color: const Color(0xff3746CC),
-                                fontWeight: FontWeight.w900,
-                                fontSize: FontAdaption().getResponsiveFontSize(
-                                  context,
-                                  fontSize: 20,
+                      Text(
+                        "Attendo",
+                        style:
+                            Theme.of(context).textTheme.headlineLarge!.copyWith(
+                                  color: const Color(0xff3746CC),
+                                  fontSize: FontAdaption().getResponsiveFontSize(
+                                    context,
+                                    fontSize: 40,
+                                  ),
                                 ),
-                              ),
-                        ),
-                      )
+                      ),
                     ],
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: 36.h,
+                  ),
+                  SizedBox(
+                      height: 54.h,
+                      child:
+                          CustomTextFormField(hintText: "Email Or ID", isPass: false , prefixIcon: Icons.person,),
+                    ),
+
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  SizedBox(
+                    height: 54.h,
+                    child: CustomTextFormField(hintText: 'Password', isPass: true,prefixIcon: Icons.lock,),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 22.w, right: 25.w),
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.w),
+                          ),
+                          side: const BorderSide(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          value: rememberMe,
+                          onChanged: (value) {
+                            rememberMe = !rememberMe;
+                            setState(() {});
+                          },
+                          activeColor: Colors.black,
+                        ),
+                        Text(
+                          "Remember Me",
+                          style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                              fontSize: FontAdaption()
+                                  .getResponsiveFontSize(context, fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all(
+                        Size(240.w, 56.h),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                        const Color(
+                          0xff3746CC,
+                        ),
+                      ),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.w),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      context.push("/HomeInstructor");
+                    },
+                    child: Text(
+                      "Login",
+                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                            fontSize: FontAdaption().getResponsiveFontSize(
+                              context,
+                              fontSize: 16,
+                            ),
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 220.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't Have Account? ",
+                          style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                              fontSize: FontAdaption()
+                                  .getResponsiveFontSize(context, fontSize: 16),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            context.push("/SignUpInstructorScreen");
+                          },
+                          child: Text(
+                            "Sign Up Now",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .copyWith(
+                                  color: const Color(0xff3746CC),
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: FontAdaption().getResponsiveFontSize(
+                                    context,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
