@@ -11,6 +11,7 @@ class InstructorLectureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      surfaceTintColor: Colors.white,
       elevation: 6,
       child: Container(
         height: 280.h,
