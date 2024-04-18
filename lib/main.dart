@@ -14,7 +14,6 @@ void main() async {
     debugPrint("${e.code}, ${e.description}");
   }
   await ScreenUtil.ensureScreenSize();
-  
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(
       const MyApp(),
