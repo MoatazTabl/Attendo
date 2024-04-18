@@ -1,12 +1,11 @@
 import 'package:attendo/intro/student/features/Home/Presentation/view/widgets/attendance_card_background.dart';
-import 'package:cached_video_player/cached_video_player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:video_player/video_player.dart';
 
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard({
@@ -21,7 +20,7 @@ class AttendanceCard extends StatefulWidget {
 
 class _AttendanceCardState extends State<AttendanceCard> {
 
-  late CachedVideoPlayerController _controller;
+  late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
 
   @override
@@ -29,7 +28,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
     // Create and store the VideoPlayerController. The VideoPlayerController
     // offers several different constructors to play videos from assets, files,
     // or the internet.
-    _controller = CachedVideoPlayerController.asset("assets/videos/blue_shades.mp4",);
+    _controller = VideoPlayerController.asset("assets/videos/blue_shades.mp4",);
 
     _initializeVideoPlayerFuture = _controller.initialize().then((value) {
       _controller.play();

@@ -1,11 +1,11 @@
-import 'package:cached_video_player/cached_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:video_player/video_player.dart';
 
 class AttendanceCardVideoPlayback extends StatefulWidget {
   const AttendanceCardVideoPlayback({super.key, required this.controller, required this.initializeVideoPlayerFuture});
 
-  final CachedVideoPlayerController controller;
+  final VideoPlayerController controller;
   final Future<void> initializeVideoPlayerFuture;
 
   @override
@@ -23,7 +23,7 @@ class _AttendanceCardVideoPlaybackState
         if (snapshot.connectionState == ConnectionState.done) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(16.w),
-            child: CachedVideoPlayer(widget.controller),
+            child: VideoPlayer(widget.controller),
           );
         } else {
           return Container(
