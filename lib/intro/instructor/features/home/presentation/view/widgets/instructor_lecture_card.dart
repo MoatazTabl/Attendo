@@ -17,7 +17,7 @@ class InstructorLectureCard extends StatelessWidget {
         height: 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFFF0F3FF),
             borderRadius: BorderRadius.circular(20)),
         child: Padding(
           padding: EdgeInsets.symmetric(
