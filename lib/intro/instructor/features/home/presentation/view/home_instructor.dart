@@ -1,0 +1,67 @@
+import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/instructor_lecture_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/app_images.dart';
+
+class HomeInstructor extends StatelessWidget {
+  const HomeInstructor({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset(
+              AppImages.backgroundImageStudent,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                left: 16.sp, right: 16.sp, top: 105.sp, bottom:50.sp),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "A v a i l a b l e  L e c t u r e s",
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                        fontSize: 30.sp,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return const Padding(
+                        padding: EdgeInsets.only(bottom: 12),
+                        child: InstructorLectureCard(),
+                      );
+                    },
+                    itemCount: 5,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
