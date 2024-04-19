@@ -11,14 +11,16 @@ class InstructorLectureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      surfaceTintColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      surfaceTintColor: const Color(0xFFF0F3FF),
+      color: const Color(0xFFF0F3FF),
       elevation: 6,
       child: Container(
         height: 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20)),
+            color: const Color(0xFFF0F3FF),
+            borderRadius: BorderRadius.circular(25)),
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: 15.sp, vertical: 20.sp),

@@ -10,58 +10,42 @@ class HomeInstructor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.asset(
-              AppImages.backgroundImageStudent,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                left: 16.sp, right: 16.sp, top: 105.sp, bottom:50.sp),
-            child: Column(
+    return Padding(
+        padding: EdgeInsets.only(
+            left: 16.sp, right: 16.sp, top: 70.sp,),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "A v a i l a b l e  L e c t u r e s",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                        fontSize: 30.sp,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return const Padding(
-                        padding: EdgeInsets.only(bottom: 12),
-                        child: InstructorLectureCard(),
-                      );
-                    },
-                    itemCount: 5,
+                Text(
+                  "A v a i l a b l e  L e c t u r e s",
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(
+                    fontSize: 30.sp,
                   ),
-                )
+                ),
               ],
             ),
-          )
-        ],
-      ),
-    );
+            SizedBox(
+              height: 5.h,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 12),
+                    child: InstructorLectureCard(),
+                  );
+                },
+                itemCount: 5,
+              ),
+            )
+          ],
+        ),
+      );
   }
 }
