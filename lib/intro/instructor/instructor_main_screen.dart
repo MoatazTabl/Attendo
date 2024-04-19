@@ -1,12 +1,9 @@
 import 'package:attendo/core/app_images.dart';
-
-import 'package:attendo/intro/student/features/Profile/Presentation/view/profile_screen.dart';
-import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'features/home/presentation/view/home_instructor.dart';
+import 'features/settings/presentation/view/settings_instructor.dart';
 
 
 class InstructorMainScreen extends StatefulWidget {
@@ -21,7 +18,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
 
   final List<Widget> screens = [
     const HomeInstructor(),
-    const SettingsScreen()
+    const SettingsInstructor()
   ];
   int index = 0;
 

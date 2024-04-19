@@ -192,39 +192,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
         ),
-        SizedBox(height: 70.h,),
-        ElevatedButton(
-          onPressed: () {
-            context.go("/SignInScreenInstructor");
-          },
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(
-              Size(215.w, 56.h),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-              const Color(
-                0xFFCC3741,
-              ),
-            ),
-            foregroundColor:
-            MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.w),
-              ),
-            ),
-          ),
-          child: Text(
-            "Log out",
-            style: GoogleFonts.roboto(
-              textStyle: TextStyle(
-                  fontSize: FontAdaption().getResponsiveFontSize(
-                      context, fontSize: 25),
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
-            ),
-          ),
-        )
       ],
     );
   }
