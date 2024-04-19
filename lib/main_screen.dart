@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: screens[index],
+          body: IndexedStack(index: index,children: screens,),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             iconSize: 32.w,

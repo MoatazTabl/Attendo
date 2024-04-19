@@ -30,15 +30,23 @@ class _CameraScreenState extends State<CameraScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
 
-
     if (!controller.value.isInitialized) {
       return;
     }
 
-    if (state == AppLifecycleState.inactive) {
-      controller.dispose();
-    } else if (state == AppLifecycleState.resumed) {
-      initializeCameraController(controller.description);
+    if (state == AppLifecycleState.hidden) {
+      debugPrint("hidden");
+      controller.pausePreview();
+    }
+
+    if (state == AppLifecycleState.paused) {
+      debugPrint("paused");
+      controller.pausePreview();
+    }
+
+    if (state == AppLifecycleState.resumed) {
+      debugPrint("resumed");
+      controller.resumePreview();
     }
     super.didChangeAppLifecycleState(state);
   }
