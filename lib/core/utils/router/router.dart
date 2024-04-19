@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/features/home/presentation/view/home_instructor.dart';
+import '../../../intro/instructor/instructor_main_screen.dart';
 
 
 final GoRouter router = GoRouter(
@@ -53,8 +54,8 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const SignUpInstructorScreen(),
     ),
     GoRoute(
-      path: "/HomeInstructor",
-      builder: (context, state) => const HomeInstructor(),
+      path: "/instructorMainScreen",
+      builder: (context, state) => const InstructorMainScreen(),
     ),
     GoRoute(
       path: "/instructorLectureDetails",
