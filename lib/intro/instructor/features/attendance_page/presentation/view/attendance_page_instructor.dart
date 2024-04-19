@@ -77,7 +77,6 @@ class AttendancePageInstructor extends StatelessWidget {
                       .textTheme
                       .titleLarge!
                       .copyWith(
-                    fontWeight: FontWeight.bold,
                     fontSize: 30.sp,
                   ),
                 ),
@@ -103,7 +102,7 @@ class AttendancePageInstructor extends StatelessWidget {
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
-                      Size(320.w, 56.h),
+                      Size(340.w, 56.h),
                     ),
                     backgroundColor: MaterialStateProperty.all(
                       const Color(
