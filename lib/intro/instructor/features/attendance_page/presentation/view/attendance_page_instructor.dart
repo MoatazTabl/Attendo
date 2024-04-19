@@ -1,3 +1,4 @@
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,11 +37,13 @@ class AttendancePageInstructor extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.only(bottomLeft:Radius.circular(25),bottomRight:Radius.circular(25) ),
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(25),
+                            bottomRight: Radius.circular(25)),
                       ),
                       child: Column(
                         children: [
-                          Text("OOP Lecture",style: Theme
+                          Text("OOP Lecture", style: Theme
                               .of(context)
                               .textTheme
                               .titleLarge!
@@ -51,12 +54,14 @@ class AttendancePageInstructor extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text("22/04/2024", style: Theme.of(context)
+                              Text("22/04/2024", style: Theme
+                                  .of(context)
                                   .textTheme
-                                  .titleMedium!,),
-                              Text("11:00 AM", style: Theme.of(context)
+                                  .titleSmall!,),
+                              Text("11:00 AM", style: Theme
+                                  .of(context)
                                   .textTheme
-                                  .titleMedium!,)
+                                  .titleSmall!,)
                             ],
                           )
                         ],
@@ -79,14 +84,19 @@ class AttendancePageInstructor extends StatelessWidget {
                 SizedBox(height: 19.h,),
                 Container(
                   height: 500.h,
-                  width: 320.w,
+                  width: 340.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     border: Border.all(color: Colors.black),
-                    color: Color(0xFFF0F3FF),
+                    color: const Color(0xFFF0F3FF),
                   ),
+                  child: ListView.separated(separatorBuilder: (context, index) {
+                    return const Divider(indent: 25,endIndent: 25,color: Color(0xFF707070),);
+                  },itemBuilder:(context, index) {
+                    return const AttendentSrudentItem() ;
+                  }, itemCount:10,),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 ElevatedButton(
                   onPressed: () {
 
