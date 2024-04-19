@@ -9,6 +9,7 @@ import 'package:attendo/intro/student/features/custom_paint.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/features/home/presentation/view/home_instructor.dart';
 
 
@@ -58,6 +59,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/instructorLectureDetails",
       builder: (context, state) => const InstructorLectureDetails(),
+    ),
+    GoRoute(
+      path: "/attendancePageInstructor",
+      builder: (context, state) => const AttendancePageInstructor(),
     ),
 
 
