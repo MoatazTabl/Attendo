@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class SettingsInstructor extends StatefulWidget {
+  const SettingsInstructor({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsInstructor> createState() => _SettingsInstructorState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsInstructorState extends State<SettingsInstructor> {
   bool themeMode = false;
 
   @override
@@ -29,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize: FontAdaption().getResponsiveFontSize(context, fontSize:26),
+                    fontSize: FontAdaption().getResponsiveFontSize(context, fontSize:26),
                   ),
                 ),
               ),
@@ -59,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 26),
+                    fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 26),
                   ),
                 ),
               ),
@@ -80,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       constraints:
-                          BoxConstraints(maxHeight: .3.sh, minWidth: .3.sh),
+                      BoxConstraints(maxHeight: .3.sh, minWidth: .3.sh),
                       builder: (context) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -131,13 +131,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         .textTheme
                                         .labelLarge!
                                         .copyWith(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: FontAdaption()
-                                              .getResponsiveFontSize(
-                                            context,
-                                            fontSize: 25,
-                                          ),
-                                        ),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: FontAdaption()
+                                          .getResponsiveFontSize(
+                                        context,
+                                        fontSize: 25,
+                                      ),
+                                    ),
                                   ),
                                   foregroundColor: MaterialStateProperty.all(
                                     const Color(
@@ -157,21 +157,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   },
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(
-                        123.w,
-                        58.h,
+                      fixedSize: MaterialStateProperty.all(
+                        Size(
+                          123.w,
+                          58.h,
+                        ),
                       ),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.w),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.w),
+                        ),
                       ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(
-                      const Color(0xff3746CC),
-                    ),
-                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
+                      foregroundColor: MaterialStateProperty.all(
+                        const Color(0xff3746CC),
+                      ),
+                      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
                   ),
                   child: Row(
                     children: [
@@ -192,39 +192,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
         ),
-        SizedBox(height: 70.h,),
-        ElevatedButton(
-          onPressed: () {
-            context.go("/SignInScreenInstructor");
-          },
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(
-              Size(215.w, 56.h),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-              const Color(
-                0xFFCC3741,
-              ),
-            ),
-            foregroundColor:
-            MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.w),
-              ),
-            ),
-          ),
-          child: Text(
-            "Log out",
-            style: GoogleFonts.roboto(
-              textStyle: TextStyle(
-                  fontSize: FontAdaption().getResponsiveFontSize(
-                      context, fontSize: 25),
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
-            ),
-          ),
-        )
       ],
     );
   }

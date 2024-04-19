@@ -12,14 +12,14 @@ class InstructorLectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      surfaceTintColor: Color(0xFFF0F3FF),
-      color: Color(0xFFF0F3FF),
+      surfaceTintColor: const Color(0xFFF0F3FF),
+      color: const Color(0xFFF0F3FF),
       elevation: 6,
       child: Container(
         height: 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Color(0xFFF0F3FF),
+            color: const Color(0xFFF0F3FF),
             borderRadius: BorderRadius.circular(25)),
         child: Padding(
           padding: EdgeInsets.symmetric(
