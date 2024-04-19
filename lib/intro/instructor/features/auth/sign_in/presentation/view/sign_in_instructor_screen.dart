@@ -1,5 +1,4 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,8 +54,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                             .textTheme
                             .headlineLarge!
                             .copyWith(
-                              fontSize: FontAdaption()
-                                  .getResponsiveFontSize(context, fontSize: 40),
+                              fontSize: 40.sp,
                             ),
                       ),
                       Text(
@@ -64,10 +62,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                         style:
                             Theme.of(context).textTheme.headlineLarge!.copyWith(
                                   color: const Color(0xff3746CC),
-                                  fontSize: FontAdaption().getResponsiveFontSize(
-                                    context,
-                                    fontSize: 40,
-                                  ),
+                                fontSize: 40.sp
                                 ),
                       ),
                     ],
@@ -78,7 +73,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                   SizedBox(
                       height: 54.h,
                       child:
-                          CustomTextFormField(hintText: "Email Or ID", isPass: false , prefixIcon: Icons.person,),
+                          const CustomTextFormField(hintText: "Email Or ID", isPass: false , prefixIcon: Icons.person,),
                     ),
 
                   SizedBox(
@@ -86,7 +81,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                   ),
                   SizedBox(
                     height: 54.h,
-                    child: CustomTextFormField(hintText: 'Password', isPass: true,prefixIcon: Icons.lock,),
+                    child: const CustomTextFormField(hintText: 'Password', isPass: true,prefixIcon: Icons.lock,),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 22.w, right: 25.w),
@@ -111,8 +106,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                           "Remember Me",
                           style: GoogleFonts.roboto(
                             textStyle: TextStyle(
-                              fontSize: FontAdaption()
-                                  .getResponsiveFontSize(context, fontSize: 12),
+                              fontSize: 12.sp,
                             ),
                           ),
                         ),
@@ -142,10 +136,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     child: Text(
                       "Login",
                       style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                            fontSize: FontAdaption().getResponsiveFontSize(
-                              context,
-                              fontSize: 16,
-                            ),
+                            fontSize: 16.sp
                           ),
                     ),
                   ),
@@ -158,8 +149,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                           "Don't Have Account? ",
                           style: GoogleFonts.roboto(
                             textStyle: TextStyle(
-                              fontSize: FontAdaption()
-                                  .getResponsiveFontSize(context, fontSize: 16),
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -176,10 +166,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                                 .copyWith(
                                   color: const Color(0xff3746CC),
                                   fontWeight: FontWeight.w900,
-                                  fontSize: FontAdaption().getResponsiveFontSize(
-                                    context,
-                                    fontSize: 20,
-                                  ),
+                                fontSize: 20.sp
                                 ),
                           ),
                         )

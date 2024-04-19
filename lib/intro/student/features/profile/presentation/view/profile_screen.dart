@@ -1,6 +1,4 @@
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/widgets/user_info_item.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () {},
           child: Text(
             "Change Photo",
-            style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 20)),
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 20.sp,),
           ),
         ),
         SizedBox(

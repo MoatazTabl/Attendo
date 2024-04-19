@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/attendance_card_item.dart';
+import 'widgets/attendance_item_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

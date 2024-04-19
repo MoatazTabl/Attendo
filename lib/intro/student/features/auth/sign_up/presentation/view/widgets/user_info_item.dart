@@ -1,4 +1,3 @@
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,10 +22,7 @@ class UserInfoItem extends StatelessWidget {
             fieldName,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(
                   color: Colors.black,
-                  fontSize: FontAdaption().getResponsiveFontSize(
-                    context,
-                    fontSize: 20,
-                  ),
+              fontSize: 20.sp,
                 ),
           ),
           SizedBox(
@@ -37,10 +33,7 @@ class UserInfoItem extends StatelessWidget {
                 hintText: fieldDetail,
                 hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                       color: Colors.black,
-                      fontSize: FontAdaption().getResponsiveFontSize(
-                        context,
-                        fontSize: 18,
-                      ),
+                  fontSize: 18.sp,
                     ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -79,7 +72,7 @@ class UserInfoItem extends StatelessWidget {
             ),
             child: Text(
               "Edit",
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 20)),
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 20.sp,),
             ),
           ),
         ],

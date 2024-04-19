@@ -1,4 +1,3 @@
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize: FontAdaption().getResponsiveFontSize(context, fontSize:26),
+                      fontSize: 26.sp
                   ),
                 ),
               ),
@@ -59,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 26),
+                      fontSize:  26.sp,
                   ),
                 ),
               ),
@@ -132,11 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         .labelLarge!
                                         .copyWith(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: FontAdaption()
-                                              .getResponsiveFontSize(
-                                            context,
-                                            fontSize: 25,
-                                          ),
+                                          fontSize: 25.sp,
                                         ),
                                   ),
                                   foregroundColor: MaterialStateProperty.all(

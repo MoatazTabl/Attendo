@@ -7,7 +7,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../../../core/app_images.dart';
 
 class InstructorLectureDetails extends StatelessWidget {
-  const InstructorLectureDetails({Key? key}) : super(key: key);
+  const InstructorLectureDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,30 +56,30 @@ class InstructorLectureDetails extends StatelessWidget {
                   height: 30.h,
                 ),
                 Container(
-                  width: 200.w,
-                  height: 140.h,
+                  width: 229.w,
+                  height: 156.h,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xFFF0F3FF),
+                    color: const Color(0xFFF0F3FF),
                   ),
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 5.h,
+                        height: 9.h,
                       ),
                       Text("Student Attending",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
-                              .copyWith(fontSize: 18)),
+                              .copyWith(fontSize: 20.sp)),
                       SizedBox(
-                        height: 18.h,
+                        height: 16.h,
                       ),
-                      CircleAvatar(
+                       CircleAvatar(
                         backgroundColor: Colors.black,
-                        radius: 30,
-                        child: Text(
+                        radius: 35.w,
+                        child: const Text(
                           '150',
                           style: TextStyle(color: Colors.white),
                         ),

@@ -1,5 +1,4 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -53,9 +52,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                 .textTheme
                                 .headlineLarge!
                                 .copyWith(
-                                  fontSize: FontAdaption()
-                                      .getResponsiveFontSize(context,
-                                          fontSize: 40),
+                                fontSize: 40.sp,
                                 ),
                           ),
                           Text(
@@ -66,10 +63,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                 .copyWith(
                                   color: const Color(0xff3746CC),
                                   fontSize:
-                                      FontAdaption().getResponsiveFontSize(
-                                    context,
-                                    fontSize: 40,
-                                  ),
+                                   40.sp,
                                 ),
                           ),
                         ],
@@ -89,9 +83,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                    fontSize: FontAdaption()
-                                        .getResponsiveFontSize(context,
-                                            fontSize: 18),
+                                fontSize: 18.sp,
                                   ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -119,11 +111,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                   .textTheme
                                   .labelSmall
                                   ?.copyWith(
-                                    fontSize:
-                                        FontAdaption().getResponsiveFontSize(
-                                      context,
-                                      fontSize: 18,
-                                    ),
+                                fontSize: 18.sp,
                                   ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -158,9 +146,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                               "Remember Me",
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                  fontSize: FontAdaption()
-                                      .getResponsiveFontSize(context,
-                                          fontSize: 12),
+                                    fontSize: 12.sp,
                                 ),
                               ),
                             ),
@@ -194,10 +180,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                               .textTheme
                               .labelLarge!
                               .copyWith(
-                                fontSize: FontAdaption().getResponsiveFontSize(
-                                  context,
-                                  fontSize: 16,
-                                ),
+                            fontSize: 16.sp,
                               ),
                         ),
                       ),
@@ -211,9 +194,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                               "Don't Have Account? ",
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                  fontSize: FontAdaption()
-                                      .getResponsiveFontSize(context,
-                                          fontSize: 16),
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -230,11 +211,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                     .copyWith(
                                       color: const Color(0xff3746CC),
                                       fontWeight: FontWeight.w900,
-                                      fontSize:
-                                          FontAdaption().getResponsiveFontSize(
-                                        context,
-                                        fontSize: 20,
-                                      ),
+                                  fontSize: 20.sp,
                                     ),
                               ),
                             )

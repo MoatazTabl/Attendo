@@ -1,14 +1,12 @@
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../core/app_images.dart';
-import '../../../../../../core/utils/font_adapter.dart';
 
 class AttendancePageInstructor extends StatelessWidget {
-  const AttendancePageInstructor({Key? key}) : super(key: key);
+  const AttendancePageInstructor({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,8 +119,7 @@ class AttendancePageInstructor extends StatelessWidget {
                     "Download Full List",
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
-                          fontSize: FontAdaption().getResponsiveFontSize(
-                              context, fontSize: 25),
+                          fontSize:  25.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
                     ),

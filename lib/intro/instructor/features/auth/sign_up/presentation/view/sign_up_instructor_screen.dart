@@ -1,5 +1,4 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/utils/font_adapter.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,8 +98,7 @@ class SignUpInstructorScreen extends StatelessWidget {
                             "Sign Up",
                             style: GoogleFonts.roboto(
                               textStyle: TextStyle(
-                                  fontSize: FontAdaption().getResponsiveFontSize(
-                                      context, fontSize: 25),
+                                  fontSize: 25.sp,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white),
                             ),

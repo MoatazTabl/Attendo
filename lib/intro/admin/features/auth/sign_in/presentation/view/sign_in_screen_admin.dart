@@ -1,5 +1,5 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/utils/font_adapter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -54,9 +54,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                 .textTheme
                                 .headlineLarge!
                                 .copyWith(
-                              fontSize: FontAdaption()
-                                  .getResponsiveFontSize(context,
-                                  fontSize: 40),
+                              fontSize: 40.sp
                             ),
                           ),
                           Text(
@@ -67,10 +65,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                 .copyWith(
                               color: const Color(0xff3746CC),
                               fontSize:
-                              FontAdaption().getResponsiveFontSize(
-                                context,
-                                fontSize: 40,
-                              ),
+                               40.sp,
                             ),
                           ),
                         ],
@@ -90,9 +85,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                fontSize: FontAdaption()
-                                    .getResponsiveFontSize(context,
-                                    fontSize: 18),
+                                fontSize:18.sp,
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -121,10 +114,8 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                   .labelSmall
                                   ?.copyWith(
                                 fontSize:
-                                FontAdaption().getResponsiveFontSize(
-                                  context,
-                                  fontSize: 18,
-                                ),
+                                 18.sp,
+
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -159,9 +150,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                               "Remember Me",
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                  fontSize: FontAdaption()
-                                      .getResponsiveFontSize(context,
-                                      fontSize: 12),
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ),
@@ -195,13 +184,11 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                               .textTheme
                               .labelLarge!
                               .copyWith(
-                            fontSize: FontAdaption().getResponsiveFontSize(
-                              context,
-                              fontSize: 16,
+                            fontSize: 16.sp,
                             ),
                           ),
                         ),
-                      ),
+
 
                     ],
                   ),

@@ -1,12 +1,9 @@
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/instructor_lecture_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/app_images.dart';
 
 class HomeInstructor extends StatelessWidget {
-  const HomeInstructor({Key? key}) : super(key: key);
+  const HomeInstructor({super.key});
 
   @override
   Widget build(BuildContext context) {

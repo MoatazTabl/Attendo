@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../../core/app_images.dart';
 
 class AttendentSrudentItem extends StatelessWidget {
-  const AttendentSrudentItem({Key? key}) : super(key: key);
+  const AttendentSrudentItem({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:attendo/core/app_images.dart';
-
 import 'package:attendo/intro/student/features/Profile/Presentation/view/profile_screen.dart';
 import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';

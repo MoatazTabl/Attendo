@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/font_adapter.dart';
+
 
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
@@ -50,8 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             prefixIcon: Icon(widget.prefixIcon,color: Colors.black,),
             hintText: widget.hintText,
             hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                fontSize: FontAdaption()
-                    .getResponsiveFontSize(context, fontSize: 18)),
+                fontSize: 18.sp),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.w),
                 borderSide: BorderSide.none),

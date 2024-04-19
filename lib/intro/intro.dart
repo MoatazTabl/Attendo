@@ -12,14 +12,12 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   @override
-  void initState() {
-    super.initState();
-  }
-  @override
-  void didChangeDependencies() {
-    precacheImage(const AssetImage("assets/images/background.png"), context);
+  void didChangeDependencies() async {
+    await precacheImage(
+        const AssetImage("assets/images/background.png"), context);
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +48,11 @@ class _IntroScreenState extends State<IntroScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(onTap: () {
-                context.push("/signInScreenAdmin");
-              },child: SvgPicture.asset(AppImages.adminIntro)),
+              InkWell(
+                  onTap: () {
+                    context.push("/signInScreenAdmin");
+                  },
+                  child: SvgPicture.asset(AppImages.adminIntro)),
             ],
           ),
         ],
