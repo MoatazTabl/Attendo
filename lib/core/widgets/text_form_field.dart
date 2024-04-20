@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
 
@@ -47,10 +45,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     ),
                   )
                 : const SizedBox(),
-            prefixIcon: Icon(widget.prefixIcon,color: Colors.black,),
+            prefixIcon: widget.prefixIcon == null
+                ? null
+                : Icon(
+                    widget.prefixIcon,
+                    color: Colors.black,
+                  ),
             hintText: widget.hintText,
-            hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                fontSize: 18.sp),
+            hintStyle: Theme.of(context)
+                .textTheme
+                .labelSmall!
+                .copyWith(fontSize: 18.sp),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.w),
                 borderSide: BorderSide.none),
