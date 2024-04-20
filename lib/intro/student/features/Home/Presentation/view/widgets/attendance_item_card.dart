@@ -23,7 +23,7 @@ class _AttendanceCardState extends State<AttendanceCard>{
   Future<void> initializeVideoController ()async
   {
 
-    _controller = VideoPlayerController.asset("assets/videos/blue_shades.mp4", );
+    _controller = VideoPlayerController.asset("assets/videos/blue_shades.mp4",);
 
     await _controller.initialize();
 
@@ -99,6 +99,8 @@ class _AttendanceCardState extends State<AttendanceCard>{
                                 ),
                               ),
                             ),
+                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            elevation: MaterialStateProperty.all(0),
                             padding: MaterialStateProperty.all(
                               EdgeInsets.zero,
                             ),
