@@ -1,26 +1,22 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/intro/student/features/home/Presentation/view/home_screen_student.dart';
-import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';
-import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen_student.dart';
+import 'package:attendo/intro/admin/features/home/presentation/view/home_admin.dart';
+import 'package:attendo/intro/admin/features/settings/presentation/view/settings_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
-
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class AdminMainScreen extends StatefulWidget {
+  const AdminMainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<AdminMainScreen> createState() => _AdminMainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  final iconList = [];
-
+class _AdminMainScreenState extends State<AdminMainScreen> {
   final List<Widget> screens = [
-    const HomeScreenStudent(),
-    const ProfileScreenStudent(),
-    const SettingsScreenStudent()
+    const HomeAdmin(),
+    const SettingsAdmin(),
   ];
   int index = 0;
 
@@ -38,10 +34,22 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: IndexedStack(index: index,children: screens,),
+          body: screens[index],
+          floatingActionButton: index == 0?FloatingActionButton(
+            onPressed: () {context.push("/createLectureAdmin");},
+            backgroundColor: const Color(0xff3746CC),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+            ),
+
+            child: const Icon(Icons.add),
+          ):null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
-            iconSize: 32.w,
+            iconSize: 30.w,
             type: BottomNavigationBarType.fixed,
             elevation: 0,
             selectedItemColor: const Color(0xff001076),
@@ -56,23 +64,12 @@ class _MainScreenState extends State<MainScreen> {
                 label: "Home",
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  "assets/images/svg/profile_icon.svg",
-                ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_profile.svg",
-                ),
-                label: "Profile",
-              ),
-              BottomNavigationBarItem(
                 label: "Settings",
-
                 icon: SvgPicture.asset(
                   "assets/images/svg/settings_icon.svg",
                 ),
                 activeIcon: SvgPicture.asset(
                   "assets/images/svg/selected_settings.svg",
-
                   fit: BoxFit.fill,
                 ),
               ),

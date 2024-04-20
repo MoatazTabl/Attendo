@@ -1,4 +1,7 @@
+import 'package:attendo/intro/admin/admin_main_screen.dart';
+import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
 import 'package:attendo/intro/admin/features/auth/sign_in/presentation/view/sign_in_screen_admin.dart';
+import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
 import 'package:attendo/intro/instructor/features/auth/sign_in/presentation/view/sign_in_instructor_screen.dart';
 import 'package:attendo/intro/instructor/features/auth/sign_up/presentation/view/sign_up_instructor_screen.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
@@ -6,7 +9,6 @@ import 'package:attendo/intro/intro.dart';
 import 'package:attendo/intro/student/features/auth/sign_in/presentation/view/sign_in_screen_student.dart';
 import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/sign_up_screen_student.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
-import 'package:attendo/intro/student/features/custom_paint.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,10 +41,7 @@ final GoRouter router = GoRouter(
       path: "/cameraScreen",
       builder: (context, state) => const CameraScreen(),
     ),
-  GoRoute(
-      path: "/4",
-      builder: (context, state) => const customPaint(),
-    ),
+
 
   //  --------------------instructor routes-----------------
     GoRoute(
@@ -67,13 +66,23 @@ final GoRouter router = GoRouter(
     ),
 
 
-    // -------------------- Admin route----------------------
+    // -------------------- Admin routes----------------------
 
     GoRoute(
       path: "/signInScreenAdmin",
       builder: (context, state) => const SignInScreenAdmin(),
     ),
-
-
+  GoRoute(
+      path: "/createLectureAdmin",
+      builder: (context, state) => const CreateLectureAdmin(),
+    ),
+  GoRoute(
+      path: "/adminMainScreen",
+      builder: (context, state) => const AdminMainScreen(),
+    ),
+  GoRoute(
+      path: "/attendancePageAdmin",
+      builder: (context, state) => const AttendancePageAdmin(),
+    ),
   ],
 );

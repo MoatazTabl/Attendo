@@ -40,7 +40,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
           body: screens[index],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
-            iconSize: 32.w,
+            iconSize: 30.w,
             type: BottomNavigationBarType.fixed,
             elevation: 0,
             selectedItemColor: const Color(0xff001076),

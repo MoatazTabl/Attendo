@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="252" height="203" viewBox="0 0 252 203">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="252" height="230.874" viewBox="0 0 252 230.874">
   <defs>
-    <filter id="Subtraction_3" x="0" y="0" width="252" height="200.193" filterUnits="userSpaceOnUse">
+    <filter id="Subtraction_3" x="0" y="26.874" width="252" height="204" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur"/>
       <feFlood flood-opacity="0.161"/>
@@ -8,11 +8,11 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g id="Group_2563" data-name="Group 2563" transform="translate(-80 -598)">
-    <g transform="matrix(1, 0, 0, 1, 80, 598)" filter="url(#Subtraction_3)">
-      <path id="Subtraction_3-2" data-name="Subtraction 3" d="M422.375-614.808h0a24.224,24.224,0,0,0-16.2-14.771,24.986,24.986,0,0,0-6.675-.92h-172a24.639,24.639,0,0,0-22.115,13.944,21.917,21.917,0,0,1-5.392-7.28A21.821,21.821,0,0,1,198-633V-775a21.857,21.857,0,0,1,6.444-15.556A21.855,21.855,0,0,1,220-797H410a21.855,21.855,0,0,1,15.556,6.444A21.857,21.857,0,0,1,432-775v142a22,22,0,0,1-9.624,18.191Z" transform="translate(-189 803)" fill="#2d3459"/>
+  <g id="admin_intro" transform="translate(-80 -612.126)">
+    <g transform="matrix(1, 0, 0, 1, 80, 612.13)" filter="url(#Subtraction_3)">
+      <path id="Subtraction_3-2" data-name="Subtraction 3" d="M410-570H220a21.855,21.855,0,0,1-15.556-6.444A21.857,21.857,0,0,1,198-592V-734a21.855,21.855,0,0,1,6.444-15.556A21.855,21.855,0,0,1,220-756H410a21.855,21.855,0,0,1,15.556,6.444A21.855,21.855,0,0,1,432-734v142a21.857,21.857,0,0,1-6.444,15.557A21.855,21.855,0,0,1,410-570ZM227.5-630.5A24.528,24.528,0,0,0,203-606v2a24.528,24.528,0,0,0,24.5,24.5h172A24.528,24.528,0,0,0,424-604v-2a24.326,24.326,0,0,0-17.824-23.58,24.988,24.988,0,0,0-6.675-.92Z" transform="translate(-189 788.87)" fill="#2d3459"/>
     </g>
-    <g id="Group_2539" data-name="Group 2539" transform="translate(31 19)">
+    <g id="Group_2539" data-name="Group 2539" transform="translate(31 10)">
       <g id="Work_time-amico_3_" data-name="Work time-amico (3)" transform="translate(76.071 602.126)">
         <g id="freepik--Floor--inject-16--inject-47" transform="translate(0 63.999)">
           <ellipse id="freepik--floor--inject-16--inject-47-2" data-name="freepik--floor--inject-16--inject-47" cx="98.929" cy="47.437" rx="98.929" ry="47.437" transform="translate(0 0)" fill="#00163b"/>
@@ -327,6 +327,6 @@
         </g>
       </g>
     </g>
-    <text id="Admin" transform="translate(152 792)" fill="#fff" font-size="35" font-family="Roboto-Regular, Roboto" letter-spacing="0.05em"><tspan x="0" y="0">Admin</tspan></text>
+    <text id="Admin" transform="translate(152 804)" fill="#fff" font-size="35" font-family="SegoeUI, Segoe UI" letter-spacing="0.05em"><tspan x="0" y="0">Admin</tspan></text>
   </g>
 </svg>

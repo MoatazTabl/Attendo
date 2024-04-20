@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class SettingsScreenStudent extends StatefulWidget {
+  const SettingsScreenStudent({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsScreenStudent> createState() => _SettingsScreenStudentState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
   bool themeMode = false;
 
   @override
@@ -163,9 +163,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(20.w),
                       ),
                     ),
-                    foregroundColor: MaterialStateProperty.all(
-                      const Color(0xff3746CC),
-                    ),
+                      foregroundColor: MaterialStateProperty.all(
+                        Colors.white,
+                      ),
                     padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
                   ),
                   child: Row(
@@ -185,6 +185,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 );
               })
             ],
+          ),
+        ),
+        SizedBox(height: 70.h,),
+        ElevatedButton(
+          onPressed: () {
+            context.go("/SignInScreenStudent");
+          },
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(
+              Size(215.w, 56.h),
+            ),
+            backgroundColor: MaterialStateProperty.all(
+              const Color(
+                0xFFCC3741,
+              ),
+            ),
+            foregroundColor:
+            MaterialStateProperty.all(Colors.white),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.w),
+              ),
+            ),
+          ),
+          child: Text(
+            "Log out",
+            style: GoogleFonts.roboto(
+              textStyle: TextStyle(
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
+            ),
           ),
         ),
       ],

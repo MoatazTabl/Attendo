@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SettingsInstructor extends StatefulWidget {
-  const SettingsInstructor({super.key});
+class SettingsAdmin extends StatefulWidget {
+  const SettingsAdmin({super.key});
 
   @override
-  State<SettingsInstructor> createState() => _SettingsInstructorState();
+  State<SettingsAdmin> createState() => _SettingsAdminState();
 }
 
-class _SettingsInstructorState extends State<SettingsInstructor> {
+class _SettingsAdminState extends State<SettingsAdmin> {
   bool themeMode = false;
 
   @override
@@ -190,7 +190,7 @@ class _SettingsInstructorState extends State<SettingsInstructor> {
         SizedBox(height: 70.h,),
         ElevatedButton(
           onPressed: () {
-            context.go("/SignInScreenInstructor");
+            context.go("/signInScreenAdmin");
           },
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(

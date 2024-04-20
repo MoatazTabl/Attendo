@@ -180,7 +180,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
 
                         ),
                         onPressed: () {
-                          context.go("/mainScreen");
+                          context.go("/adminMainScreen");
                         },
                         child: Text(
                           "Login",

@@ -72,7 +72,7 @@ class UserInfoItem extends StatelessWidget {
             ),
             child: Text(
               "Edit",
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 20.sp,),
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 18.sp,),
             ),
           ),
         ],

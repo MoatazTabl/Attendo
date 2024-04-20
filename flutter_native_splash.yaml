@@ -6,6 +6,6 @@ flutter_native_splash:
 
   android_12:
     image: assets/splash/splash_screen_12+.png
-    color: "#211951"
-    icon_background_color: "#211951"
+    color: "#0E0739"
+    icon_background_color: "#0E0739"
 

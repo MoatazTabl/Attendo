@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,39 +22,39 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF12192E),
+      backgroundColor: const Color(0xff0B0E3B),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                  onTap: () {
-                    context.push('/SignInScreenStudent');
-                  },
-                  child: SvgPicture.asset(AppImages.studentIntro)),
-            ],
+          InkWell(
+            onTap: () {
+              context.push('/SignInScreenStudent');
+            },
+            child: SvgPicture.asset(
+              AppImages.studentIntro,
+              height: 206.h,
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                  onTap: () {
-                    context.push("/SignInScreenInstructor");
-                  },
-                  child: SvgPicture.asset(AppImages.instructorIntro)),
-            ],
+          InkWell(
+            onTap: () {
+              context.push("/SignInScreenInstructor");
+            },
+            child: SvgPicture.asset(
+              AppImages.instructorIntro,
+              height: 240.h,
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                  onTap: () {
-                    context.push("/signInScreenAdmin");
-                  },
-                  child: SvgPicture.asset(AppImages.adminIntro)),
-            ],
+          InkWell(
+            onTap: () {
+              context.push("/signInScreenAdmin");
+            },
+            child: SvgPicture.asset(
+              AppImages.adminIntro,
+              height: 220.h,
+              width: 234.w,
+
+            ),
           ),
         ],
       ),

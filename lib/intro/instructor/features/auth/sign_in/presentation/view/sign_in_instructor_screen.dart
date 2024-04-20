@@ -71,7 +71,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     height: 36.h,
                   ),
                   SizedBox(
-                    height: 54.h,
+                    height: 65.h,
                     child: const CustomTextFormField(
                       hintText: "Email Or ID",
                       isPass: false,
@@ -82,7 +82,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     height: 16.h,
                   ),
                   SizedBox(
-                    height: 54.h,
+                    height: 65.h,
                     child: const CustomTextFormField(
                       hintText: 'Password',
                       isPass: true,
