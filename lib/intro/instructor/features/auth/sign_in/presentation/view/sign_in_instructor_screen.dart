@@ -40,7 +40,8 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     height: 25.h,
                   ),
                   Center(
-                    child: SvgPicture.asset(AppImages.welcomePageInstructorImage),
+                    child:
+                        SvgPicture.asset(AppImages.welcomePageInstructorImage),
                   ),
                   SizedBox(
                     height: 16.h,
@@ -50,20 +51,19 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     children: [
                       Text(
                         "Welcome to ",
+                        style:
+                            Theme.of(context).textTheme.headlineLarge!.copyWith(
+                                  fontSize: 40.sp,
+                                ),
+                      ),
+                      Text(
+                        "Attendo",
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge!
                             .copyWith(
-                              fontSize: 40.sp,
-                            ),
-                      ),
-                      Text(
-                        "Attendo",
-                        style:
-                            Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                  color: const Color(0xff3746CC),
-                                fontSize: 40.sp
-                                ),
+                                color: const Color(0xff3746CC),
+                                fontSize: 40.sp),
                       ),
                     ],
                   ),
@@ -71,17 +71,23 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     height: 36.h,
                   ),
                   SizedBox(
-                      height: 54.h,
-                      child:
-                          const CustomTextFormField(hintText: "Email Or ID", isPass: false , prefixIcon: Icons.person,),
+                    height: 54.h,
+                    child: const CustomTextFormField(
+                      hintText: "Email Or ID",
+                      isPass: false,
+                      prefixIcon: Icons.person,
                     ),
-
+                  ),
                   SizedBox(
                     height: 16.h,
                   ),
                   SizedBox(
                     height: 54.h,
-                    child: const CustomTextFormField(hintText: 'Password', isPass: true,prefixIcon: Icons.lock,),
+                    child: const CustomTextFormField(
+                      hintText: 'Password',
+                      isPass: true,
+                      prefixIcon: Icons.lock,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 22.w, right: 25.w),
@@ -92,15 +98,17 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                             borderRadius: BorderRadius.circular(5.w),
                           ),
                           side: const BorderSide(
-                            color: Colors.black,
-                            width: 2,
+                            color: Color(
+                              0xff3746CC,
+                            ),
+                            width: 2
                           ),
                           value: rememberMe,
                           onChanged: (value) {
                             rememberMe = !rememberMe;
                             setState(() {});
                           },
-                          activeColor: Colors.black,
+                          activeColor: const Color(0xff3746CC),
                         ),
                         Text(
                           "Remember Me",
@@ -135,9 +143,10 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                     },
                     child: Text(
                       "Login",
-                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                            fontSize: 16.sp
-                          ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(fontSize: 16.sp),
                     ),
                   ),
                   Padding(
@@ -164,10 +173,9 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                                 .textTheme
                                 .labelMedium!
                                 .copyWith(
-                                  color: const Color(0xff3746CC),
-                                  fontWeight: FontWeight.w900,
-                                fontSize: 20.sp
-                                ),
+                                    color: const Color(0xff3746CC),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20.sp),
                           ),
                         )
                       ],

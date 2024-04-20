@@ -136,15 +136,18 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                 borderRadius: BorderRadius.circular(5.w),
                               ),
                               side: const BorderSide(
-                                color: Colors.black,
-                                width: 2,
+                                color: Color(
+                                  0xff3746CC,
+                                ),
+                                  width: 2
+
                               ),
                               value: rememberMe,
                               onChanged: (value) {
                                 rememberMe = !rememberMe;
                                 setState(() {});
                               },
-                              activeColor: Colors.black,
+                              activeColor: const Color(0xff3746CC),
                             ),
                             Text(
                               "Remember Me",
@@ -174,6 +177,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                               borderRadius: BorderRadius.circular(12.w),
                             ),
                           ),
+
                         ),
                         onPressed: () {
                           context.go("/mainScreen");
