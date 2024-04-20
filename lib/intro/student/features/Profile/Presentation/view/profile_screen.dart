@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () {},
           child: Text(
             "Change Photo",
-            style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: FontAdaption().getResponsiveFontSize(context, fontSize: 20)),
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 20.sp,),
           ),
         ),
         SizedBox(
