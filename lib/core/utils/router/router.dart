@@ -15,7 +15,6 @@ import 'package:go_router/go_router.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
 
-
 final GoRouter router = GoRouter(
   initialLocation: "/",
   routes: [
@@ -28,12 +27,12 @@ final GoRouter router = GoRouter(
       path: "/SignInScreenStudent",
       builder: (context, state) => const SignInScreenStudent(),
     ),
-   GoRoute(
+    GoRoute(
       path: "/sign_up_student",
       builder: (context, state) => const SignUpScreenStudent(),
     ),
 
-   GoRoute(
+    GoRoute(
       path: "/mainScreen",
       builder: (context, state) => const MainScreen(),
     ),
@@ -42,8 +41,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const CameraScreen(),
     ),
 
-
-  //  --------------------instructor routes-----------------
+    //  --------------------instructor routes-----------------
     GoRoute(
       path: "/SignInScreenInstructor",
       builder: (context, state) => const SignInInstructorScreen(),
@@ -65,22 +63,21 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const AttendancePageInstructor(),
     ),
 
-
     // -------------------- Admin routes----------------------
 
     GoRoute(
       path: "/signInScreenAdmin",
       builder: (context, state) => const SignInScreenAdmin(),
     ),
-  GoRoute(
+    GoRoute(
       path: "/createLectureAdmin",
       builder: (context, state) => const CreateLectureAdmin(),
     ),
-  GoRoute(
+    GoRoute(
       path: "/adminMainScreen",
       builder: (context, state) => const AdminMainScreen(),
     ),
-  GoRoute(
+    GoRoute(
       path: "/attendancePageAdmin",
       builder: (context, state) => const AttendancePageAdmin(),
     ),

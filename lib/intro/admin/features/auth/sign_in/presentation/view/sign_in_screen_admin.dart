@@ -1,5 +1,4 @@
 import 'package:attendo/core/app_images.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -43,7 +42,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                       ),
                       Center(
                         child:
-                        SvgPicture.asset(AppImages.welcomePageAdminImage),
+                            SvgPicture.asset(AppImages.welcomePageAdminImage),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -53,9 +52,7 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!
-                                .copyWith(
-                              fontSize: 40.sp
-                            ),
+                                .copyWith(fontSize: 40.sp),
                           ),
                           Text(
                             "Attendo",
@@ -63,10 +60,9 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                 .textTheme
                                 .headlineLarge!
                                 .copyWith(
-                              color: const Color(0xff3746CC),
-                              fontSize:
-                               40.sp,
-                            ),
+                                  color: const Color(0xff3746CC),
+                                  fontSize: 40.sp,
+                                ),
                           ),
                         ],
                       ),
@@ -79,14 +75,17 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                           height: 54.h,
                           child: TextField(
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.person,color: Colors.black,),
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
                               hintText: "Email or ID",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                fontSize:18.sp,
-                              ),
+                                    fontSize: 18.sp,
+                                  ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
@@ -107,16 +106,17 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                           child: TextField(
                             enabled: true,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock,color: Colors.black,),
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
                               hintText: "Password",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall
                                   ?.copyWith(
-                                fontSize:
-                                 18.sp,
-
-                              ),
+                                    fontSize: 18.sp,
+                                  ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
                                   borderSide: BorderSide.none),
@@ -136,12 +136,10 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                                 borderRadius: BorderRadius.circular(5.w),
                               ),
                               side: const BorderSide(
-                                color: Color(
-                                  0xff3746CC,
-                                ),
-                                  width: 2
-
-                              ),
+                                  color: Color(
+                                    0xff3746CC,
+                                  ),
+                                  width: 2),
                               value: rememberMe,
                               onChanged: (value) {
                                 rememberMe = !rememberMe;
@@ -171,29 +169,24 @@ class _SignInScreenAdminState extends State<SignInScreenAdmin> {
                             ),
                           ),
                           foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
+                              MaterialStateProperty.all(Colors.white),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.w),
                             ),
                           ),
-
                         ),
                         onPressed: () {
                           context.go("/adminMainScreen");
                         },
                         child: Text(
                           "Login",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                            fontSize: 16.sp,
-                            ),
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelLarge!.copyWith(
+                                    fontSize: 16.sp,
+                                  ),
                         ),
-
-
+                      ),
                     ],
                   ),
                 ),

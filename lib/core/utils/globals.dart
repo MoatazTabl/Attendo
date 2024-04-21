@@ -1,4 +1,3 @@
-
 library globals;
 
 import 'package:camera/camera.dart';

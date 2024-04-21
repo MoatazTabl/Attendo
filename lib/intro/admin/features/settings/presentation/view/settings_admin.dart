@@ -28,7 +28,7 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize: 26.sp,
+                    fontSize: 26.sp,
                   ),
                 ),
               ),
@@ -38,7 +38,8 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                   themeMode = !themeMode;
                   setState(() {});
                 },
-                trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+                trackOutlineColor:
+                    MaterialStateProperty.all(Colors.transparent),
                 activeColor: const Color(0xff3746CC),
                 inactiveThumbColor: const Color(0xff2403F1).withOpacity(.7),
               ),
@@ -79,7 +80,7 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                         ),
                       ),
                       constraints:
-                      BoxConstraints(maxHeight: .3.sh, minWidth: .3.sh),
+                          BoxConstraints(maxHeight: .3.sh, minWidth: .3.sh),
                       builder: (context) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -108,9 +109,7 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                                 child: Text(
                                   "English",
                                   style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                        fontSize:20.sp
-                                    ),
+                                    textStyle: TextStyle(fontSize: 20.sp),
                                   ),
                                 ),
                               ),
@@ -130,9 +129,9 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                                         .textTheme
                                         .labelLarge!
                                         .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 25.sp,
-                                    ),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 25.sp,
+                                        ),
                                   ),
                                   foregroundColor: MaterialStateProperty.all(
                                     const Color(
@@ -166,17 +165,15 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                       foregroundColor: MaterialStateProperty.all(
                         Colors.white,
                       ),
-                      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
-                  ),
+                      padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(horizontal: 10))),
                   child: Row(
                     children: [
                       Text(
                         "English",
                         style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                              fontSize: 22.sp),
+                          textStyle: TextStyle(fontSize: 22.sp),
                         ),
-
                       ),
                       const Spacer(),
                       const Icon(Icons.arrow_drop_down_outlined),
@@ -187,7 +184,9 @@ class _SettingsAdminState extends State<SettingsAdmin> {
             ],
           ),
         ),
-        SizedBox(height: 70.h,),
+        SizedBox(
+          height: 70.h,
+        ),
         ElevatedButton(
           onPressed: () {
             context.go("/signInScreenAdmin");
@@ -201,8 +200,7 @@ class _SettingsAdminState extends State<SettingsAdmin> {
                 0xFFCC3741,
               ),
             ),
-            foregroundColor:
-            MaterialStateProperty.all(Colors.white),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.w),

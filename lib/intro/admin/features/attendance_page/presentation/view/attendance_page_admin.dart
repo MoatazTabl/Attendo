@@ -41,25 +41,29 @@ class AttendancePageAdmin extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Text("OOP Lecture", style: Theme
-                              .of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                            fontSize: 28.sp,
-                          ),),
-                          SizedBox(height: 4.h,),
+                          Text(
+                            "OOP Lecture",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  fontSize: 28.sp,
+                                ),
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text("22/04/2024", style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleSmall!,),
-                              Text("11:00 AM", style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleSmall!,)
+                              Text(
+                                "22/04/2024",
+                                style: Theme.of(context).textTheme.titleSmall!,
+                              ),
+                              Text(
+                                "11:00 AM",
+                                style: Theme.of(context).textTheme.titleSmall!,
+                              )
                             ],
                           )
                         ],
@@ -67,18 +71,18 @@ class AttendancePageAdmin extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 16.h,),
+                SizedBox(
+                  height: 16.h,
+                ),
                 Text(
                   "Attendance List",
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(
-                    fontSize: 30.sp,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontSize: 30.sp,
+                      ),
                 ),
-                SizedBox(height: 19.h,),
+                SizedBox(
+                  height: 19.h,
+                ),
                 Container(
                   height: 500.h,
                   width: 340.w,
@@ -87,17 +91,25 @@ class AttendancePageAdmin extends StatelessWidget {
                     border: Border.all(color: Colors.black),
                     color: const Color(0xFFF0F3FF),
                   ),
-                  child: ListView.separated(separatorBuilder: (context, index) {
-                    return const Divider(indent: 25,endIndent: 25,color: Color(0xFF707070),);
-                  },itemBuilder:(context, index) {
-                    return const AttendentSrudentItem() ;
-                  }, itemCount:10,),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return const Divider(
+                        indent: 25,
+                        endIndent: 25,
+                        color: Color(0xFF707070),
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      return const AttendentSrudentItem();
+                    },
+                    itemCount: 10,
+                  ),
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
                       Size(340.w, 56.h),
@@ -107,8 +119,7 @@ class AttendancePageAdmin extends StatelessWidget {
                         0xff3746CC,
                       ),
                     ),
-                    foregroundColor:
-                    MaterialStateProperty.all(Colors.white),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.w),
@@ -119,7 +130,7 @@ class AttendancePageAdmin extends StatelessWidget {
                     "Download Full List",
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
-                          fontSize:  25.sp,
+                          fontSize: 25.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
                     ),

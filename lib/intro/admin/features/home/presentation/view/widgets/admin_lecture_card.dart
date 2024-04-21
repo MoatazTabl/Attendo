@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class AdminLectureCard extends StatelessWidget {
   const AdminLectureCard({super.key});
 
@@ -24,7 +23,9 @@ class AdminLectureCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
           child: Column(
             children: [
-              SizedBox(height: 15.h,),
+              SizedBox(
+                height: 15.h,
+              ),
               Text(
                 'OOP Lecture',
                 style: Theme.of(context)
@@ -74,7 +75,6 @@ class AdminLectureCard extends StatelessWidget {
                     .titleMedium!
                     .copyWith(fontSize: 25.sp),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -114,10 +114,12 @@ class AdminLectureCard extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const Icon(Icons.delete,color: Colors.redAccent,),
+                  const Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                  ),
                 ],
               ),
-
             ],
           ),
         ),

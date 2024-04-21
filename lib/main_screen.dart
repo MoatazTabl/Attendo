@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -38,7 +37,10 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: IndexedStack(index: index,children: screens,),
+          body: IndexedStack(
+            index: index,
+            children: screens,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             iconSize: 32.w,
@@ -66,13 +68,11 @@ class _MainScreenState extends State<MainScreen> {
               ),
               BottomNavigationBarItem(
                 label: "Settings",
-
                 icon: SvgPicture.asset(
                   "assets/images/svg/settings_icon.svg",
                 ),
                 activeIcon: SvgPicture.asset(
                   "assets/images/svg/selected_settings.svg",
-
                   fit: BoxFit.fill,
                 ),
               ),

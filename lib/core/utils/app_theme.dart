@@ -17,5 +17,4 @@ final ThemeData lightMode = ThemeData(
       ),
     ),
   ),
-
 );

@@ -22,7 +22,7 @@ class UserInfoItem extends StatelessWidget {
             fieldName,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(
                   color: Colors.black,
-              fontSize: 20.sp,
+                  fontSize: 20.sp,
                 ),
           ),
           SizedBox(
@@ -33,7 +33,7 @@ class UserInfoItem extends StatelessWidget {
                 hintText: fieldDetail,
                 hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                       color: Colors.black,
-                  fontSize: 18.sp,
+                      fontSize: 18.sp,
                     ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -72,7 +72,9 @@ class UserInfoItem extends StatelessWidget {
             ),
             child: Text(
               "Edit",
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 18.sp,),
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 18.sp,
+                  ),
             ),
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,7 +42,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                       ),
                       Center(
                         child:
-                            Image.asset(AppImages.welcomePageStudentImage),
+                            SvgPicture.asset(AppImages.welcomePageStudentImage),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +53,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                 .textTheme
                                 .headlineLarge!
                                 .copyWith(
-                                fontSize: 40.sp,
+                                  fontSize: 40.sp,
                                 ),
                           ),
                           Text(
@@ -62,8 +63,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                 .headlineLarge!
                                 .copyWith(
                                   color: const Color(0xff3746CC),
-                                  fontSize:
-                                   40.sp,
+                                  fontSize: 40.sp,
                                 ),
                           ),
                         ],
@@ -77,13 +77,16 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                           height: 54.h,
                           child: TextField(
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.person,color: Colors.black,),
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
                               hintText: "Email or ID",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                fontSize: 18.sp,
+                                    fontSize: 18.sp,
                                   ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -105,13 +108,16 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                           child: TextField(
                             enabled: true,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock,color: Colors.black,),
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
                               hintText: "Password",
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .labelSmall
                                   ?.copyWith(
-                                fontSize: 18.sp,
+                                    fontSize: 18.sp,
                                   ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.w),
@@ -132,12 +138,10 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                 borderRadius: BorderRadius.circular(5.w),
                               ),
                               side: const BorderSide(
-                                color: Color(
-                                  0xff3746CC,
-                                ),
-                                  width: 2
-
-                              ),
+                                  color: Color(
+                                    0xff3746CC,
+                                  ),
+                                  width: 2),
                               value: rememberMe,
                               onChanged: (value) {
                                 rememberMe = !rememberMe;
@@ -149,7 +153,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                               "Remember Me",
                               style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                    fontSize: 12.sp,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ),
@@ -179,12 +183,10 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                         },
                         child: Text(
                           "Login",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                            fontSize: 16.sp,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelLarge!.copyWith(
+                                    fontSize: 16.sp,
+                                  ),
                         ),
                       ),
                       const Spacer(),
@@ -214,7 +216,7 @@ class _SignInScreenStudentState extends State<SignInScreenStudent> {
                                     .copyWith(
                                       color: const Color(0xff3746CC),
                                       fontWeight: FontWeight.w900,
-                                  fontSize: 20.sp,
+                                      fontSize: 20.sp,
                                     ),
                               ),
                             )

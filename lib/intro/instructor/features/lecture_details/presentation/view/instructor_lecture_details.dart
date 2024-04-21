@@ -76,7 +76,7 @@ class InstructorLectureDetails extends StatelessWidget {
                       SizedBox(
                         height: 16.h,
                       ),
-                       CircleAvatar(
+                      CircleAvatar(
                         backgroundColor: Colors.black,
                         radius: 35.w,
                         child: const Text(

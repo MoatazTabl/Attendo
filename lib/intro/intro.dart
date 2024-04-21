@@ -27,7 +27,7 @@ class _IntroScreenState extends State<IntroScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               context.push('/SignInScreenStudent');
             },
@@ -36,7 +36,7 @@ class _IntroScreenState extends State<IntroScreen> {
               height: 206.h,
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {
               context.push("/SignInScreenInstructor");
             },
@@ -45,7 +45,7 @@ class _IntroScreenState extends State<IntroScreen> {
               height: 240.h,
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {
               context.push("/signInScreenAdmin");
             },
@@ -53,7 +53,6 @@ class _IntroScreenState extends State<IntroScreen> {
               AppImages.adminIntro,
               height: 220.h,
               width: 234.w,
-
             ),
           ),
         ],

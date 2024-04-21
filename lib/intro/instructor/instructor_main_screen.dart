@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'features/home/presentation/view/home_instructor.dart';
 import 'features/settings/presentation/view/settings_instructor.dart';
 
-
 class InstructorMainScreen extends StatefulWidget {
   const InstructorMainScreen({super.key});
 
@@ -56,13 +55,11 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
               ),
               BottomNavigationBarItem(
                 label: "Settings",
-
                 icon: SvgPicture.asset(
                   "assets/images/svg/settings_icon.svg",
                 ),
                 activeIcon: SvgPicture.asset(
                   "assets/images/svg/selected_settings.svg",
-
                   fit: BoxFit.fill,
                 ),
               ),

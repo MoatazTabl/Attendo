@@ -98,11 +98,10 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
                             borderRadius: BorderRadius.circular(5.w),
                           ),
                           side: const BorderSide(
-                            color: Color(
-                              0xff3746CC,
-                            ),
-                            width: 2
-                          ),
+                              color: Color(
+                                0xff3746CC,
+                              ),
+                              width: 2),
                           value: rememberMe,
                           onChanged: (value) {
                             rememberMe = !rememberMe;

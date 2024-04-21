@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class InstructorLectureCard extends StatelessWidget {
   const InstructorLectureCard({super.key});
 
@@ -24,7 +23,9 @@ class InstructorLectureCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
           child: Column(
             children: [
-              SizedBox(height: 15.h,),
+              SizedBox(
+                height: 15.h,
+              ),
               Text(
                 'OOP Lecture',
                 style: Theme.of(context)
@@ -74,7 +75,6 @@ class InstructorLectureCard extends StatelessWidget {
                     .titleMedium!
                     .copyWith(fontSize: 25.sp),
               ),
-
               ElevatedButton(
                 onPressed: () {
                   context.push("/instructorLectureDetails");

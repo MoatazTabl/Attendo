@@ -35,18 +35,21 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: screens[index],
-          floatingActionButton: index == 0?FloatingActionButton(
-            onPressed: () {context.push("/createLectureAdmin");},
-            backgroundColor: const Color(0xff3746CC),
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                16,
-              ),
-            ),
-
-            child: const Icon(Icons.add),
-          ):null,
+          floatingActionButton: index == 0
+              ? FloatingActionButton(
+                  onPressed: () {
+                    context.push("/createLectureAdmin");
+                  },
+                  backgroundColor: const Color(0xff3746CC),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      36,
+                    ),
+                  ),
+                  child: const Icon(Icons.add),
+                )
+              : null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             iconSize: 30.w,

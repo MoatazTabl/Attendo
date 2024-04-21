@@ -25,7 +25,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 8.h),
+      padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
       child: SizedBox(
         height: 54.h,
         child: TextFormField(
@@ -51,7 +51,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     widget.prefixIcon,
                     color: Colors.black,
                   ),
-
             hintText: widget.hintText,
             hintStyle: Theme.of(context)
                 .textTheme

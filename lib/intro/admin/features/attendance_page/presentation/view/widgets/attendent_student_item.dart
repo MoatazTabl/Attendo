@@ -14,24 +14,22 @@ class AttendentStudentItem extends StatelessWidget {
         AppImages.studentAvatarTest,
         width: 60.w,
       ),
-      title: const Text('Omar Ahmed', style: TextStyle(color: Colors.black),),
+      title: const Text(
+        'Omar Ahmed',
+        style: TextStyle(color: Colors.black),
+      ),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "11:00 AM",
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(fontSize:12),
+            style:
+                Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           ),
           Text(
             "ID:30201",
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleSmall!.copyWith(fontSize:12),
+            style:
+                Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           )
         ],
       ),

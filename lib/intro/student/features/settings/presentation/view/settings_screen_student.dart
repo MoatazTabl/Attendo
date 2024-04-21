@@ -26,10 +26,8 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
               Text(
                 "Dark Mode",
                 style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                      fontSize: 26.sp
-                  ),
+                  textStyle:
+                      TextStyle(fontWeight: FontWeight.w400, fontSize: 26.sp),
                 ),
               ),
               Switch(
@@ -38,7 +36,8 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                   themeMode = !themeMode;
                   setState(() {});
                 },
-                trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+                trackOutlineColor:
+                    MaterialStateProperty.all(Colors.transparent),
                 activeColor: const Color(0xff3746CC),
                 inactiveThumbColor: const Color(0xff2403F1).withOpacity(.7),
               ),
@@ -58,7 +57,7 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
-                      fontSize:  26.sp,
+                    fontSize: 26.sp,
                   ),
                 ),
               ),
@@ -108,9 +107,7 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                                 child: Text(
                                   "English",
                                   style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(
-                                        fontSize:20.sp
-                                    ),
+                                    textStyle: TextStyle(fontSize: 20.sp),
                                   ),
                                 ),
                               ),
@@ -152,31 +149,29 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                     );
                   },
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(
-                        123.w,
-                        58.h,
+                      fixedSize: MaterialStateProperty.all(
+                        Size(
+                          123.w,
+                          58.h,
+                        ),
                       ),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.w),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.w),
+                        ),
                       ),
-                    ),
                       foregroundColor: MaterialStateProperty.all(
                         Colors.white,
                       ),
-                    padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10))
-                  ),
+                      padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(horizontal: 10))),
                   child: Row(
                     children: [
                       Text(
                         "English",
                         style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                              fontSize: 22.sp),
+                          textStyle: TextStyle(fontSize: 22.sp),
                         ),
-
                       ),
                       const Spacer(),
                       const Icon(Icons.arrow_drop_down_outlined),
@@ -187,7 +182,9 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
             ],
           ),
         ),
-        SizedBox(height: 70.h,),
+        SizedBox(
+          height: 70.h,
+        ),
         ElevatedButton(
           onPressed: () {
             context.go("/SignInScreenStudent");
@@ -201,8 +198,7 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                 0xFFCC3741,
               ),
             ),
-            foregroundColor:
-            MaterialStateProperty.all(Colors.white),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.w),

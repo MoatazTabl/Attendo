@@ -10,7 +10,8 @@ import 'package:go_router/go_router.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-mixin CameraFunctions<T extends StatefulWidget> on State<T> implements WidgetsBindingObserver {
+mixin CameraFunctions<T extends StatefulWidget> on State<T>
+    implements WidgetsBindingObserver {
   late CameraController controller;
 
   @override
@@ -62,23 +63,17 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T> implements WidgetsBi
     }
   }
 
-  Future<void> askForCameraPermission(
-      CameraController cameraController) async {
-
-
+  Future<void> askForCameraPermission(CameraController cameraController) async {
     await Permission.camera.request();
     if (await Permission.camera.isGranted) {
       await cameraController.initialize();
       await cameraController.setFlashMode(FlashMode.torch);
-      setState(()  {
-
-      });
+      setState(() {});
     }
     if (await Permission.camera.isDenied) {
-          if (mounted) {
-            context.pop();
-          }
-
+      if (mounted) {
+        context.pop();
+      }
     }
     if (await Permission.camera.isPermanentlyDenied) {
       showAdaptiveDialog(
@@ -110,18 +105,17 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T> implements WidgetsBi
     }
   }
 
-  Future<void> askForStoragePermission()async
-  {
+  Future<void> askForStoragePermission() async {
     var photoStatus = Permission.photos;
     await Permission.storage.request();
     await photoStatus.request();
   }
+
   /// takes picture using camera plugin
   Future takePicture() async {
-    if(await Permission.storage.isDenied||await Permission.photos.isDenied)
-      {
-       await askForStoragePermission();
-      }
+    if (await Permission.storage.isDenied || await Permission.photos.isDenied) {
+      await askForStoragePermission();
+    }
     if (!controller.value.isInitialized) {
       return null;
     }
