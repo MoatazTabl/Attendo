@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,10 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
         Expanded(
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: 30,
             itemBuilder: (BuildContext context, int index) {
               return const AttendanceCard();
             },

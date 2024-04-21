@@ -4,16 +4,20 @@ import 'package:attendo/core/utils/router/router.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   try {
-    WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
   } on CameraException catch (e) {
     debugPrint("${e.code}, ${e.description}");
   }
+  Future.delayed(const Duration(seconds: 2));
   await ScreenUtil.ensureScreenSize();
+  FlutterNativeSplash.remove();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(
       const MyApp(),

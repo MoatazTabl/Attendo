@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({
@@ -25,7 +26,14 @@ class AttendanceCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image.asset("assets/images/attendance_card_background.png"),
+            // Image.asset("assets/images/attendance_card_background.png"),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Lottie.asset(
+                  "assets/images/Animation - 1713733414829.json",
+                  repeat: true,
+                  frameRate: FrameRate.max),
+            ),
             Column(
               children: [
                 SizedBox(
