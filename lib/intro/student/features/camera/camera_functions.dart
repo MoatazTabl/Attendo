@@ -112,7 +112,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
   }
 
   /// takes picture using camera plugin
-  Future takePicture() async {
+   takePicture() async {
     if (await Permission.storage.isDenied || await Permission.photos.isDenied) {
       await askForStoragePermission();
     }
@@ -126,6 +126,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
       await controller.setFlashMode(FlashMode.torch);
       XFile picture = await controller.takePicture();
       final  croppedImage = await cropToSquare(picture.path);
+      context.pop(croppedImage);
       await savePicture(croppedImage );
     } on CameraException catch (e) {
       debugPrint('Error occurred while taking picture: $e');

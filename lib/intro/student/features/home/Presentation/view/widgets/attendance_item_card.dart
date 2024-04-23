@@ -59,8 +59,8 @@ class AttendanceCard extends StatelessWidget {
                   height: 15.h,
                 ),
                 ElevatedButton(
-                  onPressed: () async {
-                    await context.push("/cameraScreen");
+                  onPressed: ()  {
+                     context.push("/fingerPrintScanScreen");
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
