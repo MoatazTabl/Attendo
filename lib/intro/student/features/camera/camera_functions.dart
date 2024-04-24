@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:image/image.dart' as img;
 import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
@@ -112,7 +112,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
   }
 
   /// takes picture using camera plugin
-  Future takePicture() async {
+   takePicture() async {
     if (await Permission.storage.isDenied || await Permission.photos.isDenied) {
       await askForStoragePermission();
     }
@@ -125,12 +125,49 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
     try {
       await controller.setFlashMode(FlashMode.torch);
       XFile picture = await controller.takePicture();
-      await savePicture(picture);
+      final  croppedImage = await cropToSquare(picture.path);
+      context.pop(croppedImage);
+      await savePicture(croppedImage );
     } on CameraException catch (e) {
       debugPrint('Error occurred while taking picture: $e');
       return null;
     }
   }
+  Future<XFile> cropToSquare(String imagePath) async {
+    final img.Image image = img.decodeImage(File(imagePath).readAsBytesSync())!;
+
+    // Calculate the coordinates of the red square
+    final Size screenSize = MediaQuery.of(context).size;
+    const double squareSize = 100; // Size of the square
+    final double left = (screenSize.width - squareSize) / 2;
+    final double top = (screenSize.height - squareSize) / 2;
+
+    //-----------------------------------------------------------
+
+    // Calculate the coordinates for cropping
+    final double x = left * image.width / screenSize.width;
+    final double y = top * image.height / screenSize.height;
+    final double width = squareSize * image.width / screenSize.width;
+    final double height = squareSize * image.height / screenSize.height;
+
+    //-----------------------------------------------------------
+
+    // Crop the image to include only the object inside the red square
+    final img.Image croppedImage = img.copyCrop(
+      image,
+      x: x.toInt(),
+      y: y.toInt(),
+      width: width.toInt(),
+      height: height.toInt(),
+    );
+
+    final File file = File('$imagePath.cropped.jpg');
+    await file.writeAsBytes(img.encodeJpg(croppedImage));
+
+    return XFile(file.path); // Return an XFile object
+  }
+
+
 
   /// Saves picture taken to phone gallery
   Future<void> savePicture(XFile picture) async {
