@@ -28,40 +28,43 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
       child: SizedBox(
         height: 54.h,
-        child: TextFormField(
-          obscureText: widget.isPass ? obscure : false,
-          enabled: true,
-          decoration: InputDecoration(
-            suffixIcon: widget.isPass
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obscure = !obscure;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: obscure ? Colors.black : const Color(0xff3746CC),
+        child: Material(
+          elevation: 3,
+          child: TextFormField(
+            obscureText: widget.isPass ? obscure : false,
+            enabled: true,
+            decoration: InputDecoration(
+              suffixIcon: widget.isPass
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscure = !obscure;
+                        });
+                      },
+                      icon: Icon(
+                        Icons.remove_red_eye,
+                        color: obscure ? Colors.black : const Color(0xff3746CC),
+                      ),
+                    )
+                  : const SizedBox(),
+              prefixIcon: widget.prefixIcon == null
+                  ? null
+                  : Icon(
+                      widget.prefixIcon,
+                      color: Colors.black,
                     ),
-                  )
-                : const SizedBox(),
-            prefixIcon: widget.prefixIcon == null
-                ? null
-                : Icon(
-                    widget.prefixIcon,
-                    color: Colors.black,
-                  ),
-            hintText: widget.hintText,
-            hintStyle: Theme.of(context)
-                .textTheme
-                .labelSmall!
-                .copyWith(fontSize: 18.sp),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.w),
-                borderSide: BorderSide.none),
-            filled: true,
-            fillColor: const Color(0xfff0f3ff),
-            contentPadding: const EdgeInsets.only(left: 10),
+              hintText: widget.hintText,
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .labelSmall!
+                  .copyWith(fontSize: 18.sp),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.w),
+                  borderSide: BorderSide.none),
+              filled: true,
+              fillColor: const Color(0xfff0f3ff),
+              contentPadding: const EdgeInsets.only(left: 10),
+            ),
           ),
         ),
       ),

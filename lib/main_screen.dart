@@ -32,15 +32,12 @@ class _MainScreenState extends State<MainScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImageStudent),
+              image: AssetImage(AppImages.backgroundImage),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: IndexedStack(
-            index: index,
-            children: screens,
-          ),
+          body: screens[index],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             iconSize: 32.w,

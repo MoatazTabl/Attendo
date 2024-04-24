@@ -18,7 +18,7 @@ class InstructorLectureDetails extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             child: Image.asset(
-              AppImages.backgroundImageStudent,
+              AppImages.backgroundImage,
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.fill,

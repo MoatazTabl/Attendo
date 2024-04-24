@@ -15,8 +15,8 @@ void main() async {
   } on CameraException catch (e) {
     debugPrint("${e.code}, ${e.description}");
   }
-  Future.delayed(const Duration(seconds: 2));
   await ScreenUtil.ensureScreenSize();
+  Future.delayed(const Duration(seconds: 4));
   FlutterNativeSplash.remove();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(

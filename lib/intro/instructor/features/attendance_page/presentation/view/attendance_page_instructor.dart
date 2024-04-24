@@ -17,7 +17,7 @@ class AttendancePageInstructor extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              AppImages.backgroundImageStudent,
+              AppImages.backgroundImage,
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.fill,

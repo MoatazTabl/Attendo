@@ -28,11 +28,13 @@ class AttendanceCard extends StatelessWidget {
           children: [
             // Image.asset("assets/images/attendance_card_background.png"),
             ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(18),
               child: Lottie.asset(
-                  "assets/images/Animation - 1713733414829.json",
+                  "assets/lottie/Animation - 1713733414829.json",
                   repeat: true,
-                  frameRate: FrameRate.max),
+                  frameRate: FrameRate.max,
+
+              ),
             ),
             Column(
               children: [

@@ -25,7 +25,7 @@ class _SignInInstructorScreenState extends State<SignInInstructorScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImageStudent),
+              image: AssetImage(AppImages.backgroundImage),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
