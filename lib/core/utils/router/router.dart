@@ -8,10 +8,12 @@ import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/si
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/scan_qr.dart';
 import 'package:attendo/main_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
+import '../../../intro/student/features/finger_print_scan/presentation/view/finger_print_scan_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: "/",
@@ -43,7 +45,11 @@ final GoRouter router = GoRouter(
       path: "/cameraScreen",
       builder: (context, state) => const CameraScreen(),
     ),
- GoRoute(
+    GoRoute(
+      path: "/fingerPrintScanScreen",
+      builder: (context, state) => FingerPrintScanScreen(),
+    ),
+    GoRoute(
       path: "/",
       builder: (context, state) => const ScanQrScreen(),
     ),

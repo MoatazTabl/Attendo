@@ -67,6 +67,38 @@ class _CameraScreenState extends State<CameraScreen>
                         ),
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                        onTap: () async {
+                          // Calculate focus point based on the position of the square
+                          final Size screenSize = MediaQuery.of(context).size;
+                          const double squareSize = 100; // Size of the square
+                          final double left = (screenSize.width - squareSize) / 2;
+                          final double top = (screenSize.height - squareSize) / 2;
+                          final double x = left + squareSize / 2;
+                          final double y = top + squareSize / 2;
+
+                          // Set focus point
+                          await controller.setFocusPoint(
+                            Offset(x / screenSize.width, y / screenSize.height),
+                          );
+
+                          // Delay for a short period to allow autofocus to adjust
+                          await Future.delayed(const Duration(milliseconds: 500));
+
+                          // Trigger autofocus
+                          await controller.setFocusMode(FocusMode.auto);
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.red, width: 2),
+                          ),
+                        ),
+                      ),
+                    ),
                     Positioned(
                       left: .4.sw,
                       bottom: 10,
