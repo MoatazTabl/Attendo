@@ -2,8 +2,10 @@ import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/core/utils/globals.dart';
 import 'package:attendo/core/utils/router/router.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +18,9 @@ void main() async {
     debugPrint("${e.code}, ${e.description}");
   }
   await ScreenUtil.ensureScreenSize();
-  Future.delayed(const Duration(seconds: 4));
+  if (kDebugMode) {
+    Future.delayed(const Duration(seconds: 4));
+  }
   FlutterNativeSplash.remove();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(
@@ -31,9 +35,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(412, 894),
+      designSize: const Size(412, 915),
       builder: (context, child) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: lightMode,
         routerConfig: router,
       ),

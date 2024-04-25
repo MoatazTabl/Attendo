@@ -83,7 +83,11 @@ class _ScanQrScreenState extends State<ScanQrScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('With controller')),
+      appBar: AppBar(
+        title: const Text(
+          'With controller',
+        ),
+      ),
       backgroundColor: Colors.black,
       body: Column(
         children: [
@@ -98,10 +102,8 @@ class _ScanQrScreenState extends State<ScanQrScreen>
                 borderRadius: BorderRadius.circular(
                   16,
                 ),
-
               ),
             ),
-
             child: MobileScanner(
               controller: controller,
               errorBuilder: (context, error, child) {

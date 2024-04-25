@@ -1,0 +1,52 @@
+{
+  "@_SignInPage": {},
+    "welcomeTo": "welcome to ",
+    "emailOrID": "Email or ID",
+    "password": "Password",
+    "rememberMe": "Remember Me",
+    "logIn": "Log In",
+    "dontHaveAccount": "Don't Have Account?",
+    "signUpNow": "SignUp Now",
+
+  "@_SignUpPage": {},
+    "signUp": "SignUp",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "enterUniversityEmail": "Enter University Email",
+    "enterPassword": "Enter Password",
+    "reEnterPassword": "First Name",
+    "scanFingerprint": "Scan Fingerprint",
+
+  "@_BottomNavBar": {},
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings",
+
+  "@_studentAttendanceCard": {},
+    "scanQR": "Scan QR",
+
+  "@_settingsPage": {},
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "logOut": "Log Out",
+
+  "@_adminAttendanceCard": {},
+  "showDetails": "Show Details",
+
+  "@_QrPage": {},
+  "studentsAttending": "Students attending",
+  "clickToShowStudents": "Click to Show Students",
+
+"@_AttendanceList": {},
+  "attendanceList": "Attendance List",
+  "downloadFullList": "Download Full List",
+
+  "@_CreateLecture": {},
+  "enterCourseName": "Enter Course Name",
+  "chooseGrade": "Choose Grade",
+  "selectDate": "Select Date",
+  "selectTime": "Select Time",
+  "lectureHall": "Lecture Hall",
+  "addLecture": "Add Lecture"
+}
