@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                     ),
                     Text(
-                      "Attendo",
+                      getAppLocalizations(context)!.attendo,
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!
@@ -72,8 +72,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 SizedBox(
                   height: 65.h,
-                  child: const CustomTextFormField(
-                    hintText: "Email Or ID",
+                  child: CustomTextFormField(
+                    hintText: getAppLocalizations(context)!.emailOrID,
                     isPass: false,
                     prefixIcon: Icons.person,
                   ),
@@ -83,8 +83,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 SizedBox(
                   height: 65.h,
-                  child: const CustomTextFormField(
-                    hintText: 'Password',
+                  child: CustomTextFormField(
+                    hintText: getAppLocalizations(context)!.password,
                     isPass: true,
                     prefixIcon: Icons.lock,
                   ),
@@ -110,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         activeColor: const Color(0xff3746CC),
                       ),
                       Text(
-                        "Remember Me",
+                        getAppLocalizations(context)!.rememberMe,
                         style: GoogleFonts.roboto(
                           textStyle: TextStyle(
                             fontSize: 12.sp,
@@ -141,7 +141,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     context.push("/mainScreen");
                   },
                   child: Text(
-                    "Login",
+                    getAppLocalizations(context)!.logIn,
                     style: Theme.of(context)
                         .textTheme
                         .labelLarge!
@@ -155,7 +155,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't Have Account? ",
+                        getAppLocalizations(context)!.dontHaveAccount,
                         style: GoogleFonts.roboto(
                           textStyle: TextStyle(
                             fontSize: 16.sp,
@@ -168,7 +168,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           context.push("/SignUpInstructorScreen");
                         },
                         child: Text(
-                          "Sign Up Now",
+                          getAppLocalizations(context)!.signUpNow,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium!

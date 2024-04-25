@@ -1,6 +1,7 @@
 {
   "@_SignInPage": {},
-    "welcomeTo": "welcome to ",
+    "welcomeTo": "Welcome to ",
+    "attendo": "Attendo",
     "emailOrID": "Email or ID",
     "password": "Password",
     "rememberMe": "Remember Me",

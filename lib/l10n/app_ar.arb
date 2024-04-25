@@ -1,4 +1,11 @@
 {
     "@_SignInPage": {},
-    "welcomeTo": "مرحبا الي "
+    "welcomeTo": "مرحبا الي ",
+    "attendo": "اتتيندو",
+    "emailOrID": "البريد الإلكتروني أو الهوية",
+    "password": "الرقم السري",
+    "rememberMe": "تذكرني",
+    "logIn": "تسجيل الدخول",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "signUpNow": "أفتح حساب الأن"
 }
