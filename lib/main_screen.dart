@@ -1,4 +1,6 @@
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/common.dart';
+import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/home_screen_student.dart';
 import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';
 import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen_student.dart';
@@ -32,53 +34,54 @@ class _MainScreenState extends State<MainScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage),
-              fit: BoxFit.fill),
+              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: screens[index],
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: index,
-            iconSize: 32.w,
-            type: BottomNavigationBarType.fixed,
-            elevation: 0,
-            selectedItemColor: const Color(0xff001076),
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  "assets/images/svg/home_icon.svg",
+          bottomNavigationBar: Theme(
+            data: lightMode.copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              currentIndex: index,
+              iconSize: 32.w,
+              items: [
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    "assets/images/svg/home_icon.svg",
+                  ),
+                  activeIcon: SvgPicture.asset(
+                    "assets/images/svg/selected_home.svg",
+                  ),
+                  label: getAppLocalizations(context)!.home,
                 ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_home.svg",
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    "assets/images/svg/profile_icon.svg",
+                  ),
+                  activeIcon: SvgPicture.asset(
+                    "assets/images/svg/selected_profile.svg",
+                  ),
+                  label: getAppLocalizations(context)!.profile,
                 ),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  "assets/images/svg/profile_icon.svg",
+                BottomNavigationBarItem(
+                  label: getAppLocalizations(context)!.settings,
+                  icon: SvgPicture.asset(
+                    "assets/images/svg/settings_icon.svg",
+                  ),
+                  activeIcon: SvgPicture.asset(
+                    "assets/images/svg/selected_settings.svg",
+                    fit: BoxFit.fill,
+                  ),
                 ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_profile.svg",
-                ),
-                label: "Profile",
-              ),
-              BottomNavigationBarItem(
-                label: "Settings",
-                icon: SvgPicture.asset(
-                  "assets/images/svg/settings_icon.svg",
-                ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_settings.svg",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ],
-            backgroundColor: Colors.transparent,
-            onTap: (value) {
-              index = value;
-              setState(() {});
-            },
+              ],
+              onTap: (value) {
+                index = value;
+                setState(() {});
+              },
+            ),
           ),
         ),
       ),

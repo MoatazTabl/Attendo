@@ -1,3 +1,4 @@
+import 'package:attendo/core/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -99,7 +100,7 @@ class AttendanceCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Scan Qr",
+                        getAppLocalizations(context)!.scanQR,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,

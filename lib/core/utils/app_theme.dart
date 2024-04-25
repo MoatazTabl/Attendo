@@ -2,6 +2,7 @@ import 'package:attendo/core/utils/text_theme.dart';
 import 'package:flutter/material.dart';
 
 final ThemeData lightMode = ThemeData(
+  brightness: Brightness.light,
   textTheme: textTheme,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
@@ -16,5 +17,12 @@ final ThemeData lightMode = ThemeData(
         5,
       ),
     ),
+  ),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Colors.transparent,
+    type: BottomNavigationBarType.fixed,
+    elevation: 0,
+    selectedItemColor: Color(0xff001076),
+    enableFeedback: true,
   ),
 );

@@ -1,3 +1,4 @@
+import 'package:attendo/core/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +25,7 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Dark Mode",
+                getAppLocalizations(context)!.light,
                 style: GoogleFonts.roboto(
                   textStyle:
                       TextStyle(fontWeight: FontWeight.w400, fontSize: 26.sp),
@@ -36,10 +37,16 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                   themeMode = !themeMode;
                   setState(() {});
                 },
-                trackOutlineColor:
-                    MaterialStateProperty.all(Colors.transparent),
+                trackOutlineColor: MaterialStateProperty.all(Colors.black54),
                 activeColor: const Color(0xff3746CC),
                 inactiveThumbColor: const Color(0xff2403F1).withOpacity(.7),
+              ),
+              Text(
+                getAppLocalizations(context)!.dark,
+                style: GoogleFonts.roboto(
+                  textStyle:
+                      TextStyle(fontWeight: FontWeight.w400, fontSize: 26.sp),
+                ),
               ),
             ],
           ),
@@ -53,7 +60,7 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Language",
+                getAppLocalizations(context)!.language,
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -149,22 +156,28 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                     );
                   },
                   style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
-                        Size(
-                          123.w,
-                          58.h,
+                    fixedSize: MaterialStateProperty.all(
+                      Size(
+                        123.w,
+                        58.h,
+                      ),
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          20.w,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.w),
-                        ),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(
+                      Colors.white,
+                    ),
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(
+                        horizontal: 10,
                       ),
-                      foregroundColor: MaterialStateProperty.all(
-                        Colors.white,
-                      ),
-                      padding: MaterialStateProperty.all(
-                          const EdgeInsets.symmetric(horizontal: 10))),
+                    ),
+                  ),
                   child: Row(
                     children: [
                       Text(
@@ -198,20 +211,25 @@ class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
                 0xFFCC3741,
               ),
             ),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
+            foregroundColor: MaterialStateProperty.all(
+              Colors.white,
+            ),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.w),
+                borderRadius: BorderRadius.circular(
+                  18.w,
+                ),
               ),
             ),
           ),
           child: Text(
-            "Log out",
+            getAppLocalizations(context)!.logOut,
             style: GoogleFonts.roboto(
               textStyle: TextStyle(
-                  fontSize: 25.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
+                fontSize: 25.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

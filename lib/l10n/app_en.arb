@@ -26,6 +26,14 @@
   "@_studentAttendanceCard": {},
     "scanQR": "Scan QR",
 
+ "@_profileScreen": {},
+    "changePhoto": "Changer Photo",
+    "name": "Name",
+    "iD": "ID",
+    "phone": "Phone",
+    "email": "Email",
+    "edit": "Edit",
+
   "@_settingsPage": {},
     "light": "Light",
     "dark": "Dark",
