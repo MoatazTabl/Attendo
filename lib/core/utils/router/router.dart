@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:attendo/intro/admin/admin_main_screen.dart';
 import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
@@ -20,7 +22,7 @@ final GoRouter router = GoRouter(
   routes: [
     // --------------- Sign In ------------------------
     GoRoute(
-      path: "/asd",
+      path: "/",
       builder: (context, state) => const SignInScreen(),
     ),
     //---------------- Student routes------------------
@@ -47,10 +49,10 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/fingerPrintScanScreen",
-      builder: (context, state) => FingerPrintScanScreen(),
+      builder: (context, state) => const FingerPrintScanScreen(),
     ),
     GoRoute(
-      path: "/",
+      path: "/asd",
       builder: (context, state) => const ScanQrScreen(),
     ),
 

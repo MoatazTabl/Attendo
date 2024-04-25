@@ -8,9 +8,10 @@ import 'package:lottie/lottie.dart';
 
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({
-    super.key,
+    super.key, required this.lottieFile,
   });
 
+  final String lottieFile;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,14 +27,12 @@ class AttendanceCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // Image.asset("assets/images/attendance_card_background.png"),
             ClipRRect(
               borderRadius: BorderRadius.circular(18),
               child: Lottie.asset(
-                  "assets/lottie/Animation - 1713733414829.json",
-                  repeat: true,
-                  frameRate: FrameRate.max,
-
+                "assets/lottie/Animation - 1713733414829.json",
+                repeat: true,
+                frameRate: FrameRate.max,
               ),
             ),
             Column(
@@ -61,8 +60,8 @@ class AttendanceCard extends StatelessWidget {
                   height: 15.h,
                 ),
                 ElevatedButton(
-                  onPressed: ()  {
-                     context.push("/fingerPrintScanScreen");
+                  onPressed: () {
+                    context.push("/fingerPrintScanScreen");
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(

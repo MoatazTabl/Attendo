@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:attendo/core/app_images.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../../core/file_model.dart';
-import '../../../../../../core/utils/router/router.dart';
-import '../../../../../../core/utils/router/router.dart';
 
 class FingerPrintScanScreen extends StatefulWidget {
+  const FingerPrintScanScreen({super.key});
+
   @override
   State<FingerPrintScanScreen> createState() => _FingerPrintScanScreenState();
 }
@@ -21,7 +21,7 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OOP Lecture'),
+        title: const Text('OOP Lecture'),
         centerTitle: true,
       ),
       body: Column(
@@ -36,7 +36,7 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       onError: (exception, stackTrace) =>
-                          AssetImage(AppImages.welcomePageStudentImage),
+                          const AssetImage(AppImages.welcomePageStudentImage),
                       image: FileImage(File(_capturedImage?.path??"")),
                     ),
                     color: Colors.grey,
@@ -54,7 +54,9 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
               if (capturedImage != null) {
                 setState(() {
                   _capturedImage = capturedImage;
-                  print(_capturedImage!.path);
+                  if (kDebugMode) {
+                    print(_capturedImage!.path);
+                  }
                 });
               }
             },
@@ -90,7 +92,7 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(
