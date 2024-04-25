@@ -1,7 +1,8 @@
-import 'package:attendo/core/common.dart';
-import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/widgets/user_info_item.dart';
+import 'package:attendo/intro/student/features/profile/presentation/view/widgets/user_info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../core/common.dart';
 
 class ProfileScreenStudent extends StatelessWidget {
   const ProfileScreenStudent({super.key});

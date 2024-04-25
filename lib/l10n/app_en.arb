@@ -52,6 +52,7 @@
   "downloadFullList": "Download Full List",
 
   "@_CreateLecture": {},
+  "createLecture": "Create Lecture",
   "enterCourseName": "Enter Course Name",
   "chooseGrade": "Choose Grade",
   "selectDate": "Select Date",

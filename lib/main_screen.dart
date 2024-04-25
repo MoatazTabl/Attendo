@@ -3,10 +3,11 @@ import 'package:attendo/core/common.dart';
 import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/home_screen_student.dart';
 import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';
-import 'package:attendo/intro/student/features/settings/presentation/view/settings_screen_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'intro/settings/presentation/view/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> screens = [
     const HomeScreenStudent(),
     const ProfileScreenStudent(),
-    const SettingsScreenStudent()
+    const SettingsScreen()
   ];
   int index = 0;
 

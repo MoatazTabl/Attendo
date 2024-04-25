@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SettingsScreenStudent extends StatefulWidget {
-  const SettingsScreenStudent({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreenStudent> createState() => _SettingsScreenStudentState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenStudentState extends State<SettingsScreenStudent> {
+class _SettingsScreenState extends State<SettingsScreen> {
   bool themeMode = false;
 
   @override

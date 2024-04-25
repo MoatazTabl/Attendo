@@ -1,3 +1,4 @@
+import 'package:attendo/core/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,7 +48,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 Card(
                   color: Colors.white,
                   child: QrImageView(
-                    data: "OOP Lecure",
+                    data: "OOP Lecture",
                     version: 2,
                     size: 200,
                   ),
@@ -68,11 +69,12 @@ class InstructorLectureDetails extends StatelessWidget {
                       SizedBox(
                         height: 9.h,
                       ),
-                      Text("Student Attending",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(fontSize: 20.sp)),
+                      Text(
+                        getAppLocalizations(context)!.studentsAttending,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              fontSize: 20.sp,
+                            ),
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
@@ -81,17 +83,35 @@ class InstructorLectureDetails extends StatelessWidget {
                         radius: 35.w,
                         child: const Text(
                           '150',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       )
                     ],
                   ),
                 ),
                 InkWell(
-                    onTap: () {
-                      context.push("/attendancePageInstructor");
-                    },
-                    child: SvgPicture.asset(AppImages.studentAttendingPopUp)),
+                  onTap: () {
+                    context.push("/attendancePageInstructor");
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        AppImages.studentAttendingPopUp,
+                        width: 232.w,
+                      ),
+                      Text(
+                        getAppLocalizations(context)!.clickToShowStudents,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(fontSize: 18.sp),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           )

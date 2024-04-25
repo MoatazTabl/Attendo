@@ -10,7 +10,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   try {
     cameras = await availableCameras();
@@ -18,8 +18,12 @@ void main() async {
     debugPrint("${e.code}, ${e.description}");
   }
   await ScreenUtil.ensureScreenSize();
-  if (kDebugMode) {
-    Future.delayed(const Duration(seconds: 4));
+  if (kReleaseMode) {
+    Future.delayed(
+      const Duration(
+        seconds: 4,
+      ),
+    );
   }
   FlutterNativeSplash.remove();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
