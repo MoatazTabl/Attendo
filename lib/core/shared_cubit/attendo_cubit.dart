@@ -1,7 +1,7 @@
 import 'package:attendo/core/app_constants.dart';
 import 'package:attendo/core/helpers/preference_helper.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'attendo_state.dart';
 

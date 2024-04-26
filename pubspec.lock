@@ -405,14 +405,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
-  mobile_scanner:
-    dependency: "direct main"
-    description:
-      name: mobile_scanner
-      sha256: "3e11ee91d53d1180d31a8b78356e06a3e8618ff12e4546814edcabf6033bedd1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0"
   nested:
     dependency: transitive
     description:
