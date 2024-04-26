@@ -25,11 +25,11 @@ jobs:
         uses: actions/checkout@v4
 
         #2 setup java
-      # - name: Set Up Java
-      #   uses: actions/setup-java@v3.12.0
-      #   with:
-      #     distribution: 'oracle'
-      #     java-version: '17'
+      - name: Set Up Java
+        uses: actions/setup-java@v3.12.0
+        with:
+          distribution: 'oracle'
+          java-version: '17'
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with: 
@@ -49,25 +49,25 @@ jobs:
       #     architecture: x64
 
         #4 install dependencies
-      # - name: Install Dependencies
-      #   run: flutter pub get
+      - name: Install Dependencies
+        run: flutter pub get
 
         #6 build apk
-      # - name: Build APK
-      #   run: flutter build apk --release
+      - name: Build APK
+        run: flutter build apk --release
 
         #8 build ipa
-      - run: flutter build ios --debug --no-codesign
+      # - run: flutter build ios --debug --no-codesign
 
-      - run: mkdir Payload
-        working-directory: build/ios/iphoneos
+      # - run: mkdir Payload
+      #   working-directory: build/ios/iphoneos
 
-      - run: mv Runner.app/ Payload
-        working-directory: build/ios/iphoneos
+      # - run: mv Runner.app/ Payload
+      #   working-directory: build/ios/iphoneos
 
-      - name: Zip output
-        run: zip -qq -r -9 FlutterIpaExport.ipa Payload
-        working-directory: build/ios/iphoneos
+      # - name: Zip output
+      #   run: zip -qq -r -9 FlutterIpaExport.ipa Payload
+      #   working-directory: build/ios/iphoneos
 
 
         #9 get those build to be available to download
@@ -76,16 +76,16 @@ jobs:
         with:
           name: Releases
           path: |
-            # build/app/outputs/flutter-apk/app-release.apk
-            build/ios/iphoneos/FlutterIpaExport.ipa
+            build/app/outputs/flutter-apk/app-release.apk
+            # build/ios/iphoneos/FlutterIpaExport.ipa
 
         #10 create release with those builds 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-           # build/app/outputs/flutter-apk/app-release.apk
-           build/ios/iphoneos/FlutterIpaExport.ipa
+           build/app/outputs/flutter-apk/app-release.apk
+           # build/ios/iphoneos/FlutterIpaExport.ipa
 
           append_body: true
           tag_name: v1.0.${{ github.run_number }}
