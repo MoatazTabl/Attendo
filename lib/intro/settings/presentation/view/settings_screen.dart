@@ -1,5 +1,8 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/helpers/preference_helper.dart';
+import 'package:attendo/core/shared_cubit/attendo_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,130 +71,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
               ),
-              Builder(builder: (BuildContext context) {
-                return ElevatedButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      backgroundColor: const Color(0xffCBDAE8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(
-                            30.w,
-                          ),
-                          topRight: Radius.circular(
-                            30.w,
-                          ),
-                        ),
-                      ),
-                      constraints:
-                          BoxConstraints(maxHeight: .3.sh, minWidth: .3.sh),
-                      builder: (context) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  context.pop();
-                                },
-                                style: ButtonStyle(
-                                  fixedSize: MaterialStateProperty.all(
-                                    Size(
-                                      1.sw,
-                                      50.h,
-                                    ),
-                                  ),
-                                  textStyle: MaterialStateProperty.all(
-                                      Theme.of(context).textTheme.labelLarge),
-                                  foregroundColor: MaterialStateProperty.all(
-                                    const Color(
-                                      0xff3746CC,
-                                    ),
-                                  ),
-                                  alignment: Alignment.centerLeft,
-                                ),
-                                child: Text(
-                                  "English",
-                                  style: GoogleFonts.roboto(
-                                    textStyle: TextStyle(fontSize: 20.sp),
-                                  ),
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  context.pop();
-                                },
-                                style: ButtonStyle(
-                                  fixedSize: MaterialStateProperty.all(
-                                    Size(
-                                      1.sw,
-                                      50.h,
-                                    ),
-                                  ),
-                                  textStyle: MaterialStateProperty.all(
-                                    Theme.of(context)
-                                        .textTheme
-                                        .labelLarge!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 25.sp,
-                                        ),
-                                  ),
-                                  foregroundColor: MaterialStateProperty.all(
-                                    const Color(
-                                      0xff3746CC,
-                                    ),
-                                  ),
-                                  alignment: Alignment.centerRight,
-                                ),
-                                child: const Text(
-                                  "اللغة العربية",
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(
-                        123.w,
-                        58.h,
-                      ),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          20.w,
-                        ),
-                      ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(
-                      Colors.white,
-                    ),
-                    padding: MaterialStateProperty.all(
-                      const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
+              DropdownButton(
+                enableFeedback: true,
+                borderRadius: BorderRadius.circular(16),
+                hint: Text(language()??"English"),
+                dropdownColor: Colors.white70,
+                elevation: 12,
+                items: const [
+                  DropdownMenuItem(
+                    value: "en",
+                    child: Text(
+                      "English",
                     ),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        "English",
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(fontSize: 22.sp),
-                        ),
-                      ),
-                      const Spacer(),
-                      const Icon(Icons.arrow_drop_down_outlined),
-                    ],
+                  DropdownMenuItem(
+                    value: "ar",
+                    child: Text(
+                      "اللغة العربية",
+                    ),
                   ),
-                );
-              })
+                ],
+                onChanged: (value) {
+                  context.read<AttendoCubit>().switchLanguage(value!);
+                },
+              ),
             ],
           ),
         ),
@@ -235,5 +138,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ],
     );
+  }
+  String? language()
+  {
+    var code=UserLanguageService.getPreferredLanguage;
+    Map<String,String>languageCode={
+      'en':"English",
+      'ar':"اللغة العربية",
+    };
+    return languageCode[code];
   }
 }

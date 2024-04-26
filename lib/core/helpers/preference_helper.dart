@@ -1,39 +1,20 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
+import 'package:attendo/core/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PreferenceHelper {
-  static Future<bool> saveThemeMode({required bool? value}) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return await sharedPreferences.setBool("darkMode", value ?? false);
+class UserLanguageService {
+  static late SharedPreferences _sharedPreferences;
+
+  static Future<void> init() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static Future<bool?> getThemeMode() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool("darkMode");
+  static String get getPreferredLanguage {
+    return _sharedPreferences.getString(AppConstants.preferredLanguageKey) ??
+        AppConstants.englishLanguageCode;
   }
 
-  static Future<Locale> setLocale(String langCode) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString("languageCode", langCode);
-    return locale(langCode);
-  }
-
-  static Locale locale(String languageCode) {
-    Locale _temp;
-    if (languageCode == 'ar') {
-      _temp = const Locale('ar');
-    } else {
-      _temp = const Locale('en');
-    }
-    return _temp;
-  }
-
-  static Future<Locale> getLocale() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? code = prefs.getString("languageCode");
-
-    return locale(code ?? "en");
+  static Future<void> setPreferredLanguage(String selectedLanguage) async {
+    await _sharedPreferences.setString(
+        AppConstants.preferredLanguageKey,selectedLanguage);
   }
 }
