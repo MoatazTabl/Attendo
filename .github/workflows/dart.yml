@@ -17,7 +17,7 @@ on:
 jobs:
   build:
     name: Build & Release
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
         #1 Checkout repository
