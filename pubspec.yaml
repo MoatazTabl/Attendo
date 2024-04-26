@@ -26,6 +26,8 @@ dependencies:
   flutter_native_splash: ^2.3.13
 #  mobile_scanner: ^5.0.0
   image: ^4.1.1
+  shared_preferences: ^2.2.3
+  jwt_decoder: ^2.0.1
   flutter_localizations:
     sdk: flutter
   intl: any
