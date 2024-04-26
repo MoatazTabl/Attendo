@@ -13,25 +13,40 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
+  # A flutter plugin for adapting screen and font size.
   flutter_screenutil: ^5.9.0
+  # A  Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling
   google_fonts: ^6.2.1
+  # A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more
   go_router: ^13.2.0
+  # A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and video, and streaming image buffers to Dart.
   camera: ^0.10.5+9
+  # A flutter plugin for save image to gallery
   image_gallery_saver: ^2.0.3
+  # Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
   permission_handler: ^11.3.1
+  # A Flutter plugin to use Google's ML Kit Object Detection and Tracking to detect and track objects in an image or live camera feed.
   google_mlkit_object_detection: ^0.11.0
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files
   flutter_svg: ^2.0.7
+  # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
   qr_flutter: ^4.1.0
+  # Render After Effects animations natively on Flutter. This package is a pure Dart implementation of a Lottie player.
   lottie: ^3.1.0
+  # Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.
   flutter_native_splash: ^2.3.13
-#  mobile_scanner: ^5.0.0
+  #  mobile_scanner: ^5.0.0
+  # Dart Image Library provides server and web apps the ability to load, manipulate, and save images with various image file formats.
   image: ^4.1.1
+  # Flutter plugin for reading and writing simple key-value pairs.
   shared_preferences: ^2.2.3
+  # This small library helps you to decode Json Web Tokens, you can also know if a JWT is already expired.
   jwt_decoder: ^2.0.1
+  # Flutter Localization is a package use for in-app localization with map data. More easier and faster to implement and inspired by the flutter_localizations itself.
   flutter_localizations:
     sdk: flutter
   intl: any
-  shared_preferences: ^2.2.3
+  # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. Built to be used with the bloc state management package.
   flutter_bloc: ^8.1.5
 
 
