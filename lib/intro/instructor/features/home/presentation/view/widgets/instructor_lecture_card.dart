@@ -1,3 +1,4 @@
+import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -99,7 +100,7 @@ class InstructorLectureCard extends StatelessWidget {
                   padding: MaterialStateProperty.all(EdgeInsets.zero),
                 ),
                 child: Text(
-                  "Show Details",
+                  getAppLocalizations(context)!.showDetails,
                   style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                       fontSize: 25.sp,

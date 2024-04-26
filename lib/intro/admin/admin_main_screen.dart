@@ -1,6 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/intro/admin/features/home/presentation/view/home_admin.dart';
-import 'package:attendo/intro/admin/features/settings/presentation/view/settings_admin.dart';
+import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +16,7 @@ class AdminMainScreen extends StatefulWidget {
 class _AdminMainScreenState extends State<AdminMainScreen> {
   final List<Widget> screens = [
     const HomeAdmin(),
-    const SettingsAdmin(),
+    const SettingsScreen(),
   ];
   int index = 0;
 
