@@ -29,6 +29,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  shared_preferences: ^2.2.3
+  flutter_bloc: ^8.1.5
 
 
 

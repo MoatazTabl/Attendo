@@ -1,5 +1,5 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/common.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

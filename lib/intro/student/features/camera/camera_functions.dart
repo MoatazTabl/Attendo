@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:image/image.dart' as img;
+
 import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image/image.dart' as img;
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 

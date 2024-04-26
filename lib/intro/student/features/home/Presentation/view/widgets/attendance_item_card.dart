@@ -1,4 +1,4 @@
-import 'package:attendo/core/common.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,9 +31,10 @@ class AttendanceCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(18),
               child: Lottie.asset(
-                "assets/lottie/Animation - 1713733414829.json",
+                "assets/lottie/Animation - 1714116843265.json",
                 repeat: true,
                 frameRate: FrameRate.max,
+
               ),
             ),
             Column(

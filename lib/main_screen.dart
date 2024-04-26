@@ -1,5 +1,5 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/common.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/home_screen_student.dart';
 import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';

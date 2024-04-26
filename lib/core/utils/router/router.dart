@@ -18,7 +18,7 @@ final GoRouter router = GoRouter(
   routes: [
     // --------------- Sign In ------------------------
     GoRoute(
-      path: "/asdd",
+      path: "/",
       builder: (context, state) => const SignInScreen(),
     ),
     //---------------- Student routes------------------
