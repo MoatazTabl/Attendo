@@ -1,3 +1,4 @@
+import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -61,6 +62,7 @@ class UserInfoItem extends StatelessWidget {
                   0xff3746CC,
                 ),
               ),
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
               foregroundColor: MaterialStateProperty.all(Colors.white),
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
@@ -71,7 +73,7 @@ class UserInfoItem extends StatelessWidget {
               ),
             ),
             child: Text(
-              "Edit",
+              getAppLocalizations(context)!.edit,
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     fontSize: 18.sp,
                   ),

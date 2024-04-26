@@ -30,8 +30,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(
                 getAppLocalizations(context)!.light,
                 style: GoogleFonts.roboto(
-                  textStyle:
-                      TextStyle(fontWeight: FontWeight.w400, fontSize: 26.sp),
+                  textStyle: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 26.sp,
+                    ),
+                  ),
                 ),
               ),
               Switch(
@@ -47,8 +51,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(
                 getAppLocalizations(context)!.dark,
                 style: GoogleFonts.roboto(
-                  textStyle:
-                      TextStyle(fontWeight: FontWeight.w400, fontSize: 26.sp),
+                  textStyle: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 26.sp)),
                 ),
               ),
             ],
@@ -74,7 +79,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               DropdownButton(
                 enableFeedback: true,
                 borderRadius: BorderRadius.circular(16),
-                hint: Text(language()??"English"),
+                hint: Text(language() ?? "English"),
+                style: GoogleFonts.roboto(
+                  textStyle: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                ),
                 dropdownColor: Colors.white70,
                 elevation: 12,
                 items: const [
@@ -103,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-            context.go("/SignInScreenStudent");
+            context.go("/");
           },
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(
@@ -139,12 +153,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ],
     );
   }
-  String? language()
-  {
-    var code=UserLanguageService.getPreferredLanguage;
-    Map<String,String>languageCode={
-      'en':"English",
-      'ar':"اللغة العربية",
+
+  String? language() {
+    var code = UserLanguageService.getPreferredLanguage;
+    Map<String, String> languageCode = {
+      'en': "English",
+      'ar': "اللغة العربية",
     };
     return languageCode[code];
   }

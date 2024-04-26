@@ -5,11 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'attendo_state.dart';
 
-enum SupportedLanguages {
-  english,
-  arabic,
-}
-
 class AttendoCubit extends Cubit<AttendoState> {
 
   AttendoCubit()

@@ -41,7 +41,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Center(
                   child:
-                      SvgPicture.asset(AppImages.welcomePageStudentImage),
+                  SvgPicture.asset(
+                    AppImages.welcomePageStudentImage, width: 234.w,height: 227.h,),
                 ),
                 SizedBox(
                   height: 37.h,
@@ -52,18 +53,23 @@ class _SignInScreenState extends State<SignInScreen> {
                     Text(
                       getAppLocalizations(context)!.welcomeTo,
                       style:
-                          Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                fontSize: 40.sp,
-                              ),
-                    ),
-                    Text(
-                      getAppLocalizations(context)!.attendo,
-                      style: Theme.of(context)
+                      Theme
+                          .of(context)
                           .textTheme
                           .headlineLarge!
                           .copyWith(
-                              color: const Color(0xff3746CC),
-                              fontSize: 40.sp),
+                        fontSize: 40.sp,
+                      ),
+                    ),
+                    Text(
+                      getAppLocalizations(context)!.attendo,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(
+                          color: const Color(0xff3746CC),
+                          fontSize: 40.sp,),
                     ),
                   ],
                 ),
@@ -142,45 +148,46 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   child: Text(
                     getAppLocalizations(context)!.logIn,
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
                         .labelLarge!
                         .copyWith(fontSize: 16.sp),
                   ),
                 ),
                 const Spacer(),
-                Padding(
-                  padding:  EdgeInsets.only(bottom: 20.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        getAppLocalizations(context)!.dontHaveAccount,
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          context.push("/SignUpInstructorScreen");
-                        },
-                        child: Text(
-                          getAppLocalizations(context)!.signUpNow,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium!
-                              .copyWith(
-                                  color: const Color(0xff3746CC),
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20.sp),
-                        ),
-                      )
-                    ],
-                  ),
-                )
+                // Padding(
+                //   padding:  EdgeInsets.only(bottom: 20.h),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Text(
+                //         getAppLocalizations(context)!.dontHaveAccount,
+                //         style: GoogleFonts.roboto(
+                //           textStyle: TextStyle(
+                //             fontSize: 16.sp,
+                //             fontWeight: FontWeight.w400,
+                //           ),
+                //         ),
+                //       ),
+                //       InkWell(
+                //         onTap: () {
+                //           context.push("/SignUpInstructorScreen");
+                //         },
+                //         child: Text(
+                //           getAppLocalizations(context)!.signUpNow,
+                //           style: Theme.of(context)
+                //               .textTheme
+                //               .labelMedium!
+                //               .copyWith(
+                //                   color: const Color(0xff3746CC),
+                //                   fontWeight: FontWeight.w900,
+                //                   fontSize: 20.sp),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ),

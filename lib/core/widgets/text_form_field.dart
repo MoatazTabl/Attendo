@@ -30,6 +30,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         height: 54.h,
         child: Material(
           elevation: 3,
+          borderRadius: BorderRadius.circular(12.w),
           child: TextFormField(
             obscureText: widget.isPass ? obscure : false,
             enabled: true,

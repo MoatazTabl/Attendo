@@ -17,6 +17,8 @@ class ProfileScreenStudent extends StatelessWidget {
         ),
         Image.asset(
           "assets/images/avatar_pic.png",
+          width: 106.w,
+          height: 108.h,
         ),
         SizedBox(
           height: 16.h,
