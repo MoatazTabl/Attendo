@@ -1,0 +1,62 @@
+{
+    "@_SignInPage": {},
+    "welcomeTo": "مرحبا الي ",
+    "attendo": "اتتيندو",
+    "emailOrID": "البريد الإلكتروني أو الهوية",
+    "password": "الرقم السري",
+    "rememberMe": "تذكرني",
+    "logIn": "تسجيل الدخول",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "signUpNow": "أفتح حساب الأن",
+
+    "@_SignUpPage": {},
+    "signUp": "أفتح حساب",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "enterUniversityEmail": "أدخل البريد الإلكتروني للجامعة",
+    "enterPassword": "أدخل كلمة المرور",
+    "reEnterPassword": "إعادة إدخال كلمة المرور",
+    "scanFingerprint": "مسح بصمة الإصبع",
+
+    "@_BottomNavBar": {},
+    "home": "الصفحة الرئيسية",
+    "profile": "الحساب",
+    "settings": "الاعدادات",
+
+    "@_studentAttendanceCard": {},
+    "scanQR": "مسح QR",
+
+    "@_profileScreen": {},
+    "changePhoto": "تغيير الصوره",
+    "name": "الاسم",
+    "iD": "البطاقة تعريف",
+    "phone": "رقم الهاتف",
+    "email": "البريد",
+    "edit": "تعديل",
+
+    "@_settingsPage": {},
+    "light": "ساطع",
+    "dark": "مظلم",
+    "language": "اللغة",
+    "logOut": "تسجيل الخروج",
+
+    "@_adminAttendanceCard": {},
+    "showDetails": "اظهار التفاصيل",
+
+    "@_QrPage": {},
+    "studentsAttending": "الطلاب الحضارين",
+    "clickToShowStudents": "انقر لإظهار الطلاب",
+
+    "@_AttendanceList": {},
+    "attendanceList": "قائمة الحضور",
+    "downloadFullList": "تحميل القائمة الكاملة",
+
+    "@_CreateLecture": {},
+    "createLecture": "إنشاء محاضرة",
+    "enterCourseName": "أدخل اسم الدورة",
+    "chooseGrade": "اختر درجةالسنة",
+    "selectDate": "حدد التاريخ",
+    "selectTime": "حدد الوقت",
+    "lectureHall": "قاعة المحاضرات",
+    "addLecture": "إضافة محاضرة"
+}

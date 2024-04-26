@@ -1,3 +1,4 @@
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,10 +35,17 @@ class AttendancePageInstructor extends StatelessWidget {
                       height: 90.h,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: Colors.blue),
+                        border: Border.all(
+                          color: Colors.blue,
+                        ),
                         borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(25),
-                            bottomRight: Radius.circular(25)),
+                          bottomLeft: Radius.circular(
+                            25,
+                          ),
+                          bottomRight: Radius.circular(
+                            25,
+                          ),
+                        ),
                       ),
                       child: Column(
                         children: [
@@ -75,7 +83,7 @@ class AttendancePageInstructor extends StatelessWidget {
                   height: 16.h,
                 ),
                 Text(
-                  "Attendance List",
+                  getAppLocalizations(context)!.attendanceList,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontSize: 30.sp,
                       ),
@@ -87,9 +95,15 @@ class AttendancePageInstructor extends StatelessWidget {
                   height: 500.h,
                   width: 340.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.black),
-                    color: const Color(0xFFF0F3FF),
+                    borderRadius: BorderRadius.circular(
+                      25,
+                    ),
+                    border: Border.all(
+                      color: Colors.black,
+                    ),
+                    color: const Color(
+                      0xFFF0F3FF,
+                    ),
                   ),
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
@@ -122,17 +136,20 @@ class AttendancePageInstructor extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22.w),
+                        borderRadius: BorderRadius.circular(
+                          22.w,
+                        ),
                       ),
                     ),
                   ),
                   child: Text(
-                    "Download Full List",
+                    getAppLocalizations(context)!.downloadFullList,
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

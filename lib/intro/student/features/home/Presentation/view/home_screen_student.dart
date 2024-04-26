@@ -16,9 +16,9 @@ class HomeScreenStudent extends StatelessWidget {
             itemCount: 30,
             itemBuilder: (BuildContext context, int index) {
               if (index % 2 == 0) {
-                return const AttendanceCard(lottieFile: 'assets/lottie/card_background1.json',);
+                return const AttendanceCard(lottieFile: 'assets/lottie/Animation - 1714116831535.json',);
               } else {
-                return const AttendanceCard(lottieFile: 'assets/lottie/card_background2.json',);
+                return const AttendanceCard(lottieFile: 'assets/lottie/Animation - 1714116843265.json',);
               }
             },
           ),

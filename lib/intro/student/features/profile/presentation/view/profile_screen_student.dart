@@ -1,6 +1,8 @@
-import 'package:attendo/intro/student/features/auth/sign_up/presentation/view/widgets/user_info_item.dart';
+import 'package:attendo/intro/student/features/profile/presentation/view/widgets/user_info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../core/helpers/common.dart';
 
 class ProfileScreenStudent extends StatelessWidget {
   const ProfileScreenStudent({super.key});
@@ -43,7 +45,7 @@ class ProfileScreenStudent extends StatelessWidget {
               padding: MaterialStateProperty.all(EdgeInsets.zero)),
           onPressed: () {},
           child: Text(
-            "Change Photo",
+            getAppLocalizations(context)!.changePhoto,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(
                   fontSize: 20.sp,
                 ),
@@ -52,16 +54,16 @@ class ProfileScreenStudent extends StatelessWidget {
         SizedBox(
           height: 24.h,
         ),
-        const UserInfoItem(
-          fieldName: 'Name',
+         UserInfoItem(
+          fieldName: getAppLocalizations(context)!.name,
           fieldDetail: "Ahmed Ali Khaled",
         ),
-        const UserInfoItem(
-          fieldName: 'Phone',
+         UserInfoItem(
+          fieldName: getAppLocalizations(context)!.phone,
           fieldDetail: "01000000000",
         ),
-        const UserInfoItem(
-          fieldName: 'Email',
+         UserInfoItem(
+          fieldName: getAppLocalizations(context)!.email,
           fieldDetail: "Someone@yahoo.com",
         ),
       ],

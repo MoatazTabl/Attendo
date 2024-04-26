@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:attendo/core/app_images.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
