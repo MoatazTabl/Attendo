@@ -7,8 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/cache_helper.dart';
+
 void main() async {
   WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper().init();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   try {
     cameras = await availableCameras();
