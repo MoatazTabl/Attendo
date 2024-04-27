@@ -9,6 +9,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'core/cache_helper.dart';
 import 'core/helpers/preference_helper.dart';
 
 
@@ -17,6 +18,7 @@ import 'core/helpers/preference_helper.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   mainFunctions(widgetsBinding);
+  CacheHelper().init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) async => runApp(
 
