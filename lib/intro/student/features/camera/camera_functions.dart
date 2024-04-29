@@ -20,7 +20,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
     WidgetsBinding.instance.addObserver(this);
 
     initializeCameraController(
-      cameras[CameraLensDirection.back.index],
+      cameras[0],
     );
 
     super.initState();

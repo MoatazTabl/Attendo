@@ -18,6 +18,7 @@ import 'core/helpers/preference_helper.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   mainFunctions(widgetsBinding);
+  CacheHelper().init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) async => runApp(
 

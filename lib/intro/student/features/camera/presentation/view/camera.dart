@@ -1,9 +1,5 @@
 import 'dart:io';
-
-import 'package:attendo/core/utils/globals.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +16,6 @@ class CameraScreen extends StatefulWidget {
 
 class _CameraScreenState extends State<CameraScreen>
     with WidgetsBindingObserver, CameraFunctions {
-  bool _isRearCameraSelected = false;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -63,6 +58,7 @@ class _CameraScreenState extends State<CameraScreen>
                           height: 1.sh,
                           child: CameraPreview(
                             controller,
+
                           ),
                         ),
                       ),
@@ -115,25 +111,7 @@ class _CameraScreenState extends State<CameraScreen>
                           const SizedBox(
                             width: 50,
                           ),
-                          IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            iconSize: 30,
-                            icon: Icon(
-                                _isRearCameraSelected
-                                    ? CupertinoIcons.switch_camera
-                                    : CupertinoIcons.switch_camera_solid,
-                                color: Colors.white),
-                            onPressed: () {
-                              setState(() => _isRearCameraSelected =
-                                  !_isRearCameraSelected);
-                              initializeCameraController(
-                                  cameras[_isRearCameraSelected ? 0 : 1]);
-                              if (kDebugMode) {
-                                print(_isRearCameraSelected);
-                              }
-                            },
-                          )
+
                         ],
                       ),
                     )
