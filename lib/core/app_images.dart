@@ -10,6 +10,8 @@ abstract class AppImages {
 
   static const String welcomePageInstructorImage =
       "assets/images/svg/welcome_instructor.svg";
+  static const String attendanceCardBackground =
+      "assets/images/attendance_card_background.png";
 
   static const String studentIntro = 'assets/images/svg/student_intro.svg';
   static const String instructorIntro =

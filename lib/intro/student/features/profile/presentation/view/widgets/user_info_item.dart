@@ -79,6 +79,7 @@ class UserInfoItem extends StatelessWidget {
                   ),
             ),
           ),
+
         ],
       ),
     );

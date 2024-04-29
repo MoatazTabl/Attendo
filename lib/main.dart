@@ -5,9 +5,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/cache_helper.dart';
 import 'core/helpers/preference_helper.dart';
@@ -18,7 +18,6 @@ import 'core/helpers/preference_helper.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   mainFunctions(widgetsBinding);
-  CacheHelper().init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) async => runApp(
 
@@ -38,6 +37,7 @@ Future<void>mainFunctions(WidgetsBinding widgetsBinding)async
   }
   Bloc.observer=MyBlocObserver();
   await UserLanguageService.init();
+  await CacheHelper().init();
   await ScreenUtil.ensureScreenSize();
   if (kReleaseMode) {
     Future.delayed(

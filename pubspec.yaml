@@ -19,14 +19,14 @@ dependencies:
   google_fonts: ^6.2.1
   # A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more
   go_router: ^13.2.0
-  # A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and video, and streaming image buffers to Dart.
+  # A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and videos, and streaming image buffers to Dart.
   camera: ^0.10.5+9
   # A flutter plugin for save image to gallery
   image_gallery_saver: ^2.0.3
   # Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
   permission_handler: ^11.3.1
   # A Flutter plugin to use Google's ML Kit Object Detection and Tracking to detect and track objects in an image or live camera feed.
-  google_mlkit_object_detection: ^0.11.0
+  # google_mlkit_object_detection: ^0.11.0
   # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files
   flutter_svg: ^2.0.7
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
@@ -48,6 +48,14 @@ dependencies:
   intl: any
   # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. Built to be used with the bloc state management package.
   flutter_bloc: ^8.1.5
+  # A powerful HTTP networking package, supports Interceptors, Aborting and canceling a request, Custom adapters, Transformers, etc.
+  dio: ^5.4.3+1
+  # Functional Programming in Dart. Purify your Dart code using efficient immutable data structures, monads, lenses and other FP tools
+  dartz: ^0.10.1
+  # Flutter plugin for discovering the state of the network (WiFi & mobile/cellular) connectivity on Android and iOS.
+  connectivity_plus: ^6.0.3
+
+  weekly_date_picker: ^1.4.2
 
 
 
