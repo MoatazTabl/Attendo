@@ -6,6 +6,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -145,14 +146,14 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
       final screenSize = MediaQuery.of(context).size;
 
       // Extract container dimensions from its widget properties (assuming known dimensions)
-      const double containerWidth = 80; // Replace with actual container width
-      const double containerHeight = 145; // Replace with actual container height
+       double containerWidth = 80.w; // Replace with actual container width
+       double containerHeight = 145.h; // Replace with actual container height
 
       // Calculate crop coordinates relative to image dimensions
       final double x = (screenSize.width - containerWidth) / 2 * image.width / screenSize.width;
       final double y = (screenSize.height - containerHeight) / 2 * image.height / screenSize.height;
       final double width = containerWidth * image.width / screenSize.width;
-      final double height = containerHeight * image.height / screenSize.height;
+       double height = containerHeight * image.height / screenSize.height;
 
       // Crop the image
       final img.Image croppedImage = img.copyCrop(
