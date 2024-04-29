@@ -126,7 +126,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
     try {
       await controller.setFlashMode(FlashMode.torch);
       XFile picture = await controller.takePicture();
-      final  croppedImage = await cropToSquare(picture.path);
+      final  croppedImage = await cropToContainerShape(picture.path);
       context.pop(croppedImage);
       await savePicture(croppedImage );
     } on CameraException catch (e) {
@@ -134,39 +134,43 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
       return null;
     }
   }
-  Future<XFile> cropToSquare(String imagePath) async {
-    final img.Image image = img.decodeImage(File(imagePath).readAsBytesSync())!;
+  Future<XFile> cropToContainerShape(String imagePath) async {
+      // Read the image bytes
+      final bytes = await File(imagePath).readAsBytes();
 
-    // Calculate the coordinates of the red square
-    final Size screenSize = MediaQuery.of(context).size;
-    const double squareSize = 100; // Size of the square
-    final double left = (screenSize.width - squareSize) / 2;
-    final double top = (screenSize.height - squareSize) / 2;
+      // Decode the image
+      final image = img.decodeImage(bytes)!;
 
-    //-----------------------------------------------------------
+      // Get the screen size (consider using a global variable for efficiency)
+      final screenSize = MediaQuery.of(context).size;
 
-    // Calculate the coordinates for cropping
-    final double x = left * image.width / screenSize.width;
-    final double y = top * image.height / screenSize.height;
-    final double width = squareSize * image.width / screenSize.width;
-    final double height = squareSize * image.height / screenSize.height;
+      // Extract container dimensions from its widget properties (assuming known dimensions)
+      const double containerWidth = 80; // Replace with actual container width
+      const double containerHeight = 145; // Replace with actual container height
 
-    //-----------------------------------------------------------
+      // Calculate crop coordinates relative to image dimensions
+      final double x = (screenSize.width - containerWidth) / 2 * image.width / screenSize.width;
+      final double y = (screenSize.height - containerHeight) / 2 * image.height / screenSize.height;
+      final double width = containerWidth * image.width / screenSize.width;
+      final double height = containerHeight * image.height / screenSize.height;
 
-    // Crop the image to include only the object inside the red square
-    final img.Image croppedImage = img.copyCrop(
-      image,
-      x: x.toInt(),
-      y: y.toInt(),
-      width: width.toInt(),
-      height: height.toInt(),
-    );
+      // Crop the image
+      final img.Image croppedImage = img.copyCrop(
+        image,
+        x: x.toInt(),
+        y: y.toInt(),
+        width: width.toInt(),
+        height: height.toInt(),
+      );
 
-    final File file = File('$imagePath.cropped.jpg');
-    await file.writeAsBytes(img.encodeJpg(croppedImage));
+      // Create a new file for the cropped image
+      final file = File('$imagePath.cropped.jpg');
+      await file.writeAsBytes(img.encodeJpg(croppedImage));
 
-    return XFile(file.path); // Return an XFile object
+      return XFile(file.path);
+
   }
+
 
 
 

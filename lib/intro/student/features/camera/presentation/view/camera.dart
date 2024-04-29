@@ -91,10 +91,11 @@ class _CameraScreenState extends State<CameraScreen>
                           await controller.setFocusMode(FocusMode.auto);
                         },
                         child: Container(
-                          width: 100,
-                          height: 100,
+                          width: 80,
+                          height: 145,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.red, width: 2),
+                            borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
                           ),
                         ),
                       ),
