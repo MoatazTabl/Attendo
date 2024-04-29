@@ -63,12 +63,10 @@ class _CameraScreenState extends State<CameraScreen>
                   SizedBox(
                     width: 1.sw,
                     height: 0.3.sh,
-                    child: Positioned.fill(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                        child: Container(
-                          color: Colors.white10.withOpacity(0.2),
-                        ),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                      child: Container(
+                        color: Colors.white10.withOpacity(0.3),
                       ),
                     ),
                   ),
@@ -77,12 +75,10 @@ class _CameraScreenState extends State<CameraScreen>
                     child: SizedBox(
                       width: 1.sw,
                       height: 0.3.sh,
-                      child: Positioned.fill(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                          child: Container(
-                            color: Colors.white10.withOpacity(0.2),
-                          ),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                        child: Container(
+                          color: Colors.white10.withOpacity(0.3),
                         ),
                       ),
                     ),
