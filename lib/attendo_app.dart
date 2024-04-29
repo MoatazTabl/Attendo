@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'core/shared_cubit/attendo_cubit.dart';
 import 'core/utils/app_theme.dart';
 import 'core/utils/router/router.dart';
