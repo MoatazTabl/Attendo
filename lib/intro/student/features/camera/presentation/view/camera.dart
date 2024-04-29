@@ -1,9 +1,7 @@
 import 'dart:io';
-import 'dart:ui';
+import 'package:attendo/intro/student/features/camera/presentation/widgets/custom_camera_blur.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../camera_functions.dart';
@@ -60,29 +58,8 @@ class _CameraScreenState extends State<CameraScreen>
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 1.sw,
-                    height: 0.3.sh,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                      child: Container(
-                        color: Colors.white10.withOpacity(0.3),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: 1.sw,
-                      height: 0.3.sh,
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                        child: Container(
-                          color: Colors.white10.withOpacity(0.3),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const CustomCameraBlur(),
+                  const CustomCameraBlur(align: Alignment.bottomCenter,),
                   Align(
                     alignment: Alignment.center,
                     child: GestureDetector(
@@ -105,7 +82,7 @@ class _CameraScreenState extends State<CameraScreen>
                         );
 
                         // Delay for a short period to allow autofocus to adjust
-                        await Future.delayed(const Duration(milliseconds: 500));
+                        await Future.delayed(const Duration(milliseconds: 300));
 
                         // Trigger autofocus
                         await controller.setFocusMode(FocusMode.auto);
