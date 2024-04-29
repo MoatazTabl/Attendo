@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -46,78 +48,73 @@ class _CameraScreenState extends State<CameraScreen>
       appBar: AppBar(),
       body: Center(
         child: controller.value.isInitialized
-            ? SizedBox(
-                width: 1.sw,
-                child: Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Center(
-                        child: SizedBox(
-                          width: 1.sw,
-                          height: 1.sh,
-                          child: CameraPreview(
-                            controller,
+            ? Stack(
+              children: [
+                Center(
+                  child: SizedBox(
+                    width: 1.sw,
+                    height: 1.sh,
+                    child: CameraPreview(
+                      controller,
 
-                          ),
-                        ),
-                      ),
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                        onTap: () async {
-                          // Calculate focus point based on the position of the square
-                          final Size screenSize = MediaQuery.of(context).size;
-                          const double squareSize = 100; // Size of the square
-                          final double left = (screenSize.width - squareSize) / 2;
-                          final double top = (screenSize.height - squareSize) / 2;
-                          final double x = left + squareSize / 2;
-                          final double y = top + squareSize / 2;
-
-                          // Set focus point
-                          await controller.setFocusPoint(
-                            Offset(x / screenSize.width, y / screenSize.height),
-                          );
-
-                          // Delay for a short period to allow autofocus to adjust
-                          await Future.delayed(const Duration(milliseconds: 500));
-
-                          // Trigger autofocus
-                          await controller.setFocusMode(FocusMode.auto);
-                        },
-                        child: Container(
-                          width: 80,
-                          height: 145,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.red, width: 2),
-                            borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: .4.sw,
-                      bottom: 10,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: takePicture,
-                            iconSize: 50,
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            icon: const Icon(Icons.circle, color: Colors.white),
-                          ),
-                          const SizedBox(
-                            width: 50,
-                          ),
-
-                        ],
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-              )
+                Align(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () async {
+                      // Calculate focus point based on the position of the square
+                      final Size screenSize = MediaQuery.of(context).size;
+                      const double squareSizeWidth = 80; // Size of the square
+                      const double squareSizeHeight = 145; // Size of the square
+                      final double left = (screenSize.width - squareSizeWidth) / 2;
+                      final double top = (screenSize.height - squareSizeHeight) / 2;
+                      final double x = left + squareSizeWidth / 2;
+                      final double y = top + squareSizeHeight / 2;
+
+                      // Set focus point
+                      await controller.setFocusPoint(
+                        Offset(x / screenSize.width, y / screenSize.height),
+                      );
+
+                      // Delay for a short period to allow autofocus to adjust
+                      await Future.delayed(const Duration(milliseconds: 500));
+
+                      // Trigger autofocus
+                      await controller.setFocusMode(FocusMode.auto);
+                    },
+                    child: Container(
+                      width: 80,
+                      height: 145,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.red, width: 2),
+                        borderRadius: const BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: .4.sw,
+                  bottom: 10,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: takePicture,
+                        iconSize: 50,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(Icons.circle, color: Colors.white),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+
+                    ],
+                  ),
+                )
+              ],
+            )
             : const CircularProgressIndicator(),
       ),
     );
