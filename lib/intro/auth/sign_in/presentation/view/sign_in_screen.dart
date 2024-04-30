@@ -2,6 +2,7 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/do_not_have_account_widget.dart';
+import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/remember_me_widget.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/welcome_to_attendo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,34 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 22.w, right: 25.w),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.w),
-                        ),
-                        side: const BorderSide(
-                            color: Color(
-                              0xff3746CC,
-                            ),
-                            width: 2),
-                        value: rememberMe,
-                        onChanged: (value) {
-                          rememberMe = !rememberMe;
-                          setState(() {});
-                        },
-                        activeColor: const Color(0xff3746CC),
-                      ),
-                      Text(
-                        getAppLocalizations(context)!.rememberMe,
-                        style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: const RememberMeWidget(),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
