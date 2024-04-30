@@ -22,7 +22,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/signUpScreen",
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) =>  const SignUpScreen(),
     ),
     //---------------- Student routes------------------
     // GoRoute(
