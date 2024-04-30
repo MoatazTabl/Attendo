@@ -1,8 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +8,6 @@ import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -30,8 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage),
-              fit: BoxFit.fill),
+              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -48,71 +44,83 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Text(
                         "Sign Up",
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headlineLarge,
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       CircleAvatar(
                         radius: 45.sp,
-                        backgroundImage: const AssetImage(
-                            AppImages.addAvatarImage),
+                        backgroundImage:
+                            const AssetImage(AppImages.addAvatarImage),
                       ),
                       SizedBox(
                         height: 7.h,
                       ),
-                       CustomTextFormField(hintText: "First Name",
-                        isPass: false,),
+                      const CustomTextFormField(
+                        hintText: "First Name",
+                        isPass: false,
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-                       CustomTextFormField(hintText: "Last name",
-                        isPass: false,),
+                      const CustomTextFormField(
+                        hintText: "Last name",
+                        isPass: false,
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-                       CustomTextFormField(hintText: "ID",
-                        isPass: false,),
+                      const CustomTextFormField(
+                        hintText: "ID",
+                        isPass: false,
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-                       CustomTextFormField(hintText: "University Email",
-                        isPass: false,onChanged: (value) {
-                           setState(() {
-                             if (value.contains("@stu")) {
-                               isStudent = true;
-                             } else {
-                               isStudent = false;
-                             }
-                           });
-                        },),
+                      CustomTextFormField(
+                        hintText: "University Email",
+                        isPass: false,
+                        onChanged: (value) {
+                          setState(() {
+                            if (value.contains("@stu")) {
+                              isStudent = true;
+                            } else {
+                              isStudent = false;
+                            }
+                          });
+                        },
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-
                       SizedBox(
                         height: 16.h,
                       ),
-                       CustomTextFormField(hintText: "Password",
-                        isPass: true,),
+                      const CustomTextFormField(
+                        hintText: "Password",
+                        isPass: true,
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-                       CustomTextFormField(hintText: "Re Enter Password",
-                        isPass: true,),
+                      const CustomTextFormField(
+                        hintText: "Re Enter Password",
+                        isPass: true,
+                      ),
                       SizedBox(
                         height: 16.h,
                       ),
-
                       Visibility(
                         visible: isStudent,
-                        child: CustomTextFormField(hintText: "Select Faculty",
-                          isPass: false,),
+                        child: const CustomTextFormField(
+                          hintText: "Select Faculty",
+                          isPass: false,
+                        ),
                       ),
                       Visibility(
                         visible: isStudent,
-                        child: CustomTextFormField(hintText: "Select grade",
-                          isPass: false,),
+                        child: const CustomTextFormField(
+                          hintText: "Select grade",
+                          isPass: false,
+                        ),
                       ),
                       Visibility(
                         visible: isStudent,
@@ -125,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             backgroundColor: MaterialStateProperty.all(
                                 const Color(0xff3746CC)),
                             foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
+                                MaterialStateProperty.all(Colors.white),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(22.w),
@@ -158,7 +166,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {});
-
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                             setState(() {});

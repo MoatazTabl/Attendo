@@ -10,13 +10,15 @@ class CustomTextFormField extends StatefulWidget {
 
   final TextEditingController? controller;
 
-   void Function(String)? onChanged;
+  final void Function(String)? onChanged;
 
-   CustomTextFormField(
+  const CustomTextFormField(
       {super.key,
       required this.hintText,
       required this.isPass,
-      this.prefixIcon,this.controller,this.onChanged});
+      this.prefixIcon,
+      this.controller,
+      this.onChanged});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -26,7 +28,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   void Function(String)? onChanged;
   bool obscure = true;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,18 +36,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         validator: (value) {
           if (value!.isEmpty) {
             return "*Field is required*";
-          }else if(widget.hintText == "ID")
-            {
-              final bool idValid = RegExp(
-                  r"^[0-9]+$")
-                  .hasMatch(value);
-              if (!idValid) {
-                return "Please,enter a valid ID number";
-              }
+          } else if (widget.hintText == "ID") {
+            final bool idValid = RegExp(r"^[0-9]+$").hasMatch(value);
+            if (!idValid) {
+              return "Please,enter a valid ID number";
             }
-          else if (widget.hintText == "University Email") {
-            final bool emailValid = RegExp(r'@(stu|prof)\.com$')
-                .hasMatch(value);
+          } else if (widget.hintText == "University Email") {
+            final bool emailValid =
+                RegExp(r'@(stu|prof)\.com$').hasMatch(value);
             if (!emailValid) {
               return "Please,enter a valid Email ";
             }
@@ -77,10 +74,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   color: Colors.black,
                 ),
           hintText: widget.hintText,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .labelSmall!
-              .copyWith(fontSize: 18.sp),
+          hintStyle:
+              Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 18.sp),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.w),
               borderSide: BorderSide.none),
