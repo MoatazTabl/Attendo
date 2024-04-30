@@ -156,38 +156,38 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const Spacer(),
-                // Padding(
-                //   padding:  EdgeInsets.only(bottom: 20.h),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       Text(
-                //         getAppLocalizations(context)!.dontHaveAccount,
-                //         style: GoogleFonts.roboto(
-                //           textStyle: TextStyle(
-                //             fontSize: 16.sp,
-                //             fontWeight: FontWeight.w400,
-                //           ),
-                //         ),
-                //       ),
-                //       InkWell(
-                //         onTap: () {
-                //           context.push("/SignUpInstructorScreen");
-                //         },
-                //         child: Text(
-                //           getAppLocalizations(context)!.signUpNow,
-                //           style: Theme.of(context)
-                //               .textTheme
-                //               .labelMedium!
-                //               .copyWith(
-                //                   color: const Color(0xff3746CC),
-                //                   fontWeight: FontWeight.w900,
-                //                   fontSize: 20.sp),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // )
+                Padding(
+                  padding:  EdgeInsets.only(bottom: 20.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        getAppLocalizations(context)!.dontHaveAccount,
+                        style: GoogleFonts.roboto(
+                          textStyle: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.push("/signUpScreen");
+                        },
+                        child: Text(
+                          getAppLocalizations(context)!.signUpNow,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .copyWith(
+                                  color: const Color(0xff3746CC),
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),

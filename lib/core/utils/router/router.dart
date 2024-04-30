@@ -7,6 +7,7 @@ import 'package:attendo/intro/student/features/camera/presentation/view/camera.d
 import 'package:attendo/main_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
 import '../../../intro/student/features/finger_print_scan/presentation/view/finger_print_scan_screen.dart';
@@ -18,6 +19,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/",
       builder: (context, state) => const SignInScreen(),
+    ),
+    GoRoute(
+      path: "/signUpScreen",
+      builder: (context, state) => const SignUpScreen(),
     ),
     //---------------- Student routes------------------
     // GoRoute(
