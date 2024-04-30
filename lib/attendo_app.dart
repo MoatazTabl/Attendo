@@ -20,7 +20,6 @@ class Attendo extends StatelessWidget {
             create: (context) => AttendoCubit(),
             child: BlocBuilder<AttendoCubit, AttendoState>(
               builder: (context, state) {
-
                 return MaterialApp.router(
                   debugShowCheckedModeBanner: false,
                   localizationsDelegates: AppLocalizations

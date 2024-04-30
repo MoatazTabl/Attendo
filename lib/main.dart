@@ -37,7 +37,7 @@ Future<void>mainFunctions(WidgetsBinding widgetsBinding)async
     debugPrint("${e.code}, ${e.description}");
   }
   Bloc.observer=MyBlocObserver();
-  await UserLanguageService.init();
+  await UserLanguageService().init();
   await CacheHelper().init();
   await ScreenUtil.ensureScreenSize();
   if (kReleaseMode) {

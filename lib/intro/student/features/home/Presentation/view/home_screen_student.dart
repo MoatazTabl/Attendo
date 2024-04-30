@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weekly_date_picker/weekly_date_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 
 import 'widgets/attendance_item_card.dart';
 
@@ -13,10 +14,10 @@ class HomeScreenStudent extends StatefulWidget {
 }
 
 class _HomeScreenStudentState extends State<HomeScreenStudent> {
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController =
+      PageController(initialPage: 0, viewportFraction: 0.4);
   int _activePage = 0;
-  DateTime _selectedDate=DateTime.now();
-
+  DateTime? _selectedDay;
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
@@ -24,17 +25,23 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverToBoxAdapter(
-            child: WeeklyDatePicker(selectedDay: _selectedDate, changeDay: (dateTime ) {
-              _selectedDate=dateTime;
-              setState(() {
-              });
-            },
-              enableWeeknumberText: false,
-              backgroundColor: Colors.transparent,
-              daysInWeek: 6,
-              weekdays: const ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'],
+            child: DatePicker(
+              DateTime.now(),
+              initialSelectedDate: DateTime.now(),
+              selectionColor: Colors.white,
+              selectedTextColor: const Color(0xff71a8ef),
 
+              height: 135.h,
+              daysCount: 100,
+              deactivatedColor: Colors.white,
+              onDateChange: (date) {
+
+                setState(() {
+                  _selectedDay = date;
+                });
+              },
             ),
+
           )
         ];
       },
@@ -49,8 +56,8 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
                   child: PageView.builder(
                     itemCount: 10,
                     scrollDirection: Axis.vertical,
-                    controller: PageController(viewportFraction: .4),
-                    scrollBehavior: const CupertinoScrollBehavior(),
+                    controller: _pageController,
+                    scrollBehavior: const MaterialScrollBehavior(),
                     itemBuilder: (context, index) {
                       return AttendanceCard(
                         isActive: _activePage == index ? true : false,
@@ -66,51 +73,37 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
               ],
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List<Widget>.generate(
-              10,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: InkWell(
-                  onTap: () {
-                    _pageController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeIn,
-                    );
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SmoothPageIndicator(
+                  axisDirection: Axis.vertical,
+                  controller: _pageController,
+                  count: 10,
+                  onDotClicked: (index) {
+                    _pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
                   },
-                  child: _activePage == index
-                      ? Container(
-                          height: 54,
-                          width: 7,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            color: const Color(0xff182F78),
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 3.0),
-                          child: Container(
-                            width: 7,
-                            height: 7,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff9eb9ff),
-                                  Color(
-                                    0xffccdaff,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
+                  effect: const ExpandingDotsEffect(
+                    // dotColor: Colors.transparent,
+                    paintStyle: PaintingStyle.fill,
+                    strokeWidth: 1,
+                    dotHeight: 5,
+                    dotWidth: 5,
+                    spacing: 10,
+                    dotColor: Color(
+                      0xff182F78,
+                    ),
+                    expansionFactor: 9,
+                    activeDotColor: Color(
+                      0xff182F78,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],

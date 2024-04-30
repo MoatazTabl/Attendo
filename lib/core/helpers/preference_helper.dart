@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserLanguageService {
   static late SharedPreferences _sharedPreferences;
 
-  static Future<void> init() async {
+   Future<void> init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 

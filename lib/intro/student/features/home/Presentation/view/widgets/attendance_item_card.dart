@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +22,20 @@ class AttendanceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
-        height: isActive == true ? 250.h : 210.h,
-        width: isActive == true ? 375.w : 340.w,
+        height: lerpDouble(180.h, 245.h, isActive ? 1.0 : 0.0),
+        width: lerpDouble(300.w, 350.w, isActive ? 1.0 : 0.0),
+        // height: isActive == true ? 250.h : 210.h,
+        // width: isActive == true ? 340.w : 300.w,
         margin: EdgeInsets.symmetric(vertical: 10.h),
         decoration: ShapeDecoration(
           image: const DecorationImage(
             image: AssetImage(
               AppImages.attendanceCardBackground,
             ),
+            fit: BoxFit.fill
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.w),
+            borderRadius: BorderRadius.circular(20),
           ),
         ),
         duration: animationTime,
@@ -44,10 +49,10 @@ class AttendanceCard extends StatelessWidget {
                   style: TextStyle(
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
-                      ..strokeWidth = 1.5
+                      ..strokeWidth = 2
                       ..color = Colors.black,
                     fontWeight: FontWeight.w500,
-                    fontSize: isActive == true ? 40.sp : 28.sp,
+                    fontSize: isActive ? 40.sp : 28.sp,
                   ),
                   duration: animationTime,
                   child: const Text(
@@ -58,7 +63,7 @@ class AttendanceCard extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
-                    fontSize: isActive == true ? 40.sp : 28.sp,
+                    fontSize: isActive ? 40.sp : 28.sp,
                   ),
                   duration: animationTime,
                   child: const Text(
@@ -69,9 +74,13 @@ class AttendanceCard extends StatelessWidget {
             ),
             AnimatedDefaultTextStyle(
               style: GoogleFonts.roboto(
-                textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
+                textStyle: Theme
+                    .of(context)
+                    .textTheme
+                    .labelMedium!
+                    .copyWith(
                     color: Colors.black,
-                    fontSize: isActive == true ? 20.sp : 15.sp,
+                    fontSize: isActive ? 20.sp : 15.sp,
                     fontWeight: FontWeight.w500),
               ),
               duration: animationTime,
@@ -79,20 +88,22 @@ class AttendanceCard extends StatelessWidget {
                 "Dr/Bahaa",
               ),
             ),
-            SizedBox(height: 6.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 AnimatedDefaultTextStyle(
                   style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context)
+                    textStyle: Theme
+                        .of(context)
                         .textTheme
                         .labelMedium!
                         .copyWith(
-                            color: Colors.black,
-                            fontSize: isActive == true ? 20.sp : 15.sp,
-                            fontWeight: FontWeight.w500),
+                        color: Colors.black,
+                        fontSize: isActive == true ? 20.sp : 15.sp,
+                        fontWeight: FontWeight.w500,
+
+                    ),
                   ),
                   duration: animationTime,
                   child: const Text(
@@ -101,13 +112,14 @@ class AttendanceCard extends StatelessWidget {
                 ),
                 AnimatedDefaultTextStyle(
                   style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context)
+                    textStyle: Theme
+                        .of(context)
                         .textTheme
                         .labelMedium!
                         .copyWith(
-                            color: Colors.black,
-                            fontSize: isActive == true ? 20.sp : 15.sp,
-                            fontWeight: FontWeight.w500),
+                        color: Colors.black,
+                        fontSize: isActive ? 20.sp : 15.sp,
+                        fontWeight: FontWeight.w500),
                   ),
                   duration: animationTime,
                   child: const Text(
@@ -116,16 +128,14 @@ class AttendanceCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 9.h,
-            ),
+
             AnimatedContainer(
                 duration: animationTime,
                 curve: Curves.easeIn,
-                height: isActive == true ? 89.h : 60.h,
-                width: isActive == true ? 258.w : 180.w,
+                height: isActive ? 89.h : 70.h,
+                width: isActive ? 228.w : 190.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32.w),
+                  borderRadius: BorderRadius.circular(32),
                   color: Colors.transparent,
                   boxShadow: [
                     BoxShadow(
@@ -149,13 +159,13 @@ class AttendanceCard extends StatelessWidget {
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                          32.w,
+                          32,
                         ),
                       ),
                     ),
                     enableFeedback: true,
                     backgroundColor:
-                        const MaterialStatePropertyAll(Colors.transparent),
+                    const MaterialStatePropertyAll(Colors.transparent),
                     shadowColor: MaterialStateProperty.all(Colors.transparent),
                     elevation: MaterialStateProperty.all(0),
                     padding: MaterialStateProperty.all(
@@ -172,15 +182,15 @@ class AttendanceCard extends StatelessWidget {
                         ),
                         child: SvgPicture.asset(
                           "assets/images/svg/scan_qr.svg",
-                          height: isActive == true ? 50 : 30,
-                          width: isActive == true ? 47 : 30,
+                          height: isActive ? 50 : 30,
+                          width: isActive ? 47 : 30,
                         ),
                       ),
                       AnimatedDefaultTextStyle(
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
-                          fontSize: isActive == true ? 40.sp : 28.sp,
+                          fontSize: isActive ? 40.sp : 28.sp,
                         ),
                         duration: animationTime,
                         child: Text(getAppLocalizations(context)!.scanQR),
