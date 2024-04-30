@@ -9,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/widgets/custom_elevated_button.dart';
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
@@ -77,33 +79,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   padding: EdgeInsets.only(left: 22.w, right: 25.w),
                   child: const RememberMeWidget(),
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(240.w, 56.h),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                      const Color(
-                        0xff3746CC,
-                      ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.w),
-                      ),
-                    ),
-                  ),
+                CustomElevatedButton(
                   onPressed: () {
                     context.push("/mainScreen");
                   },
-                  child: Text(
-                    getAppLocalizations(context)!.logIn,
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge!
-                        .copyWith(fontSize: 16.sp),
-                  ),
+                  title: "Log In",
                 ),
                 const Spacer(),
                 Padding(

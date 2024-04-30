@@ -6,6 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../core/widgets/custom_elevated_button.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -152,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         height: 21.h,
                       ),
-                      ElevatedButton(
+                      CustomElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {});
@@ -162,32 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             setState(() {});
                           }
                         },
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
-                            Size(215.w, 56.h),
-                          ),
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color(
-                              0xff3746CC,
-                            ),
-                          ),
-                          foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22.w),
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          "Sign Up",
-                          style: GoogleFonts.roboto(
-                            textStyle: const TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ),
+                        title: "Sign Up",
                       ),
                     ],
                   ),
