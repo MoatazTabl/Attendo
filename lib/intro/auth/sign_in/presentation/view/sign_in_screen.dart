@@ -2,6 +2,7 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/do_not_have_account_widget.dart';
+import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/welcome_to_attendo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,26 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   height: 37.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      getAppLocalizations(context)!.welcomeTo,
-                      style:
-                          Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                fontSize: 40.sp,
-                              ),
-                    ),
-                    Text(
-                      getAppLocalizations(context)!.attendo,
-                      style:
-                          Theme.of(context).textTheme.headlineLarge!.copyWith(
-                                color: const Color(0xff3746CC),
-                                fontSize: 40.sp,
-                              ),
-                    ),
-                  ],
-                ),
+                const WelcomeToAttendoWidget(),
                 SizedBox(
                   height: 36.h,
                 ),
