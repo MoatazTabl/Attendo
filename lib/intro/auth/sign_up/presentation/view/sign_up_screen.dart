@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../core/widgets/custom_elevated_button.dart';
+import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -154,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         height: 21.h,
                       ),
-                      CustomElevatedButton(
+                      CustomFormElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {});

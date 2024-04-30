@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../helpers/common.dart';
 
-class CustomElevatedButton extends StatelessWidget {
+class CustomFormElevatedButton extends StatelessWidget {
   void Function()? onPressed;
   final String title;
 
-  CustomElevatedButton(
+  CustomFormElevatedButton(
       {super.key, required this.onPressed, required this.title});
 
   @override

@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/widgets/custom_elevated_button.dart';
+import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -79,7 +79,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   padding: EdgeInsets.only(left: 22.w, right: 25.w),
                   child: const RememberMeWidget(),
                 ),
-                CustomElevatedButton(
+                CustomFormElevatedButton(
                   onPressed: () {
                     context.push("/mainScreen");
                   },
