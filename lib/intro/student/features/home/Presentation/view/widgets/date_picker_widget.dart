@@ -39,7 +39,6 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           // "date":"2024-05-05T09:18:54"
           "date":date.toIso8601String().split(".")[0]
         });
-        print(date.toIso8601String().split(".")[0]);
         setState(() {
           selectedDay = date;
         });
