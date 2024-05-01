@@ -5,9 +5,12 @@ class PageIndicator extends StatelessWidget {
   const PageIndicator({
     super.key,
     required PageController pageController,
+     required this.cardsNumber,
   }) : _pageController = pageController;
 
+
   final PageController _pageController;
+  final int cardsNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class PageIndicator extends StatelessWidget {
           SmoothPageIndicator(
             axisDirection: Axis.vertical,
             controller: _pageController,
-            count: 10,
+            count: cardsNumber,
             onDotClicked: (index) {
               _pageController.animateToPage(
                 index,
