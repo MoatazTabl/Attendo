@@ -21,8 +21,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       initialSelectedDate: DateTime.now(),
       selectionColor: Colors.white,
       selectedTextColor: const Color(0xff71a8ef),
-      height: 135.h,
+      height: 110.h,
       daysCount: 100,
+      dateTextStyle: TextStyle(fontSize: 15.sp),
+      monthTextStyle: TextStyle(fontSize:16.sp ),
+      dayTextStyle: TextStyle(fontSize: 15.sp),
       deactivatedColor: Colors.white,
       onDateChange: (date) {
         setState(() {
