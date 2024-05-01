@@ -10,7 +10,14 @@ class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
 
 
+//check if the registered user is instructor or student
+  bool isStudent = false;
 
+  //Global formKey
+  GlobalKey<FormState> formKey = GlobalKey();
+
+
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
   //Sign up name
   TextEditingController signUpName = TextEditingController();
