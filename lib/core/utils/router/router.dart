@@ -20,15 +20,15 @@ final GoRouter router = GoRouter(
     // --------------- Sign In ------------------------
     GoRoute(
       path: "/",
-      builder: (context, state) =>
-          BlocProvider(
-            create: (context) => UserCubit(),
-            child: const SignInScreen(),
-          ),
+      builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
       path: "/signUpScreen",
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) =>
+          BlocProvider(
+            create: (context) => UserCubit(),
+            child: const SignUpScreen(),
+          ),
     ),
     //---------------- Student routes------------------
     // GoRoute(
