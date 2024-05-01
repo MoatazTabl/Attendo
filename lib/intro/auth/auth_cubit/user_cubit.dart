@@ -1,7 +1,6 @@
 import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
