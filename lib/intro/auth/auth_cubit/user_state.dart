@@ -20,8 +20,7 @@ final class LoginFailure extends UserState {
 
 ///SignUp States
 final class SignUpSuccess extends UserState {
-  String message;
-  SignUpSuccess({required this.message});
+
 }
 
 final class SignUpLoading extends UserState {}
