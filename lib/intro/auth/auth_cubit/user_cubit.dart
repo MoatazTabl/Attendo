@@ -17,6 +17,7 @@ class UserCubit extends Cubit<UserState> {
   GlobalKey<FormState> formKey = GlobalKey();
 
 
+  // auto validate for text form fields
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
   //Sign up name
@@ -44,7 +45,7 @@ class UserCubit extends Cubit<UserState> {
   signUp() async {
     try {
       emit(SignUpLoading());
-      final response = await ApiService().post(endpoint: 'register/', data: {
+       await ApiService().post(endpoint: 'register/', data: {
         "name":signUpName.text,
         "email":signUpEmail.text,
         "password":signUpPassword.text,
