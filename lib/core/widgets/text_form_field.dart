@@ -12,13 +12,16 @@ class CustomTextFormField extends StatefulWidget {
 
   final void Function(String)? onChanged;
 
+ final TextEditingController? passwordFieldController;
+
   const CustomTextFormField(
       {super.key,
       required this.hintText,
       required this.isPass,
       this.prefixIcon,
       this.controller,
-      this.onChanged});
+      this.onChanged,
+      this.passwordFieldController});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -41,13 +44,18 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             if (!idValid) {
               return "Please,enter a valid ID number";
             }
-          } else if (widget.hintText == "University Email") {
+          } else if (widget.hintText == "University Email"||widget.hintText == "Email or ID") {
             final bool emailValid =
                 RegExp(r'@(stu|prof)\.com$').hasMatch(value);
             if (!emailValid) {
               return "Please,enter a valid Email ";
             }
+          } else if (widget.isPass && widget.hintText == "Re Enter Password") {
+            if (value != widget.passwordFieldController!.text) {
+              return "Passwords do not match";
+            }
           }
+          return null;
         },
         onChanged: widget.onChanged,
         controller: widget.controller,

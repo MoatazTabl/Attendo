@@ -1,6 +1,7 @@
 import 'package:attendo/intro/admin/admin_main_screen.dart';
 import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
+import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
@@ -20,11 +21,19 @@ final GoRouter router = GoRouter(
     // --------------- Sign In ------------------------
     GoRoute(
       path: "/",
-      builder: (context, state) => const SignInScreen(),
+      builder: (context, state) =>
+          BlocProvider(
+            create: (context) => UserCubit(),
+            child: const SignInScreen(),
+          ),
     ),
     GoRoute(
       path: "/signUpScreen",
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) =>
+          BlocProvider(
+            create: (context) => UserCubit(),
+            child: const SignUpScreen(),
+          ),
     ),
     //---------------- Student routes------------------
     // GoRoute(
@@ -38,11 +47,12 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: "/mainScreen",
-      builder: (context, state) => MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => HomeCubit(),
-        )
-      ], child: const MainScreen()),
+      builder: (context, state) =>
+          MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => HomeCubit(),
+            )
+          ], child: const MainScreen()),
     ),
     GoRoute(
       path: "/cameraScreen",
