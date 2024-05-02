@@ -1,5 +1,6 @@
 import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/networking/api_service.dart';
+import 'package:attendo/core/networking/api_strings.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -45,7 +46,7 @@ class UserCubit extends Cubit<UserState> {
   signUp() async {
     try {
       emit(SignUpLoading());
-       await ApiService().post(endpoint: 'register/', data: {
+       await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
         "name":signUpName.text,
         "email":signUpEmail.text,
         "password":signUpPassword.text,
