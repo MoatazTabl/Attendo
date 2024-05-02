@@ -32,11 +32,15 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Success")));
-          }
-          else if(state is LoginFailure)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.errMessage)));
+            if (RegExp(r'@(prof)\.com$')
+                .hasMatch(context.read<UserCubit>().logInEmail.text)) {
+              context.pushReplacement("/instructorMainScreen");
+            } else {
+              context.pushReplacement("/mainScreen");
+            }
+          } else if (state is LoginFailure) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errMessage)));
           }
         },
         builder: (context, state) {
@@ -79,6 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       SizedBox(
                         height: 65.h,
                         child: CustomTextFormField(
+                          controller: context.read<UserCubit>().logInEmail,
                           hintText: getAppLocalizations(context)!.emailOrID,
                           isPass: false,
                           prefixIcon: Icons.person,
@@ -90,6 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       SizedBox(
                         height: 65.h,
                         child: CustomTextFormField(
+                          controller: context.read<UserCubit>().logInPassword,
                           hintText: getAppLocalizations(context)!.password,
                           isPass: true,
                           prefixIcon: Icons.lock,
@@ -107,11 +113,9 @@ class _SignInScreenState extends State<SignInScreen> {
                               .currentState!
                               .validate()) {
                             setState(() {});
-                            context.read<UserCubit>().signUp();
+                            context.read<UserCubit>().signIn();
                           } else {
-                            context
-                                .read<UserCubit>()
-                                .autoValidateMode =
+                            context.read<UserCubit>().autoValidateMode =
                                 AutovalidateMode.always;
                             setState(() {});
                           }
