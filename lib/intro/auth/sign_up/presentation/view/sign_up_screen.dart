@@ -124,6 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             isPass: true,
                             controller:
                                 context.read<UserCubit>().confirmPassword,
+                            passwordFieldController:context.read<UserCubit>().signUpPassword ,
                           ),
                           SizedBox(
                             height: 16.h,

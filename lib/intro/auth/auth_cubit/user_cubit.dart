@@ -1,4 +1,3 @@
-import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:bloc/bloc.dart';
@@ -57,8 +56,8 @@ class UserCubit extends Cubit<UserState> {
       }
       );
       emit(SignUpSuccess());
-    } on ServerFailures catch (e) {
-      emit(SignUpFailure(errMessage: e.errorMessage));
+    } catch (e) {
+      emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
     }
   }
 
