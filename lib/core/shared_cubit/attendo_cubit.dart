@@ -18,6 +18,7 @@ class AttendoCubit extends Cubit<AttendoState> {
         break;
       case AppConstants.arabicLanguageCode:
         emit(AttendoArabicLocale());
+        break;
       default:
         emit(AttendoEnglishLocale());
     }

@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'core/cache_helper.dart';
+import 'core/helpers/cache_helper.dart';
 import 'core/helpers/preference_helper.dart';
 
 

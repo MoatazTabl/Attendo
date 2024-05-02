@@ -23,10 +23,10 @@ class AttendanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedScale(
-      scale: isActive ? 1.0 : 0.8,
-      duration: animationTime,
-      child: Center(
+    return Center(
+      child: AnimatedScale(
+        scale: isActive ? 1.0 : 0.8,
+        duration: animationTime,
         child: AnimatedContainer(
           height: 250.h,
           width: 340.w,
@@ -44,6 +44,7 @@ class AttendanceCard extends StatelessWidget {
           duration: animationTime,
           curve: Curves.easeIn,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
@@ -132,7 +133,7 @@ class AttendanceCard extends StatelessWidget {
                   duration: animationTime,
                   curve: Curves.easeIn,
                   height: 89.h,
-                  width: 228.w,
+                  width: 258.w,
                   margin: EdgeInsets.only(
                     top: 9.h,
                   ),
