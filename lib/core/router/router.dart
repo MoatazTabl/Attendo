@@ -1,3 +1,4 @@
+import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/admin/admin_main_screen.dart';
 import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
@@ -16,11 +17,11 @@ import '../../../intro/instructor/instructor_main_screen.dart';
 import '../../../intro/student/features/finger_print_scan/presentation/view/finger_print_scan_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: "/",
+  initialLocation: AppRoutes.signInScreen,
   routes: [
     // --------------- Sign In ------------------------
     GoRoute(
-      path: "/",
+      path: AppRoutes.signInScreen,
       builder: (context, state) =>
           BlocProvider(
             create: (context) => UserCubit(),
@@ -28,25 +29,17 @@ final GoRouter router = GoRouter(
           ),
     ),
     GoRoute(
-      path: "/signUpScreen",
+      path: AppRoutes.signUpScreen,
       builder: (context, state) =>
           BlocProvider(
             create: (context) => UserCubit(),
             child: const SignUpScreen(),
           ),
     ),
-    //---------------- Student routes------------------
-    // GoRoute(
-    //   path: "/",
-    //   builder: (context, state) => const IntroScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/SignInScreenStudent",
-    //   builder: (context, state) => const SignInScreenStudent(),
-    // ),
 
+    //---------------- Student routes------------------
     GoRoute(
-      path: "/mainScreen",
+      path: AppRoutes.mainScreen,
       builder: (context, state) =>
           MultiBlocProvider(providers: [
             BlocProvider(
@@ -55,53 +48,42 @@ final GoRouter router = GoRouter(
           ], child: const MainScreen()),
     ),
     GoRoute(
-      path: "/cameraScreen",
+      path: AppRoutes.cameraScreen,
       builder: (context, state) => const CameraScreen(),
     ),
     GoRoute(
-      path: "/fingerPrintScanScreen",
+      path: AppRoutes.fingerPrintScanScreen,
       builder: (context, state) => const FingerPrintScanScreen(),
     ),
-    // GoRoute(
-    //   path: "/asd",
-    //   builder: (context, state) => const ScanQrScreen(),
-    // ),
 
-    //  --------------------instructor routes-----------------
-    // GoRoute(
-    //   path: "/SignInScreenInstructor",
-    //   builder: (context, state) => const SignInInstructorScreen(),
-    // ),
+    // ------------------ instructorScreen ----------------------
 
     GoRoute(
-      path: "/instructorMainScreen",
+      path: AppRoutes.instructorMainScreen,
       builder: (context, state) => const InstructorMainScreen(),
     ),
     GoRoute(
-      path: "/instructorLectureDetails",
+      path: AppRoutes.instructorLectureDetails,
       builder: (context, state) => const InstructorLectureDetails(),
     ),
     GoRoute(
-      path: "/attendancePageInstructor",
+      path: AppRoutes.attendancePageInstructor,
       builder: (context, state) => const AttendancePageInstructor(),
     ),
 
     // -------------------- Admin routes----------------------
 
-    // GoRoute(
-    //   path: "/signInScreenAdmin",
-    //   builder: (context, state) => const SignInScreenAdmin(),
-    // ),
+
     GoRoute(
-      path: "/createLectureAdmin",
+      path: AppRoutes.createLectureAdmin,
       builder: (context, state) => const CreateLectureAdmin(),
     ),
     GoRoute(
-      path: "/adminMainScreen",
+      path: AppRoutes.adminMainScreen,
       builder: (context, state) => const AdminMainScreen(),
     ),
     GoRoute(
-      path: "/attendancePageAdmin",
+      path: AppRoutes.attendancePageAdmin,
       builder: (context, state) => const AttendancePageAdmin(),
     ),
   ],

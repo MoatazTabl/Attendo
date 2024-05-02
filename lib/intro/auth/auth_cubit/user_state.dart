@@ -12,7 +12,7 @@ final class LoginLoading extends UserState {}
 
 
 final class LoginFailure extends UserState {
-  String errMessage;
+  final String errMessage;
   LoginFailure({required this.errMessage});
 }
 
@@ -26,7 +26,7 @@ final class SignUpSuccess extends UserState {
 final class SignUpLoading extends UserState {}
 
 final class  SignUpFailure extends UserState {
-  String errMessage;
+  final String errMessage;
   SignUpFailure({required this.errMessage});
 }
 

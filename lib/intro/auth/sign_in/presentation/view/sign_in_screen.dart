@@ -31,7 +31,6 @@ class _SignInScreenState extends State<SignInScreen> {
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
-          // TODO: implement listener
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));

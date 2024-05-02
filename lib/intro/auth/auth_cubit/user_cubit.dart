@@ -1,9 +1,10 @@
+import 'package:attendo/core/helpers/cache_helper.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import '../../../core/cache_helper.dart';
+
 import '../models/sign_in_model.dart';
 
 part 'user_state.dart';
