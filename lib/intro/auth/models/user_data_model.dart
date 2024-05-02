@@ -1,30 +1,23 @@
-class UserDataModel
-{
+class UserDataModel {
+  String userId;
   String name;
-  String email;
   String nationalId;
   String? faculty;
   String? grade;
 
-  UserDataModel({required this.name,
-    required this.email,
+  UserDataModel({required this.userId, required this.name,
     required this.nationalId,
-     this.faculty,
-     this.grade});
+    this.faculty,
+    this.grade});
 
-  // factory UserDataModel.fromJson(Map<String, dynamic>json)
-  // {
-  //   return UserDataModel(name: name, email: email, nationalId: nationalId);
-  // }
-
+  factory UserDataModel.fromJson(Map<String, dynamic>json)
+  {
+    return UserDataModel(userId: json["user_id"],
+        name: json["name"],
+        nationalId: json["national_id"],
+        faculty: json["faculty"],
+        grade: json["grade"]);
+  }
 
 
 }
-
-
-///"name": "aaaa",
-///        "email": "mosetafa@stu.com",
-///        "password": "computer",
-///       "national_id": "30208061204533",
-///        "faculty": "computer",
-///        "grade": "third"
