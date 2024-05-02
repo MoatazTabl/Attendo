@@ -33,14 +33,14 @@ final class  SignUpFailure extends UserState {
 //--------------------------------------------------------------------
 
 /// User Data States
-// final class GetUserSuccess extends UserState {
-//   UserDataModel userData;
-//   GetUserSuccess({required this.userData});
-// }
-//
-// final class GetUserLoading extends UserState {}
-//
-// final class GetUserFailure extends UserState {
-//   String errMessage;
-//   GetUserFailure({required this.errMessage});
-// }
+final class GetUserSuccess extends UserState {
+  final UserDataModel userData;
+  GetUserSuccess({required this.userData});
+}
+
+final class GetUserLoading extends UserState {}
+
+final class GetUserFailure extends UserState {
+ final String errMessage;
+  GetUserFailure({required this.errMessage});
+}

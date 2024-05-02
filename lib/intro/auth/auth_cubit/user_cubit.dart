@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../models/sign_in_model.dart';
+import '../models/user_data_model.dart';
 
 part 'user_state.dart';
 
