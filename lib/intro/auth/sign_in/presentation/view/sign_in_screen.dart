@@ -82,26 +82,20 @@ class _SignInScreenState extends State<SignInScreen> {
                       SizedBox(
                         height: 36.h,
                       ),
-                      SizedBox(
-                        height: 65.h,
-                        child: CustomTextFormField(
-                          controller: context.read<UserCubit>().logInEmail,
-                          hintText: getAppLocalizations(context)!.emailOrID,
-                          isPass: false,
-                          prefixIcon: Icons.person,
-                        ),
+                      CustomTextFormField(
+                        controller: context.read<UserCubit>().logInEmail,
+                        hintText: getAppLocalizations(context)!.emailOrID,
+                        isPass: false,
+                        prefixIcon: Icons.person,
                       ),
                       SizedBox(
                         height: 16.h,
                       ),
-                      SizedBox(
-                        height: 65.h,
-                        child: CustomTextFormField(
-                          controller: context.read<UserCubit>().logInPassword,
-                          hintText: getAppLocalizations(context)!.password,
-                          isPass: true,
-                          prefixIcon: Icons.lock,
-                        ),
+                      CustomTextFormField(
+                        controller: context.read<UserCubit>().logInPassword,
+                        hintText: getAppLocalizations(context)!.password,
+                        isPass: true,
+                        prefixIcon: Icons.lock,
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 22.w, right: 25.w),
