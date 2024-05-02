@@ -18,6 +18,10 @@ class UserCubit extends Cubit<UserState> {
   bool isStudent = false;
 
 
+  //Sign in Form key
+  GlobalKey<FormState> logInFormKey = GlobalKey();
+
+
   //logInPassword
   TextEditingController logInPassword = TextEditingController();
 
