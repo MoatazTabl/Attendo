@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 16.h,
                           ),
-                          CustomTextFormField(
+                          const CustomTextFormField(
                             hintText: "Last name",
                             isPass: false,
                           ),

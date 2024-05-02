@@ -3,8 +3,6 @@ import 'package:attendo/core/networking/api_strings.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:meta/meta.dart';
-
 import '../../../core/cache_helper.dart';
 import '../models/sign_in_model.dart';
 
