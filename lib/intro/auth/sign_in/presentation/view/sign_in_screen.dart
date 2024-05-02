@@ -25,6 +25,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool domainTypeCheck = RegExp(r'@(prof)\.com$')
+        .hasMatch(context.read<UserCubit>().logInEmail.text);
+
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
@@ -32,8 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));
-            if (RegExp(r'@(prof)\.com$')
-                .hasMatch(context.read<UserCubit>().logInEmail.text)) {
+            if (domainTypeCheck) {
               context.pushReplacement("/instructorMainScreen");
             } else {
               context.pushReplacement("/mainScreen");
@@ -105,24 +107,26 @@ class _SignInScreenState extends State<SignInScreen> {
                         padding: EdgeInsets.only(left: 22.w, right: 25.w),
                         child: const RememberMeWidget(),
                       ),
-                      CustomFormElevatedButton(
-                        onPressed: () {
-                          if (context
-                              .read<UserCubit>()
-                              .logInFormKey
-                              .currentState!
-                              .validate()) {
-                            setState(() {});
-                            context.read<UserCubit>().signIn();
-                          } else {
-                            context.read<UserCubit>().autoValidateMode =
-                                AutovalidateMode.always;
-                            setState(() {});
-                          }
-                          // context.push("/mainScreen");
-                        },
-                        title: "Log In",
-                      ),
+                      state is LoginLoading
+                          ? const CircularProgressIndicator()
+                          : CustomFormElevatedButton(
+                              onPressed: () {
+                                if (context
+                                    .read<UserCubit>()
+                                    .logInFormKey
+                                    .currentState!
+                                    .validate()) {
+                                  setState(() {});
+                                  context.read<UserCubit>().signIn();
+                                } else {
+                                  context.read<UserCubit>().autoValidateMode =
+                                      AutovalidateMode.always;
+                                  setState(() {});
+                                }
+                                // context.push("/mainScreen");
+                              },
+                              title: "Log In",
+                            ),
                       const Spacer(),
                       Padding(
                         padding: EdgeInsets.only(bottom: 20.h),

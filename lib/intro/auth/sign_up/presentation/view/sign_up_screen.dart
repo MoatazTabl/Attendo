@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (state is SignUpSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Your account has been created successfully")));
-            context.pushReplacement("/");
+            context.pop();
           } else if (state is SignUpFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
