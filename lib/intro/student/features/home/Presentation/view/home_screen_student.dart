@@ -1,6 +1,11 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/widgets/card_page_view.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/widgets/page_indicator.dart';
+import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'widgets/date_picker_widget.dart';
 
@@ -16,30 +21,101 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
       PageController(initialPage: 0, viewportFraction: 0.4);
 
   @override
+  void initState() {
+    context.read<HomeCubit>().getStudentLectures(data: {
+      "faculty": "computer scs",
+      "grade": "fourth",
+      // "date":"2024-04-30T09:18:54"
+      "date": DateTime.now().toIso8601String().split(".")[0]
+      // "date":"2024-05-05T09:18:54"
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return NestedScrollView(
       scrollDirection: Axis.vertical,
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
-          const SliverToBoxAdapter(
-            child: DatePickerWidget(),
+          SliverPersistentHeader(
+            delegate: DatePiker(),
+            pinned: true,
           )
         ];
       },
-      body: Row(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CardPageView(pageController: _pageController,),
-              ],
+      body: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () {
+              return const Center(
+                child: Icon(
+                  Icons.error,
+                  color: Colors.redAccent,
+                ),
+              );
+            },
+            dataFetching: () => const Center(
+              child: CircularProgressIndicator(
+                color: Color(
+                  0xff182F78,
+                ),
+              ),
             ),
-          ),
-          PageIndicator(pageController: _pageController),
-        ],
+            dataError: (error) => Center(
+              child: Text(error),
+            ),
+            lecturesAvailable: (lectures) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CardPageView(
+                          pageController: _pageController,
+                          lectures: lectures,
+                        ),
+                      ],
+                    ),
+                  ),
+                  PageIndicator(
+                    pageController: _pageController,
+                    cardsNumber: lectures.length,
+                  ),
+                ],
+              );
+            },
+            lecturesNotAvailable: () => Center(
+              child: SvgPicture.asset(
+                AppImages.noAvailableLectures,
+                width: 350.w,
+                height: 340.h,
+              ),
+            ),
+          );
+        },
       ),
     );
+  }
+}
+
+class DatePiker extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return const DatePickerWidget();
+  }
+
+  @override
+  double get maxExtent => 110.h;
+
+  @override
+  double get minExtent => 110.h;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }

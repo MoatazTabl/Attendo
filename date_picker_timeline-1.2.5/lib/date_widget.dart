@@ -1,4 +1,3 @@
-
 // ignore: dangling_library_doc_comments
 /// This class consists of the DateWidget that is used in the ListView.builder
 
@@ -14,7 +13,8 @@ class DateWidget extends StatelessWidget {
   final DateSelectionCallback? onDateSelected;
   final String? locale;
 
-  const DateWidget({Key? key,
+  const DateWidget({
+    Key? key,
     required this.date,
     required this.monthTextStyle,
     required this.dayTextStyle,
@@ -45,16 +45,19 @@ class DateWidget extends StatelessWidget {
               ),
             ]),
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(DateFormat("MMM", locale).format(date).toUpperCase(),
                   // Month
                   style: monthTextStyle),
-              Text(date.day.toString(), // Date
-                  style: dateTextStyle),
+              Text(
+                date.day.toString(), // Date
+                style: dateTextStyle,
+              ),
               Text(DateFormat("E", locale).format(date).toUpperCase(),
                   // WeekDay
                   style: dayTextStyle)
