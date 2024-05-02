@@ -44,7 +44,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             if (!idValid) {
               return "Please,enter a valid ID number";
             }
-          } else if (widget.hintText == "University Email") {
+          } else if (widget.hintText == "University Email"||widget.hintText == "Email or ID") {
             final bool emailValid =
                 RegExp(r'@(stu|prof)\.com$').hasMatch(value);
             if (!emailValid) {

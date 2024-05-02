@@ -2,7 +2,9 @@ import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import '../../../core/cache_helper.dart';
+import '../models/sign_in_model.dart';
 
 part 'user_state.dart';
 
@@ -12,6 +14,18 @@ class UserCubit extends Cubit<UserState> {
 
 //check if the registered user is instructor or student
   bool isStudent = false;
+
+
+  //Sign in Form key
+  GlobalKey<FormState> logInFormKey = GlobalKey();
+
+
+  //logInPassword
+  TextEditingController logInPassword = TextEditingController();
+
+  //logInEmail
+  TextEditingController logInEmail = TextEditingController();
+
 
   //Global formKey
   GlobalKey<FormState> formKey = GlobalKey();
@@ -42,6 +56,8 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController signUpFaculty = TextEditingController();
 
 
+  SignInModel? user;
+
   signUp() async {
     try {
       emit(SignUpLoading());
@@ -60,6 +76,26 @@ class UserCubit extends Cubit<UserState> {
       emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
     }
   }
+
+
+  signIn() async {
+    try {
+      emit(LoginLoading());
+      final response = await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
+        "email": logInEmail.text,
+        "password": logInPassword.text,
+      });
+      user = SignInModel.fromJson(response);
+      final decodedToken = JwtDecoder.decode(user!.token);
+      CacheHelper().saveData(key: ApiStrings.token, value: user!.token);
+      CacheHelper().saveData(key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
+      emit(LoginSuccess());
+    }  catch (e) {
+      emit(LoginFailure(errMessage: "Un Expected error , try again later"));
+    }
+  }
+
+
 
 
 }
