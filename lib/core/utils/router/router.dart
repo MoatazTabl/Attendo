@@ -21,7 +21,11 @@ final GoRouter router = GoRouter(
     // --------------- Sign In ------------------------
     GoRoute(
       path: "/",
-      builder: (context, state) => const SignInScreen(),
+      builder: (context, state) =>
+          BlocProvider(
+            create: (context) => UserCubit(),
+            child: const SignInScreen(),
+          ),
     ),
     GoRoute(
       path: "/signUpScreen",
@@ -43,11 +47,12 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: "/mainScreen",
-      builder: (context, state) => MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => HomeCubit(),
-        )
-      ], child: const MainScreen()),
+      builder: (context, state) =>
+          MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => HomeCubit(),
+            )
+          ], child: const MainScreen()),
     ),
     GoRoute(
       path: "/cameraScreen",
