@@ -31,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
           // TODO: implement listener
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Logged In Success")));
+                const SnackBar(content: Text("Logged In Successfully")));
             if (RegExp(r'@(prof)\.com$')
                 .hasMatch(context.read<UserCubit>().logInEmail.text)) {
               context.pushReplacement("/instructorMainScreen");
