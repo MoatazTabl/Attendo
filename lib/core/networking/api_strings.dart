@@ -6,4 +6,5 @@ class ApiStrings{
   static const String logInEndPoint="login/";
   static const String token="jwt token";
   static const String userId="pk";
+  static const String getStudent="getstudent/";
 }
