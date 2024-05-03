@@ -1,7 +1,9 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
+import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/do_not_have_account_widget.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/remember_me_widget.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/welcome_to_attendo_widget.dart';
@@ -27,17 +29,25 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
         .hasMatch(context.read<UserCubit>().logInEmail.text);
+    UserDataModel userDataModel;
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));
+
             if (domainTypeCheck) {
+              userDataModel = await context
+                  .read<UserCubit>()
+                  .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
               context.pushReplacement("/instructorMainScreen");
             } else {
-              context.pushReplacement("/mainScreen");
+              userDataModel = await context
+                  .read<UserCubit>()
+                  .getUserData(userTypeEndPoint: ApiStrings.getStudent);
+              context.pushReplacement("/mainScreen", extra: userDataModel);
             }
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)

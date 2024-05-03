@@ -13,14 +13,11 @@ part 'user_state.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
 
-
 //check if the registered user is instructor or student
   bool isStudent = false;
 
-
   //Sign in Form key
   GlobalKey<FormState> logInFormKey = GlobalKey();
-
 
   //logInPassword
   TextEditingController logInPassword = TextEditingController();
@@ -28,10 +25,8 @@ class UserCubit extends Cubit<UserState> {
   //logInEmail
   TextEditingController logInEmail = TextEditingController();
 
-
   //Global formKey
   GlobalKey<FormState> formKey = GlobalKey();
-
 
   // auto validate for text form fields
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
@@ -57,47 +52,55 @@ class UserCubit extends Cubit<UserState> {
   //Sign up grade
   TextEditingController signUpFaculty = TextEditingController();
 
-
   SignInModel? user;
 
   signUp() async {
     try {
       emit(SignUpLoading());
-       await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
-        "name":signUpName.text,
-        "email":signUpEmail.text,
-        "password":signUpPassword.text,
-        "national_id":signUpNationalId.text,
-        "faculty":signUpFaculty.text,
-        "grade":signUpGrade.text,
-
-      }
-      );
+      await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
+        "name": signUpName.text,
+        "email": signUpEmail.text,
+        "password": signUpPassword.text,
+        "national_id": signUpNationalId.text,
+        "faculty": signUpFaculty.text,
+        "grade": signUpGrade.text,
+      });
       emit(SignUpSuccess());
     } catch (e) {
       emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
     }
   }
 
-
   signIn() async {
     try {
       emit(LoginLoading());
-      final response = await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
+      final response =
+          await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
         "email": logInEmail.text,
         "password": logInPassword.text,
       });
       user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user!.token);
       CacheHelper().saveData(key: ApiStrings.token, value: user!.token);
-      CacheHelper().saveData(key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
+      CacheHelper().saveData(
+          key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
-    }  catch (e) {
+    } catch (e) {
       emit(LoginFailure(errMessage: "Un Expected error , try again later"));
     }
   }
 
-
-
-
+  getUserData({required String userTypeEndPoint}) async {
+    try {
+      emit(GetUserLoading());
+      final response = await ApiService().post(
+          endpoint: userTypeEndPoint,
+          data: {"user_id": CacheHelper().getData(key: ApiStrings.userId)});
+      UserDataModel userData = UserDataModel.fromJson(response);
+      emit(GetUserSuccess(userData: userData));
+      return userData;
+    } catch (e) {
+      emit(GetUserFailure(errMessage: "Un Expected error , try again later"));
+    }
+  }
 }
