@@ -44,6 +44,9 @@ final GoRouter router = GoRouter(
           MultiBlocProvider(providers: [
             BlocProvider(
               create: (context) => HomeCubit(),
+            ),
+            BlocProvider(
+              create: (context) => UserCubit(),
             )
           ], child: const MainScreen()),
     ),

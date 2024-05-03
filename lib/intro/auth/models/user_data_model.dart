@@ -1,5 +1,5 @@
 class UserDataModel {
-  String userId;
+  int userId;
   String name;
   String nationalId;
   String? faculty;
