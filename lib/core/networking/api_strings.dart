@@ -7,4 +7,5 @@ class ApiStrings{
   static const String token="jwt token";
   static const String userId="pk";
   static const String getStudent="getstudent/";
+  static const String getInstructors="getinstructor/";
 }

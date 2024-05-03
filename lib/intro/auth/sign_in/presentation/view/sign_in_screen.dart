@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
@@ -29,17 +30,21 @@ class _SignInScreenState extends State<SignInScreen> {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
         .hasMatch(context.read<UserCubit>().logInEmail.text);
 
+    UserDataModel userDataModel;
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async{
+
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));
-             UserDataModel userDataModel = await context.read<UserCubit>().getUserData();
+
             if (domainTypeCheck) {
+               userDataModel = await context.read<UserCubit>().getUserData(userTypeEndPoint: ApiStrings.getStudent);
               context.pushReplacement("/instructorMainScreen");
             } else {
+               userDataModel = await context.read<UserCubit>().getUserData(userTypeEndPoint: ApiStrings.getStudent);
               context.pushReplacement("/mainScreen",extra: userDataModel);
             }
           } else if (state is LoginFailure) {

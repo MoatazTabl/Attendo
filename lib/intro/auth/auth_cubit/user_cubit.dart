@@ -98,13 +98,15 @@ class UserCubit extends Cubit<UserState> {
   }
 
 
-  getUserData() async {
+  getUserData({required String userTypeEndPoint}) async {
     try {
       emit(GetUserLoading());
       final response = await ApiService().post(
-          endpoint: ApiStrings.getStudent,
+          endpoint: userTypeEndPoint,
           data: {"user_id": CacheHelper().getData(key: ApiStrings.userId)});
+      print("suceeeeeeessssssssss");
       UserDataModel userData = UserDataModel.fromJson(response);
+      print(userData);
       emit(GetUserSuccess(userData: userData));
       return userData;
     } catch (e) {
