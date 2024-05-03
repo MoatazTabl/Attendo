@@ -91,6 +91,7 @@ class UserCubit extends Cubit<UserState> {
       final decodedToken = JwtDecoder.decode(user!.token);
       CacheHelper().saveData(key: ApiStrings.token, value: user!.token);
       CacheHelper().saveData(key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
+      print("Successsssssssssssssssssssss");
       emit(LoginSuccess());
     }  catch (e) {
       emit(LoginFailure(errMessage: "Un Expected error , try again later"));
@@ -103,9 +104,10 @@ class UserCubit extends Cubit<UserState> {
       emit(GetUserLoading());
       final response = await ApiService().post(
           endpoint: ApiStrings.getStudent,
-          data: {"pk": CacheHelper().getData(key: ApiStrings.userId)});
+          data: {"user_id": CacheHelper().getData(key: ApiStrings.userId)});
 
       UserDataModel userData = UserDataModel.fromJson(response);
+      print(userData);
       emit(GetUserSuccess(userData: userData));
     } catch (e) {
       emit(GetUserFailure(errMessage: "Un Expected error , try again later"));

@@ -1,5 +1,6 @@
 import 'package:attendo/core/helpers/preference_helper.dart';
 import 'package:attendo/core/router/router.dart';
+import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,23 +16,28 @@ class Attendo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(412, 915),
-      builder: (context, child) =>
+      builder: (context, child) => MultiBlocProvider(
+        providers: [
           BlocProvider(
             create: (context) => AttendoCubit(),
-            child: BlocBuilder<AttendoCubit, AttendoState>(
-              builder: (context, state) {
-                return MaterialApp.router(
-                  debugShowCheckedModeBanner: false,
-                  localizationsDelegates: AppLocalizations
-                      .localizationsDelegates,
-                  supportedLocales: AppLocalizations.supportedLocales,
-                  theme: lightMode,
-                  locale: Locale(UserLanguageService.getPreferredLanguage),
-                  routerConfig: router,
-                );
-              },
-            ),
           ),
+          BlocProvider(
+            create: (context) => UserCubit(),
+          ),
+        ],
+        child: BlocBuilder<AttendoCubit, AttendoState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: lightMode,
+              locale: Locale(UserLanguageService.getPreferredLanguage),
+              routerConfig: router,
+            );
+          },
+        ),
+      ),
     );
   }
 }

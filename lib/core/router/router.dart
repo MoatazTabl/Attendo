@@ -23,18 +23,12 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.signInScreen,
       builder: (context, state) =>
-          BlocProvider(
-            create: (context) => UserCubit(),
-            child: const SignInScreen(),
-          ),
+          const SignInScreen(),
     ),
     GoRoute(
       path: AppRoutes.signUpScreen,
       builder: (context, state) =>
-          BlocProvider(
-            create: (context) => UserCubit(),
-            child: const SignUpScreen(),
-          ),
+          const SignUpScreen(),
     ),
 
     //---------------- Student routes------------------
@@ -45,9 +39,7 @@ final GoRouter router = GoRouter(
             BlocProvider(
               create: (context) => HomeCubit(),
             ),
-            BlocProvider(
-              create: (context) => UserCubit(),
-            )
+
           ], child: const MainScreen()),
     ),
     GoRoute(

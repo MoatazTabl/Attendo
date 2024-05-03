@@ -34,6 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));
+            context.read<UserCubit>().getUserData();
             if (domainTypeCheck) {
               context.pushReplacement("/instructorMainScreen");
             } else {
