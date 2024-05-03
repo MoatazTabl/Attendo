@@ -22,14 +22,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
-          // TODO: implement listener
           if (state is SignUpSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("Your account has been created successfully")));
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  "Your account has been created successfully",
+                ),
+              ),
+            );
             context.pop();
           } else if (state is SignUpFailure) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.errMessage)));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  state.errMessage,
+                ),
+              ),
+            );
           }
         },
         builder: (context, state) {
@@ -39,8 +48,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             decoration: const BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
-                  image: AssetImage(AppImages.backgroundImage),
-                  fit: BoxFit.fill),
+                image: AssetImage(AppImages.backgroundImage),
+                fit: BoxFit.fill,
+              ),
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -126,7 +136,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             isPass: true,
                             controller:
                                 context.read<UserCubit>().confirmPassword,
-                            passwordFieldController:context.read<UserCubit>().signUpPassword ,
+                            passwordFieldController:
+                                context.read<UserCubit>().signUpPassword,
                           ),
                           SizedBox(
                             height: 16.h,
@@ -157,7 +168,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Size(215.w, 56.h),
                                 ),
                                 backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xff3746CC)),
+                                  const Color(
+                                    0xff3746CC,
+                                  ),
+                                ),
                                 foregroundColor:
                                     MaterialStateProperty.all(Colors.white),
                                 shape: MaterialStateProperty.all(
@@ -176,9 +190,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     " Scan FingerPrint",
                                     style: GoogleFonts.roboto(
                                       textStyle: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ],

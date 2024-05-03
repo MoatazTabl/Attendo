@@ -36,22 +36,37 @@ class _SignInScreenState extends State<SignInScreen> {
         listener: (context, state) async {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Logged In Successfully")));
+              const SnackBar(
+                content: Text(
+                  "Logged In Successfully",
+                ),
+              ),
+            );
 
             if (domainTypeCheck) {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
-              context.pushReplacement("/instructorMainScreen");
+              
+              if (context.mounted) {
+                context.pushReplacement("/instructorMainScreen");
+              }
             } else {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getStudent);
-              context.pushReplacement("/mainScreen", extra: userDataModel);
+              if (context.mounted) {
+                context.pushReplacement("/mainScreen", extra: userDataModel);
+              }
             }
           } else if (state is LoginFailure) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.errMessage)));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  state.errMessage,
+                ),
+              ),
+            );
           }
         },
         builder: (context, state) {
