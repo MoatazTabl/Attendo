@@ -29,23 +29,25 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
         .hasMatch(context.read<UserCubit>().logInEmail.text);
-
     UserDataModel userDataModel;
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
-        listener: (context, state) async{
-
+        listener: (context, state) async {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Logged In Successfully")));
 
             if (domainTypeCheck) {
-               userDataModel = await context.read<UserCubit>().getUserData(userTypeEndPoint: ApiStrings.getStudent);
+              userDataModel = await context
+                  .read<UserCubit>()
+                  .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
               context.pushReplacement("/instructorMainScreen");
             } else {
-               userDataModel = await context.read<UserCubit>().getUserData(userTypeEndPoint: ApiStrings.getStudent);
-              context.pushReplacement("/mainScreen",extra: userDataModel);
+              userDataModel = await context
+                  .read<UserCubit>()
+                  .getUserData(userTypeEndPoint: ApiStrings.getStudent);
+              context.pushReplacement("/mainScreen", extra: userDataModel);
             }
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)

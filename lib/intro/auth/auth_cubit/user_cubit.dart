@@ -89,6 +89,9 @@ class UserCubit extends Cubit<UserState> {
       });
       user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user!.token);
+      print(user!.token);
+      print(decodedToken);
+      print("Succeeeeeeeeeeeeesssssssssssssssss");
       CacheHelper().saveData(key: ApiStrings.token, value: user!.token);
       CacheHelper().saveData(key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
@@ -104,7 +107,7 @@ class UserCubit extends Cubit<UserState> {
       final response = await ApiService().post(
           endpoint: userTypeEndPoint,
           data: {"user_id": CacheHelper().getData(key: ApiStrings.userId)});
-      print("suceeeeeeessssssssss");
+      print("2222222222222222222222222222");
       UserDataModel userData = UserDataModel.fromJson(response);
       print(userData);
       emit(GetUserSuccess(userData: userData));
