@@ -83,11 +83,11 @@ class ProfileScreenStudent extends StatelessWidget {
           }
         else if (state is GetUserLoading)
           {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         else
           {
-            return Text("Something went Wrong");
+            return const Text("Something went Wrong");
           }
       },
     );

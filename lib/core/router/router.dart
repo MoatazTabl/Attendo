@@ -2,7 +2,7 @@ import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/admin/admin_main_screen.dart';
 import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
-import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
+import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
@@ -10,7 +10,6 @@ import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
@@ -40,7 +39,7 @@ final GoRouter router = GoRouter(
               create: (context) => HomeCubit(),
             ),
 
-          ], child: const MainScreen()),
+          ], child:  MainScreen(userData: state.extra as UserDataModel,)),
     ),
     GoRoute(
       path: AppRoutes.cameraScreen,
