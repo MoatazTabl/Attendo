@@ -36,9 +36,9 @@ class _SignInScreenState extends State<SignInScreen> {
         listener: (context, state) async {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+               SnackBar(
                 content: Text(
-                  "Logged In Successfully",
+                  getAppLocalizations(context)!.loggedInSuccessfully,
                 ),
               ),
             );
@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                                 // context.push("/mainScreen");
                               },
-                              title: "Log In",
+                              title: getAppLocalizations(context)!.logIn,
                             ),
                       const Spacer(),
                       Padding(

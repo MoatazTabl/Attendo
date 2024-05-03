@@ -13,9 +13,11 @@
     "signUp": "أفتح حساب",
     "firstName": "الاسم الأول",
     "lastName": "الاسم الأخير",
-    "enterUniversityEmail": "أدخل البريد الإلكتروني للجامعة",
+    "UniversityEmail": "البريد للجامعة",
     "enterPassword": "أدخل كلمة المرور",
     "reEnterPassword": "إعادة إدخال كلمة المرور",
+    "selectFaculty": "اختر الشعيه",
+    "selectGrade": "اختر السنه",
     "scanFingerprint": "مسح بصمة الإصبع",
 
     "@_BottomNavBar": {},
@@ -58,5 +60,8 @@
     "selectDate": "حدد التاريخ",
     "selectTime": "حدد الوقت",
     "lectureHall": "قاعة المحاضرات",
-    "addLecture": "إضافة محاضرة"
+    "addLecture": "إضافة محاضرة",
+
+    "@_SnackBar": {},
+    "loggedInSuccessfully": "تم تسجيل الدخول بنجاح"
 }

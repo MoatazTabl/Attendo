@@ -1,4 +1,5 @@
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 50.h,
                           ),
                           Text(
-                            "Sign Up",
+                            getAppLocalizations(context)!.signUp,
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
                           CircleAvatar(
@@ -79,22 +80,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 7.h,
                           ),
                           CustomTextFormField(
-                            hintText: "First Name",
+                            hintText: getAppLocalizations(context)!.firstName,
                             isPass: false,
                             controller: context.read<UserCubit>().signUpName,
                           ),
                           SizedBox(
                             height: 16.h,
                           ),
-                          const CustomTextFormField(
-                            hintText: "Last name",
+                          CustomTextFormField(
+                            hintText: getAppLocalizations(context)!.lastName,
                             isPass: false,
                           ),
                           SizedBox(
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: "ID",
+                            hintText: getAppLocalizations(context)!.iD,
                             isPass: false,
                             controller:
                                 context.read<UserCubit>().signUpNationalId,
@@ -103,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: "University Email",
+                            hintText: getAppLocalizations(context)!.universityEmail,
                             isPass: false,
                             onChanged: (value) {
                               setState(() {
@@ -123,7 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: "Password",
+                            hintText: getAppLocalizations(context)!.password,
                             isPass: true,
                             controller:
                                 context.read<UserCubit>().signUpPassword,
@@ -132,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: "Re Enter Password",
+                            hintText: getAppLocalizations(context)!.reEnterPassword,
                             isPass: true,
                             controller:
                                 context.read<UserCubit>().confirmPassword,
@@ -145,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
                             child: CustomTextFormField(
-                              hintText: "Select Faculty",
+                              hintText: getAppLocalizations(context)!.selectFaculty,
                               isPass: false,
                               controller:
                                   context.read<UserCubit>().signUpFaculty,
@@ -154,7 +155,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
                             child: CustomTextFormField(
-                              hintText: "Select grade",
+                              hintText: getAppLocalizations(context)!.selectGrade,
                               isPass: false,
                               controller: context.read<UserCubit>().signUpGrade,
                             ),
@@ -187,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     size: 42.h,
                                   ),
                                   Text(
-                                    " Scan FingerPrint",
+                                    getAppLocalizations(context)!.scanFingerprint,
                                     style: GoogleFonts.roboto(
                                       textStyle: const TextStyle(
                                         fontSize: 14,
@@ -222,7 +223,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       setState(() {});
                                     }
                                   },
-                                  title: "Sign Up",
+                                  title: getAppLocalizations(context)!.signUp,
                                 ),
                           SizedBox(
                             height: 21.h,

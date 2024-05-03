@@ -13,9 +13,11 @@
     "signUp": "SignUp",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "enterUniversityEmail": "Enter University Email",
+    "universityEmail": "University Email",
     "enterPassword": "Enter Password",
     "reEnterPassword": "First Name",
+    "selectFaculty": "Select Faculty",
+    "selectGrade": "Select Grade",
     "scanFingerprint": "Scan Fingerprint",
 
   "@_BottomNavBar": {},
@@ -58,5 +60,8 @@
   "selectDate": "Select Date",
   "selectTime": "Select Time",
   "lectureHall": "Lecture Hall",
-  "addLecture": "Add Lecture"
+  "addLecture": "Add Lecture",
+
+  "@_SnackBar": {},
+  "loggedInSuccessfully": "Logged In Successfully"
 }
