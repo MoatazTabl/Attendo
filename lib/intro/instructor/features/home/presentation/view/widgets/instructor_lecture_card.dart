@@ -1,11 +1,16 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class InstructorLectureCard extends StatelessWidget {
-  const InstructorLectureCard({super.key});
+  const InstructorLectureCard(
+      {super.key, required this.instructorLecturesModel});
+
+  final InstructorLecturesModel instructorLecturesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class InstructorLectureCard extends StatelessWidget {
                 height: 15.h,
               ),
               Text(
-                'OOP Lecture',
+                instructorLecturesModel.name ?? "",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
@@ -38,7 +43,7 @@ class InstructorLectureCard extends StatelessWidget {
                 height: 9.h,
               ),
               Text(
-                '4th Grade',
+                instructorLecturesModel.grade ?? "",
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
@@ -51,18 +56,19 @@ class InstructorLectureCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "22/04/2024",
+                    instructorLecturesModel.lectureStartTime?.split("T")[0]??"",
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium!
                         .copyWith(fontSize: 18.sp),
                   ),
                   Text(
-                    "11 : 00 AM",
+                    dateTime(instructorLecturesModel.lectureStartTime)??"",
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium!
                         .copyWith(fontSize: 18.sp),
+
                   ),
                 ],
               ),
@@ -70,7 +76,7 @@ class InstructorLectureCard extends StatelessWidget {
                 height: 9.h,
               ),
               Text(
-                "D 305",
+                instructorLecturesModel.lectureHall??"",
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
@@ -115,5 +121,9 @@ class InstructorLectureCard extends StatelessWidget {
         ),
       ),
     );
+  }
+  String? dateTime(String? dateTime) {
+    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime??""));
+    return dateFormat;
   }
 }

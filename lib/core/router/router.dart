@@ -4,6 +4,7 @@ import 'package:attendo/intro/admin/features/attendance_page/presentation/view/a
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
@@ -22,12 +23,12 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.signInScreen,
       builder: (context, state) =>
-          const SignInScreen(),
+      const SignInScreen(),
     ),
     GoRoute(
       path: AppRoutes.signUpScreen,
       builder: (context, state) =>
-          const SignUpScreen(),
+      const SignUpScreen(),
     ),
 
     //---------------- Student routes------------------
@@ -39,7 +40,7 @@ final GoRouter router = GoRouter(
               create: (context) => HomeCubit(),
             ),
 
-          ], child:  MainScreen(userData: state.extra as UserDataModel,)),
+          ], child: MainScreen(userData: state.extra as UserDataModel,)),
     ),
     GoRoute(
       path: AppRoutes.cameraScreen,
@@ -54,7 +55,12 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: AppRoutes.instructorMainScreen,
-      builder: (context, state) =>  InstructorMainScreen(userData: state.extra as UserDataModel,),
+      builder: (context, state) =>
+          BlocProvider(
+            create: (context) => HomeInstructorCubit(),
+            child: InstructorMainScreen(
+              userData: state.extra as UserDataModel,),
+          ),
     ),
     GoRoute(
       path: AppRoutes.instructorLectureDetails,
