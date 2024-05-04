@@ -97,8 +97,6 @@ class UserCubit extends Cubit<UserState> {
           endpoint: userTypeEndPoint,
           data: {"user_id": CacheHelper().getData(key: ApiStrings.userId)});
       UserDataModel userData = UserDataModel.fromJson(response);
-      print(userData);
-      print("Successsssssssssssssss");
       emit(GetUserSuccess(userData: userData));
       return userData;
     } catch (e) {
