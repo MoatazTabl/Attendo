@@ -1,4 +1,5 @@
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,20 +8,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'features/home/presentation/view/home_instructor.dart';
 
 class InstructorMainScreen extends StatefulWidget {
-  const InstructorMainScreen({super.key});
+   const InstructorMainScreen({super.key, required this.userData});
+
+  final UserDataModel userData;
 
   @override
   State<InstructorMainScreen> createState() => _InstructorMainScreenState();
 }
 
 class _InstructorMainScreenState extends State<InstructorMainScreen> {
-  final iconList = [];
 
-  final List<Widget> screens = [
-    const HomeInstructor(),
-    const SettingsScreen()
-  ];
+  final iconList = [];
+  late List<Widget> screens;
   int index = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    screens = [
+     HomeInstructor(userData: widget.userData,),
+    const SettingsScreen()];
+  }
 
   @override
   Widget build(BuildContext context) {

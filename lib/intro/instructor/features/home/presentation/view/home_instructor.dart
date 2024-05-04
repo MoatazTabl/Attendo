@@ -1,9 +1,14 @@
+import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/instructor_lecture_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeInstructor extends StatelessWidget {
-  const HomeInstructor({super.key});
+   const HomeInstructor({super.key, required this.userData});
+
+ final UserDataModel userData;
+
+
 
   @override
   Widget build(BuildContext context) {

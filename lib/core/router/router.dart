@@ -54,7 +54,7 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: AppRoutes.instructorMainScreen,
-      builder: (context, state) => const InstructorMainScreen(),
+      builder: (context, state) =>  InstructorMainScreen(userData: state.extra as UserDataModel,),
     ),
     GoRoute(
       path: AppRoutes.instructorLectureDetails,
