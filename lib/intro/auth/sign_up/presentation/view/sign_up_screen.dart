@@ -2,6 +2,7 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
+import 'package:attendo/intro/auth/sign_up/presentation/view/widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  late String dropdownValue;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,6 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
             context.pop();
+            context.read<UserCubit>().clearSignUpFields();
           } else if (state is SignUpFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -88,6 +92,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
+                            controller:
+                                context.read<UserCubit>().signUpLastName,
                             hintText: getAppLocalizations(context)!.lastName,
                             isPass: false,
                           ),
@@ -104,7 +110,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: getAppLocalizations(context)!.universityEmail,
+                            hintText:
+                                getAppLocalizations(context)!.universityEmail,
                             isPass: false,
                             onChanged: (value) {
                               setState(() {
@@ -133,7 +140,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
-                            hintText: getAppLocalizations(context)!.reEnterPassword,
+                            hintText:
+                                getAppLocalizations(context)!.reEnterPassword,
                             isPass: true,
                             controller:
                                 context.read<UserCubit>().confirmPassword,
@@ -143,21 +151,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 16.h,
                           ),
+
+                          //getAppLocalizations(context)!.selectFaculty,
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
-                            child: CustomTextFormField(
-                              hintText: getAppLocalizations(context)!.selectFaculty,
-                              isPass: false,
-                              controller:
-                                  context.read<UserCubit>().signUpFaculty,
+                            child: CustomFormDropDownButton(
+                              type: "faculty",
+                              fieldHint: "Select faculty",
+                              list: const ["Computers", "Commerce"],
+                              onValueChanged: (selectedValue) {
+                                context.read<UserCubit>().signUpFaculty = selectedValue!;
+                              },
                             ),
                           ),
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
-                            child: CustomTextFormField(
-                              hintText: getAppLocalizations(context)!.selectGrade,
-                              isPass: false,
-                              controller: context.read<UserCubit>().signUpGrade,
+                            child: CustomFormDropDownButton(
+                              type: "grade",
+                              fieldHint: "Select grade",
+                              list: const ["First", "Second","Third","Fourth"],
+                              onValueChanged: (selectedValue) {
+                                context.read<UserCubit>().signUpGrade = selectedValue!;
+                              },
                             ),
                           ),
                           Visibility(
@@ -188,7 +203,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     size: 42.h,
                                   ),
                                   Text(
-                                    getAppLocalizations(context)!.scanFingerprint,
+                                    getAppLocalizations(context)!
+                                        .scanFingerprint,
                                     style: GoogleFonts.roboto(
                                       textStyle: const TextStyle(
                                         fontSize: 14,

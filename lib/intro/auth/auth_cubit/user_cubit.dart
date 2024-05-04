@@ -28,11 +28,18 @@ class UserCubit extends Cubit<UserState> {
   //Global formKey
   GlobalKey<FormState> formKey = GlobalKey();
 
-  // auto validate for text form fields
+  // auto validate for text form fields sign up
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
+
+  // auto validate for text form fields sign in
+  AutovalidateMode autoValidateModeSignIn = AutovalidateMode.disabled;
 
   //Sign up name
   TextEditingController signUpName = TextEditingController();
+
+
+  TextEditingController signUpLastName = TextEditingController();
 
   //Sign up email
   TextEditingController signUpEmail = TextEditingController();
@@ -47,12 +54,23 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmPassword = TextEditingController();
 
 //Sign up faculty
-  TextEditingController signUpGrade = TextEditingController();
+  String? signUpGrade ;
 
   //Sign up grade
-  TextEditingController signUpFaculty = TextEditingController();
+  String? signUpFaculty ;
 
   SignInModel? user;
+
+
+  clearSignUpFields()
+  {
+    signUpName.clear();
+    signUpLastName.clear();
+    signUpNationalId.clear();
+    signUpEmail.clear();
+    signUpPassword.clear();
+    confirmPassword.clear();
+  }
 
   signUp() async {
     try {
@@ -62,8 +80,8 @@ class UserCubit extends Cubit<UserState> {
         "email": signUpEmail.text,
         "password": signUpPassword.text,
         "national_id": signUpNationalId.text,
-        "faculty": signUpFaculty.text,
-        "grade": signUpGrade.text,
+        "faculty": signUpFaculty,
+        "grade": signUpGrade,
       });
       emit(SignUpSuccess());
     } catch (e) {
