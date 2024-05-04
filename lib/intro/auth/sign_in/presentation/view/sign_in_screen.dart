@@ -24,49 +24,38 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool rememberMe = false;
+  late UserDataModel userDataModel;
 
   @override
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
         .hasMatch(context.read<UserCubit>().logInEmail.text);
-    UserDataModel userDataModel;
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(
-                content: Text(
-                  getAppLocalizations(context)!.loggedInSuccessfully,
-                ),
-              ),
-            );
+                const SnackBar(content: Text("Logged In Successfully")));
 
             if (domainTypeCheck) {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
-              
-              if (context.mounted) {
-                context.pushReplacement("/instructorMainScreen");
-              }
+
+              context.pushReplacement("/instructorMainScreen");
             } else {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getStudent);
-              if (context.mounted) {
-                context.pushReplacement("/mainScreen", extra: userDataModel);
-              }
+
+              context.pushReplacement("/mainScreen", extra: userDataModel);
             }
+            context.read<UserCubit>().logInEmail.clear();
+            context.read<UserCubit>().logInPassword.clear();
           } else if (state is LoginFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  state.errMessage,
-                ),
-              ),
-            );
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errMessage)));
           }
         },
         builder: (context, state) {
@@ -80,6 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   fit: BoxFit.fill),
             ),
             child: Scaffold(
+              resizeToAvoidBottomInset: false,
               backgroundColor: Colors.transparent,
               body: SizedBox(
                 height: 1.sh,
@@ -143,7 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 }
                                 // context.push("/mainScreen");
                               },
-                              title: getAppLocalizations(context)!.logIn,
+                              title: "Log In",
                             ),
                       const Spacer(),
                       Padding(

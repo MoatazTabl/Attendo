@@ -103,4 +103,5 @@ class UserCubit extends Cubit<UserState> {
       emit(GetUserFailure(errMessage: "Un Expected error , try again later"));
     }
   }
+
 }
