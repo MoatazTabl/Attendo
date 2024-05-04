@@ -1,3 +1,4 @@
+import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/helpers/cache_helper.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
@@ -76,7 +77,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(SignUpLoading());
       await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
-        "name": signUpName.text,
+        "name": "${signUpName.text} ${signUpLastName.text}",
         "email": signUpEmail.text,
         "password": signUpPassword.text,
         "national_id": signUpNationalId.text,
@@ -84,8 +85,8 @@ class UserCubit extends Cubit<UserState> {
         "grade": signUpGrade,
       });
       emit(SignUpSuccess());
-    } catch (e) {
-      emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
+    } on ServerFailures catch (e) {
+      emit(SignUpFailure(errMessage:e.errorMessage));
     }
   }
 
@@ -103,8 +104,8 @@ class UserCubit extends Cubit<UserState> {
       CacheHelper().saveData(
           key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
-    } catch (e) {
-      emit(LoginFailure(errMessage: "Un Expected error , try again later"));
+    } on ServerFailures catch (e) {
+      emit(LoginFailure(errMessage: e.errorMessage));
     }
   }
 
