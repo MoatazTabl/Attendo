@@ -32,6 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             );
             context.pop();
+            context.read<UserCubit>().clearSignUpFields();
           } else if (state is SignUpFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -88,6 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 16.h,
                           ),
                           CustomTextFormField(
+                            controller: context.read<UserCubit>().signUpLastName,
                             hintText: getAppLocalizations(context)!.lastName,
                             isPass: false,
                           ),
@@ -215,6 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         .validate()) {
                                       setState(() {});
                                       context.read<UserCubit>().signUp();
+
                                     } else {
                                       context
                                               .read<UserCubit>()
@@ -222,6 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           AutovalidateMode.always;
                                       setState(() {});
                                     }
+
                                   },
                                   title: getAppLocalizations(context)!.signUp,
                                 ),

@@ -74,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
               body: SizedBox(
                 height: 1.sh,
                 child: Form(
-                  autovalidateMode: context.read<UserCubit>().autoValidateMode,
+                  autovalidateMode: context.read<UserCubit>().autoValidateModeSignIn,
                   key: context.read<UserCubit>().logInFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
