@@ -15,7 +15,7 @@
     "lastName": "Last Name",
     "universityEmail": "University Email",
     "enterPassword": "Enter Password",
-    "reEnterPassword": "First Name",
+    "reEnterPassword": "ReEnter Password",
     "selectFaculty": "Select Faculty",
     "selectGrade": "Select Grade",
     "scanFingerprint": "Scan Fingerprint",

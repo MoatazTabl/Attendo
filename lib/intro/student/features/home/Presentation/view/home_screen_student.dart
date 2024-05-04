@@ -11,10 +11,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'widgets/date_picker_widget.dart';
 
 class HomeScreenStudent extends StatefulWidget {
-   const HomeScreenStudent({super.key,required this.userData});
+  const HomeScreenStudent({super.key, required this.userData});
 
-
- final UserDataModel userData ;
+  final UserDataModel userData;
 
   @override
   State<HomeScreenStudent> createState() => _HomeScreenStudentState();
@@ -27,8 +26,8 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
   @override
   void initState() {
     context.read<HomeCubit>().getStudentLectures(data: {
-      "faculty": "computer scs",
-      "grade": "fourth",
+      "faculty": widget.userData.faculty,
+      "grade": widget.userData.grade,
       // "date":"2024-04-30T09:18:54"
       "date": DateTime.now().toIso8601String().split(".")[0]
       // "date":"2024-05-05T09:18:54"
@@ -43,7 +42,7 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverPersistentHeader(
-            delegate: DatePiker(),
+            delegate: DatePiker(userData: widget.userData),
             pinned: true,
           )
         ];
@@ -106,10 +105,16 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
 }
 
 class DatePiker extends SliverPersistentHeaderDelegate {
+  DatePiker({required this.userData});
+
+  final UserDataModel userData;
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return const DatePickerWidget();
+    return DatePickerWidget(
+      userData: userData,
+    );
   }
 
   @override

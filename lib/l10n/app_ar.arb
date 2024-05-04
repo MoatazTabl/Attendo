@@ -13,7 +13,7 @@
     "signUp": "أفتح حساب",
     "firstName": "الاسم الأول",
     "lastName": "الاسم الأخير",
-    "UniversityEmail": "البريد للجامعة",
+    "universityEmail": "البريد للجامعة",
     "enterPassword": "أدخل كلمة المرور",
     "reEnterPassword": "إعادة إدخال كلمة المرور",
     "selectFaculty": "اختر الشعيه",

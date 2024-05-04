@@ -11,11 +11,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'intro/settings/presentation/view/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
-   const MainScreen({super.key,required this.userData});
+  const MainScreen({super.key, required this.userData});
 
-
- final UserDataModel userData;
-
+  final UserDataModel userData;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -23,20 +21,21 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final iconList = [];
-  late List<Widget> screens ;
-  int index = 0;
+  late List<Widget> screens;
 
+  int index = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     screens = [
-      HomeScreenStudent(userData: widget.userData,),
+      HomeScreenStudent(
+        userData: widget.userData,
+      ),
       const ProfileScreenStudent(),
       const SettingsScreen()
     ];
-
   }
 
   @override

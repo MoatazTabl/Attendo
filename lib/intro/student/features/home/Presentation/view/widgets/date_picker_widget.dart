@@ -1,3 +1,4 @@
+import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget({
-    super.key,
+    super.key, required this.userData,
   });
+  final UserDataModel userData ;
+
 
   @override
   State<DatePickerWidget> createState() => _DatePickerWidgetState();
@@ -32,11 +35,9 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       onDateChange: (date) {
 
         context.read<HomeCubit>().getStudentLectures(data: {
-          "faculty": "computer scs",
-          "grade": "fourth",
-          // "date":"2024-04-30T09:18:54"
-          // "date": DateTime.now().toIso8601String().split(".")[0]
-          // "date":"2024-05-05T09:18:54"
+          "faculty": widget.userData.faculty,
+          "grade": widget.userData.grade,
+
           "date":date.toIso8601String().split(".")[0]
         });
         setState(() {
