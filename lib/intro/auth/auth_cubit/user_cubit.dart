@@ -76,7 +76,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(SignUpLoading());
       await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
-        "name": signUpName.text,
+        "name": "${signUpName.text} ${signUpLastName.text}",
         "email": signUpEmail.text,
         "password": signUpPassword.text,
         "national_id": signUpNationalId.text,
