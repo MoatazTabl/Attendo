@@ -2,6 +2,7 @@ class ApiStrings{
   static const String baseUrl="http://0.tcp.eu.ngrok.io:12472/";
 
   static const String studentLecturesEndpoint="getstudentlectures/";
+  static const String instructorLecturesEndpoint="getinstructorlectures/";
   static const String signUpEndPoint="register/";
   static const String logInEndPoint="login/";
   static const String token="jwt token";

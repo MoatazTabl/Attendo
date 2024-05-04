@@ -1,4 +1,5 @@
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'features/home/presentation/view/home_instructor.dart';
 
 class InstructorMainScreen extends StatefulWidget {
-   const InstructorMainScreen({super.key, required this.userData});
+  const InstructorMainScreen({super.key, required this.userData});
 
   final UserDataModel userData;
 
@@ -17,7 +18,6 @@ class InstructorMainScreen extends StatefulWidget {
 }
 
 class _InstructorMainScreenState extends State<InstructorMainScreen> {
-
   final iconList = [];
   late List<Widget> screens;
   int index = 0;
@@ -27,8 +27,11 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
     // TODO: implement initState
     super.initState();
     screens = [
-     HomeInstructor(userData: widget.userData,),
-    const SettingsScreen()];
+      HomeInstructor(
+        userData: widget.userData,
+      ),
+      const SettingsScreen()
+    ];
   }
 
   @override
@@ -40,8 +43,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage),
-              fit: BoxFit.fill),
+              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -60,10 +62,11 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                 activeIcon: SvgPicture.asset(
                   "assets/images/svg/selected_home.svg",
                 ),
-                label: "Home",
+                label: getAppLocalizations(context)?.home,
               ),
               BottomNavigationBarItem(
-                label: "Settings",
+                label: getAppLocalizations(context)?.settings,
+
                 icon: SvgPicture.asset(
                   "assets/images/svg/settings_icon.svg",
                 ),
