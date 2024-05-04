@@ -1,4 +1,5 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +9,10 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../../../core/app_images.dart';
 
 class InstructorLectureDetails extends StatelessWidget {
-  const InstructorLectureDetails({super.key});
+  const InstructorLectureDetails(
+      {super.key, required this.instructorLecturesModel});
+
+  final InstructorLecturesModel instructorLecturesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class InstructorLectureDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "OOP Lecture",
+                      instructorLecturesModel.name ?? "",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: 30.sp,
                           ),
@@ -52,6 +56,21 @@ class InstructorLectureDetails extends StatelessWidget {
                     version: 2,
                     size: 200,
                   ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    fixedSize: MaterialStatePropertyAll(
+                      Size(
+                        230.w,
+                        59.h,
+                      ),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text("Genrate Qr Code"),
                 ),
                 SizedBox(
                   height: 30.h,

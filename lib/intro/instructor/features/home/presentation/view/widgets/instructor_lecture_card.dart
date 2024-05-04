@@ -16,108 +16,102 @@ class InstructorLectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.w)),
-      surfaceTintColor: const Color(0xFFF0F3FF),
-      color: const Color(0xFFF0F3FF),
-      elevation: 6,
-      child: Container(
-        height: 295.h,
-        width: 1.sw,
-        decoration: BoxDecoration(
-            color: const Color(0xFFF0F3FF),
-            borderRadius: BorderRadius.circular(25.w)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 15.h,
-              ),
-              Text(
-                instructorLecturesModel.name ?? "",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontSize: 36.sp),
-              ),
-              SizedBox(
-                height: 9.h,
-              ),
-              Text(
-                instructorLecturesModel.grade ?? "",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontSize: 22.sp),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    instructorLecturesModel.lectureStartTime?.split("T")[0]??"",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: 18.sp),
-                  ),
-                  Text(
-                    dateTime(instructorLecturesModel.lectureStartTime)??"",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: 18.sp),
+      // surfaceTintColor: const Color(0xFFF0F3FF).withOpacity(0.5),
+      color: const Color(0xFFF0F3FF).withOpacity(0.5),
+      elevation: 0,
 
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 9.h,
-              ),
-              Text(
-                instructorLecturesModel.lectureHall??"",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontSize: 25.sp),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  context.push("/instructorLectureDetails");
-                },
-                style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all(
-                    Size(215.w, 56.h),
-                  ),
-                  backgroundColor: MaterialStateProperty.all(
-                    const Color(
-                      0xff3746CC,
-                    ),
-                  ),
-                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        22.w,
-                      ),
-                    ),
-                  ),
-                  padding: MaterialStateProperty.all(EdgeInsets.zero),
+      child: Padding(
+        padding: EdgeInsets.only(left: 15.w,right: 15.w, bottom: 15.h),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15.h,
+            ),
+            Text(
+              instructorLecturesModel.name ?? "",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontSize: 36.sp),
+            ),
+            SizedBox(
+              height: 9.h,
+            ),
+            Text(
+              instructorLecturesModel.grade ?? "",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontSize: 22.sp),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  instructorLecturesModel.lectureStartTime?.split("T")[0]??"",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 18.sp),
                 ),
-                child: Text(
-                  getAppLocalizations(context)!.showDetails,
-                  style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                Text(
+                  dateTime(instructorLecturesModel.lectureStartTime)??"",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 18.sp),
+
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 9.h,
+            ),
+            Text(
+              instructorLecturesModel.lectureHall??"",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontSize: 25.sp),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.push("/instructorLectureDetails",extra: instructorLecturesModel);
+              },
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(
+                  Size(215.w, 56.h),
+                ),
+                backgroundColor: MaterialStateProperty.all(
+                  const Color(
+                    0xff3746CC,
+                  ),
+                ),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      22.w,
                     ),
                   ),
                 ),
+                padding: MaterialStateProperty.all(EdgeInsets.zero),
               ),
-            ],
-          ),
+              child: Text(
+                getAppLocalizations(context)!.showDetails,
+                style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                    fontSize: 25.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
