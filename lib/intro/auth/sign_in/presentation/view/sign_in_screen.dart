@@ -24,12 +24,12 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool rememberMe = false;
+  late UserDataModel userDataModel;
 
   @override
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
         .hasMatch(context.read<UserCubit>().logInEmail.text);
-    UserDataModel userDataModel;
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
@@ -42,13 +42,17 @@ class _SignInScreenState extends State<SignInScreen> {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
+
               context.pushReplacement("/instructorMainScreen");
             } else {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getStudent);
+
               context.pushReplacement("/mainScreen", extra: userDataModel);
             }
+            context.read<UserCubit>().logInEmail.clear();
+            context.read<UserCubit>().logInPassword.clear();
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
@@ -65,6 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   fit: BoxFit.fill),
             ),
             child: Scaffold(
+              resizeToAvoidBottomInset: false,
               backgroundColor: Colors.transparent,
               body: SizedBox(
                 height: 1.sh,
