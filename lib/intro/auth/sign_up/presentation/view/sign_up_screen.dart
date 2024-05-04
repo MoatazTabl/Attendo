@@ -155,15 +155,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           //getAppLocalizations(context)!.selectFaculty,
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
-                            child: CustomFormDropDownButton(fieldHint:"Select faculty" ,list: [],),
+                            child: CustomFormDropDownButton(
+                              type: "faculty",
+                              fieldHint: "Select faculty",
+                              list: const ["Computers", "Commerce"],
+                              onValueChanged: (selectedValue) {
+                                context.read<UserCubit>().signUpFaculty = selectedValue!;
+                              },
+                            ),
                           ),
                           Visibility(
                             visible: context.read<UserCubit>().isStudent,
-                            child: CustomTextFormField(
-                              hintText:
-                                  getAppLocalizations(context)!.selectGrade,
-                              isPass: false,
-                              controller: context.read<UserCubit>().signUpGrade,
+                            child: CustomFormDropDownButton(
+                              type: "grade",
+                              fieldHint: "Select grade",
+                              list: const ["First", "Second","Third","Fourth"],
+                              onValueChanged: (selectedValue) {
+                                context.read<UserCubit>().signUpGrade = selectedValue!;
+                              },
                             ),
                           ),
                           Visibility(

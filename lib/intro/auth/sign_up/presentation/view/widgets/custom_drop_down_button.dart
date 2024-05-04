@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../auth_cubit/user_cubit.dart';
 
 class CustomFormDropDownButton extends StatefulWidget {
-   CustomFormDropDownButton({super.key,required this.fieldHint,required this.list});
+   const CustomFormDropDownButton({super.key,required this.fieldHint,required this.list,required this.onValueChanged,required this.type});
 
 
-  String fieldHint;
-   List<DropdownMenuItem<String>> list ;
+   final String fieldHint;
+   final List<String> list;
+   final Function(String?) onValueChanged;
+   final type ;
 
   @override
   State<CustomFormDropDownButton> createState() => _CustomFormDropDownButtonState();
@@ -25,7 +27,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
       child: DropdownButtonFormField<String>(
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "Please select your faculty";
+            return "Please select your ${widget.type}";
           }
           return null; // Return null if validation succeeds
         },
@@ -45,10 +47,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
               borderSide: BorderSide.none),),
         autovalidateMode:
         context.read<UserCubit>().autoValidateMode,
-        items: <String>[
-          "Computer",
-          "Commerce"
-        ].map<DropdownMenuItem<String>>((String value) {
+        items:widget.list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),
@@ -57,6 +56,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
         onChanged: (value) {
           setState(() {
             dropdownValue = value!;
+            widget.onValueChanged(value);
           });
         },
       ),

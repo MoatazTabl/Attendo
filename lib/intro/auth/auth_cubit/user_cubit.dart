@@ -54,10 +54,10 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmPassword = TextEditingController();
 
 //Sign up faculty
-  TextEditingController signUpGrade = TextEditingController();
+  String? signUpGrade ;
 
   //Sign up grade
-  TextEditingController signUpFaculty = TextEditingController();
+  String? signUpFaculty ;
 
   SignInModel? user;
 
@@ -80,8 +80,8 @@ class UserCubit extends Cubit<UserState> {
         "email": signUpEmail.text,
         "password": signUpPassword.text,
         "national_id": signUpNationalId.text,
-        "faculty": signUpFaculty.text,
-        "grade": signUpGrade.text,
+        "faculty": signUpFaculty,
+        "grade": signUpGrade,
       });
       emit(SignUpSuccess());
     } catch (e) {
