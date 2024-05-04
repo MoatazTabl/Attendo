@@ -5,6 +5,7 @@ import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import 'features/home/presentation/view/home_instructor.dart';
 
@@ -48,6 +49,21 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: screens[index],
+          floatingActionButton: index == 0
+              ? FloatingActionButton(
+            onPressed: () {
+              context.push("/createLectureAdmin");
+            },
+            backgroundColor: const Color(0xff3746CC),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                36,
+              ),
+            ),
+            child: const Icon(Icons.add),
+          )
+              : null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
             iconSize: 30.w,

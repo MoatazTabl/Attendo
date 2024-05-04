@@ -4,6 +4,7 @@ import 'package:attendo/intro/admin/features/attendance_page/presentation/view/a
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
@@ -11,6 +12,7 @@ import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
@@ -22,25 +24,25 @@ final GoRouter router = GoRouter(
     // --------------- Sign In ------------------------
     GoRoute(
       path: AppRoutes.signInScreen,
-      builder: (context, state) =>
-      const SignInScreen(),
+      builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
       path: AppRoutes.signUpScreen,
-      builder: (context, state) =>
-      const SignUpScreen(),
+      builder: (context, state) => const SignUpScreen(),
     ),
 
     //---------------- Student routes------------------
     GoRoute(
       path: AppRoutes.mainScreen,
-      builder: (context, state) =>
-          MultiBlocProvider(providers: [
+      builder: (context, state) => MultiBlocProvider(
+          providers: [
             BlocProvider(
               create: (context) => HomeCubit(),
             ),
-
-          ], child: MainScreen(userData: state.extra as UserDataModel,)),
+          ],
+          child: MainScreen(
+            userData: state.extra as UserDataModel,
+          )),
     ),
     GoRoute(
       path: AppRoutes.cameraScreen,
@@ -55,16 +57,18 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: AppRoutes.instructorMainScreen,
-      builder: (context, state) =>
-          BlocProvider(
-            create: (context) => HomeInstructorCubit(),
-            child: InstructorMainScreen(
-              userData: state.extra as UserDataModel,),
-          ),
+      builder: (context, state) => BlocProvider(
+        create: (context) => HomeInstructorCubit(),
+        child: InstructorMainScreen(
+          userData: state.extra as UserDataModel,
+        ),
+      ),
     ),
     GoRoute(
       path: AppRoutes.instructorLectureDetails,
-      builder: (context, state) => const InstructorLectureDetails(),
+      builder: (context, state) => InstructorLectureDetails(
+        instructorLecturesModel: state.extra as InstructorLecturesModel,
+      ),
     ),
     GoRoute(
       path: AppRoutes.attendancePageInstructor,
@@ -72,7 +76,6 @@ final GoRouter router = GoRouter(
     ),
 
     // -------------------- Admin routes----------------------
-
 
     GoRoute(
       path: AppRoutes.createLectureAdmin,
