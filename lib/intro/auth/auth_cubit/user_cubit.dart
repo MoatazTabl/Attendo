@@ -92,21 +92,6 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  // print("Errrrrrrrrrorrrrrrrrrrr");
-  // if(e.response!.statusCode == 400)
-  // {
-  // if (e.response!.data.containsKey("name")) {
-  // emit(SignUpFailure(errMessage:e.response!.data["name"][0]));
-  // } else if (e.response!.data.containsKey("email")) {
-  // emit(SignUpFailure(errMessage:e.response!.data["email"][0]));
-  // } else if (e.response!.data.containsKey("national_id")) {
-  // emit(SignUpFailure(errMessage:e.response!.data["national_id"][0]));
-  // }
-  // }
-  // else
-  // {
-  // emit(SignUpFailure(errMessage:e.response!.statusCode.toString()));
-  // }
 
   signIn() async {
     try {
@@ -122,8 +107,13 @@ class UserCubit extends Cubit<UserState> {
       CacheHelper().saveData(
           key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
-    } on ServerFailures catch (e) {
-      emit(LoginFailure(errMessage: e.errorMessage));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(SignUpFailure(errMessage: k.errorMessage));
+      } else {
+        emit(SignUpFailure(errMessage: "Un Expected error , try again"));
+      }
     }
   }
 
