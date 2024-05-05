@@ -20,20 +20,21 @@ class ServerFailures extends Failures {
       case DioExceptionType.badCertificate:
         return ServerFailures("Connection Timeout with server");
       case DioExceptionType.badResponse:
-        return ServerFailures.fromResponse(dioException.response?.statusCode, dioException.response!.data);
+        return ServerFailures.fromResponse(
+            dioException.response?.statusCode, dioException.response!.data);
       case DioExceptionType.cancel:
         return ServerFailures("Request to server was canceled");
       case DioExceptionType.connectionError:
         return ServerFailures("Connection Error");
       case DioExceptionType.unknown:
-        if(dioException.message!.contains("SocketException")){
+        if (dioException.message!.contains("SocketException")) {
           return ServerFailures("No Internet Connection");
         }
         return ServerFailures("Unexpected Error");
     }
   }
 
-  factory ServerFailures.fromResponse(int? statusCode, Map<String,dynamic> response) {
+  factory ServerFailures.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       if (response.containsKey("name")) {
         return ServerFailures(response["name"][0]);
@@ -41,15 +42,11 @@ class ServerFailures extends Failures {
         return ServerFailures(response["email"][0]);
       } else if (response.containsKey("national_id")) {
         return ServerFailures(response["national_id"][0]);
+      } else if (response.containsKey("detail")) {
+        return ServerFailures(response["detail"]);
+      } else {
+        return ServerFailures("Something went wrong");
       }
-      else if (response.containsKey("detail"))
-        {
-          return ServerFailures(response["detail"]);
-        }
-      else
-        {
-          return ServerFailures("Something went wrong");
-        }
     } else if (statusCode == 404) {
       return ServerFailures("Your request not Found,Please try again later");
     } else if (statusCode == 500) {
