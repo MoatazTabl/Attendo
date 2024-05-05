@@ -110,9 +110,9 @@ class UserCubit extends Cubit<UserState> {
     } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
-        emit(SignUpFailure(errMessage: k.errorMessage));
+        emit(LoginFailure(errMessage: k.errorMessage));
       } else {
-        emit(SignUpFailure(errMessage: "Un Expected error , try again"));
+        emit(LoginFailure(errMessage: "Un Expected error , try again"));
       }
     }
   }

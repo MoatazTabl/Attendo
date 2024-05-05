@@ -42,6 +42,10 @@ class ServerFailures extends Failures {
       } else if (response.containsKey("national_id")) {
         return ServerFailures(response["national_id"][0]);
       }
+      else if (response.containsKey("detail"))
+        {
+          return ServerFailures(response["detail"]);
+        }
       else
         {
           return ServerFailures("Something went wrong");
