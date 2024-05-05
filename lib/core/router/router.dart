@@ -1,7 +1,4 @@
 import 'package:attendo/core/router/app_routes.dart';
-import 'package:attendo/intro/admin/admin_main_screen.dart';
-import 'package:attendo/intro/admin/features/attendance_page/presentation/view/attendance_page_admin.dart';
-import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
@@ -96,21 +93,6 @@ final GoRouter router = GoRouter(
           instructorLecturesModel: state.extra as InstructorLecturesModel,
         ),
       ),
-    ),
-
-    // -------------------- Admin routes----------------------
-
-    GoRoute(
-      path: AppRoutes.createLectureAdmin,
-      builder: (context, state) => const CreateLectureAdmin(),
-    ),
-    GoRoute(
-      path: AppRoutes.adminMainScreen,
-      builder: (context, state) => const AdminMainScreen(),
-    ),
-    GoRoute(
-      path: AppRoutes.attendancePageAdmin,
-      builder: (context, state) => const AttendancePageAdmin(),
     ),
   ],
 );

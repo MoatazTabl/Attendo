@@ -1,7 +1,7 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_drop_down_button.dart';
-import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
+import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/widgets/create_lecture_text_field.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class EditLectureInstructor extends StatefulWidget {
   const EditLectureInstructor({
@@ -36,9 +37,14 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
     courseName.text = widget.instructorLecturesModel.name!;
     chooseGrade.text = widget.instructorLecturesModel.grade!;
     chooseFaculty.text = widget.instructorLecturesModel.faculty!;
-    selectDate.text = widget.instructorLecturesModel.lectureStartTime!;
-    selectTime.text = widget.instructorLecturesModel.lectureStartTime!;
     lectureHall.text = widget.instructorLecturesModel.lectureHall!;
+    selectDate.text =
+        widget.instructorLecturesModel.lectureStartTime!.split("T")[0];
+    selectTime.text =
+        widget.instructorLecturesModel.lectureStartTime!
+            .split("T")[1]
+            .split(".")[0]
+            .split(":00")[0];
     super.initState();
   }
 
@@ -159,14 +165,14 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                   listener: (BuildContext context, EditLectureState state) {
                     state.maybeWhen(
                       orElse: () {},
-                      // addError: (errorMessage) {
-                      //   return GlobalSnackBar.show(context, errorMessage);
-                      // },
-                      // addLecture: () {
-                      //   GlobalSnackBar.show(
-                      //       context, "Lecture Created Successfully");
-                      //   context.pop();
-                      // },
+                      editError: (errorMessage) {
+                        return GlobalSnackBar.show(context, errorMessage);
+                      },
+                      editLectureDone: () {
+                        GlobalSnackBar.show(
+                            context, "Lecture Edited Successfully");
+                        context.pop();
+                      },
                     );
                   },
                   builder: (context, state) => ElevatedButton(
@@ -186,9 +192,32 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        context.read<CreateLectureCubit>().createLecture(data: {
+                        print({
+                          "pk": widget.instructorLecturesModel.pk,
                           "name": courseName.text,
-                          "instructor": widget.instructorLecturesModel.name,
+                          "instructor": widget
+                              .instructorLecturesModel.instructorInfo?.name,
+                          "lecture_hall": lectureHall.text,
+                          "faculty": chooseFaculty.text,
+                          "grade": chooseGrade.text,
+                          "lecture_start_time":
+                              "${selectDate.text}T${selectTime.text}:00",
+                          "lecture_end_time":
+                              "${selectDate.text}T${selectTime.text}:00"
+                        });
+                        context.read<EditLectureCubit>().editLecture(data: {
+                          // "pk": 3,
+                          // "name": "aaaa",
+                          // "instructor": "Mostafa Mahmoud",
+                          // "lecture_hall": "A2",
+                          // "faculty": "computer",
+                          // "grade": "third",
+                          // "lecture_start_time": "2017-05-11T09:18:54",
+                          // "lecture_end_time": "2017-05-11T09:18:54",
+                          "pk": widget.instructorLecturesModel.pk,
+                          "name": courseName.text,
+                          "instructor": widget
+                              .instructorLecturesModel.instructorInfo?.name,
                           "lecture_hall": lectureHall.text,
                           "faculty": chooseFaculty.text,
                           "grade": chooseGrade.text,
