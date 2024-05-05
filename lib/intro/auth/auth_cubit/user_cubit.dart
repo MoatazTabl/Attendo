@@ -1,6 +1,8 @@
+import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/helpers/cache_helper.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -31,13 +33,11 @@ class UserCubit extends Cubit<UserState> {
   // auto validate for text form fields sign up
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
-
   // auto validate for text form fields sign in
   AutovalidateMode autoValidateModeSignIn = AutovalidateMode.disabled;
 
   //Sign up name
   TextEditingController signUpName = TextEditingController();
-
 
   TextEditingController signUpLastName = TextEditingController();
 
@@ -54,16 +54,14 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmPassword = TextEditingController();
 
 //Sign up faculty
-  String? signUpGrade ;
+  String? signUpGrade;
 
   //Sign up grade
-  String? signUpFaculty ;
+  String? signUpFaculty;
 
   SignInModel? user;
 
-
-  clearSignUpFields()
-  {
+  clearSignUpFields() {
     signUpName.clear();
     signUpLastName.clear();
     signUpNationalId.clear();
@@ -84,10 +82,31 @@ class UserCubit extends Cubit<UserState> {
         "grade": signUpGrade,
       });
       emit(SignUpSuccess());
-    } catch (e) {
-      emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(SignUpFailure(errMessage: k.errorMessage));
+      } else {
+        emit(SignUpFailure(errMessage: "Un Expected error , try again"));
+      }
     }
   }
+
+  // print("Errrrrrrrrrorrrrrrrrrrr");
+  // if(e.response!.statusCode == 400)
+  // {
+  // if (e.response!.data.containsKey("name")) {
+  // emit(SignUpFailure(errMessage:e.response!.data["name"][0]));
+  // } else if (e.response!.data.containsKey("email")) {
+  // emit(SignUpFailure(errMessage:e.response!.data["email"][0]));
+  // } else if (e.response!.data.containsKey("national_id")) {
+  // emit(SignUpFailure(errMessage:e.response!.data["national_id"][0]));
+  // }
+  // }
+  // else
+  // {
+  // emit(SignUpFailure(errMessage:e.response!.statusCode.toString()));
+  // }
 
   signIn() async {
     try {
@@ -103,8 +122,8 @@ class UserCubit extends Cubit<UserState> {
       CacheHelper().saveData(
           key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
-    } catch (e) {
-      emit(LoginFailure(errMessage: "Un Expected error , try again later"));
+    } on ServerFailures catch (e) {
+      emit(LoginFailure(errMessage: e.errorMessage));
     }
   }
 
@@ -121,5 +140,4 @@ class UserCubit extends Cubit<UserState> {
       emit(GetUserFailure(errMessage: "Un Expected error , try again later"));
     }
   }
-
 }
