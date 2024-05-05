@@ -1,6 +1,8 @@
+import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/helpers/cache_helper.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -28,11 +30,16 @@ class UserCubit extends Cubit<UserState> {
   //Global formKey
   GlobalKey<FormState> formKey = GlobalKey();
 
-  // auto validate for text form fields
+  // auto validate for text form fields sign up
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
+  // auto validate for text form fields sign in
+  AutovalidateMode autoValidateModeSignIn = AutovalidateMode.disabled;
 
   //Sign up name
   TextEditingController signUpName = TextEditingController();
+
+  TextEditingController signUpLastName = TextEditingController();
 
   //Sign up email
   TextEditingController signUpEmail = TextEditingController();
@@ -47,29 +54,44 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmPassword = TextEditingController();
 
 //Sign up faculty
-  TextEditingController signUpGrade = TextEditingController();
+  String? signUpGrade;
 
   //Sign up grade
-  TextEditingController signUpFaculty = TextEditingController();
+  String? signUpFaculty;
 
   SignInModel? user;
+
+  clearSignUpFields() {
+    signUpName.clear();
+    signUpLastName.clear();
+    signUpNationalId.clear();
+    signUpEmail.clear();
+    signUpPassword.clear();
+    confirmPassword.clear();
+  }
 
   signUp() async {
     try {
       emit(SignUpLoading());
       await ApiService().post(endpoint: ApiStrings.signUpEndPoint, data: {
-        "name": signUpName.text,
+        "name": "${signUpName.text} ${signUpLastName.text}",
         "email": signUpEmail.text,
         "password": signUpPassword.text,
         "national_id": signUpNationalId.text,
-        "faculty": signUpFaculty.text,
-        "grade": signUpGrade.text,
+        "faculty": signUpFaculty,
+        "grade": signUpGrade,
       });
       emit(SignUpSuccess());
-    } catch (e) {
-      emit(SignUpFailure(errMessage: "Un Expected error , Try again later"));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(SignUpFailure(errMessage: k.errorMessage));
+      } else {
+        emit(SignUpFailure(errMessage: "Un Expected error , try again"));
+      }
     }
   }
+
 
   signIn() async {
     try {
@@ -85,8 +107,13 @@ class UserCubit extends Cubit<UserState> {
       CacheHelper().saveData(
           key: ApiStrings.userId, value: decodedToken[ApiStrings.userId]);
       emit(LoginSuccess());
-    } catch (e) {
-      emit(LoginFailure(errMessage: "Un Expected error , try again later"));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(LoginFailure(errMessage: k.errorMessage));
+      } else {
+        emit(LoginFailure(errMessage: "Un Expected error , try again"));
+      }
     }
   }
 
@@ -103,5 +130,4 @@ class UserCubit extends Cubit<UserState> {
       emit(GetUserFailure(errMessage: "Un Expected error , try again later"));
     }
   }
-
 }

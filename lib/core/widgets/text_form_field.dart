@@ -12,7 +12,7 @@ class CustomTextFormField extends StatefulWidget {
 
   final void Function(String)? onChanged;
 
- final TextEditingController? passwordFieldController;
+  final TextEditingController? passwordFieldController;
 
   const CustomTextFormField(
       {super.key,
@@ -44,13 +44,15 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             if (!idValid) {
               return "Please,enter a valid ID number";
             }
-          } else if (widget.hintText == "University Email"||widget.hintText == "Email or ID") {
+          } else if (widget.hintText == "University Email" ||
+              widget.hintText == "Email or ID") {
             final bool emailValid =
                 RegExp(r'@(stu|prof)\.com$').hasMatch(value);
             if (!emailValid) {
               return "Please,enter a valid Email ";
             }
-          } else if (widget.isPass && widget.hintText == "Re Enter Password") {
+          } else if (widget.isPass && widget.hintText == "ReEnter Password" ||
+              widget.isPass && widget.hintText == "إعادة إدخال كلمة المرور") {
             if (value != widget.passwordFieldController!.text) {
               return "Passwords do not match";
             }
