@@ -1,6 +1,7 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_drop_down_button.dart';
+import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -27,23 +28,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
           if (state is SignUpSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                  "Your account has been created successfully",
-                ),
-              ),
-            );
+            GlobalSnackBar.show(
+                context, getAppLocalizations(context)!.emailCreatedSuccessfully);
             context.pop();
             context.read<UserCubit>().clearSignUpFields();
           } else if (state is SignUpFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  state.errMessage,
-                ),
-              ),
-            );
+            GlobalSnackBar.show(context, state.errMessage);
           }
         },
         builder: (context, state) {

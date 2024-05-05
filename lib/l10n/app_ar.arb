@@ -19,6 +19,7 @@
     "selectFaculty": "اختر الشعيه",
     "selectGrade": "اختر السنه",
     "scanFingerprint": "مسح بصمة الإصبع",
+    "emailCreatedSuccessfully": "تم انشاء حسابك بنجاح ",
 
     "@_BottomNavBar": {},
     "home": "الصفحة الرئيسية",

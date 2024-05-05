@@ -34,7 +34,7 @@ class ServerFailures extends Failures {
     }
   }
 
-  factory ServerFailures.fromResponse(int? statusCode, Map<String,dynamic> response) {
+  factory ServerFailures.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       if (response.containsKey("name")) {
         return ServerFailures(response["name"][0]);

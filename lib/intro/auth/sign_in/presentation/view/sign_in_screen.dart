@@ -1,6 +1,7 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/networking/api_strings.dart';
+import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
@@ -35,10 +36,8 @@ class _SignInScreenState extends State<SignInScreen> {
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async {
           if (state is LoginSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text(getAppLocalizations(context)!.loggedInSuccessfully)));
-
+            GlobalSnackBar.show(
+                context, getAppLocalizations(context)!.loggedInSuccessfully);
             if (domainTypeCheck) {
               userDataModel = await context
                   .read<UserCubit>()
@@ -56,8 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
             context.read<UserCubit>().logInEmail.clear();
             context.read<UserCubit>().logInPassword.clear();
           } else if (state is LoginFailure) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.errMessage)));
+            GlobalSnackBar.show(context, state.errMessage);
           }
         },
         builder: (context, state) {
