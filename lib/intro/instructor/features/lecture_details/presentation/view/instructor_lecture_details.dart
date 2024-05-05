@@ -70,7 +70,7 @@ class InstructorLectureDetails extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: Text("Genrate Qr Code"),
+                  child: const Text("Generate Qr Code"),
                 ),
                 SizedBox(
                   height: 30.h,

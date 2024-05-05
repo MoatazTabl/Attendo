@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
           floatingActionButton: index == 0
               ? FloatingActionButton(
             onPressed: () {
-              context.push("/createLectureAdmin");
+              context.push(AppRoutes.createLectureInstructor,extra: widget.userData);
             },
             backgroundColor: const Color(0xff3746CC),
             foregroundColor: Colors.white,

@@ -37,12 +37,24 @@ class InstructorLectureCard extends StatelessWidget {
             SizedBox(
               height: 9.h,
             ),
-            Text(
-              instructorLecturesModel.grade ?? "",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 22.sp),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  instructorLecturesModel.instructorInfo?.name ?? "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 22.sp),
+                ),
+              Text(
+                  instructorLecturesModel.grade ?? "",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 22.sp),
+                ),
+              ],
             ),
             SizedBox(
               height: 10.h,

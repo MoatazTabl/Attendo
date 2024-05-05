@@ -57,6 +57,7 @@
   "createLecture": "Create Lecture",
   "enterCourseName": "Enter Course Name",
   "chooseGrade": "Choose Grade",
+  "chooseFaculty": "Choose Faculty",
   "selectDate": "Select Date",
   "selectTime": "Select Time",
   "lectureHall": "Lecture Hall",

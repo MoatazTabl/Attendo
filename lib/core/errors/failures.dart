@@ -33,9 +33,19 @@ class ServerFailures extends Failures {
     }
   }
 
-  factory ServerFailures.fromResponse(int? statusCode, dynamic response) {
+  factory ServerFailures.fromResponse(int? statusCode, Map<String,dynamic> response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailures(response["status_message"]);
+      if (response.containsKey("name")) {
+        return ServerFailures(response["name"][0]);
+      } else if (response.containsKey("email")) {
+        return ServerFailures(response["email"][0]);
+      } else if (response.containsKey("national_id")) {
+        return ServerFailures(response["national_id"][0]);
+      }
+      else
+      {
+        return ServerFailures("Something went wrong");
+      }
     } else if (statusCode == 404) {
       return ServerFailures("Your request not Found,Please try again later");
     } else if (statusCode == 500) {

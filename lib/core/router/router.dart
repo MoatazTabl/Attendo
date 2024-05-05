@@ -4,6 +4,8 @@ import 'package:attendo/intro/admin/features/attendance_page/presentation/view/a
 import 'package:attendo/intro/admin/features/create_lecture/presentation/view/create_lecture_admin.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
+import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
+import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
@@ -73,6 +75,15 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.attendancePageInstructor,
       builder: (context, state) => const AttendancePageInstructor(),
+    ),
+    GoRoute(
+      path: AppRoutes.createLectureInstructor,
+      builder: (context, state) => BlocProvider(
+        create: (context) => CreateLectureCubit(),
+        child: CreateLectureInstructor(
+          userDataModel: state.extra as UserDataModel,
+        ),
+      ),
     ),
 
     // -------------------- Admin routes----------------------
