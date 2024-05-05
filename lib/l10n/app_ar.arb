@@ -57,6 +57,7 @@
     "createLecture": "إنشاء محاضرة",
     "enterCourseName": "أدخل اسم الدورة",
     "chooseGrade": "اختر درجةالسنة",
+    "chooseFaculty": "اختر الشعبه",
     "selectDate": "حدد التاريخ",
     "selectTime": "حدد الوقت",
     "lectureHall": "قاعة المحاضرات",

@@ -1,6 +1,10 @@
+
+import 'package:attendo/core/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+
 
 import '../../../../auth_cubit/user_cubit.dart';
 
@@ -33,9 +37,11 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
         },
         style: const TextStyle(
             color: Colors.black, fontSize: 18),
-        iconSize: 24,
+
         elevation: 16,
-        icon: const Icon(Icons.arrow_downward_sharp),
+
+        icon: SvgPicture.asset(AppImages.arrowDownIcon,width: 10,height: 10,),
+
         value: null,
         hint:  Text(widget.fieldHint),
         decoration: InputDecoration(

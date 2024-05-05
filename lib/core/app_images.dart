@@ -28,6 +28,7 @@ abstract class AppImages {
   static const String arrowDownIcon = 'assets/images/svg/arrow_down_icon.svg';
   static const String calenderIcon = 'assets/images/svg/calendar_icon.svg';
   static const String timeIcon = 'assets/images/svg/time_icon.svg';
+  static const String locationIcon = 'assets/images/svg/location_Icon.svg';
 
 
   static const String noAvailableLectures = 'assets/images/svg/no_available_lectures.svg';
