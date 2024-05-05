@@ -8,18 +8,21 @@ class InstructorLecturesModel {
     this.grade,
     this.lectureStartTime,
     this.lectureEndTime,
-     });
+  });
 
   InstructorLecturesModel.fromJson(dynamic json) {
     pk = json['pk'];
     name = json['name'];
-    instructorInfo = json['instructor_info'] != null ? InstructorInfo.fromJson(json['instructor_info']) : null;
+    instructorInfo = json['instructor_info'] != null
+        ? InstructorInfo.fromJson(json['instructor_info'])
+        : null;
     lectureHall = json['lecture_hall'];
     faculty = json['faculty'];
     grade = json['grade'];
     lectureStartTime = json['lecture_start_time'];
     lectureEndTime = json['lecture_end_time'];
   }
+
   int? pk;
   String? name;
   InstructorInfo? instructorInfo;
@@ -43,19 +46,19 @@ class InstructorLecturesModel {
     map['lecture_end_time'] = lectureEndTime;
     return map;
   }
-
 }
-
 
 class InstructorInfo {
   InstructorInfo({
-      this.pk, 
-      this.name,});
+    this.pk,
+    this.name,
+  });
 
   InstructorInfo.fromJson(dynamic json) {
     pk = json['pk'];
     name = json['name'];
   }
+
   int? pk;
   String? name;
 
@@ -65,5 +68,4 @@ class InstructorInfo {
     map['name'] = name;
     return map;
   }
-
 }

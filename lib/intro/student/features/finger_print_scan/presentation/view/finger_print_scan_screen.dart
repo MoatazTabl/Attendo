@@ -15,8 +15,7 @@ class FingerPrintScanScreen extends StatefulWidget {
 }
 
 class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
-
-   XFile? _capturedImage;
+  XFile? _capturedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
                       fit: BoxFit.fill,
                       onError: (exception, stackTrace) =>
                           const AssetImage(AppImages.welcomePageStudentImage),
-                      image: FileImage(File(_capturedImage?.path??"")),
+                      image: FileImage(File(_capturedImage?.path ?? "")),
                     ),
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(25)),
@@ -51,7 +50,8 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
           ElevatedButton(
             onPressed: () async {
               // await context.push("/cameraScreen");
-             XFile? capturedImage = await context.push('/cameraScreen') as XFile?;
+              XFile? capturedImage =
+                  await context.push('/cameraScreen') as XFile?;
               if (capturedImage != null) {
                 setState(() {
                   _capturedImage = capturedImage;
@@ -97,8 +97,7 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(
-              onPressed: () async {
-              },
+              onPressed: () async {},
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all(
                   Size(258.w, 89.h),
@@ -132,8 +131,6 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
               ),
             ),
           ),
-
-
         ],
       ),
     );

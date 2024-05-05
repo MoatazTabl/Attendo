@@ -5,9 +5,8 @@ class PageIndicator extends StatelessWidget {
   const PageIndicator({
     super.key,
     required PageController pageController,
-     required this.cardsNumber,
+    required this.cardsNumber,
   }) : _pageController = pageController;
-
 
   final PageController _pageController;
   final int cardsNumber;

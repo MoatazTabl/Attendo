@@ -133,16 +133,24 @@ class CreateLectureAdmin extends StatelessWidget {
                       suffixIconConstraints:
                           const BoxConstraints(maxHeight: 27, maxWidth: 27),
                       hintText: getAppLocalizations(context)!.selectTime,
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(fontSize: 18.sp,),
+                      hintStyle:
+                          Theme.of(context).textTheme.labelSmall!.copyWith(
+                                fontSize: 18.sp,
+                              ),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.w,),
-                          borderSide: BorderSide.none,),
+                        borderRadius: BorderRadius.circular(
+                          12.w,
+                        ),
+                        borderSide: BorderSide.none,
+                      ),
                       filled: true,
-                      fillColor: const Color(0xfff0f3ff,),
-                      contentPadding: const EdgeInsets.only(left: 10, right: 5,),
+                      fillColor: const Color(
+                        0xfff0f3ff,
+                      ),
+                      contentPadding: const EdgeInsets.only(
+                        left: 10,
+                        right: 5,
+                      ),
                     ),
                   ),
                 ),

@@ -26,7 +26,6 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     screens = [
       HomeInstructor(
@@ -52,18 +51,19 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
           body: screens[index],
           floatingActionButton: index == 0
               ? FloatingActionButton(
-            onPressed: () {
-              context.push(AppRoutes.createLectureInstructor,extra: widget.userData);
-            },
-            backgroundColor: const Color(0xff3746CC),
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                36,
-              ),
-            ),
-            child: const Icon(Icons.add),
-          )
+                  onPressed: () {
+                    context.push(AppRoutes.createLectureInstructor,
+                        extra: widget.userData);
+                  },
+                  backgroundColor: const Color(0xff3746CC),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      36,
+                    ),
+                  ),
+                  child: const Icon(Icons.add),
+                )
               : null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: index,
@@ -83,7 +83,6 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
               ),
               BottomNavigationBarItem(
                 label: getAppLocalizations(context)?.settings,
-
                 icon: SvgPicture.asset(
                   "assets/images/svg/settings_icon.svg",
                 ),

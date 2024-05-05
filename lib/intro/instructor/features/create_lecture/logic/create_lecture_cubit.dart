@@ -14,8 +14,7 @@ class CreateLectureCubit extends Cubit<CreateLectureState> {
     ApiService apiService = ApiService();
     emit(const CreateLectureState.initial());
     try {
-
-          await apiService.post(endpoint: "postlecture/", data: data);
+      await apiService.post(endpoint: "postlecture/", data: data);
       emit(const CreateLectureState.addLecture());
     } on DioException catch (e) {
       final k = ServerFailures.fromDioException(e);

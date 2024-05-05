@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CardPageView extends StatefulWidget {
-  const CardPageView({super.key, required this.pageController, required this.lectures});
+  const CardPageView(
+      {super.key, required this.pageController, required this.lectures});
+
   final PageController pageController;
   final List<StudentsLecturesModel> lectures;
+
   @override
   State<CardPageView> createState() => _CardPageViewState();
 }
@@ -24,7 +27,8 @@ class _CardPageViewState extends State<CardPageView> {
         scrollBehavior: const MaterialScrollBehavior(),
         itemBuilder: (context, index) {
           return AttendanceCard(
-            isActive: _activePage == index ? true : false, lectures: widget.lectures[index],
+            isActive: _activePage == index ? true : false,
+            lectures: widget.lectures[index],
           );
         },
         onPageChanged: (value) {

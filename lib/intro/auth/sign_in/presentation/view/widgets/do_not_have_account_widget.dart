@@ -28,10 +28,7 @@ class DoNotHaveAccountWidget extends StatelessWidget {
           },
           child: Text(
             getAppLocalizations(context)!.signUpNow,
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium!
-                .copyWith(
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
                 color: const Color(0xff3746CC),
                 fontWeight: FontWeight.w900,
                 fontSize: 20.sp),

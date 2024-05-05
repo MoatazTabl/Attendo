@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_lecture_cubit.dart';
+part of 'edit_lecture_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,27 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CreateLectureState {
+mixin _$EditLectureState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() addLecture,
-    required TResult Function(String errorMessage) addError,
+    required TResult Function() editLectureDone,
+    required TResult Function(String errorMessage) editError,
   }) =>
       throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? addLecture,
-    TResult? Function(String errorMessage)? addError,
+    TResult? Function()? editLectureDone,
+    TResult? Function(String errorMessage)? editError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? addLecture,
-    TResult Function(String errorMessage)? addError,
+    TResult Function()? editLectureDone,
+    TResult Function(String errorMessage)? editError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,39 +43,39 @@ mixin _$CreateLectureState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(AddLecture value) addLecture,
-    required TResult Function(AddError value) addError,
+    required TResult Function(EditLectureDone value) editLectureDone,
+    required TResult Function(EditError value) editError,
   }) =>
       throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(AddLecture value)? addLecture,
-    TResult? Function(AddError value)? addError,
+    TResult? Function(EditLectureDone value)? editLectureDone,
+    TResult? Function(EditError value)? editError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(AddLecture value)? addLecture,
-    TResult Function(AddError value)? addError,
+    TResult Function(EditLectureDone value)? editLectureDone,
+    TResult Function(EditError value)? editError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateLectureStateCopyWith<$Res> {
-  factory $CreateLectureStateCopyWith(
-          CreateLectureState value, $Res Function(CreateLectureState) then) =
-      _$CreateLectureStateCopyWithImpl<$Res, CreateLectureState>;
+abstract class $EditLectureStateCopyWith<$Res> {
+  factory $EditLectureStateCopyWith(
+          EditLectureState value, $Res Function(EditLectureState) then) =
+      _$EditLectureStateCopyWithImpl<$Res, EditLectureState>;
 }
 
 /// @nodoc
-class _$CreateLectureStateCopyWithImpl<$Res, $Val extends CreateLectureState>
-    implements $CreateLectureStateCopyWith<$Res> {
-  _$CreateLectureStateCopyWithImpl(this._value, this._then);
+class _$EditLectureStateCopyWithImpl<$Res, $Val extends EditLectureState>
+    implements $EditLectureStateCopyWith<$Res> {
+  _$EditLectureStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -92,7 +92,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CreateLectureStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$EditLectureStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -106,7 +106,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'CreateLectureState.initial()';
+    return 'EditLectureState.initial()';
   }
 
   @override
@@ -122,8 +122,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() addLecture,
-    required TResult Function(String errorMessage) addError,
+    required TResult Function() editLectureDone,
+    required TResult Function(String errorMessage) editError,
   }) {
     return initial();
   }
@@ -132,8 +132,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? addLecture,
-    TResult? Function(String errorMessage)? addError,
+    TResult? Function()? editLectureDone,
+    TResult? Function(String errorMessage)? editError,
   }) {
     return initial?.call();
   }
@@ -142,8 +142,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? addLecture,
-    TResult Function(String errorMessage)? addError,
+    TResult Function()? editLectureDone,
+    TResult Function(String errorMessage)? editError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -156,8 +156,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(AddLecture value) addLecture,
-    required TResult Function(AddError value) addError,
+    required TResult Function(EditLectureDone value) editLectureDone,
+    required TResult Function(EditError value) editError,
   }) {
     return initial(this);
   }
@@ -166,8 +166,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(AddLecture value)? addLecture,
-    TResult? Function(AddError value)? addError,
+    TResult? Function(EditLectureDone value)? editLectureDone,
+    TResult? Function(EditError value)? editError,
   }) {
     return initial?.call(this);
   }
@@ -176,8 +176,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(AddLecture value)? addLecture,
-    TResult Function(AddError value)? addError,
+    TResult Function(EditLectureDone value)? editLectureDone,
+    TResult Function(EditError value)? editError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -187,40 +187,40 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CreateLectureState {
+abstract class _Initial implements EditLectureState {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$AddLectureImplCopyWith<$Res> {
-  factory _$$AddLectureImplCopyWith(
-          _$AddLectureImpl value, $Res Function(_$AddLectureImpl) then) =
-      __$$AddLectureImplCopyWithImpl<$Res>;
+abstract class _$$EditLectureDoneImplCopyWith<$Res> {
+  factory _$$EditLectureDoneImplCopyWith(_$EditLectureDoneImpl value,
+          $Res Function(_$EditLectureDoneImpl) then) =
+      __$$EditLectureDoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AddLectureImplCopyWithImpl<$Res>
-    extends _$CreateLectureStateCopyWithImpl<$Res, _$AddLectureImpl>
-    implements _$$AddLectureImplCopyWith<$Res> {
-  __$$AddLectureImplCopyWithImpl(
-      _$AddLectureImpl _value, $Res Function(_$AddLectureImpl) _then)
+class __$$EditLectureDoneImplCopyWithImpl<$Res>
+    extends _$EditLectureStateCopyWithImpl<$Res, _$EditLectureDoneImpl>
+    implements _$$EditLectureDoneImplCopyWith<$Res> {
+  __$$EditLectureDoneImplCopyWithImpl(
+      _$EditLectureDoneImpl _value, $Res Function(_$EditLectureDoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AddLectureImpl implements AddLecture {
-  const _$AddLectureImpl();
+class _$EditLectureDoneImpl implements EditLectureDone {
+  const _$EditLectureDoneImpl();
 
   @override
   String toString() {
-    return 'CreateLectureState.addLecture()';
+    return 'EditLectureState.editLectureDone()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AddLectureImpl);
+        (other.runtimeType == runtimeType && other is _$EditLectureDoneImpl);
   }
 
   @override
@@ -230,32 +230,32 @@ class _$AddLectureImpl implements AddLecture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() addLecture,
-    required TResult Function(String errorMessage) addError,
+    required TResult Function() editLectureDone,
+    required TResult Function(String errorMessage) editError,
   }) {
-    return addLecture();
+    return editLectureDone();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? addLecture,
-    TResult? Function(String errorMessage)? addError,
+    TResult? Function()? editLectureDone,
+    TResult? Function(String errorMessage)? editError,
   }) {
-    return addLecture?.call();
+    return editLectureDone?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? addLecture,
-    TResult Function(String errorMessage)? addError,
+    TResult Function()? editLectureDone,
+    TResult Function(String errorMessage)? editError,
     required TResult orElse(),
   }) {
-    if (addLecture != null) {
-      return addLecture();
+    if (editLectureDone != null) {
+      return editLectureDone();
     }
     return orElse();
   }
@@ -264,56 +264,56 @@ class _$AddLectureImpl implements AddLecture {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(AddLecture value) addLecture,
-    required TResult Function(AddError value) addError,
+    required TResult Function(EditLectureDone value) editLectureDone,
+    required TResult Function(EditError value) editError,
   }) {
-    return addLecture(this);
+    return editLectureDone(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(AddLecture value)? addLecture,
-    TResult? Function(AddError value)? addError,
+    TResult? Function(EditLectureDone value)? editLectureDone,
+    TResult? Function(EditError value)? editError,
   }) {
-    return addLecture?.call(this);
+    return editLectureDone?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(AddLecture value)? addLecture,
-    TResult Function(AddError value)? addError,
+    TResult Function(EditLectureDone value)? editLectureDone,
+    TResult Function(EditError value)? editError,
     required TResult orElse(),
   }) {
-    if (addLecture != null) {
-      return addLecture(this);
+    if (editLectureDone != null) {
+      return editLectureDone(this);
     }
     return orElse();
   }
 }
 
-abstract class AddLecture implements CreateLectureState {
-  const factory AddLecture() = _$AddLectureImpl;
+abstract class EditLectureDone implements EditLectureState {
+  const factory EditLectureDone() = _$EditLectureDoneImpl;
 }
 
 /// @nodoc
-abstract class _$$AddErrorImplCopyWith<$Res> {
-  factory _$$AddErrorImplCopyWith(
-          _$AddErrorImpl value, $Res Function(_$AddErrorImpl) then) =
-      __$$AddErrorImplCopyWithImpl<$Res>;
+abstract class _$$EditErrorImplCopyWith<$Res> {
+  factory _$$EditErrorImplCopyWith(
+          _$EditErrorImpl value, $Res Function(_$EditErrorImpl) then) =
+      __$$EditErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String errorMessage});
 }
 
 /// @nodoc
-class __$$AddErrorImplCopyWithImpl<$Res>
-    extends _$CreateLectureStateCopyWithImpl<$Res, _$AddErrorImpl>
-    implements _$$AddErrorImplCopyWith<$Res> {
-  __$$AddErrorImplCopyWithImpl(
-      _$AddErrorImpl _value, $Res Function(_$AddErrorImpl) _then)
+class __$$EditErrorImplCopyWithImpl<$Res>
+    extends _$EditLectureStateCopyWithImpl<$Res, _$EditErrorImpl>
+    implements _$$EditErrorImplCopyWith<$Res> {
+  __$$EditErrorImplCopyWithImpl(
+      _$EditErrorImpl _value, $Res Function(_$EditErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -321,7 +321,7 @@ class __$$AddErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? errorMessage = null,
   }) {
-    return _then(_$AddErrorImpl(
+    return _then(_$EditErrorImpl(
       null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -332,22 +332,22 @@ class __$$AddErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddErrorImpl implements AddError {
-  const _$AddErrorImpl(this.errorMessage);
+class _$EditErrorImpl implements EditError {
+  const _$EditErrorImpl(this.errorMessage);
 
   @override
   final String errorMessage;
 
   @override
   String toString() {
-    return 'CreateLectureState.addError(errorMessage: $errorMessage)';
+    return 'EditLectureState.editError(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddErrorImpl &&
+            other is _$EditErrorImpl &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -358,39 +358,39 @@ class _$AddErrorImpl implements AddError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddErrorImplCopyWith<_$AddErrorImpl> get copyWith =>
-      __$$AddErrorImplCopyWithImpl<_$AddErrorImpl>(this, _$identity);
+  _$$EditErrorImplCopyWith<_$EditErrorImpl> get copyWith =>
+      __$$EditErrorImplCopyWithImpl<_$EditErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() addLecture,
-    required TResult Function(String errorMessage) addError,
+    required TResult Function() editLectureDone,
+    required TResult Function(String errorMessage) editError,
   }) {
-    return addError(errorMessage);
+    return editError(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? addLecture,
-    TResult? Function(String errorMessage)? addError,
+    TResult? Function()? editLectureDone,
+    TResult? Function(String errorMessage)? editError,
   }) {
-    return addError?.call(errorMessage);
+    return editError?.call(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? addLecture,
-    TResult Function(String errorMessage)? addError,
+    TResult Function()? editLectureDone,
+    TResult Function(String errorMessage)? editError,
     required TResult orElse(),
   }) {
-    if (addError != null) {
-      return addError(errorMessage);
+    if (editError != null) {
+      return editError(errorMessage);
     }
     return orElse();
   }
@@ -399,42 +399,42 @@ class _$AddErrorImpl implements AddError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(AddLecture value) addLecture,
-    required TResult Function(AddError value) addError,
+    required TResult Function(EditLectureDone value) editLectureDone,
+    required TResult Function(EditError value) editError,
   }) {
-    return addError(this);
+    return editError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(AddLecture value)? addLecture,
-    TResult? Function(AddError value)? addError,
+    TResult? Function(EditLectureDone value)? editLectureDone,
+    TResult? Function(EditError value)? editError,
   }) {
-    return addError?.call(this);
+    return editError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(AddLecture value)? addLecture,
-    TResult Function(AddError value)? addError,
+    TResult Function(EditLectureDone value)? editLectureDone,
+    TResult Function(EditError value)? editError,
     required TResult orElse(),
   }) {
-    if (addError != null) {
-      return addError(this);
+    if (editError != null) {
+      return editError(this);
     }
     return orElse();
   }
 }
 
-abstract class AddError implements CreateLectureState {
-  const factory AddError(final String errorMessage) = _$AddErrorImpl;
+abstract class EditError implements EditLectureState {
+  const factory EditError(final String errorMessage) = _$EditErrorImpl;
 
   String get errorMessage;
   @JsonKey(ignore: true)
-  _$$AddErrorImplCopyWith<_$AddErrorImpl> get copyWith =>
+  _$$EditErrorImplCopyWith<_$EditErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

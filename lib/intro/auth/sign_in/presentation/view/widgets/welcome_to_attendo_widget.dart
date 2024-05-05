@@ -13,18 +13,16 @@ class WelcomeToAttendoWidget extends StatelessWidget {
       children: [
         Text(
           getAppLocalizations(context)!.welcomeTo,
-          style:
-          Theme.of(context).textTheme.headlineLarge!.copyWith(
-            fontSize: 40.sp,
-          ),
+          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                fontSize: 40.sp,
+              ),
         ),
         Text(
           getAppLocalizations(context)!.attendo,
-          style:
-          Theme.of(context).textTheme.headlineLarge!.copyWith(
-            color: const Color(0xff3746CC),
-            fontSize: 40.sp,
-          ),
+          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                color: const Color(0xff3746CC),
+                fontSize: 40.sp,
+              ),
         ),
       ],
     );

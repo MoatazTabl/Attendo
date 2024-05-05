@@ -13,21 +13,17 @@ class HomeInstructorCubit extends Cubit<HomeInstructorState> {
     emit(const HomeInstructorState.dataFetching());
     var homeInstructorRepo = HomeInstructorRepo();
 
-    var lecturesAvailable = await homeInstructorRepo.fetchInstructorLectures(data: data);
+    var lecturesAvailable =
+        await homeInstructorRepo.fetchInstructorLectures(data: data);
 
-    lecturesAvailable.fold(
-            (fail) => emit(
-            HomeInstructorState.dataError(fail.errorMessage)
-        ),
+    lecturesAvailable
+        .fold((fail) => emit(HomeInstructorState.dataError(fail.errorMessage)),
             (lectures) {
-          if (lectures.isEmpty) {
-            emit(const HomeInstructorState.lecturesNotAvailable());
-          }
-          else {
-            emit(HomeInstructorState.lecturesAvailable(lectures));
-          }
-        }
-    );
+      if (lectures.isEmpty) {
+        emit(const HomeInstructorState.lecturesNotAvailable());
+      } else {
+        emit(HomeInstructorState.lecturesAvailable(lectures));
+      }
+    });
   }
-
 }

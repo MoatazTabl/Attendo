@@ -13,82 +13,77 @@ class ProfileScreenStudent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        if(state is GetUserSuccess)
-          {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 64.h,
-                ),
-                Image.asset(
-                  "assets/images/avatar_pic.png",
-                  width: 106.w,
-                  height: 108.h,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
-                        Size(
-                          141.w,
-                          52.h,
-                        ),
+        if (state is GetUserSuccess) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 64.h,
+              ),
+              Image.asset(
+                "assets/images/avatar_pic.png",
+                width: 106.w,
+                height: 108.h,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all(
+                      Size(
+                        141.w,
+                        52.h,
                       ),
-                      backgroundColor: MaterialStateProperty.all(
-                        const Color(
-                          0xff3746CC,
-                        ),
-                      ),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            15.w,
-                          ),
-                        ),
-                      ),
-                      padding: MaterialStateProperty.all(EdgeInsets.zero)),
-                  onPressed: () {},
-                  child: Text(
-                    getAppLocalizations(context)!.changePhoto,
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      fontSize: 20.sp,
                     ),
-                  ),
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(
+                        0xff3746CC,
+                      ),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          15.w,
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all(EdgeInsets.zero)),
+                onPressed: () {},
+                child: Text(
+                  getAppLocalizations(context)!.changePhoto,
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        fontSize: 20.sp,
+                      ),
                 ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                UserInfoItem(
-                  fieldName: getAppLocalizations(context)!.name,
-                  fieldDetail: state.userData.name,
-                ),
-                UserInfoItem(
-                  fieldName: getAppLocalizations(context)!.phone,
-                  fieldDetail: state.userData.nationalId,
-                ),
-                UserInfoItem(
-                  fieldName: getAppLocalizations(context)!.email,
-                  fieldDetail: state.userData.faculty!,
-                ),
-                UserInfoItem(
-                  fieldName: getAppLocalizations(context)!.email,
-                  fieldDetail: state.userData.grade!,
-                ),
-              ],
-            );
-          }
-        else if (state is GetUserLoading)
-          {
-            return const CircularProgressIndicator();
-          }
-        else
-          {
-            return const Text("Something went Wrong");
-          }
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              UserInfoItem(
+                fieldName: getAppLocalizations(context)!.name,
+                fieldDetail: state.userData.name,
+              ),
+              UserInfoItem(
+                fieldName: getAppLocalizations(context)!.phone,
+                fieldDetail: state.userData.nationalId,
+              ),
+              UserInfoItem(
+                fieldName: getAppLocalizations(context)!.email,
+                fieldDetail: state.userData.faculty!,
+              ),
+              UserInfoItem(
+                fieldName: getAppLocalizations(context)!.email,
+                fieldDetail: state.userData.grade!,
+              ),
+            ],
+          );
+        } else if (state is GetUserLoading) {
+          return const CircularProgressIndicator();
+        } else {
+          return const Text("Something went Wrong");
+        }
       },
     );
   }
