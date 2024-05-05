@@ -49,7 +49,6 @@ class _CameraScreenState extends State<CameraScreen>
         child: controller.value.isInitialized
             ? Stack(
                 children: [
-
                   Center(
                     child: SizedBox(
                       width: 1.sw,
@@ -60,16 +59,17 @@ class _CameraScreenState extends State<CameraScreen>
                     ),
                   ),
                   const CustomCameraBlur(),
-                  const CustomCameraBlur(align: Alignment.bottomCenter,),
+                  const CustomCameraBlur(
+                    align: Alignment.bottomCenter,
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: GestureDetector(
                       onTap: () async {
                         // Calculate focus point based on the position of the square
                         final Size screenSize = MediaQuery.of(context).size;
-                         double squareSizeWidth = 80.w; // Size of the square
-                         double squareSizeHeight =
-                            145.h; // Size of the square
+                        double squareSizeWidth = 80.w; // Size of the square
+                        double squareSizeHeight = 145.h; // Size of the square
                         final double left =
                             (screenSize.width - squareSizeWidth) / 2;
                         final double top =

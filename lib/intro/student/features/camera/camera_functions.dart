@@ -114,7 +114,7 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
   }
 
   /// takes picture using camera plugin
-   takePicture() async {
+  takePicture() async {
     if (await Permission.storage.isDenied || await Permission.photos.isDenied) {
       await askForStoragePermission();
     }
@@ -127,53 +127,56 @@ mixin CameraFunctions<T extends StatefulWidget> on State<T>
     try {
       await controller.setFlashMode(FlashMode.torch);
       XFile picture = await controller.takePicture();
-      final  croppedImage = await cropToContainerShape(picture.path);
+      final croppedImage = await cropToContainerShape(picture.path);
       context.pop(croppedImage);
-      await savePicture(croppedImage );
+      await savePicture(croppedImage);
     } on CameraException catch (e) {
       debugPrint('Error occurred while taking picture: $e');
       return null;
     }
   }
+
   Future<XFile> cropToContainerShape(String imagePath) async {
-      // Read the image bytes
-      final bytes = await File(imagePath).readAsBytes();
+    // Read the image bytes
+    final bytes = await File(imagePath).readAsBytes();
 
-      // Decode the image
-      final image = img.decodeImage(bytes)!;
+    // Decode the image
+    final image = img.decodeImage(bytes)!;
 
-      // Get the screen size (consider using a global variable for efficiency)
-      final screenSize = MediaQuery.of(context).size;
+    // Get the screen size (consider using a global variable for efficiency)
+    final screenSize = MediaQuery.of(context).size;
 
-      // Extract container dimensions from its widget properties (assuming known dimensions)
-       double containerWidth = 80.w; // Replace with actual container width
-       double containerHeight = 145.h; // Replace with actual container height
+    // Extract container dimensions from its widget properties (assuming known dimensions)
+    double containerWidth = 80.w; // Replace with actual container width
+    double containerHeight = 145.h; // Replace with actual container height
 
-      // Calculate crop coordinates relative to image dimensions
-      final double x = (screenSize.width - containerWidth) / 2 * image.width / screenSize.width;
-      final double y = (screenSize.height - containerHeight) / 2 * image.height / screenSize.height;
-      final double width = containerWidth * image.width / screenSize.width;
-       double height = containerHeight * image.height / screenSize.height;
+    // Calculate crop coordinates relative to image dimensions
+    final double x = (screenSize.width - containerWidth) /
+        2 *
+        image.width /
+        screenSize.width;
+    final double y = (screenSize.height - containerHeight) /
+        2 *
+        image.height /
+        screenSize.height;
+    final double width = containerWidth * image.width / screenSize.width;
+    double height = containerHeight * image.height / screenSize.height;
 
-      // Crop the image
-      final img.Image croppedImage = img.copyCrop(
-        image,
-        x: x.toInt(),
-        y: y.toInt(),
-        width: width.toInt(),
-        height: height.toInt(),
-      );
+    // Crop the image
+    final img.Image croppedImage = img.copyCrop(
+      image,
+      x: x.toInt(),
+      y: y.toInt(),
+      width: width.toInt(),
+      height: height.toInt(),
+    );
 
-      // Create a new file for the cropped image
-      final file = File('$imagePath.cropped.jpg');
-      await file.writeAsBytes(img.encodeJpg(croppedImage));
+    // Create a new file for the cropped image
+    final file = File('$imagePath.cropped.jpg');
+    await file.writeAsBytes(img.encodeJpg(croppedImage));
 
-      return XFile(file.path);
-
+    return XFile(file.path);
   }
-
-
-
 
   /// Saves picture taken to phone gallery
   Future<void> savePicture(XFile picture) async {

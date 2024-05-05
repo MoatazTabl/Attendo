@@ -92,7 +92,6 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-
   signIn() async {
     try {
       emit(LoginLoading());

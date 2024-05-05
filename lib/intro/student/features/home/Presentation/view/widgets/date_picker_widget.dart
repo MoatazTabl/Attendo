@@ -7,10 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget({
-    super.key, required this.userData,
+    super.key,
+    required this.userData,
   });
-  final UserDataModel userData ;
 
+  final UserDataModel userData;
 
   @override
   State<DatePickerWidget> createState() => _DatePickerWidgetState();
@@ -29,16 +30,14 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       height: 110.h,
       daysCount: 100,
       dateTextStyle: TextStyle(fontSize: 15.sp),
-      monthTextStyle: TextStyle(fontSize:16.sp ),
+      monthTextStyle: TextStyle(fontSize: 16.sp),
       dayTextStyle: TextStyle(fontSize: 15.sp),
       deactivatedColor: Colors.white,
       onDateChange: (date) {
-
         context.read<HomeCubit>().getStudentLectures(data: {
           "faculty": widget.userData.faculty,
           "grade": widget.userData.grade,
-
-          "date":date.toIso8601String().split(".")[0]
+          "date": date.toIso8601String().split(".")[0]
         });
         setState(() {
           selectedDay = date;

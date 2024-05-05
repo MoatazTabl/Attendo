@@ -63,6 +63,9 @@
   "lectureHall": "Lecture Hall",
   "addLecture": "Add Lecture",
 
+  "@_EditLecture": {},
+  "editLecture": "Edit Lecture",
+
   "@_SnackBar": {},
   "loggedInSuccessfully": "Logged In Successfully"
 }

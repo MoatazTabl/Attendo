@@ -35,15 +35,17 @@ class _SignInScreenState extends State<SignInScreen> {
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async {
           if (state is LoginSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                 SnackBar(content: Text(getAppLocalizations(context)!.loggedInSuccessfully)));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text(getAppLocalizations(context)!.loggedInSuccessfully)));
 
             if (domainTypeCheck) {
               userDataModel = await context
                   .read<UserCubit>()
                   .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
 
-              context.pushReplacement("/instructorMainScreen",extra: userDataModel);
+              context.pushReplacement("/instructorMainScreen",
+                  extra: userDataModel);
             } else {
               userDataModel = await context
                   .read<UserCubit>()
@@ -74,7 +76,8 @@ class _SignInScreenState extends State<SignInScreen> {
               body: SizedBox(
                 height: 1.sh,
                 child: Form(
-                  autovalidateMode: context.read<UserCubit>().autoValidateModeSignIn,
+                  autovalidateMode:
+                      context.read<UserCubit>().autoValidateModeSignIn,
                   key: context.read<UserCubit>().logInFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

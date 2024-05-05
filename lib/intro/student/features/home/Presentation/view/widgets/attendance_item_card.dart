@@ -47,7 +47,7 @@ class AttendanceCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
+                  builder: (BuildContext context, BoxConstraints constraints) {
                 return Stack(
                   alignment: Alignment.center,
                   children: [
@@ -58,21 +58,18 @@ class AttendanceCard extends StatelessWidget {
                           ..strokeWidth = 2
                           ..color = Colors.black,
                         fontWeight: FontWeight.w500,
-                        fontSize: constraints.maxWidth/10,
+                        fontSize: constraints.maxWidth / 10,
                       ),
                       duration: animationTime,
                       child: Text(
                         lectures.name ?? "",
                       ),
                     ),
-
-
-
                     AnimatedDefaultTextStyle(
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
-                        fontSize: constraints.maxWidth/10,
+                        fontSize: constraints.maxWidth / 10,
                       ),
                       duration: animationTime,
                       child: Text(
@@ -80,8 +77,8 @@ class AttendanceCard extends StatelessWidget {
                       ),
                     ),
                   ],
-                );}
-              ),
+                );
+              }),
               AnimatedDefaultTextStyle(
                 style: GoogleFonts.roboto(
                   textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
@@ -205,7 +202,7 @@ class AttendanceCard extends StatelessWidget {
   }
 
   String? dateTime(String? dateTime) {
-    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime??""));
+    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));
     return dateFormat;
   }
 }

@@ -11,6 +11,7 @@ class AppRoutes
   static const String instructorLectureDetails="/instructorLectureDetails";
   static const String attendancePageInstructor="/attendancePageInstructor";
   static const String createLectureInstructor="/createLectureInstructor";
+  static const String editLectureInstructor="/editLectureInstructor";
 
 
   static const String createLectureAdmin="/createLectureAdmin";

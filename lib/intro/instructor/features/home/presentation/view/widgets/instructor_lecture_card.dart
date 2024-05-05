@@ -1,4 +1,5 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,12 +17,10 @@ class InstructorLectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.w)),
-      // surfaceTintColor: const Color(0xFFF0F3FF).withOpacity(0.5),
       color: const Color(0xFFF0F3FF).withOpacity(0.5),
       elevation: 0,
-
       child: Padding(
-        padding: EdgeInsets.only(left: 15.w,right: 15.w, bottom: 15.h),
+        padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 15.h),
         child: Column(
           children: [
             SizedBox(
@@ -47,7 +46,7 @@ class InstructorLectureCard extends StatelessWidget {
                       .titleMedium!
                       .copyWith(fontSize: 22.sp),
                 ),
-              Text(
+                Text(
                   instructorLecturesModel.grade ?? "",
                   style: Theme.of(context)
                       .textTheme
@@ -63,19 +62,18 @@ class InstructorLectureCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  instructorLecturesModel.lectureStartTime?.split("T")[0]??"",
+                  instructorLecturesModel.lectureStartTime?.split("T")[0] ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 18.sp),
                 ),
                 Text(
-                  dateTime(instructorLecturesModel.lectureStartTime)??"",
+                  dateTime(instructorLecturesModel.lectureStartTime) ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 18.sp),
-
                 ),
               ],
             ),
@@ -83,53 +81,104 @@ class InstructorLectureCard extends StatelessWidget {
               height: 9.h,
             ),
             Text(
-              instructorLecturesModel.lectureHall??"",
+              instructorLecturesModel.lectureHall ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
                   .copyWith(fontSize: 25.sp),
             ),
-            ElevatedButton(
-              onPressed: () {
-                context.push("/instructorLectureDetails",extra: instructorLecturesModel);
-              },
-              style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(
-                  Size(215.w, 56.h),
-                ),
-                backgroundColor: MaterialStateProperty.all(
-                  const Color(
-                    0xff3746CC,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.push(AppRoutes.editLectureInstructor,
+                        extra: instructorLecturesModel);
+                  },
+                  iconSize: 32,
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.green,
                   ),
                 ),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      22.w,
+                ElevatedButton(
+                  onPressed: () {
+                    context.push(AppRoutes.instructorLectureDetails,
+                        extra: instructorLecturesModel);
+                  },
+                  style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all(
+                      Size(215.w, 56.h),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(
+                        0xff3746CC,
+                      ),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          22.w,
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  ),
+                  child: Text(
+                    getAppLocalizations(context)!.showDetails,
+                    style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-                padding: MaterialStateProperty.all(EdgeInsets.zero),
-              ),
-              child: Text(
-                getAppLocalizations(context)!.showDetails,
-                style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          actionsAlignment: MainAxisAlignment.center,
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                context.pop();
+                              },
+                              child: const Text(
+                                "Cancel",
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Ok",
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  iconSize: 32,
+                  icon: const Icon(
+                    Icons.delete_forever,
+                    color: Colors.redAccent,
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
   String? dateTime(String? dateTime) {
-    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime??""));
+    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));
     return dateFormat;
   }
 }

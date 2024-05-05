@@ -12,13 +12,11 @@ class HomeRepo {
       ApiService apiService = ApiService();
       var response = await apiService.post(
           endpoint: ApiStrings.studentLecturesEndpoint, data: data);
-      List<StudentsLecturesModel>lectures=[];
+      List<StudentsLecturesModel> lectures = [];
 
-
-        for (var item in response['result']) {
-          lectures.add(StudentsLecturesModel.fromJson(item));
-        }
-
+      for (var item in response['result']) {
+        lectures.add(StudentsLecturesModel.fromJson(item));
+      }
 
       return right(lectures);
     } catch (error) {

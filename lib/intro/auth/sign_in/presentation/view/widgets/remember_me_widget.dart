@@ -12,7 +12,6 @@ class RememberMeWidget extends StatefulWidget {
 }
 
 class _RememberMeWidgetState extends State<RememberMeWidget> {
-
   bool rememberMe = false;
 
   @override

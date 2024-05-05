@@ -1,27 +1,28 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_drop_down_button.dart';
-import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/widgets/create_lecture_text_field.dart';
+import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
-class CreateLectureInstructor extends StatefulWidget {
-  const CreateLectureInstructor({super.key, required this.userDataModel});
+class EditLectureInstructor extends StatefulWidget {
+  const EditLectureInstructor({
+    super.key,
+    required this.instructorLecturesModel,
+  });
 
-  final UserDataModel userDataModel;
+  final InstructorLecturesModel instructorLecturesModel;
 
   @override
-  State<CreateLectureInstructor> createState() =>
-      _CreateLectureInstructorState();
+  State<EditLectureInstructor> createState() => _EditLectureInstructorState();
 }
 
-class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
+class _EditLectureInstructorState extends State<EditLectureInstructor> {
   TextEditingController courseName = TextEditingController();
   TextEditingController chooseGrade = TextEditingController();
   TextEditingController chooseFaculty = TextEditingController();
@@ -29,6 +30,17 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
   TextEditingController selectTime = TextEditingController();
   TextEditingController lectureHall = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    courseName.text = widget.instructorLecturesModel.name!;
+    chooseGrade.text = widget.instructorLecturesModel.grade!;
+    chooseFaculty.text = widget.instructorLecturesModel.faculty!;
+    selectDate.text = widget.instructorLecturesModel.lectureStartTime!;
+    selectTime.text = widget.instructorLecturesModel.lectureStartTime!;
+    lectureHall.text = widget.instructorLecturesModel.lectureHall!;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +51,11 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
         decoration: const BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
+            image: AssetImage(
+              AppImages.backgroundImage,
+            ),
+            fit: BoxFit.fill,
+          ),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -53,7 +69,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                   height: 125.h,
                 ),
                 Text(
-                  getAppLocalizations(context)!.createLecture,
+                  getAppLocalizations(context)!.editLecture,
                   style: Theme.of(context).textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -69,6 +85,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                     chooseGrade.text = value!;
                   },
                   type: "grade",
+                  initialValue: widget.instructorLecturesModel.grade!,
                 ),
                 CustomFormDropDownButton(
                   fieldHint: getAppLocalizations(context)!.chooseFaculty,
@@ -77,6 +94,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                     chooseFaculty.text = value!;
                   },
                   type: "faculty",
+                  initialValue: widget.instructorLecturesModel.faculty,
                 ),
                 GestureDetector(
                   onTap: () async {
@@ -137,18 +155,18 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                 SizedBox(
                   height: 19.h,
                 ),
-                BlocConsumer<CreateLectureCubit, CreateLectureState>(
-                  listener: (BuildContext context, CreateLectureState state) {
+                BlocConsumer<EditLectureCubit, EditLectureState>(
+                  listener: (BuildContext context, EditLectureState state) {
                     state.maybeWhen(
                       orElse: () {},
-                      addError: (errorMessage) {
-                        return GlobalSnackBar.show(context, errorMessage);
-                      },
-                      addLecture: () {
-                        GlobalSnackBar.show(
-                            context, "Lecture Created Successfully");
-                        context.pop();
-                      },
+                      // addError: (errorMessage) {
+                      //   return GlobalSnackBar.show(context, errorMessage);
+                      // },
+                      // addLecture: () {
+                      //   GlobalSnackBar.show(
+                      //       context, "Lecture Created Successfully");
+                      //   context.pop();
+                      // },
                     );
                   },
                   builder: (context, state) => ElevatedButton(
@@ -170,7 +188,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                       if (_formKey.currentState!.validate()) {
                         context.read<CreateLectureCubit>().createLecture(data: {
                           "name": courseName.text,
-                          "instructor": widget.userDataModel.name,
+                          "instructor": widget.instructorLecturesModel.name,
                           "lecture_hall": lectureHall.text,
                           "faculty": chooseFaculty.text,
                           "grade": chooseGrade.text,
@@ -182,7 +200,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                       }
                     },
                     child: Text(
-                      getAppLocalizations(context)!.addLecture,
+                      getAppLocalizations(context)!.editLecture,
                     ),
                   ),
                 ),

@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCameraBlur extends StatelessWidget {
-
- final AlignmentGeometry? align;
-
+  final AlignmentGeometry? align;
 
   const CustomCameraBlur({super.key, this.align});
 
   @override
   Widget build(BuildContext context) {
-    return  Align(
-      alignment: align??Alignment.topCenter,
+    return Align(
+      alignment: align ?? Alignment.topCenter,
       child: SizedBox(
         width: 1.sw,
         height: 0.3.sh,

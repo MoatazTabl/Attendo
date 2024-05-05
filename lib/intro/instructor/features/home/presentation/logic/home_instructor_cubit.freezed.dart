@@ -27,6 +27,7 @@ mixin _$HomeInstructorState {
     required TResult Function(String error) dataError,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -48,6 +49,7 @@ mixin _$HomeInstructorState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -57,6 +59,7 @@ mixin _$HomeInstructorState {
     required TResult Function(DataError value) dataError,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -90,9 +93,9 @@ class _$HomeInstructorStateCopyWithImpl<$Res, $Val extends HomeInstructorState>
     implements $HomeInstructorStateCopyWith<$Res> {
   _$HomeInstructorStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -387,7 +390,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
   List<InstructorLecturesModel> get studentsLecturesModel {
     if (_studentsLecturesModel is EqualUnmodifiableListView)
       return _studentsLecturesModel;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_studentsLecturesModel);
   }
 

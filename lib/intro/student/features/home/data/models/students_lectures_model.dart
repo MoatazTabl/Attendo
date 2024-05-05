@@ -10,13 +10,13 @@ class StudentsLecturesModel {
 
   StudentsLecturesModel(
       {this.pk,
-        this.name,
-        this.instructorInfo,
-        this.lectureHall,
-        this.faculty,
-        this.grade,
-        this.lectureStartTime,
-        this.lectureEndTime});
+      this.name,
+      this.instructorInfo,
+      this.lectureHall,
+      this.faculty,
+      this.grade,
+      this.lectureStartTime,
+      this.lectureEndTime});
 
   StudentsLecturesModel.fromJson(Map<String, dynamic> json) {
     pk = json['pk'];

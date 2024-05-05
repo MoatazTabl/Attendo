@@ -1,8 +1,8 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/widgets/custom_drop_down_button.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
-import 'package:attendo/intro/auth/sign_up/presentation/view/widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -160,7 +160,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fieldHint: "Select faculty",
                               list: const ["Computers", "Commerce"],
                               onValueChanged: (selectedValue) {
-                                context.read<UserCubit>().signUpFaculty = selectedValue!;
+                                context.read<UserCubit>().signUpFaculty =
+                                    selectedValue!;
                               },
                             ),
                           ),
@@ -169,9 +170,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: CustomFormDropDownButton(
                               type: "grade",
                               fieldHint: "Select grade",
-                              list: const ["First", "Second","Third","Fourth"],
+                              list: const [
+                                "First",
+                                "Second",
+                                "Third",
+                                "Fourth"
+                              ],
                               onValueChanged: (selectedValue) {
-                                context.read<UserCubit>().signUpGrade = selectedValue!;
+                                context.read<UserCubit>().signUpGrade =
+                                    selectedValue!;
                               },
                             ),
                           ),
