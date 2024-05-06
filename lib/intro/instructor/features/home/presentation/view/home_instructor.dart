@@ -30,6 +30,7 @@ class _HomeInstructorState extends State<HomeInstructor> {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      key: UniqueKey(),
       padding: EdgeInsets.only(
         left: 16.sp,
         right: 16.sp,
@@ -51,10 +52,19 @@ class _HomeInstructorState extends State<HomeInstructor> {
           SizedBox(
             height: 5.h,
           ),
-          BlocBuilder<HomeInstructorCubit, HomeInstructorState>(
-              builder: (context, state) {
+          BlocConsumer<HomeInstructorCubit, HomeInstructorState>(
+              listener: (context, state) {
+            if (state == HomeInstructorState.lectureSkipped()) {
+              context.read<HomeInstructorCubit>().getStudentLectures(data: {
+                "instructor": widget.userData.name,
+                // "date":"2024-04-30T09:18:54"
+                "date": DateTime.now().toIso8601String().split(".")[0]
+              });
+            }
+          }, builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
+                print("erorr");
                 return const Center(
                   child: Icon(
                     Icons.error,

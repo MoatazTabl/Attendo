@@ -1,18 +1,26 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/skip_lecture_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class InstructorLectureCard extends StatelessWidget {
+class InstructorLectureCard extends StatefulWidget {
   const InstructorLectureCard(
       {super.key, required this.instructorLecturesModel});
 
   final InstructorLecturesModel instructorLecturesModel;
 
+  @override
+  State<InstructorLectureCard> createState() => _InstructorLectureCardState();
+}
+
+class _InstructorLectureCardState extends State<InstructorLectureCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,7 +35,7 @@ class InstructorLectureCard extends StatelessWidget {
               height: 15.h,
             ),
             Text(
-              instructorLecturesModel.name ?? "",
+              widget.instructorLecturesModel.name ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
@@ -40,14 +48,14 @@ class InstructorLectureCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  instructorLecturesModel.instructorInfo?.name ?? "",
+                  widget.instructorLecturesModel.instructorInfo?.name ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 22.sp),
                 ),
                 Text(
-                  instructorLecturesModel.grade ?? "",
+                  widget.instructorLecturesModel.grade ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -62,14 +70,17 @@ class InstructorLectureCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  instructorLecturesModel.lectureStartTime?.split("T")[0] ?? "",
+                  widget.instructorLecturesModel.lectureStartTime
+                          ?.split("T")[0] ??
+                      "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 18.sp),
                 ),
                 Text(
-                  dateTime(instructorLecturesModel.lectureStartTime) ?? "",
+                  dateTime(widget.instructorLecturesModel.lectureStartTime) ??
+                      "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -81,7 +92,7 @@ class InstructorLectureCard extends StatelessWidget {
               height: 9.h,
             ),
             Text(
-              instructorLecturesModel.lectureHall ?? "",
+              widget.instructorLecturesModel.lectureHall ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -93,7 +104,18 @@ class InstructorLectureCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     context.push(AppRoutes.editLectureInstructor,
-                        extra: instructorLecturesModel);
+                        extra: widget.instructorLecturesModel).then((value) {
+                      context
+                          .read<HomeInstructorCubit>()
+                          .getStudentLectures(data: {
+                        "instructor": widget.instructorLecturesModel
+                            .instructorInfo?.name,
+                        // "date":"2024-04-30T09:18:54"
+                        "date": DateTime.now()
+                            .toIso8601String()
+                            .split(".")[0]
+                      });
+                    });
                   },
                   iconSize: 32,
                   icon: const Icon(
@@ -104,7 +126,7 @@ class InstructorLectureCard extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     context.push(AppRoutes.instructorLectureDetails,
-                        extra: instructorLecturesModel);
+                        extra: widget.instructorLecturesModel);
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
@@ -136,39 +158,7 @@ class InstructorLectureCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          actionsAlignment: MainAxisAlignment.center,
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              child: const Text(
-                                "Cancel",
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Ok",
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  iconSize: 32,
-                  icon: const Icon(
-                    Icons.delete_forever,
-                    color: Colors.redAccent,
-                  ),
-                ),
+                SkipLectureDialog(instructorLecturesModel: widget.instructorLecturesModel),
               ],
             ),
           ],
@@ -182,3 +172,4 @@ class InstructorLectureCard extends StatelessWidget {
     return dateFormat;
   }
 }
+
