@@ -67,6 +67,12 @@
     "@_EditLecture": {},
     "editLecture": "تعديل المحاضره",
 
+    "@_AlertDialog": {},
+    "areYouSureYouWantToSkipLecture": "هل أنت متأكد أنك تريد تخطي هذه المحاضرة؟",
+    "skipLecture": "تخطي المحاضرة",
+    "cancel": "الغاء",
+    "ok": "تأكيد",
+
     "@_SnackBar": {},
     "loggedInSuccessfully": "تم تسجيل الدخول بنجاح"
 }

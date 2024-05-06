@@ -25,9 +25,9 @@ mixin _$HomeInstructorState {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -36,6 +36,7 @@ mixin _$HomeInstructorState {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,10 +47,10 @@ mixin _$HomeInstructorState {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -57,9 +58,9 @@ mixin _$HomeInstructorState {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -67,6 +68,7 @@ mixin _$HomeInstructorState {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +78,7 @@ mixin _$HomeInstructorState {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,9 +96,9 @@ class _$HomeInstructorStateCopyWithImpl<$Res, $Val extends HomeInstructorState>
     implements $HomeInstructorStateCopyWith<$Res> {
   _$HomeInstructorStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -144,6 +147,7 @@ class _$InitialImpl implements _Initial {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) {
     return initial();
   }
@@ -157,6 +161,7 @@ class _$InitialImpl implements _Initial {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) {
     return initial?.call();
   }
@@ -170,6 +175,7 @@ class _$InitialImpl implements _Initial {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -186,6 +192,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) {
     return initial(this);
   }
@@ -198,6 +205,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) {
     return initial?.call(this);
   }
@@ -210,6 +218,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -268,6 +277,7 @@ class _$DataFetchingImpl implements DataFetching {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) {
     return dataFetching();
   }
@@ -281,6 +291,7 @@ class _$DataFetchingImpl implements DataFetching {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) {
     return dataFetching?.call();
   }
@@ -294,6 +305,7 @@ class _$DataFetchingImpl implements DataFetching {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) {
     if (dataFetching != null) {
@@ -310,6 +322,7 @@ class _$DataFetchingImpl implements DataFetching {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) {
     return dataFetching(this);
   }
@@ -322,6 +335,7 @@ class _$DataFetchingImpl implements DataFetching {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) {
     return dataFetching?.call(this);
   }
@@ -334,6 +348,7 @@ class _$DataFetchingImpl implements DataFetching {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) {
     if (dataFetching != null) {
@@ -390,7 +405,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
   List<InstructorLecturesModel> get studentsLecturesModel {
     if (_studentsLecturesModel is EqualUnmodifiableListView)
       return _studentsLecturesModel;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_studentsLecturesModel);
   }
 
@@ -429,6 +444,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) {
     return lecturesAvailable(studentsLecturesModel);
   }
@@ -442,6 +458,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) {
     return lecturesAvailable?.call(studentsLecturesModel);
   }
@@ -455,6 +472,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) {
     if (lecturesAvailable != null) {
@@ -471,6 +489,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) {
     return lecturesAvailable(this);
   }
@@ -483,6 +502,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) {
     return lecturesAvailable?.call(this);
   }
@@ -495,6 +515,7 @@ class _$LecturesAvailableImpl implements LecturesAvailable {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) {
     if (lecturesAvailable != null) {
@@ -561,6 +582,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) {
     return lecturesNotAvailable();
   }
@@ -574,6 +596,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) {
     return lecturesNotAvailable?.call();
   }
@@ -587,6 +610,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) {
     if (lecturesNotAvailable != null) {
@@ -603,6 +627,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) {
     return lecturesNotAvailable(this);
   }
@@ -615,6 +640,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) {
     return lecturesNotAvailable?.call(this);
   }
@@ -627,6 +653,7 @@ class _$LecturesNotAvailableImpl implements LecturesNotAvailable {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) {
     if (lecturesNotAvailable != null) {
@@ -711,6 +738,7 @@ class _$DataErrorImpl implements DataError {
         lecturesAvailable,
     required TResult Function() lecturesNotAvailable,
     required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
   }) {
     return dataError(error);
   }
@@ -724,6 +752,7 @@ class _$DataErrorImpl implements DataError {
         lecturesAvailable,
     TResult? Function()? lecturesNotAvailable,
     TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
   }) {
     return dataError?.call(error);
   }
@@ -737,6 +766,7 @@ class _$DataErrorImpl implements DataError {
         lecturesAvailable,
     TResult Function()? lecturesNotAvailable,
     TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
     required TResult orElse(),
   }) {
     if (dataError != null) {
@@ -753,6 +783,7 @@ class _$DataErrorImpl implements DataError {
     required TResult Function(LecturesAvailable value) lecturesAvailable,
     required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
     required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
   }) {
     return dataError(this);
   }
@@ -765,6 +796,7 @@ class _$DataErrorImpl implements DataError {
     TResult? Function(LecturesAvailable value)? lecturesAvailable,
     TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
   }) {
     return dataError?.call(this);
   }
@@ -777,6 +809,7 @@ class _$DataErrorImpl implements DataError {
     TResult Function(LecturesAvailable value)? lecturesAvailable,
     TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
     TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
     required TResult orElse(),
   }) {
     if (dataError != null) {
@@ -793,4 +826,134 @@ abstract class DataError implements HomeInstructorState {
   @JsonKey(ignore: true)
   _$$DataErrorImplCopyWith<_$DataErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LectureSkippedImplCopyWith<$Res> {
+  factory _$$LectureSkippedImplCopyWith(_$LectureSkippedImpl value,
+          $Res Function(_$LectureSkippedImpl) then) =
+      __$$LectureSkippedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LectureSkippedImplCopyWithImpl<$Res>
+    extends _$HomeInstructorStateCopyWithImpl<$Res, _$LectureSkippedImpl>
+    implements _$$LectureSkippedImplCopyWith<$Res> {
+  __$$LectureSkippedImplCopyWithImpl(
+      _$LectureSkippedImpl _value, $Res Function(_$LectureSkippedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LectureSkippedImpl implements LectureSkipped {
+  const _$LectureSkippedImpl();
+
+  @override
+  String toString() {
+    return 'HomeInstructorState.lectureSkipped()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LectureSkippedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() dataFetching,
+    required TResult Function(
+            List<InstructorLecturesModel> studentsLecturesModel)
+        lecturesAvailable,
+    required TResult Function() lecturesNotAvailable,
+    required TResult Function(String error) dataError,
+    required TResult Function() lectureSkipped,
+  }) {
+    return lectureSkipped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? dataFetching,
+    TResult? Function(List<InstructorLecturesModel> studentsLecturesModel)?
+        lecturesAvailable,
+    TResult? Function()? lecturesNotAvailable,
+    TResult? Function(String error)? dataError,
+    TResult? Function()? lectureSkipped,
+  }) {
+    return lectureSkipped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? dataFetching,
+    TResult Function(List<InstructorLecturesModel> studentsLecturesModel)?
+        lecturesAvailable,
+    TResult Function()? lecturesNotAvailable,
+    TResult Function(String error)? dataError,
+    TResult Function()? lectureSkipped,
+    required TResult orElse(),
+  }) {
+    if (lectureSkipped != null) {
+      return lectureSkipped();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(DataFetching value) dataFetching,
+    required TResult Function(LecturesAvailable value) lecturesAvailable,
+    required TResult Function(LecturesNotAvailable value) lecturesNotAvailable,
+    required TResult Function(DataError value) dataError,
+    required TResult Function(LectureSkipped value) lectureSkipped,
+  }) {
+    return lectureSkipped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(DataFetching value)? dataFetching,
+    TResult? Function(LecturesAvailable value)? lecturesAvailable,
+    TResult? Function(LecturesNotAvailable value)? lecturesNotAvailable,
+    TResult? Function(DataError value)? dataError,
+    TResult? Function(LectureSkipped value)? lectureSkipped,
+  }) {
+    return lectureSkipped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(DataFetching value)? dataFetching,
+    TResult Function(LecturesAvailable value)? lecturesAvailable,
+    TResult Function(LecturesNotAvailable value)? lecturesNotAvailable,
+    TResult Function(DataError value)? dataError,
+    TResult Function(LectureSkipped value)? lectureSkipped,
+    required TResult orElse(),
+  }) {
+    if (lectureSkipped != null) {
+      return lectureSkipped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LectureSkipped implements HomeInstructorState {
+  const factory LectureSkipped() = _$LectureSkippedImpl;
 }

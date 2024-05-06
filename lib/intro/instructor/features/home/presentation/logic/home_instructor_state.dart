@@ -13,4 +13,6 @@ class HomeInstructorState with _$HomeInstructorState {
       LecturesNotAvailable;
 
   const factory HomeInstructorState.dataError(String error) = DataError;
+
+  const factory HomeInstructorState.lectureSkipped() = LectureSkipped;
 }

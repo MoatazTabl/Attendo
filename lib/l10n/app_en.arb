@@ -67,6 +67,12 @@
   "@_EditLecture": {},
   "editLecture": "Edit Lecture",
 
+  "@_AlertDialog": {},
+  "areYouSureYouWantToSkipLecture": "Are sure you want to skip this lecture?",
+  "skipLecture": "Skip Lecture",
+  "cancel": "cancel",
+  "ok": "OK",
+
   "@_SnackBar": {},
   "loggedInSuccessfully": "Logged In Successfully"
 }
