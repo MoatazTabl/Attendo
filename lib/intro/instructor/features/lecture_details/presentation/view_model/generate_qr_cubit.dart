@@ -3,7 +3,7 @@ import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
+
 
 import '../../../../../../core/errors/failures.dart';
 
@@ -11,6 +11,9 @@ part 'generate_qr_state.dart';
 
 class GenerateQrCubit extends Cubit<GenerateQrState> {
   GenerateQrCubit() : super(GenerateQrInitial());
+
+
+  bool? startLecture ;
 
   generateQrCode(int lecturePk) async {
     try {

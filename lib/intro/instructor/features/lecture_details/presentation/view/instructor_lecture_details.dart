@@ -1,6 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/generate_qr_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,8 +55,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 BlocBuilder<GenerateQrCubit, GenerateQrState>(
                   builder: (context, state) {
                     if (state is GenerateQrSuccess) {
-                      print(
-                          "Succccccccceeeeeeeeessss qr code is : ${state.qrCode}");
+                      context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
                         color: Colors.white,
                         child: QrImageView(
@@ -77,7 +77,8 @@ class InstructorLectureDetails extends StatelessWidget {
                             color: Colors.white,
                             height: 200.h,
                             width: 200.h,
-                            child: const Center(child: Text("Click to Generate QR "))),
+                            child: const Center(
+                                child: Text("Click to Generate QR "))),
                       );
                     }
                   },
@@ -85,19 +86,26 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    fixedSize: MaterialStatePropertyAll(
-                      Size(
-                        230.w,
-                        59.h,
+                BlocBuilder<GenerateQrCubit, GenerateQrState>(
+                  builder: (context, state) {
+                    final startLecture = context
+                        .select((GenerateQrCubit cubit) => cubit.startLecture);
+                    return Visibility(
+                      visible: startLecture ?? false,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          fixedSize: MaterialStatePropertyAll(
+                            Size(
+                              230.w,
+                              59.h,
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: const Text("Start Lecture"),
                       ),
-                    ),
-                  ),
-                  onPressed: () {
-
+                    );
                   },
-                  child: const Text("Start Lecture"),
                 ),
                 SizedBox(
                   height: 30.h,

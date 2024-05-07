@@ -1,6 +1,5 @@
 part of 'generate_qr_cubit.dart';
 
-@immutable
 abstract class GenerateQrState {}
 
 class GenerateQrInitial extends GenerateQrState {}
