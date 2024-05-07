@@ -36,8 +36,6 @@ class _SignInScreenState extends State<SignInScreen> {
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async {
           if (state is LoginSuccess) {
-            GlobalSnackBar.show(
-                context, getAppLocalizations(context)!.loggedInSuccessfully);
             if (domainTypeCheck) {
               userDataModel = await context
                   .read<UserCubit>()
@@ -52,6 +50,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
               context.pushReplacement("/mainScreen", extra: userDataModel);
             }
+            GlobalSnackBar.show(
+                context, getAppLocalizations(context)!.loggedInSuccessfully);
             context.read<UserCubit>().logInEmail.clear();
             context.read<UserCubit>().logInPassword.clear();
           } else if (state is LoginFailure) {
