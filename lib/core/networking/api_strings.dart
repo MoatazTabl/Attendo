@@ -1,5 +1,5 @@
 class ApiStrings{
-  static const String baseUrl="http://0.tcp.eu.ngrok.io:15838/";
+  static const String baseUrl="http://6.tcp.eu.ngrok.io:14135/";
 
   static const String studentLecturesEndpoint="getstudentlectures/";
   static const String instructorLecturesEndpoint="getinstructorlectures/";
@@ -9,4 +9,7 @@ class ApiStrings{
   static const String userId="pk";
   static const String getStudent="getstudent/";
   static const String getInstructors="getinstructor/";
+  static const String generateCode="generatecode/";
+  static const String qrCode="QR_code";
+  static const String startReport="startreport/";
 }

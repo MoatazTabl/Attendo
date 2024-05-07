@@ -8,6 +8,8 @@ import 'package:attendo/intro/instructor/features/edit_lecture/presentation/view
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';
 import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:attendo/main_screen.dart';
@@ -67,8 +69,18 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.instructorLectureDetails,
-      builder: (context, state) => InstructorLectureDetails(
-        instructorLecturesModel: state.extra as InstructorLecturesModel,
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => GenerateQrCubit(),
+          ),
+          BlocProvider(
+            create: (context) => StartReportCubit(),
+          ),
+        ],
+        child: InstructorLectureDetails(
+          instructorLecturesModel: state.extra as InstructorLecturesModel,
+        ),
       ),
     ),
     GoRoute(
