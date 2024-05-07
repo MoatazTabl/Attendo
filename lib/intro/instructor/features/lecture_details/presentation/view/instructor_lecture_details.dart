@@ -1,13 +1,11 @@
-import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../../../core/app_images.dart';
@@ -135,27 +133,7 @@ class InstructorLectureDetails extends StatelessWidget {
                   height: 30.h,
                 ),
                const StudentsAttendingWidget(),
-                InkWell(
-                  onTap: () {
-                    context.push("/attendancePageInstructor");
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        AppImages.studentAttendingPopUp,
-                        width: 232.w,
-                      ),
-                      Text(
-                        getAppLocalizations(context)!.clickToShowStudents,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(fontSize: 18.sp),
-                      ),
-                    ],
-                  ),
-                ),
+                const ShowStudentsListPopUpWidget(),
               ],
             ),
           )
