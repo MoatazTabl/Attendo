@@ -11,4 +11,5 @@ class ApiStrings{
   static const String getInstructors="getinstructor/";
   static const String generateCode="generatecode/";
   static const String qrCode="QR_code";
+  static const String startReport="startreport/";
 }

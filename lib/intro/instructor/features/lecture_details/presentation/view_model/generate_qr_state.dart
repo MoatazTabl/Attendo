@@ -14,3 +14,17 @@ class GenerateQrFailure extends GenerateQrState {
 
   GenerateQrFailure({required this.errMessage});
 }
+
+//------------------------------------------------------
+
+class StartReportSuccess extends GenerateQrState {
+ final ReportMessageModel reportMessage;
+
+ StartReportSuccess({required this.reportMessage});
+}
+class StartReportLoading extends GenerateQrState {}
+class StartReportFailure extends GenerateQrState {
+final String errMessage;
+
+ StartReportFailure({required this.errMessage});
+}
