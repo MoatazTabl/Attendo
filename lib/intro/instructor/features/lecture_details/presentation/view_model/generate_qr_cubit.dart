@@ -5,7 +5,6 @@ import 'package:attendo/intro/instructor/features/lecture_details/presentation/v
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 
-
 import '../../../../../../core/errors/failures.dart';
 
 part 'generate_qr_state.dart';
@@ -13,8 +12,7 @@ part 'generate_qr_state.dart';
 class GenerateQrCubit extends Cubit<GenerateQrState> {
   GenerateQrCubit() : super(GenerateQrInitial());
 
-
-  bool? startLecture ;
+  bool? startLecture;
 
   generateQrCode(int lecturePk) async {
     try {
@@ -22,6 +20,23 @@ class GenerateQrCubit extends Cubit<GenerateQrState> {
           .post(endpoint: ApiStrings.generateCode, data: {"pk": lecturePk});
       String qrCode = QrCodeModel.fromJson(response).qr;
       emit(GenerateQrSuccess(qrCode: qrCode));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(GenerateQrFailure(errMessage: k.errorMessage));
+      } else {
+        emit(GenerateQrFailure(errMessage: "Un Expected error , try again"));
+      }
+    }
+  }
+
+  startReport(int lecturePk) async {
+    try {
+      final response = await ApiService().post(
+          endpoint: ApiStrings.startReport, data: {"lecturepk": lecturePk});
+
+      ReportMessageModel reportMessage = ReportMessageModel.fromJson(response);
+      emit(StartReportSuccess(reportMessage: reportMessage));
     } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
