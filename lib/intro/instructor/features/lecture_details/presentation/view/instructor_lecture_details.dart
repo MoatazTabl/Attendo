@@ -102,8 +102,10 @@ class InstructorLectureDetails extends StatelessWidget {
                         builder: (context, state) {
                           return ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:
-                                  const MaterialStatePropertyAll(Colors.grey),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  state is StartReportSuccess
+                                      ? Colors.grey
+                                      : Color(0xff3746CC)),
                               fixedSize: MaterialStatePropertyAll(
                                 Size(
                                   230.w,
@@ -132,7 +134,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-               const StudentsAttendingWidget(),
+                const StudentsAttendingWidget(),
                 const ShowStudentsListPopUpWidget(),
               ],
             ),

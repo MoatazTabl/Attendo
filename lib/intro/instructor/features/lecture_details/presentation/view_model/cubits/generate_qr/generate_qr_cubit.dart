@@ -15,6 +15,7 @@ class GenerateQrCubit extends Cubit<GenerateQrState> {
 
   generateQrCode({required int lecturePk}) async {
     try {
+      emit(GenerateQrLoading());
       final response = await ApiService()
           .post(endpoint: ApiStrings.generateCode, data: {"pk": lecturePk});
       String qrCode = QrCodeModel.fromJson(response).qr;
