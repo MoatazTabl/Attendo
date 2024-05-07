@@ -1,6 +1,8 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/generate_qr_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -49,13 +51,36 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                Card(
-                  color: Colors.white,
-                  child: QrImageView(
-                    data: "OOP Lecture",
-                    version: 2,
-                    size: 200,
-                  ),
+                BlocBuilder<GenerateQrCubit, GenerateQrState>(
+                  builder: (context, state) {
+                    if (state is GenerateQrSuccess) {
+                      print(
+                          "Succccccccceeeeeeeeessss qr code is : ${state.qrCode}");
+                      return Card(
+                        color: Colors.white,
+                        child: QrImageView(
+                          data: state.qrCode,
+                          version: 3,
+                          size: 200,
+                        ),
+                      );
+                    } else if (state is GenerateQrLoading) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return InkWell(
+                        onTap: () {
+                          context
+                              .read<GenerateQrCubit>()
+                              .generateQrCode(instructorLecturesModel.pk!);
+                        },
+                        child: Container(
+                            color: Colors.white,
+                            height: 200.h,
+                            width: 200.h,
+                            child: const Center(child: Text("Click to Generate QR "))),
+                      );
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 20.h,
@@ -69,8 +94,10 @@ class InstructorLectureDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
-                  child: const Text("Generate Qr Code"),
+                  onPressed: () {
+
+                  },
+                  child: const Text("Start Lecture"),
                 ),
                 SizedBox(
                   height: 30.h,
