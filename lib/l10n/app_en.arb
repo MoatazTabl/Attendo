@@ -29,7 +29,7 @@
   "@_studentAttendanceCard": {},
     "scanQR": "Scan QR",
 
- "@_profileScreen": {},
+  "@_profileScreen": {},
     "changePhoto": "Change Photo",
     "name": "Name",
     "iD": "ID",

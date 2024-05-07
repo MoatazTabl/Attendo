@@ -2,8 +2,10 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -53,7 +55,13 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
               ? FloatingActionButton(
                   onPressed: () {
                     context.push(AppRoutes.createLectureInstructor,
-                        extra: widget.userData);
+                        extra: widget.userData).then((value) {
+                          context.read<HomeInstructorCubit>().getStudentLectures(data: {
+                            "instructor": widget.userData.name,
+                            // "date":"2024-04-30T09:18:54"
+                            "date": DateTime.now().toIso8601String().split(".")[0]
+                          });
+                    });
                   },
                   backgroundColor: const Color(0xff3746CC),
                   foregroundColor: Colors.white,

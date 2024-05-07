@@ -54,7 +54,7 @@ class _HomeInstructorState extends State<HomeInstructor> {
           ),
           BlocConsumer<HomeInstructorCubit, HomeInstructorState>(
               listener: (context, state) {
-            if (state == HomeInstructorState.lectureSkipped()) {
+            if (state == const HomeInstructorState.lectureSkipped()) {
               context.read<HomeInstructorCubit>().getStudentLectures(data: {
                 "instructor": widget.userData.name,
                 // "date":"2024-04-30T09:18:54"
