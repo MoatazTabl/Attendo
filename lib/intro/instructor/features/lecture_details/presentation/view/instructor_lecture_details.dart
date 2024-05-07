@@ -1,7 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
-import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/generate_qr_cubit.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../../../core/app_images.dart';
+import '../view_model/cubits/start_report/start_report_cubit.dart';
 
 class InstructorLectureDetails extends StatelessWidget {
   const InstructorLectureDetails(
@@ -69,14 +70,13 @@ class InstructorLectureDetails extends StatelessWidget {
                     } else {
                       return InkWell(
                         onTap: () {
-                          context
-                              .read<GenerateQrCubit>()
-                              .generateQrCode(instructorLecturesModel.pk!);
+                          context.read<GenerateQrCubit>().generateQrCode(
+                              lecturePk: instructorLecturesModel.pk!);
                         },
                         child: Container(
                             color: Colors.white,
                             height: 200.h,
-                            width: 200.h,
+                            width: 200.w,
                             child: const Center(
                                 child: Text("Click to Generate QR "))),
                       );
@@ -92,17 +92,40 @@ class InstructorLectureDetails extends StatelessWidget {
                         .select((GenerateQrCubit cubit) => cubit.startLecture);
                     return Visibility(
                       visible: startLecture ?? false,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: MaterialStatePropertyAll(
-                            Size(
-                              230.w,
-                              59.h,
+                      child: BlocConsumer<StartReportCubit, StartReportState>(
+                        listener: (context, state) {
+                          // TODO: implement listener
+                          if (state is StartReportSuccess) {
+                            GlobalSnackBar.show(
+                                context, state.reportMessage.message);
+                          }
+                        },
+                        builder: (context, state) {
+                          return ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  const MaterialStatePropertyAll(Colors.grey),
+                              fixedSize: MaterialStatePropertyAll(
+                                Size(
+                                  230.w,
+                                  59.h,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: const Text("Start Lecture"),
+                            onPressed: () {
+                              state is StartReportSuccess
+                                  ? null
+                                  : context
+                                      .read<StartReportCubit>()
+                                      .startReport(
+                                          lecturePk:
+                                              instructorLecturesModel.pk!);
+                            },
+                            child: state is StartReportSuccess
+                                ? const Text("Report Started")
+                                : const Text("Start Report"),
+                          );
+                        },
                       ),
                     );
                   },
