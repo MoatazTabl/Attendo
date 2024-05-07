@@ -1,6 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -133,41 +134,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                Container(
-                  width: 229.w,
-                  height: 156.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFF0F3FF),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 9.h,
-                      ),
-                      Text(
-                        getAppLocalizations(context)!.studentsAttending,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontSize: 20.sp,
-                            ),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Colors.black,
-                        radius: 35.w,
-                        child: const Text(
-                          '150',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+               const StudentsAttendingWidget(),
                 InkWell(
                   onTap: () {
                     context.push("/attendancePageInstructor");
