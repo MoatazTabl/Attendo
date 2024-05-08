@@ -1,5 +1,5 @@
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
@@ -93,7 +93,6 @@ class InstructorLectureDetails extends StatelessWidget {
                       visible: startLecture ?? false,
                       child: BlocConsumer<StartReportCubit, StartReportState>(
                         listener: (context, state) {
-                          // TODO: implement listener
                           if (state is StartReportSuccess) {
                             GlobalSnackBar.show(
                                 context, state.reportMessage.message);
@@ -105,7 +104,7 @@ class InstructorLectureDetails extends StatelessWidget {
                               backgroundColor: MaterialStatePropertyAll(
                                   state is StartReportSuccess
                                       ? Colors.grey
-                                      : Color(0xff3746CC)),
+                                      : const Color(0xff3746CC)),
                               fixedSize: MaterialStatePropertyAll(
                                 Size(
                                   230.w,
