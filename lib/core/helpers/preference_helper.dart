@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserLanguageService {
   static late SharedPreferences _sharedPreferences;
 
-   Future<void> init() async {
+  Future<void> init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
@@ -15,6 +15,6 @@ class UserLanguageService {
 
   static Future<void> setPreferredLanguage(String selectedLanguage) async {
     await _sharedPreferences.setString(
-        AppConstants.preferredLanguageKey,selectedLanguage);
+        AppConstants.preferredLanguageKey, selectedLanguage);
   }
 }

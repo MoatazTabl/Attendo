@@ -1,8 +1,8 @@
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/models.dart';
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../../core/errors/failures.dart';
 

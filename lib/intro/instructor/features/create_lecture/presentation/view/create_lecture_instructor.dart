@@ -30,7 +30,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
   TextEditingController selectStartTime = TextEditingController();
   TextEditingController selectEndTime = TextEditingController();
   TextEditingController lectureHall = TextEditingController();
-  AutovalidateMode autoValidateMode=AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -120,8 +120,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                       var now = DateTime.now();
                       var iso = DateTime(now.year, now.month, now.day,
                           time!.hour, time.minute);
-                      selectStartTime.text =
-                      from24to12(iso.toIso8601String())!;
+                      selectStartTime.text = from24to12(iso.toIso8601String())!;
                       setState(() {});
                     },
                     child: CreateLecturesTextField(
@@ -142,8 +141,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                       var now = DateTime.now();
                       var iso = DateTime(now.year, now.month, now.day,
                           time!.hour, time.minute);
-                      selectEndTime.text =
-                      from24to12(iso.toIso8601String())!;
+                      selectEndTime.text = from24to12(iso.toIso8601String())!;
                       setState(() {});
                     },
                     child: CreateLecturesTextField(
@@ -196,7 +194,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                         ),
                       ),
                       onPressed: () {
-                        autoValidateMode=AutovalidateMode.onUserInteraction;
+                        autoValidateMode = AutovalidateMode.onUserInteraction;
                         if (_formKey.currentState!.validate()) {
                           context
                               .read<CreateLectureCubit>()
@@ -232,11 +230,11 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
       return "Field Cannot be empty";
     }
     String? startTimeString =
-    from12to24("${selectDate.text} ${selectStartTime.text}");
+        from12to24("${selectDate.text} ${selectStartTime.text}");
     DateTime startTime = DateTime.parse(startTimeString!);
 
     String? endTimeString =
-    from12to24("${selectDate.text} ${selectEndTime.text}");
+        from12to24("${selectDate.text} ${selectEndTime.text}");
     var endTime = DateTime.parse(endTimeString!);
     var diff = endTime.difference(startTime);
     if (diff.isNegative) {
@@ -247,6 +245,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
     }
     return null;
   }
+
   String? validator(String? value) {
     if (value == null || value.isEmpty) {
       return "Field Cannot be empty";
@@ -254,7 +253,6 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
 
     return null;
   }
-
 
   String? from24to12(String? dateTime) {
     var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));

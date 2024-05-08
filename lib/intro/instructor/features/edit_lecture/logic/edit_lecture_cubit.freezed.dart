@@ -23,6 +23,7 @@ mixin _$EditLectureState {
     required TResult Function(String errorMessage) editError,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -38,6 +39,7 @@ mixin _$EditLectureState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
@@ -45,6 +47,7 @@ mixin _$EditLectureState {
     required TResult Function(EditError value) editError,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -74,9 +77,9 @@ class _$EditLectureStateCopyWithImpl<$Res, $Val extends EditLectureState>
     implements $EditLectureStateCopyWith<$Res> {
   _$EditLectureStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 

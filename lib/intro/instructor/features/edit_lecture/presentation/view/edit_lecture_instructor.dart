@@ -250,11 +250,11 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
       return "Field Cannot be empty";
     }
     String? startTimeString =
-    from12to24("${selectDate.text} ${selectStartTime.text}");
+        from12to24("${selectDate.text} ${selectStartTime.text}");
     DateTime startTime = DateTime.parse(startTimeString!);
 
     String? endTimeString =
-    from12to24("${selectDate.text} ${selectEndTime.text}");
+        from12to24("${selectDate.text} ${selectEndTime.text}");
     var endTime = DateTime.parse(endTimeString!);
     var diff = endTime.difference(startTime);
     if (diff.isNegative) {
@@ -265,6 +265,7 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
     }
     return null;
   }
+
   String? validator(String? value) {
     if (value == null || value.isEmpty) {
       return "Field Cannot be empty";
@@ -272,7 +273,6 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
 
     return null;
   }
-
 
   String? from24to12(String? dateTime) {
     var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));

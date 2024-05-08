@@ -54,13 +54,17 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
           floatingActionButton: index == 0
               ? FloatingActionButton(
                   onPressed: () {
-                    context.push(AppRoutes.createLectureInstructor,
-                        extra: widget.userData).then((value) {
-                          context.read<HomeInstructorCubit>().getStudentLectures(data: {
-                            "instructor": widget.userData.name,
-                            // "date":"2024-04-30T09:18:54"
-                            "date": DateTime.now().toIso8601String().split(".")[0]
-                          });
+                    context
+                        .push(AppRoutes.createLectureInstructor,
+                            extra: widget.userData)
+                        .then((value) {
+                      context
+                          .read<HomeInstructorCubit>()
+                          .getStudentLectures(data: {
+                        "instructor": widget.userData.name,
+                        // "date":"2024-04-30T09:18:54"
+                        "date": DateTime.now().toIso8601String().split(".")[0]
+                      });
                     });
                   },
                   backgroundColor: const Color(0xff3746CC),
@@ -70,7 +74,10 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                       36,
                     ),
                   ),
-                  child: const Icon(Icons.add,size: 32,),
+                  child: const Icon(
+                    Icons.add,
+                    size: 32,
+                  ),
                 )
               : null,
           bottomNavigationBar: BottomNavigationBar(

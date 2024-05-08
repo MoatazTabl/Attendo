@@ -35,8 +35,8 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       deactivatedColor: Colors.white,
       onDateChange: (date) {
         context.read<HomeInstructorCubit>().getStudentLectures(data: {
-        "instructor": widget.userData.name,
-        "date": date.toIso8601String().split(".")[0]
+          "instructor": widget.userData.name,
+          "date": date.toIso8601String().split(".")[0]
         });
         setState(() {
           selectedDay = date;

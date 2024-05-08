@@ -21,5 +21,4 @@ class EditLectureCubit extends Cubit<EditLectureState> {
       emit(EditLectureState.editError(k.errorMessage));
     }
   }
-
 }

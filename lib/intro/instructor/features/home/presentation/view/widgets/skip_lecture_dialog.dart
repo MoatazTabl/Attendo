@@ -29,8 +29,9 @@ class SkipLectureDialog extends StatelessWidget {
                   return StatefulBuilder(
                     builder: (context, setState) {
                       return AlertDialog(
-                        content:  Text(
-                          getAppLocalizations(context)!.areYouSureYouWantToSkipLecture,
+                        content: Text(
+                          getAppLocalizations(context)!
+                              .areYouSureYouWantToSkipLecture,
                         ),
                         contentTextStyle: Theme.of(context)
                             .textTheme
@@ -38,7 +39,7 @@ class SkipLectureDialog extends StatelessWidget {
                             ?.copyWith(color: Colors.black),
                         actionsAlignment: MainAxisAlignment.spaceEvenly,
                         backgroundColor: Colors.white,
-                        title:  Center(
+                        title: Center(
                           child: Text(
                             getAppLocalizations(context)!.skipLecture,
                           ),
@@ -66,9 +67,8 @@ class SkipLectureDialog extends StatelessWidget {
                               context.read<HomeInstructorCubit>().skipLecture(
                                   data: {"pk": instructorLecturesModel.pk});
                             },
-                            child:  Text(
+                            child: Text(
                               getAppLocalizations(context)!.ok,
-
                               style: const TextStyle(color: Colors.redAccent),
                             ),
                           ),
@@ -81,7 +81,8 @@ class SkipLectureDialog extends StatelessWidget {
                   state.maybeWhen(
                     orElse: () {},
                     lectureSkipped: () {
-                      GlobalSnackBar.show(context, getAppLocalizations(context)!.lectureSkipped);
+                      GlobalSnackBar.show(context,
+                          getAppLocalizations(context)!.lectureSkipped);
 
                       context.pop(true);
                     },

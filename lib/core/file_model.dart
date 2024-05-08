@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
 
-class FileModel
-{
-  XFile finger  ;
+class FileModel {
+  XFile finger;
 
-  FileModel({ required this.finger});
+  FileModel({required this.finger});
 }

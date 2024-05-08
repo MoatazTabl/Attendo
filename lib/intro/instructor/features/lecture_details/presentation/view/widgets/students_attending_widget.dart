@@ -8,7 +8,7 @@ class StudentsAttendingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       width: 229.w,
       height: 156.h,
       decoration: BoxDecoration(
@@ -24,8 +24,8 @@ class StudentsAttendingWidget extends StatelessWidget {
           Text(
             getAppLocalizations(context)!.studentsAttending,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              fontSize: 20.sp,
-            ),
+                  fontSize: 20.sp,
+                ),
           ),
           SizedBox(
             height: 16.h,

@@ -1,9 +1,8 @@
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/widgets/page_indicator.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/widgets/card_page_view.dart';
-import 'package:attendo/core/widgets/page_indicator.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

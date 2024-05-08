@@ -9,9 +9,9 @@ class GlobalSnackBar {
   });
 
   static show(
-      BuildContext context,
-      String message,
-      ) {
+    BuildContext context,
+    String message,
+  ) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -19,8 +19,7 @@ class GlobalSnackBar {
         backgroundColor: const Color(0xff3746CC),
         showCloseIcon: true,
         width: 300.w,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
     );
   }

@@ -28,8 +28,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
           if (state is SignUpSuccess) {
-            GlobalSnackBar.show(
-                context, getAppLocalizations(context)!.emailCreatedSuccessfully);
+            GlobalSnackBar.show(context,
+                getAppLocalizations(context)!.emailCreatedSuccessfully);
             context.pop();
             context.read<UserCubit>().clearSignUpFields();
           } else if (state is SignUpFailure) {

@@ -6,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'attendo_state.dart';
 
 class AttendoCubit extends Cubit<AttendoState> {
-
-  AttendoCubit()
-      : super(AttendoEnglishLocale());
+  AttendoCubit() : super(AttendoEnglishLocale());
 
   void switchLanguage(String localeName) async {
     await UserLanguageService.setPreferredLanguage(localeName);
@@ -23,6 +21,4 @@ class AttendoCubit extends Cubit<AttendoState> {
         emit(AttendoEnglishLocale());
     }
   }
-  }
-
-
+}

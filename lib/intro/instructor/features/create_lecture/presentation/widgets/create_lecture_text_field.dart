@@ -8,7 +8,8 @@ class CreateLecturesTextField extends StatelessWidget {
     this.suffix,
     this.suffixIcon,
     required this.textEditingController,
-    required this.enabled,  required this.validator,
+    required this.enabled,
+    required this.validator,
   });
 
   final String hintText;

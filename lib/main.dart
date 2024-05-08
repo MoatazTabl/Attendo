@@ -12,31 +12,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/helpers/preference_helper.dart';
 
-
-
-
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   mainFunctions(widgetsBinding);
   CacheHelper().init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) async => runApp(
-
       const Attendo(),
     ),
   );
-
 }
 
-Future<void>mainFunctions(WidgetsBinding widgetsBinding)async
-{
+Future<void> mainFunctions(WidgetsBinding widgetsBinding) async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
     debugPrint("${e.code}, ${e.description}");
   }
-  Bloc.observer=MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   await UserLanguageService().init();
   await CacheHelper().init();
   await ScreenUtil.ensureScreenSize();

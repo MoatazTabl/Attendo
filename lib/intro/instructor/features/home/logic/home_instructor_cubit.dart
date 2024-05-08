@@ -29,18 +29,15 @@ class HomeInstructorCubit extends Cubit<HomeInstructorState> {
       }
     });
   }
-  Future<void>skipLecture({required Map data})async
-  {
+
+  Future<void> skipLecture({required Map data}) async {
     emit(const HomeInstructorState.initial());
-    var apiService=ApiService();
-    try
-        {
-          await apiService.post(endpoint: "skiplecture/", data: data);
-          emit(const HomeInstructorState.lectureSkipped());
-        }
-        on DioException catch(e)
-    {
-      final error=ServerFailures.fromDioException(e);
+    var apiService = ApiService();
+    try {
+      await apiService.post(endpoint: "skiplecture/", data: data);
+      emit(const HomeInstructorState.lectureSkipped());
+    } on DioException catch (e) {
+      final error = ServerFailures.fromDioException(e);
       emit(HomeInstructorState.dataError(error.errorMessage));
     }
   }

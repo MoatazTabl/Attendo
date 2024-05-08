@@ -5,7 +5,8 @@ final ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   textTheme: textTheme,
   primaryColor: const Color(0xff3b47c7),
-  textSelectionTheme: const TextSelectionThemeData(cursorColor: Color(0xff3b47c7)),
+  textSelectionTheme:
+      const TextSelectionThemeData(cursorColor: Color(0xff3b47c7)),
   progressIndicatorTheme: const ProgressIndicatorThemeData(
     color: Color(0xff3b47c7),
   ),
