@@ -1,7 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
+import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/skip_lecture_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,17 +18,25 @@ class InstructorLectureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.w)),
-      color: const Color(0xFFF0F3FF).withOpacity(0.5),
-      elevation: 0,
-      child: Padding(
-        padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 15.h),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 15.h,
+    return Center(
+      child: Container(
+        height: 268.h,
+        width: 358.w,
+        // padding: EdgeInsets.only(bottom: 10.h),
+        decoration: ShapeDecoration(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              25.w,
             ),
+          ),
+          color: const Color(0xFFF0F3FF).withOpacity(0.5),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // SizedBox(
+            //   height: 15.h,
+            // ),
             Text(
               instructorLecturesModel.name ?? "",
               style: Theme.of(context)
@@ -36,9 +44,9 @@ class InstructorLectureCard extends StatelessWidget {
                   .titleLarge!
                   .copyWith(fontSize: 36.sp),
             ),
-            SizedBox(
-              height: 9.h,
-            ),
+            // SizedBox(
+            //   height: 9.h,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -58,24 +66,21 @@ class InstructorLectureCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10.h,
-            ),
+            // SizedBox(
+            //   height: 10.h,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  instructorLecturesModel.lectureStartTime
-                          ?.split("T")[0] ??
-                      "",
+                  instructorLecturesModel.lectureStartTime?.split("T")[0] ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 18.sp),
                 ),
                 Text(
-                  dateTime(instructorLecturesModel.lectureStartTime) ??
-                      "",
+                  dateTime(instructorLecturesModel.lectureStartTime) ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -83,9 +88,9 @@ class InstructorLectureCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 9.h,
-            ),
+            // SizedBox(
+            //   height: 9.h,
+            // ),
             Text(
               instructorLecturesModel.lectureHall ?? "",
               style: Theme.of(context)
@@ -98,17 +103,17 @@ class InstructorLectureCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    context.push(AppRoutes.editLectureInstructor,
-                        extra: instructorLecturesModel).then((value) {
+                    context
+                        .push(AppRoutes.editLectureInstructor,
+                            extra: instructorLecturesModel)
+                        .then((value) {
                       context
                           .read<HomeInstructorCubit>()
                           .getStudentLectures(data: {
-                        "instructor": instructorLecturesModel
-                            .instructorInfo?.name,
+                        "instructor":
+                            instructorLecturesModel.instructorInfo?.name,
                         // "date":"2024-04-30T09:18:54"
-                        "date": DateTime.now()
-                            .toIso8601String()
-                            .split(".")[0]
+                        "date": DateTime.now().toIso8601String().split(".")[0]
                       });
                     });
                   },
@@ -153,7 +158,8 @@ class InstructorLectureCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SkipLectureDialog(instructorLecturesModel: instructorLecturesModel),
+                SkipLectureDialog(
+                    instructorLecturesModel: instructorLecturesModel),
               ],
             ),
           ],
@@ -167,4 +173,3 @@ class InstructorLectureCard extends StatelessWidget {
     return dateFormat;
   }
 }
-

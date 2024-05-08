@@ -1,5 +1,5 @@
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';

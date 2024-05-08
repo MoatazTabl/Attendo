@@ -1,7 +1,7 @@
 import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/networking/api_service.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/repo/home_instructor_repo.dart';
+import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/home/data/repo/home_instructor_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

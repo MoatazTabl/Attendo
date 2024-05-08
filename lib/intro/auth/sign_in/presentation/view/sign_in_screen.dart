@@ -99,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       CustomTextFormField(
                         controller: context.read<UserCubit>().logInEmail,
-                        hintText: getAppLocalizations(context)!.emailOrID,
+                        hintText: getAppLocalizations(context)!.signInEmail,
                         isPass: false,
                         prefixIcon: Icons.person,
                       ),

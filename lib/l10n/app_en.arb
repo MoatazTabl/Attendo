@@ -2,8 +2,8 @@
   "@_SignInPage": {},
     "welcomeTo": "Welcome to ",
     "attendo": "Attendo",
-    "emailOrID": "Email or ID",
-    "password": "Password",
+  "signInEmail": "Email",
+  "password": "Password",
     "rememberMe": "Remember Me",
     "logIn": "Log In",
     "dontHaveAccount": "Don't Have Account?",
@@ -73,6 +73,7 @@
   "skipLecture": "Skip Lecture",
   "cancel": "cancel",
   "ok": "OK",
+  "lectures": "Lectures",
 
   "@_SnackBar": {},
   "loggedInSuccessfully": "Logged In Successfully",
