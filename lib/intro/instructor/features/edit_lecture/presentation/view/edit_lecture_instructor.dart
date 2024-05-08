@@ -120,8 +120,8 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                       ),
                       initialDate: dateTimeNow,
                     );
-                    selectDate.text =
-                        "${date?.toIso8601String().split("T")[0]}";
+                    selectDate.text = date?.toIso8601String().split("T")[0] ??
+                        selectDate.text;
 
                     setState(() {});
                   },

@@ -97,8 +97,8 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                         ),
                         initialDate: dateTimeNow,
                       );
-                      selectDate.text =
-                          "${date?.toIso8601String().split("T")[0]}";
+                      selectDate.text = date?.toIso8601String().split("T")[0] ??
+                          DateTime.now().toIso8601String().split("T")[0];
 
                       setState(() {});
                     },
