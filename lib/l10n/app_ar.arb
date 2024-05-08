@@ -2,7 +2,7 @@
     "@_SignInPage": {},
     "welcomeTo": "مرحبا الي ",
     "attendo": "اتتيندو",
-    "emailOrID": "البريد الإلكتروني أو الهوية",
+    "signInEmail": "البريد الإلكتروني",
     "password": "الرقم السري",
     "rememberMe": "تذكرني",
     "logIn": "تسجيل الدخول",
@@ -67,6 +67,9 @@
 
     "@_EditLecture": {},
     "editLecture": "تعديل المحاضره",
+
+    "lectures": "المحاضرات",
+
 
     "@_AlertDialog": {},
     "areYouSureYouWantToSkipLecture": "هل أنت متأكد أنك تريد تخطي هذه المحاضرة؟",

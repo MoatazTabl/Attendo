@@ -1,7 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
+import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

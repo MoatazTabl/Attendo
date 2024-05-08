@@ -18,7 +18,7 @@ class CustomFormDropDownButton extends StatefulWidget {
   final String fieldHint;
   final List<String> list;
   final Function(String?) onValueChanged;
-  final type;
+  final String type;
   final String? initialValue;
 
   @override
@@ -41,7 +41,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
           return null; // Return null if validation succeeds
         },
         style: const TextStyle(color: Colors.black, fontSize: 18),
-        elevation: 16,
+        elevation: 12,
         icon: SvgPicture.asset(
           AppImages.arrowDownIcon,
           width: 10,
@@ -49,6 +49,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
         ),
         value: widget.initialValue,
         hint: Text(widget.fieldHint),
+        borderRadius: BorderRadius.circular(16),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xfff0f3ff),
@@ -57,6 +58,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
               borderRadius: BorderRadius.circular(12.w),
               borderSide: BorderSide.none),
         ),
+        enableFeedback: true,
         autovalidateMode: context.read<UserCubit>().autoValidateMode,
         items: widget.list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(

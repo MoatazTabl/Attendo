@@ -5,8 +5,8 @@ import 'package:attendo/intro/instructor/features/create_lecture/logic/create_le
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/presentation/view/edit_lecture_instructor.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
+import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';

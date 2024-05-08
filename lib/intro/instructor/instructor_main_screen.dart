@@ -2,7 +2,6 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import 'features/home/logic/home_instructor_cubit.dart';
 import 'features/home/presentation/view/home_instructor.dart';
 
 class InstructorMainScreen extends StatefulWidget {
@@ -70,7 +70,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                       36,
                     ),
                   ),
-                  child: const Icon(Icons.add),
+                  child: const Icon(Icons.add,size: 32,),
                 )
               : null,
           bottomNavigationBar: BottomNavigationBar(
