@@ -1,9 +1,9 @@
 import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/page_indicator.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/instructor_lecture_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +22,7 @@ class HomeInstructor extends StatefulWidget {
 
 class _HomeInstructorState extends State<HomeInstructor> {
   final PageController _pageController =
-      PageController(initialPage: 0, viewportFraction: 0.5);
+      PageController(initialPage: 0, viewportFraction: 0.5, );
 
   @override
   void initState() {
@@ -36,88 +36,70 @@ class _HomeInstructorState extends State<HomeInstructor> {
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      scrollDirection: Axis.vertical,
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return [
-          SliverPersistentHeader(
-            delegate: DatePiker(userData: widget.userData),
-            pinned: true,
-            floating: false,
-          ),
-        ];
-      },
-      body: BlocBuilder<HomeInstructorCubit, HomeInstructorState>(
-        builder: (context, state) {
-          return state.maybeWhen(
-            orElse: () {
-              return const Center(
-                child: Icon(
-                  Icons.error,
-                  color: Colors.redAccent,
-                ),
-              );
-            },
-            dataFetching: () => const Center(
-              child: CircularProgressIndicator(
-                color: Color(
-                  0xff182F78,
-                ),
-              ),
-            ),
-            dataError: (error) => Center(
-              child: Text(error),
-            ),
-            lecturesAvailable: (lectures) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 40.h,
-                        ),
-                        Text(
-                          getAppLocalizations(context)!.lectures,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge
-                              ?.copyWith(fontSize: 35.sp),
-                        ),
-                        Expanded(
-                          child: PageView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) {
-                              return InstructorLectureCard(
-                                instructorLecturesModel: lectures[index],
-                              );
-                            },
-                            controller: _pageController,
-                            itemCount: lectures.length,
-                          ),
-                        ),
-                      ],
+    return CustomScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+
+      slivers: [
+        SliverPersistentHeader(
+          delegate: DatePiker(userData: widget.userData),
+          pinned: true,
+          floating: false,
+        ),
+        SliverFillRemaining(
+
+          child: BlocBuilder<HomeInstructorCubit, HomeInstructorState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return const Center(
+                    child: Icon(
+                      Icons.error,
+                      color: Colors.redAccent,
+                    ),
+                  );
+                },
+                dataFetching: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: Color(
+                      0xff182F78,
                     ),
                   ),
-                  PageIndicator(
-                    pageController: _pageController,
-                    cardsNumber: lectures.length,
+                ),
+                dataError: (error) => Center(
+                  child: Text(error),
+                ),
+                lecturesAvailable: (lectures) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: PageView.builder(
+                          controller: _pageController,
+                          scrollDirection: Axis.vertical,
+                          itemCount: lectures.length,
+                          itemBuilder: (context, index) {
+                            return InstructorLectureCard(
+                                instructorLecturesModel: lectures[index]);
+                          },
+                        ),
+                      ),
+                      PageIndicator(
+                          pageController: _pageController,
+                          cardsNumber: lectures.length),
+                    ],
+                  );
+                },
+                lecturesNotAvailable: () => Center(
+                  child: SvgPicture.asset(
+                    AppImages.noAvailableLectures,
+                    width: 350.w,
+                    height: 340.h,
                   ),
-                ],
+                ),
               );
             },
-            lecturesNotAvailable: () => Center(
-              child: SvgPicture.asset(
-                AppImages.noAvailableLectures,
-                width: 350.w,
-                height: 340.h,
-              ),
-            ),
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -143,6 +125,6 @@ class DatePiker extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }

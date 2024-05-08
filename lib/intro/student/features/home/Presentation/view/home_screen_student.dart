@@ -3,6 +3,7 @@ import 'package:attendo/core/widgets/page_indicator.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/widgets/card_page_view.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,69 +38,69 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      scrollDirection: Axis.vertical,
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverPersistentHeader(
-            delegate: DatePiker(userData: widget.userData),
-            pinned: true,
-          )
-        ];
-      },
-      body: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          return state.maybeWhen(
-            orElse: () {
-              return const Center(
-                child: Icon(
-                  Icons.error,
-                  color: Colors.redAccent,
-                ),
-              );
-            },
-            dataFetching: () => const Center(
-              child: CircularProgressIndicator(
-                color: Color(
-                  0xff182F78,
-                ),
-              ),
-            ),
-            dataError: (error) => Center(
-              child: Text(error),
-            ),
-            lecturesAvailable: (lectures) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CardPageView(
-                          pageController: _pageController,
-                          lectures: lectures,
-                        ),
-                      ],
+    return CustomScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      slivers: [
+        SliverPersistentHeader(
+          delegate: DatePiker(userData: widget.userData),
+          pinned: true,
+        ),
+        SliverFillRemaining(
+          child: BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return const Center(
+                    child: Icon(
+                      Icons.error,
+                      color: Colors.redAccent,
+                    ),
+                  );
+                },
+                dataFetching: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: Color(
+                      0xff182F78,
                     ),
                   ),
-                  PageIndicator(
-                    pageController: _pageController,
-                    cardsNumber: lectures.length,
+                ),
+                dataError: (error) => Center(
+                  child: Text(error),
+                ),
+                lecturesAvailable: (lectures) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CardPageView(
+                              pageController: _pageController,
+                              lectures: lectures,
+                            ),
+                          ],
+                        ),
+                      ),
+                      PageIndicator(
+                        pageController: _pageController,
+                        cardsNumber: lectures.length,
+                      ),
+                    ],
+                  );
+                },
+                lecturesNotAvailable: () => Center(
+                  child: SvgPicture.asset(
+                    AppImages.noAvailableLectures,
+                    width: 350.w,
+                    height: 340.h,
                   ),
-                ],
+                ),
               );
             },
-            lecturesNotAvailable: () => Center(
-              child: SvgPicture.asset(
-                AppImages.noAvailableLectures,
-                width: 350.w,
-                height: 340.h,
-              ),
-            ),
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
