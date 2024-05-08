@@ -57,6 +57,11 @@
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>This app requires read and write access to the photo library.</string>
 		<!-- Permission options for the video player -->
+		<key>CFBundleLocalizations</key>
+        <array>
+        	<string>en</string>
+        	<string>ar</string>
+        </array>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
