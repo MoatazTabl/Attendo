@@ -1,6 +1,6 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/skip_lecture_dialog.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +10,12 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class InstructorLectureCard extends StatefulWidget {
+class InstructorLectureCard extends StatelessWidget {
   const InstructorLectureCard(
       {super.key, required this.instructorLecturesModel});
 
   final InstructorLecturesModel instructorLecturesModel;
 
-  @override
-  State<InstructorLectureCard> createState() => _InstructorLectureCardState();
-}
-
-class _InstructorLectureCardState extends State<InstructorLectureCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -35,7 +30,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
               height: 15.h,
             ),
             Text(
-              widget.instructorLecturesModel.name ?? "",
+              instructorLecturesModel.name ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
@@ -48,14 +43,14 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  widget.instructorLecturesModel.instructorInfo?.name ?? "",
+                  instructorLecturesModel.instructorInfo?.name ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 22.sp),
                 ),
                 Text(
-                  widget.instructorLecturesModel.grade ?? "",
+                  instructorLecturesModel.grade ?? "",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -70,7 +65,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  widget.instructorLecturesModel.lectureStartTime
+                  instructorLecturesModel.lectureStartTime
                           ?.split("T")[0] ??
                       "",
                   style: Theme.of(context)
@@ -79,7 +74,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
                       .copyWith(fontSize: 18.sp),
                 ),
                 Text(
-                  dateTime(widget.instructorLecturesModel.lectureStartTime) ??
+                  dateTime(instructorLecturesModel.lectureStartTime) ??
                       "",
                   style: Theme.of(context)
                       .textTheme
@@ -92,7 +87,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
               height: 9.h,
             ),
             Text(
-              widget.instructorLecturesModel.lectureHall ?? "",
+              instructorLecturesModel.lectureHall ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -104,11 +99,11 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
                 IconButton(
                   onPressed: () {
                     context.push(AppRoutes.editLectureInstructor,
-                        extra: widget.instructorLecturesModel).then((value) {
+                        extra: instructorLecturesModel).then((value) {
                       context
                           .read<HomeInstructorCubit>()
                           .getStudentLectures(data: {
-                        "instructor": widget.instructorLecturesModel
+                        "instructor": instructorLecturesModel
                             .instructorInfo?.name,
                         // "date":"2024-04-30T09:18:54"
                         "date": DateTime.now()
@@ -126,7 +121,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
                 ElevatedButton(
                   onPressed: () {
                     context.push(AppRoutes.instructorLectureDetails,
-                        extra: widget.instructorLecturesModel);
+                        extra: instructorLecturesModel);
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(
@@ -158,7 +153,7 @@ class _InstructorLectureCardState extends State<InstructorLectureCard> {
                     ),
                   ),
                 ),
-                SkipLectureDialog(instructorLecturesModel: widget.instructorLecturesModel),
+                SkipLectureDialog(instructorLecturesModel: instructorLecturesModel),
               ],
             ),
           ],

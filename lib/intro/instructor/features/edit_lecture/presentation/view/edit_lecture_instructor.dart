@@ -4,12 +4,13 @@ import 'package:attendo/core/widgets/custom_drop_down_button.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/widgets/create_lecture_text_field.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class EditLectureInstructor extends StatefulWidget {
   const EditLectureInstructor({
@@ -28,8 +29,10 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
   TextEditingController chooseGrade = TextEditingController();
   TextEditingController chooseFaculty = TextEditingController();
   TextEditingController selectDate = TextEditingController();
-  TextEditingController selectTime = TextEditingController();
+  TextEditingController selectStartTime = TextEditingController();
+  TextEditingController selectEndTime = TextEditingController();
   TextEditingController lectureHall = TextEditingController();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -40,11 +43,11 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
     lectureHall.text = widget.instructorLecturesModel.lectureHall!;
     selectDate.text =
         widget.instructorLecturesModel.lectureStartTime!.split("T")[0];
-    selectTime.text =
-        widget.instructorLecturesModel.lectureStartTime!
-            .split("T")[1]
-            .split(".")[0]
-            .split(":00")[0];
+
+    selectStartTime.text =
+        from24to12(widget.instructorLecturesModel.lectureStartTime!)!;
+    selectEndTime.text =
+        from24to12(widget.instructorLecturesModel.lectureEndTime!)!;
     super.initState();
   }
 
@@ -67,7 +70,7 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
           backgroundColor: Colors.transparent,
           body: Form(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: autoValidateMode,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -83,6 +86,7 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                   hintText: getAppLocalizations(context)!.enterCourseName,
                   textEditingController: courseName,
                   enabled: true,
+                  validator: validator,
                 ),
                 CustomFormDropDownButton(
                   fieldHint: getAppLocalizations(context)!.chooseGrade,
@@ -126,6 +130,7 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                     suffixIcon: SvgPicture.asset(AppImages.calenderIcon),
                     textEditingController: selectDate,
                     enabled: false,
+                    validator: validator,
                   ),
                 ),
                 GestureDetector(
@@ -138,18 +143,36 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                     var now = DateTime.now();
                     var iso = DateTime(
                         now.year, now.month, now.day, time!.hour, time.minute);
-                    selectTime.text = iso
-                        .toIso8601String()
-                        .split("T")[1]
-                        .split(".")[0]
-                        .split(":00")[0];
+                    selectStartTime.text = from24to12(iso.toIso8601String())!;
                     setState(() {});
                   },
                   child: CreateLecturesTextField(
-                    hintText: getAppLocalizations(context)!.selectTime,
+                    hintText: getAppLocalizations(context)!.selectStartTime,
                     suffixIcon: SvgPicture.asset(AppImages.timeIcon),
-                    textEditingController: selectTime,
+                    textEditingController: selectStartTime,
                     enabled: false,
+                    validator: validator,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    var time = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                      initialEntryMode: TimePickerEntryMode.inputOnly,
+                    );
+                    var now = DateTime.now();
+                    var iso = DateTime(
+                        now.year, now.month, now.day, time!.hour, time.minute);
+                    selectEndTime.text = from24to12(iso.toIso8601String())!;
+                    setState(() {});
+                  },
+                  child: CreateLecturesTextField(
+                    hintText: getAppLocalizations(context)!.selectEndTime,
+                    suffixIcon: SvgPicture.asset(AppImages.timeIcon),
+                    textEditingController: selectEndTime,
+                    enabled: false,
+                    validator: lectureTimeValidator,
                   ),
                 ),
                 CreateLecturesTextField(
@@ -157,6 +180,7 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                   suffixIcon: SvgPicture.asset(AppImages.locationIcon),
                   textEditingController: lectureHall,
                   enabled: true,
+                  validator: validator,
                 ),
                 SizedBox(
                   height: 19.h,
@@ -169,8 +193,8 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                         return GlobalSnackBar.show(context, errorMessage);
                       },
                       editLectureDone: () {
-                        GlobalSnackBar.show(
-                            context, "Lecture Edited Successfully");
+                        GlobalSnackBar.show(context,
+                            getAppLocalizations(context)!.lectureEdited);
                         context.pop();
                       },
                     );
@@ -191,29 +215,9 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                       ),
                     ),
                     onPressed: () {
+                      autoValidateMode = AutovalidateMode.onUserInteraction;
                       if (_formKey.currentState!.validate()) {
-                        print({
-                          "pk": widget.instructorLecturesModel.pk,
-                          "name": courseName.text,
-                          "instructor": widget
-                              .instructorLecturesModel.instructorInfo?.name,
-                          "lecture_hall": lectureHall.text,
-                          "faculty": chooseFaculty.text,
-                          "grade": chooseGrade.text,
-                          "lecture_start_time":
-                              "${selectDate.text}T${selectTime.text}:00",
-                          "lecture_end_time":
-                              "${selectDate.text}T${selectTime.text}:00"
-                        });
                         context.read<EditLectureCubit>().editLecture(data: {
-                          // "pk": 3,
-                          // "name": "aaaa",
-                          // "instructor": "Mostafa Mahmoud",
-                          // "lecture_hall": "A2",
-                          // "faculty": "computer",
-                          // "grade": "third",
-                          // "lecture_start_time": "2017-05-11T09:18:54",
-                          // "lecture_end_time": "2017-05-11T09:18:54",
                           "pk": widget.instructorLecturesModel.pk,
                           "name": courseName.text,
                           "instructor": widget
@@ -221,10 +225,10 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
                           "lecture_hall": lectureHall.text,
                           "faculty": chooseFaculty.text,
                           "grade": chooseGrade.text,
-                          "lecture_start_time":
-                              "${selectDate.text}T${selectTime.text}:00",
-                          "lecture_end_time":
-                              "${selectDate.text}T${selectTime.text}:00"
+                          "lecture_start_time": from12to24(
+                              "${selectDate.text} ${selectStartTime.text}"),
+                          "lecture_end_time": from12to24(
+                              "${selectDate.text} ${selectEndTime.text}")
                         });
                       }
                     },
@@ -239,5 +243,45 @@ class _EditLectureInstructorState extends State<EditLectureInstructor> {
         ),
       ),
     );
+  }
+
+  String? lectureTimeValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Field Cannot be empty";
+    }
+    String? startTimeString =
+    from12to24("${selectDate.text} ${selectStartTime.text}");
+    DateTime startTime = DateTime.parse(startTimeString!);
+
+    String? endTimeString =
+    from12to24("${selectDate.text} ${selectEndTime.text}");
+    var endTime = DateTime.parse(endTimeString!);
+    var diff = endTime.difference(startTime);
+    if (diff.isNegative) {
+      return "Lecture End Time Cannot be before Start Time";
+    }
+    if (diff.inMicroseconds == 0) {
+      return "Lecture Cannot End At The Same Time";
+    }
+    return null;
+  }
+  String? validator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Field Cannot be empty";
+    }
+
+    return null;
+  }
+
+
+  String? from24to12(String? dateTime) {
+    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));
+    return dateFormat;
+  }
+
+  String? from12to24(String? dateTime) {
+    var dateFormat = DateFormat("yyyy-MM-dd hh:mm a").parse(dateTime!);
+
+    return dateFormat.toIso8601String();
   }
 }

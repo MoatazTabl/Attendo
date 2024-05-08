@@ -60,7 +60,8 @@
     "chooseGrade": "اختر درجةالسنة",
     "chooseFaculty": "اختر الشعبه",
     "selectDate": "حدد التاريخ",
-    "selectTime": "حدد الوقت",
+    "selectStartTime": "حدد وقت البدايه",
+    "selectEndTime": "حدد وقت النهايه",
     "lectureHall": "قاعة المحاضرات",
     "addLecture": "إضافة محاضرة",
 
@@ -74,5 +75,9 @@
     "ok": "تأكيد",
 
     "@_SnackBar": {},
-    "loggedInSuccessfully": "تم تسجيل الدخول بنجاح"
+    "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",
+    "lectureCreatedSuccessfully": "تمت إضافه المحاضرة",
+    "lectureSkipped": "تم تخطي المحاضرة",
+    "lectureEdited": "تم التعديل علي المحاضره بنجاح"
+
 }

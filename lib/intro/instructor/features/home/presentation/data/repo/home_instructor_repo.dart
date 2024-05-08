@@ -1,7 +1,7 @@
 import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
-import 'package:attendo/intro/instructor/features/home/presentation/data/models/InstructorLecturesModel.dart';
+import 'package:attendo/intro/instructor/features/home/presentation/data/models/instructor_lectures_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 

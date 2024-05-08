@@ -60,7 +60,8 @@
   "chooseGrade": "Choose Grade",
   "chooseFaculty": "Choose Faculty",
   "selectDate": "Select Date",
-  "selectTime": "Select Time",
+  "selectStartTime": "Select Start Time",
+  "selectEndTime": "Select End Time",
   "lectureHall": "Lecture Hall",
   "addLecture": "Add Lecture",
 
@@ -74,5 +75,8 @@
   "ok": "OK",
 
   "@_SnackBar": {},
-  "loggedInSuccessfully": "Logged In Successfully"
+  "loggedInSuccessfully": "Logged In Successfully",
+  "lectureCreatedSuccessfully": "Lecture Created Successfully",
+  "lectureSkipped": "Lecture Skipped",
+  "lectureEdited": "Lecture Edited Successfully"
 }

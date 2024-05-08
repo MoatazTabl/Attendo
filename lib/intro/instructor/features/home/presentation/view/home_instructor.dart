@@ -64,7 +64,6 @@ class _HomeInstructorState extends State<HomeInstructor> {
           }, builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
-                print("erorr");
                 return const Center(
                   child: Icon(
                     Icons.error,

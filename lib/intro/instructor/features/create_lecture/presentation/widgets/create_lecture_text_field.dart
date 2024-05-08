@@ -8,7 +8,7 @@ class CreateLecturesTextField extends StatelessWidget {
     this.suffix,
     this.suffixIcon,
     required this.textEditingController,
-    required this.enabled,
+    required this.enabled,  required this.validator,
   });
 
   final String hintText;
@@ -16,18 +16,14 @@ class CreateLecturesTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController textEditingController;
   final bool enabled;
+  final String? Function(String? value) validator;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Field Cannot be empty";
-          }
-          return null;
-        },
+        validator: validator,
         controller: textEditingController,
         enabled: enabled,
         decoration: InputDecoration(
