@@ -5,20 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DatePickerWidget extends StatefulWidget {
+class DatePickerWidget extends StatelessWidget {
   const DatePickerWidget({
     super.key,
     required this.userData,
   });
 
   final UserDataModel userData;
-
-  @override
-  State<DatePickerWidget> createState() => _DatePickerWidgetState();
-}
-
-class _DatePickerWidgetState extends State<DatePickerWidget> {
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +28,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       deactivatedColor: Colors.white,
       onDateChange: (date) {
         context.read<HomeInstructorCubit>().getInstructorLectures(data: {
-          "instructor": widget.userData.name,
+          "instructor": userData.name,
           "date": date.toIso8601String().split(".")[0]
         });
-
-        setState(() {
           context.read<HomeInstructorCubit>().dateTime = date;
-        });
+
       },
     );
   }

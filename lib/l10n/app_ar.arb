@@ -8,6 +8,7 @@
   "logIn": "تسجيل الدخول",
   "dontHaveAccount": "ليس لديك حساب؟",
   "signUpNow": "أفتح حساب الأن",
+
   "@_SignUpPage": {},
   "signUp": "أفتح حساب",
   "firstName": "الاسم الأول",
@@ -19,12 +20,15 @@
   "selectGrade": "اختر السنه",
   "scanFingerprint": "مسح بصمة الإصبع",
   "emailCreatedSuccessfully": "تم انشاء حسابك بنجاح ",
+
   "@_BottomNavBar": {},
   "home": "الصفحة الرئيسية",
   "profile": "الحساب",
   "settings": "الاعدادات",
+
   "@_studentAttendanceCard": {},
   "scanQR": "مسح QR",
+
   "@_profileScreen": {},
   "changePhoto": "تغيير الصوره",
   "name": "الاسم",
@@ -32,37 +36,45 @@
   "phone": "الهاتف",
   "email": "البريد",
   "edit": "تعديل",
+
   "@_settingsPage": {},
   "light": "ساطع",
   "dark": "مظلم",
   "language": "اللغة",
   "logOut": "تسجيل الخروج",
+
   "@_adminAttendanceCard": {},
   "showDetails": "اظهار التفاصيل",
+
   "@_QrPage": {},
   "studentsAttending": "الطلاب الحضارين",
   "clickToShowStudents": "انقر لإظهار الطلاب",
+
   "@_AttendanceList": {},
   "attendanceList": "قائمة الحضور",
   "downloadFullList": "تحميل القائمة الكاملة",
+
   "@_CreateLecture": {},
   "createLecture": "إنشاء محاضرة",
   "enterCourseName": "أدخل اسم الدورة",
-  "chooseGrade": "اختر درجةالسنة",
+  "chooseGrade": "اختر السنة",
   "chooseFaculty": "اختر الشعبه",
   "selectDate": "حدد التاريخ",
   "selectStartTime": "حدد وقت البدايه",
   "selectEndTime": "حدد وقت النهايه",
   "lectureHall": "قاعة المحاضرات",
   "addLecture": "إضافة محاضرة",
+
   "@_EditLecture": {},
   "editLecture": "تعديل المحاضره",
   "lectures": "المحاضرات",
+
   "@_AlertDialog": {},
   "areYouSureYouWantToSkipLecture": "هل أنت متأكد أنك تريد تخطي هذه المحاضرة؟",
   "skipLecture": "تخطي المحاضرة",
   "cancel": "الغاء",
   "ok": "تأكيد",
+
   "@_SnackBar": {},
   "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",
   "lectureCreatedSuccessfully": "تمت إضافه المحاضرة",
