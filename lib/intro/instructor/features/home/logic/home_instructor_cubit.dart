@@ -12,7 +12,9 @@ part 'home_instructor_state.dart';
 class HomeInstructorCubit extends Cubit<HomeInstructorState> {
   HomeInstructorCubit() : super(const HomeInstructorState.initial());
 
-  Future<void> getStudentLectures({required Map data}) async {
+  DateTime dateTime=DateTime.now();
+
+  Future<void> getInstructorLectures({required Map data}) async {
     emit(const HomeInstructorState.dataFetching());
     var homeInstructorRepo = HomeInstructorRepo();
 

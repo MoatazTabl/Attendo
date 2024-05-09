@@ -26,7 +26,7 @@ class _HomeInstructorState extends State<HomeInstructor> {
 
   @override
   void initState() {
-    context.read<HomeInstructorCubit>().getStudentLectures(data: {
+    context.read<HomeInstructorCubit>().getInstructorLectures(data: {
       "instructor": widget.userData.name,
       // "date":"2024-04-30T09:18:54"
       "date": DateTime.now().toIso8601String().split(".")[0]

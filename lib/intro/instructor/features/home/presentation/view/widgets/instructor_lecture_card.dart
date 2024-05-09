@@ -109,11 +109,11 @@ class InstructorLectureCard extends StatelessWidget {
                         .then((value) {
                       context
                           .read<HomeInstructorCubit>()
-                          .getStudentLectures(data: {
+                          .getInstructorLectures(data: {
                         "instructor":
                             instructorLecturesModel.instructorInfo?.name,
                         // "date":"2024-04-30T09:18:54"
-                        "date": DateTime.now().toIso8601String().split(".")[0]
+                        "date": context.read<HomeInstructorCubit>().dateTime.toIso8601String().split(".")[0]
                       });
                     });
                   },

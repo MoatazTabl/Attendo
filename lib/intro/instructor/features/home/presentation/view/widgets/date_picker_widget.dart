@@ -18,7 +18,7 @@ class DatePickerWidget extends StatefulWidget {
 }
 
 class _DatePickerWidgetState extends State<DatePickerWidget> {
-  DateTime? selectedDay;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,13 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       dayTextStyle: TextStyle(fontSize: 15.sp),
       deactivatedColor: Colors.white,
       onDateChange: (date) {
-        context.read<HomeInstructorCubit>().getStudentLectures(data: {
+        context.read<HomeInstructorCubit>().getInstructorLectures(data: {
           "instructor": widget.userData.name,
           "date": date.toIso8601String().split(".")[0]
         });
+
         setState(() {
-          selectedDay = date;
+          context.read<HomeInstructorCubit>().dateTime = date;
         });
       },
     );
