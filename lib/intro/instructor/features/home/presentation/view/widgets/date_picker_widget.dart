@@ -21,7 +21,7 @@ class DatePickerWidget extends StatelessWidget {
       selectionColor: Colors.white,
       selectedTextColor: const Color(0xff71a8ef),
       height: 110.h,
-      daysCount: 100,
+      daysCount: 60,
       dateTextStyle: TextStyle(fontSize: 15.sp),
       monthTextStyle: TextStyle(fontSize: 16.sp),
       dayTextStyle: TextStyle(fontSize: 15.sp),
