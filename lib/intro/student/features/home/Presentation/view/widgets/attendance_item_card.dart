@@ -9,6 +9,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../scan_qr/presentation/view/scan_qr.dart';
+
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({
     super.key,
@@ -148,7 +150,8 @@ class AttendanceCard extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      context.push("/fingerPrintScanScreen");
+                      // context.push("/fingerPrintScanScreen");
+                      QrCodeFunctions.scan(context,"fsfd");
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
