@@ -96,18 +96,16 @@ class InstructorLectureDetails extends StatelessWidget {
                           if (state is StartReportSuccess) {
                             GlobalSnackBar.show(
                                 context, state.reportMessage.message);
+                          } else if (state is StartReportFailure) {
+                            GlobalSnackBar.show(context, state.errMessage);
                           }
-                          else if(state is StartReportFailure)
-                            {
-                              GlobalSnackBar.show(
-                                  context, state.errMessage);
-                            }
                         },
                         builder: (context, state) {
                           return ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
-                                  state is StartReportSuccess || state is StartReportFailure
+                                  state is StartReportSuccess ||
+                                          state is StartReportFailure
                                       ? Colors.grey
                                       : const Color(0xff3746CC)),
                               fixedSize: MaterialStatePropertyAll(
@@ -126,7 +124,8 @@ class InstructorLectureDetails extends StatelessWidget {
                                           lecturePk:
                                               instructorLecturesModel.pk!);
                             },
-                            child: state is StartReportSuccess || state is StartReportFailure
+                            child: state is StartReportSuccess ||
+                                    state is StartReportFailure
                                 ? const Text("Report Started")
                                 : const Text("Start Report"),
                           );
@@ -138,8 +137,12 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                 StudentsAttendingWidget(numberOfStudents: instructorLecturesModel.students?? 0,),
-                const ShowStudentsListPopUpWidget(),
+                StudentsAttendingWidget(
+                  numberOfStudents: instructorLecturesModel.students ?? 0,
+                ),
+                ShowStudentsListPopUpWidget(
+                  lecturePk: instructorLecturesModel.pk!,
+                ),
               ],
             ),
           )

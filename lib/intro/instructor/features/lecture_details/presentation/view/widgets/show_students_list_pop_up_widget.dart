@@ -7,13 +7,15 @@ import '../../../../../../../core/app_images.dart';
 import '../../../../../../../core/helpers/common.dart';
 
 class ShowStudentsListPopUpWidget extends StatelessWidget {
-  const ShowStudentsListPopUpWidget({super.key});
+  final int lecturePk;
+
+  const ShowStudentsListPopUpWidget({super.key, required this.lecturePk});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push("/attendancePageInstructor");
+        context.push("/attendancePageInstructor",extra: lecturePk);
       },
       child: Stack(
         alignment: Alignment.center,

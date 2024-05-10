@@ -90,7 +90,7 @@ final GoRouter router = GoRouter(
         BlocProvider(
           create: (context) => GetReportCubit(),
         ),
-      ], child:const AttendancePageInstructor(), ),
+      ], child: AttendancePageInstructor(lecturePk: state.extra as int,), ),
     ),
     GoRoute(
       path: AppRoutes.createLectureInstructor,

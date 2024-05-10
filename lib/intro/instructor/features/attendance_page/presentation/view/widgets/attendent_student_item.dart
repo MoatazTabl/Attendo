@@ -5,7 +5,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../../core/app_images.dart';
 
 class AttendentSrudentItem extends StatelessWidget {
-  const AttendentSrudentItem({super.key});
+ final String studentName;
+
+ final String nationalId;
+
+  const AttendentSrudentItem(
+      {super.key, required this.studentName, required this.nationalId});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,9 @@ class AttendentSrudentItem extends StatelessWidget {
         AppImages.studentAvatarTest,
         width: 60.w,
       ),
-      title: const Text(
-        'Omar Ahmed',
-        style: TextStyle(color: Colors.black),
+      title: Text(
+        studentName,
+        style: const TextStyle(color: Colors.black),
       ),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +32,7 @@ class AttendentSrudentItem extends StatelessWidget {
                 Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           ),
           Text(
-            "ID:30201",
+            nationalId,
             style:
                 Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           )
