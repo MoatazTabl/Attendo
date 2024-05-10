@@ -108,7 +108,12 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                     } else if (state is GetReportFailure) {
                       return Text(state.errMessage);
                     } else {
-                      return const CircularProgressIndicator();
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                        ],
+                      );
                     }
                   },
                 ),
@@ -163,7 +168,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                       } else if (state is GetReportFailure) {
                         return Text(state.errMessage);
                       } else {
-                        return Center(child: const CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
