@@ -41,7 +41,7 @@ class StudentsAttendingWidget extends StatelessWidget {
             radius: 35.w,
             child:  Text(
               '$numberOfStudents',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),

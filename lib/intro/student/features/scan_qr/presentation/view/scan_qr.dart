@@ -1,27 +1,32 @@
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
-import 'package:attendo/intro/auth/models/sign_in_model.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/append_student_model.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/get_qr_code_model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../../core/errors/failures.dart';
 
 class QrCodeFunctions {
   static scan(BuildContext context, String lectureCode , int lecturePk,String studentName) async {
     try {
       String generatedCode = await FlutterBarcodeScanner.scanBarcode(
-          "#2A99CF", "Cancel", true, ScanMode.QR);
-      print(
-          "Scanned Successfully, the code is $generatedCode time ${DateTime.now().toString()}");
+          "#FF0000", "Cancel", true, ScanMode.QR);
       if (generatedCode == lectureCode) {
       final appendStudentState =  await appendStudent(lecturePk,studentName);
         _showDialog(context, appendStudentState);
       } else {
-        _showDialog(context, "Wrong! This is not the correct QR code. ${DateTime.now().toString()}");
+        _showDialog(context, "Wrong! This is not the correct QR code.");
       }
-    } catch (e) {
-      print(e.toString());
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        return k.errorMessage;
+      } else {
+        return "Un Expected error , try again";
+      }
     }
   }
 
@@ -30,14 +35,14 @@ class QrCodeFunctions {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("QR Code Scan Result"),
+          title: const Text("QR Code Scan Result"),
           content: Text(message),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );
@@ -54,19 +59,21 @@ class QrCodeFunctions {
 
  static appendStudent(int lectureId, String studentName) async {
     try {
-      print("Successssssssssssssssssssssssssssss");
       final response =
           await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
         "lecturepk": lectureId,
         "studentname": studentName,
         "authtime": DateFormat('HH:mm:ss').format(DateTime.now())
       });
-      print("Successssssssssssssssssssssssssssss");
       final AppendStudentModel message = AppendStudentModel.fromJson(response);
-      print("Successssssssssssssssssssssssssssss");
       return message.message;
-    } catch (e) {
-      print(e.toString());
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        return k.errorMessage;
+      } else {
+       return "Un Expected error , try again";
+      }
     }
   }
 }
