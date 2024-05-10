@@ -43,10 +43,20 @@ class QrCodeFunctions {
 
   getLectureCode(int lectureId) async {
     final response = await ApiService()
-        .post(endpoint: ApiStrings.getLatestCode, data: {"pk":lectureId});
+        .post(endpoint: ApiStrings.getLatestCode, data: {"pk": lectureId});
     final lectureCode = GetQrCodeModel.fromJson(response);
     return lectureCode.qrCode;
+  }
 
-
+  appendStudent(int lectureId,String studentName) async {
+    try {
+      final response =
+          await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
+            "lecturepk": lectureId,
+            "studentname": studentName
+          });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

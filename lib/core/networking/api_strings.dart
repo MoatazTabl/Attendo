@@ -13,5 +13,6 @@ class ApiStrings {
   static const String qrCode = "QR_code";
   static const String startReport = "startreport/";
   static const String getLatestCode = "getcode/";
+  static const String appendStudent = "appendstudent/";
 
 }
