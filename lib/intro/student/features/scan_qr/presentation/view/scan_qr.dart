@@ -1,6 +1,7 @@
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/intro/auth/models/sign_in_model.dart';
+import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/get_qr_code_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
@@ -42,9 +43,9 @@ class QrCodeFunctions {
 
   getLectureCode(int lectureId) async {
     final response = await ApiService()
-        .post(endpoint: ApiStrings.getLatestCode, data: {"pk": lectureId});
-    final lectureCode = SignInModel.fromJson(response);
-    return lectureCode.token;
+        .post(endpoint: ApiStrings.getLatestCode, data: {"pk":lectureId});
+    final lectureCode = GetQrCodeModel.fromJson(response);
+    return lectureCode.qrCode;
 
 
   }
