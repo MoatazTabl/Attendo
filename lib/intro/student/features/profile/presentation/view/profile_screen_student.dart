@@ -28,36 +28,36 @@ class ProfileScreenStudent extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
-                      Size(
-                        141.w,
-                        52.h,
-                      ),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                      const Color(
-                        0xff3746CC,
-                      ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          15.w,
-                        ),
-                      ),
-                    ),
-                    padding: MaterialStateProperty.all(EdgeInsets.zero)),
-                onPressed: () {},
-                child: Text(
-                  getAppLocalizations(context)!.changePhoto,
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        fontSize: 20.sp,
-                      ),
-                ),
-              ),
+              // ElevatedButton(
+              //   style: ButtonStyle(
+              //       fixedSize: MaterialStateProperty.all(
+              //         Size(
+              //           141.w,
+              //           52.h,
+              //         ),
+              //       ),
+              //       backgroundColor: MaterialStateProperty.all(
+              //         const Color(
+              //           0xff3746CC,
+              //         ),
+              //       ),
+              //       foregroundColor: MaterialStateProperty.all(Colors.white),
+              //       shape: MaterialStateProperty.all(
+              //         RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(
+              //             15.w,
+              //           ),
+              //         ),
+              //       ),
+              //       padding: MaterialStateProperty.all(EdgeInsets.zero)),
+              //   onPressed: () {},
+              //   child: Text(
+              //     getAppLocalizations(context)!.changePhoto,
+              //     style: Theme.of(context).textTheme.labelMedium!.copyWith(
+              //           fontSize: 20.sp,
+              //         ),
+              //   ),
+              // ),
               SizedBox(
                 height: 24.h,
               ),

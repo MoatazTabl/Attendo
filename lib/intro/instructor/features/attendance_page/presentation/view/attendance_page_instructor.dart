@@ -23,7 +23,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<GetReportCubit>().getReport(widget.lecturePk);
+    context.read<GetReportCubit>().getReport(widget.lecturePk,context);
   }
 
   @override
