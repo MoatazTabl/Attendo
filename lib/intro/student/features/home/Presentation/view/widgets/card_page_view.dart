@@ -5,10 +5,11 @@ import 'package:flutter/services.dart';
 
 class CardPageView extends StatefulWidget {
   const CardPageView(
-      {super.key, required this.pageController, required this.lectures});
+      {super.key, required this.pageController, required this.lectures,required this.studentName});
 
   final PageController pageController;
   final List<StudentsLecturesModel> lectures;
+  final String studentName;
 
   @override
   State<CardPageView> createState() => _CardPageViewState();
@@ -29,6 +30,7 @@ class _CardPageViewState extends State<CardPageView> {
           return AttendanceCard(
             isActive: _activePage == index ? true : false,
             lectures: widget.lectures[index],
+            studentName: widget.studentName,
           );
         },
         onPageChanged: (value) {
