@@ -149,9 +149,10 @@ class AttendanceCard extends StatelessWidget {
                     ],
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async{
                       // context.push("/fingerPrintScanScreen");
-                      QrCodeFunctions.scan(context,"fsfd");
+                    final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
+                      QrCodeFunctions.scan(context,generatedCode);
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
