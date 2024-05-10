@@ -43,6 +43,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
           ),
           SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 BlocBuilder<GetReportCubit, GetReportState>(
                   builder: (context, state) {
@@ -150,6 +151,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                           },
                           itemBuilder: (context, index) {
                             return AttendentSrudentItem(
+                              authorizationTime: state
+                                  .getReportModel.authorizationTime![index],
                                 studentName: state
                                     .getReportModel.studentsList![index].name!,
                                 nationalId: state.getReportModel
@@ -160,7 +163,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                       } else if (state is GetReportFailure) {
                         return Text(state.errMessage);
                       } else {
-                        return const CircularProgressIndicator();
+                        return Center(child: const CircularProgressIndicator());
                       }
                     },
                   ),

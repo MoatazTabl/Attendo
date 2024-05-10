@@ -9,8 +9,10 @@ class AttendentSrudentItem extends StatelessWidget {
 
  final String nationalId;
 
+ final String authorizationTime;
+
   const AttendentSrudentItem(
-      {super.key, required this.studentName, required this.nationalId});
+      {super.key, required this.studentName, required this.nationalId,required this.authorizationTime});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class AttendentSrudentItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "11:00 AM",
+            authorizationTime,
             style:
                 Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           ),
