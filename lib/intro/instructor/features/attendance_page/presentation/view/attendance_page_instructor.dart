@@ -106,7 +106,12 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                         ],
                       );
                     } else if (state is GetReportFailure) {
-                      return Text(state.errMessage);
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(state.errMessage),
+                        ],
+                      );
                     } else {
                       return const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -166,7 +171,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                           itemCount: state.getReportModel.studentsList!.length,
                         );
                       } else if (state is GetReportFailure) {
-                        return Text(state.errMessage);
+                        return Center(child: Text(state.errMessage));
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
