@@ -11,11 +11,26 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/start_report/start_report_cubit.dart';
 
-class InstructorLectureDetails extends StatelessWidget {
+class InstructorLectureDetails extends StatefulWidget {
   const InstructorLectureDetails(
       {super.key, required this.instructorLecturesModel});
 
   final InstructorLecturesModel instructorLecturesModel;
+
+  @override
+  State<InstructorLectureDetails> createState() =>
+      _InstructorLectureDetailsState();
+}
+
+class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context
+        .read<GenerateQrCubit>()
+        .generateQrCode(lecturePk: widget.instructorLecturesModel.pk!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +57,7 @@ class InstructorLectureDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      instructorLecturesModel.name ?? "",
+                      widget.instructorLecturesModel.name ?? "",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: 30.sp,
                           ),
@@ -55,7 +70,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 BlocBuilder<GenerateQrCubit, GenerateQrState>(
                   builder: (context, state) {
                     if (state is GenerateQrSuccess) {
-                      context.read<GenerateQrCubit>().startLecture = true;
+                      // context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
                         color: Colors.white,
                         child: QrImageView(
@@ -70,7 +85,7 @@ class InstructorLectureDetails extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           context.read<GenerateQrCubit>().generateQrCode(
-                              lecturePk: instructorLecturesModel.pk!);
+                              lecturePk: widget.instructorLecturesModel.pk!);
                         },
                         child: Container(
                             color: Colors.white,
@@ -85,61 +100,52 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                BlocBuilder<GenerateQrCubit, GenerateQrState>(
+                BlocConsumer<StartReportCubit, StartReportState>(
+                  listener: (context, state) {
+                    if (state is StartReportSuccess) {
+                      GlobalSnackBar.show(context, state.reportMessage.message);
+                    } else if (state is StartReportFailure) {
+                      GlobalSnackBar.show(context, state.errMessage);
+                    }
+                  },
                   builder: (context, state) {
-                    final startLecture = context
-                        .select((GenerateQrCubit cubit) => cubit.startLecture);
-                    return Visibility(
-                      visible: startLecture ?? false,
-                      child: BlocConsumer<StartReportCubit, StartReportState>(
-                        listener: (context, state) {
-                          if (state is StartReportSuccess) {
-                            GlobalSnackBar.show(
-                                context, state.reportMessage.message);
-                          }
-                          else if(state is StartReportFailure)
-                            {
-                              GlobalSnackBar.show(
-                                  context, state.errMessage);
-                            }
-                        },
-                        builder: (context, state) {
-                          return ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  state is StartReportSuccess || state is StartReportFailure
-                                      ? Colors.grey
-                                      : const Color(0xff3746CC)),
-                              fixedSize: MaterialStatePropertyAll(
-                                Size(
-                                  230.w,
-                                  59.h,
-                                ),
-                              ),
-                            ),
-                            onPressed: () {
-                              state is StartReportSuccess
-                                  ? null
-                                  : context
-                                      .read<StartReportCubit>()
-                                      .startReport(
-                                          lecturePk:
-                                              instructorLecturesModel.pk!);
-                            },
-                            child: state is StartReportSuccess || state is StartReportFailure
-                                ? const Text("Report Started")
-                                : const Text("Start Report"),
-                          );
-                        },
+                    return ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            state is StartReportSuccess ||
+                                    state is StartReportFailure
+                                ? Colors.grey
+                                : const Color(0xff3746CC)),
+                        fixedSize: MaterialStatePropertyAll(
+                          Size(
+                            230.w,
+                            59.h,
+                          ),
+                        ),
                       ),
+                      onPressed: () {
+                        state is StartReportSuccess
+                            ? null
+                            : context.read<StartReportCubit>().startReport(
+                                lecturePk: widget.instructorLecturesModel.pk!);
+                      },
+                      child: state is StartReportSuccess ||
+                              state is StartReportFailure
+                          ? const Text("Report Started")
+                          : const Text("Start Report"),
                     );
                   },
                 ),
                 SizedBox(
                   height: 30.h,
                 ),
-                 StudentsAttendingWidget(numberOfStudents: instructorLecturesModel.students?? 0,),
-                const ShowStudentsListPopUpWidget(),
+                StudentsAttendingWidget(
+                  numberOfStudents:
+                      widget.instructorLecturesModel.students ?? 0,
+                ),
+                ShowStudentsListPopUpWidget(
+                  lecturePk: widget.instructorLecturesModel.pk!,
+                ),
               ],
             ),
           )

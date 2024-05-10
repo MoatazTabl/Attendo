@@ -1,13 +1,30 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../core/app_images.dart';
+import '../view_model/cubits/get_report_cubit.dart';
 
-class AttendancePageInstructor extends StatelessWidget {
-  const AttendancePageInstructor({super.key});
+class AttendancePageInstructor extends StatefulWidget {
+  final int lecturePk;
+
+  const AttendancePageInstructor({super.key, required this.lecturePk});
+
+  @override
+  State<AttendancePageInstructor> createState() =>
+      _AttendancePageInstructorState();
+}
+
+class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<GetReportCubit>().getReport(widget.lecturePk);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +43,84 @@ class AttendancePageInstructor extends StatelessWidget {
           ),
           SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 300.w,
-                      height: 90.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.blue,
-                        ),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(
-                            25,
-                          ),
-                          bottomRight: Radius.circular(
-                            25,
-                          ),
-                        ),
-                      ),
-                      child: Column(
+                BlocBuilder<GetReportCubit, GetReportState>(
+                  builder: (context, state) {
+                    if (state is GetReportSuccess) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "OOP Lecture",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  fontSize: 28.sp,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "22/04/2024",
-                                style: Theme.of(context).textTheme.titleSmall!,
+                          Container(
+                            width: 300.w,
+                            height: 90.h,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.blue,
                               ),
-                              Text(
-                                "11:00 AM",
-                                style: Theme.of(context).textTheme.titleSmall!,
-                              )
-                            ],
-                          )
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(
+                                  25,
+                                ),
+                                bottomRight: Radius.circular(
+                                  25,
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  state.getReportModel.lectureName!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                        fontSize: 28.sp,
+                                      ),
+                                ),
+                                SizedBox(
+                                  height: 4.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      state.getReportModel.date!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!,
+                                    ),
+                                    Text(
+                                      "11:00 AM",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!,
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-                  ],
+                      );
+                    } else if (state is GetReportFailure) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(state.errMessage),
+                        ],
+                      );
+                    } else {
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                        ],
+                      );
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 16.h,
@@ -105,18 +148,34 @@ class AttendancePageInstructor extends StatelessWidget {
                       0xFFF0F3FF,
                     ),
                   ),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) {
-                      return const Divider(
-                        indent: 25,
-                        endIndent: 25,
-                        color: Color(0xFF707070),
-                      );
+                  child: BlocBuilder<GetReportCubit, GetReportState>(
+                    builder: (context, state) {
+                      if (state is GetReportSuccess) {
+                        return ListView.separated(
+                          separatorBuilder: (context, index) {
+                            return const Divider(
+                              indent: 25,
+                              endIndent: 25,
+                              color: Color(0xFF707070),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return AttendentSrudentItem(
+                              authorizationTime: state
+                                  .getReportModel.authorizationTime![index],
+                                studentName: state
+                                    .getReportModel.studentsList![index].name!,
+                                nationalId: state.getReportModel
+                                    .studentsList![index].nationalId!);
+                          },
+                          itemCount: state.getReportModel.studentsList!.length,
+                        );
+                      } else if (state is GetReportFailure) {
+                        return Center(child: Text(state.errMessage));
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
                     },
-                    itemBuilder: (context, index) {
-                      return const AttendentSrudentItem();
-                    },
-                    itemCount: 10,
                   ),
                 ),
                 const SizedBox(
