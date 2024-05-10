@@ -1,9 +1,11 @@
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:attendo/intro/auth/models/sign_in_model.dart';
+import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/append_student_model.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/get_qr_code_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:intl/intl.dart';
 
 class QrCodeFunctions {
   static scan(BuildContext context, String lectureCode) async {
@@ -55,9 +57,10 @@ class QrCodeFunctions {
           await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
         "lecturepk": lectureId,
         "studentname": studentName,
-        "authtime": DateTime.now().toString()
+        "authtime": DateFormat('HH:mm:ss').format(DateTime.now())
       });
-      final String message = response.toString();
+      final AppendStudentModel message = AppendStudentModel.fromJson(response);
+      return message.message;
     } catch (e) {
       print(e.toString());
     }
