@@ -78,6 +78,7 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
                             CardPageView(
                               pageController: _pageController,
                               lectures: lectures,
+                              studentName: widget.userData.name,
                             ),
                           ],
                         ),

@@ -8,14 +8,15 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 
 class QrCodeFunctions {
-  static scan(BuildContext context, String lectureCode) async {
+  static scan(BuildContext context, String lectureCode , int lecturePk,String studentName) async {
     try {
       String generatedCode = await FlutterBarcodeScanner.scanBarcode(
           "#2A99CF", "Cancel", true, ScanMode.QR);
       print(
           "Scanned Successfully, the code is $generatedCode time ${DateTime.now().toString()}");
       if (generatedCode == lectureCode) {
-        _showDialog(context, "Correct! You scanned the right QR code. ${DateTime.now().toString()}");
+      final appendStudentState =  await appendStudent(lecturePk,studentName);
+        _showDialog(context, appendStudentState);
       } else {
         _showDialog(context, "Wrong! This is not the correct QR code. ${DateTime.now().toString()}");
       }
@@ -51,15 +52,18 @@ class QrCodeFunctions {
     return lectureCode.qrCode;
   }
 
-  appendStudent(int lectureId, String studentName) async {
+ static appendStudent(int lectureId, String studentName) async {
     try {
+      print("Successssssssssssssssssssssssssssss");
       final response =
           await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
         "lecturepk": lectureId,
         "studentname": studentName,
         "authtime": DateFormat('HH:mm:ss').format(DateTime.now())
       });
+      print("Successssssssssssssssssssssssssssss");
       final AppendStudentModel message = AppendStudentModel.fromJson(response);
+      print("Successssssssssssssssssssssssssssss");
       return message.message;
     } catch (e) {
       print(e.toString());

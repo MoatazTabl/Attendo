@@ -16,12 +16,14 @@ class AttendanceCard extends StatelessWidget {
     super.key,
     required this.isActive,
     required this.lectures,
+    required this.studentName
   });
 
   final bool isActive;
   final Duration animationTime = const Duration(milliseconds: 300);
 
   final StudentsLecturesModel lectures;
+  final String studentName;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +154,7 @@ class AttendanceCard extends StatelessWidget {
                     onPressed: () async{
                       // context.push("/fingerPrintScanScreen");
                     final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
-                      QrCodeFunctions.scan(context,generatedCode);
+                      QrCodeFunctions.scan(context,generatedCode,lectures.pk!,studentName);
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(

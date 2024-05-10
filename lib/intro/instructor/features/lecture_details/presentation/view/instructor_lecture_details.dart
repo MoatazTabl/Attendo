@@ -139,7 +139,7 @@ class InstructorLectureDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                const StudentsAttendingWidget(),
+                 StudentsAttendingWidget(numberOfStudents: instructorLecturesModel.students?? 0,),
                 const ShowStudentsListPopUpWidget(),
               ],
             ),
