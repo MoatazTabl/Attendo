@@ -8,6 +8,7 @@ class InstructorLecturesModel {
     this.grade,
     this.lectureStartTime,
     this.lectureEndTime,
+    this.students,
   });
 
   InstructorLecturesModel.fromJson(dynamic json) {
@@ -21,6 +22,7 @@ class InstructorLecturesModel {
     grade = json['grade'];
     lectureStartTime = json['lecture_start_time'];
     lectureEndTime = json['lecture_end_time'];
+    students = json['students'];
   }
 
   int? pk;
@@ -31,6 +33,7 @@ class InstructorLecturesModel {
   String? grade;
   String? lectureStartTime;
   String? lectureEndTime;
+  int? students;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

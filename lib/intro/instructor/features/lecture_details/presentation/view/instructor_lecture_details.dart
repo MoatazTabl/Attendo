@@ -71,6 +71,7 @@ class InstructorLectureDetails extends StatelessWidget {
                         onTap: () {
                           context.read<GenerateQrCubit>().generateQrCode(
                               lecturePk: instructorLecturesModel.pk!);
+                          print("${instructorLecturesModel.students} doneeeeeeeeeeeeee");
                         },
                         child: Container(
                             color: Colors.white,

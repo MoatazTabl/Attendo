@@ -10,11 +10,12 @@ class QrCodeFunctions {
     try {
       String generatedCode = await FlutterBarcodeScanner.scanBarcode(
           "#2A99CF", "Cancel", true, ScanMode.QR);
-      print("Scanned Successfully, the code is $generatedCode");
+      print(
+          "Scanned Successfully, the code is $generatedCode time ${DateTime.now().toString()}");
       if (generatedCode == lectureCode) {
-        _showDialog(context, "Correct! You scanned the right QR code.");
+        _showDialog(context, "Correct! You scanned the right QR code. ${DateTime.now().toString()}");
       } else {
-        _showDialog(context, "Wrong! This is not the correct QR code.");
+        _showDialog(context, "Wrong! This is not the correct QR code. ${DateTime.now().toString()}");
       }
     } catch (e) {
       print(e.toString());
@@ -48,13 +49,15 @@ class QrCodeFunctions {
     return lectureCode.qrCode;
   }
 
-  appendStudent(int lectureId,String studentName) async {
+  appendStudent(int lectureId, String studentName) async {
     try {
       final response =
           await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
-            "lecturepk": lectureId,
-            "studentname": studentName
-          });
+        "lecturepk": lectureId,
+        "studentname": studentName,
+        "authtime": DateTime.now().toString()
+      });
+      final String message = response.toString();
     } catch (e) {
       print(e.toString());
     }
