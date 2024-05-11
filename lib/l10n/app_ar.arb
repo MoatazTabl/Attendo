@@ -32,10 +32,9 @@
   "@_profileScreen": {},
   "changePhoto": "تغيير الصوره",
   "name": "الاسم",
-  "iD": "البطاقة تعريف",
-  "phone": "الهاتف",
-  "email": "البريد",
-  "edit": "تعديل",
+  "iD": "هوية",
+  "faculty":"الشعيه",
+  "grade":"السنه",
 
   "@_settingsPage": {},
   "light": "ساطع",
@@ -79,5 +78,8 @@
   "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",
   "lectureCreatedSuccessfully": "تمت إضافه المحاضرة",
   "lectureSkipped": "تم تخطي المحاضرة",
-  "lectureEdited": "تم التعديل علي المحاضره بنجاح"
+  "lectureEdited": "تم التعديل علي المحاضره بنجاح",
+
+  "@_LocalAuth":{},
+    "authReason":"يرجى التوثيق لحضور المحاضرة"
 }

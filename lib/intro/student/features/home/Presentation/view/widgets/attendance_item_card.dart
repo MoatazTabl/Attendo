@@ -1,5 +1,6 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/utils/local_auth.dart';
 import 'package:attendo/intro/student/features/home/data/models/students_lectures_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -152,8 +153,14 @@ class AttendanceCard extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async{
                       // context.push("/fingerPrintScanScreen");
+                      Intl.getCurrentLocale();
+                      bool localAuth=await LocalAuth().authenticateWithBiometrics(context);
+                      print(localAuth);
+                      if(localAuth)
+                      {
                     final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
                       QrCodeFunctions.scan(context,generatedCode,lectures.pk!,studentName);
+                      }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(

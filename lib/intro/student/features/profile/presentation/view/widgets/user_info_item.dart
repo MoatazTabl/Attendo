@@ -1,4 +1,3 @@
-import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,7 +26,7 @@ class UserInfoItem extends StatelessWidget {
                 ),
           ),
           SizedBox(
-            width: 220.w,
+            width: 314.w,
             height: 54.h,
             child: TextField(
               decoration: InputDecoration(
@@ -42,45 +41,18 @@ class UserInfoItem extends StatelessWidget {
                     12.w,
                   ),
                 ),
+
                 fillColor: const Color(0xffF0F3FF),
                 filled: true,
-                contentPadding: const EdgeInsets.only(left: 10),
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all(
-                Size(
-                  75.w,
-                  52.h,
+                contentPadding:  const EdgeInsets.symmetric(
+                  horizontal: 10
                 ),
               ),
-              backgroundColor: MaterialStateProperty.all(
-                const Color(
-                  0xff3746CC,
-                ),
-              ),
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    15.w,
-                  ),
-                ),
-              ),
-            ),
-            child: Text(
-              getAppLocalizations(context)!.edit,
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 18.sp,
-                  ),
             ),
           ),
         ],
       ),
     );
   }
+
 }

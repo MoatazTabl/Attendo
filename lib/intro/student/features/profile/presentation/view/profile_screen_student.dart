@@ -28,36 +28,6 @@ class ProfileScreenStudent extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              // ElevatedButton(
-              //   style: ButtonStyle(
-              //       fixedSize: MaterialStateProperty.all(
-              //         Size(
-              //           141.w,
-              //           52.h,
-              //         ),
-              //       ),
-              //       backgroundColor: MaterialStateProperty.all(
-              //         const Color(
-              //           0xff3746CC,
-              //         ),
-              //       ),
-              //       foregroundColor: MaterialStateProperty.all(Colors.white),
-              //       shape: MaterialStateProperty.all(
-              //         RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(
-              //             15.w,
-              //           ),
-              //         ),
-              //       ),
-              //       padding: MaterialStateProperty.all(EdgeInsets.zero)),
-              //   onPressed: () {},
-              //   child: Text(
-              //     getAppLocalizations(context)!.changePhoto,
-              //     style: Theme.of(context).textTheme.labelMedium!.copyWith(
-              //           fontSize: 20.sp,
-              //         ),
-              //   ),
-              // ),
               SizedBox(
                 height: 24.h,
               ),
@@ -66,15 +36,15 @@ class ProfileScreenStudent extends StatelessWidget {
                 fieldDetail: state.userData.name,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.phone,
+                fieldName: getAppLocalizations(context)!.iD,
                 fieldDetail: state.userData.nationalId,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.email,
+                fieldName: getAppLocalizations(context)!.faculty,
                 fieldDetail: state.userData.faculty!,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.email,
+                fieldName: getAppLocalizations(context)!.grade,
                 fieldDetail: state.userData.grade!,
               ),
             ],
