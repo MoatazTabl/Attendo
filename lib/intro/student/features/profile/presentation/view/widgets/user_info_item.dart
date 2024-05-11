@@ -17,7 +17,7 @@ class UserInfoItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 8.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             fieldName,
@@ -46,37 +46,6 @@ class UserInfoItem extends StatelessWidget {
                 filled: true,
                 contentPadding: const EdgeInsets.only(left: 10),
               ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all(
-                Size(
-                  75.w,
-                  52.h,
-                ),
-              ),
-              backgroundColor: MaterialStateProperty.all(
-                const Color(
-                  0xff3746CC,
-                ),
-              ),
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    15.w,
-                  ),
-                ),
-              ),
-            ),
-            child: Text(
-              getAppLocalizations(context)!.edit,
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 18.sp,
-                  ),
             ),
           ),
         ],
