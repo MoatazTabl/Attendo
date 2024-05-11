@@ -8,6 +8,7 @@
   "logIn": "Log In",
   "dontHaveAccount": "Don't Have Account?",
   "signUpNow": "SignUp Now",
+
   "@_SignUpPage": {},
   "signUp": "SignUp",
   "firstName": "First Name",
@@ -19,32 +20,39 @@
   "selectGrade": "Select Grade",
   "scanFingerprint": "Scan Fingerprint",
   "emailCreatedSuccessfully": "Your Email has been created Successfully",
+
   "@_BottomNavBar": {},
   "home": "Home",
   "profile": "Profile",
   "settings": "Settings",
+
   "@_studentAttendanceCard": {},
   "scanQR": "Scan QR",
+
   "@_profileScreen": {},
   "changePhoto": "Change Photo",
   "name": "Name",
   "iD": "ID",
-  "phone": "Phone",
-  "email": "Email",
-  "edit": "Edit",
+  "faculty":"Faculty",
+  "grade":"Grade",
+
   "@_settingsPage": {},
   "light": "Light",
   "dark": "Dark",
   "language": "Language",
   "logOut": "Log Out",
+
   "@_adminAttendanceCard": {},
   "showDetails": "Show Details",
+
   "@_QrPage": {},
   "studentsAttending": "Students attending",
   "clickToShowStudents": "Click to Show Students",
+
   "@_AttendanceList": {},
   "attendanceList": "Attendance List",
   "downloadFullList": "Download Full List",
+
   "@_CreateLecture": {},
   "createLecture": "Create Lecture",
   "enterCourseName": "Enter Course Name",
@@ -55,17 +63,23 @@
   "selectEndTime": "Select End Time",
   "lectureHall": "Lecture Hall",
   "addLecture": "Add Lecture",
+
   "@_EditLecture": {},
   "editLecture": "Edit Lecture",
+
   "@_AlertDialog": {},
   "areYouSureYouWantToSkipLecture": "Are sure you want to skip this lecture?",
   "skipLecture": "Skip Lecture",
   "cancel": "cancel",
   "ok": "OK",
   "lectures": "Lectures",
+
   "@_SnackBar": {},
   "loggedInSuccessfully": "Logged In Successfully",
   "lectureCreatedSuccessfully": "Lecture Created Successfully",
   "lectureSkipped": "Lecture Skipped",
-  "lectureEdited": "Lecture Edited Successfully"
+  "lectureEdited": "Lecture Edited Successfully",
+
+  "@_LocalAuth":{},
+  "authReason":"Please authenticate to attend lecture"
 }

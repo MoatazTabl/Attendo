@@ -153,11 +153,14 @@ class AttendanceCard extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async{
                       // context.push("/fingerPrintScanScreen");
-                      bool localAuth=await LocalAuth().authenticateWithBiometrics();
+                      Intl.getCurrentLocale();
+                      bool localAuth=await LocalAuth().authenticateWithBiometrics(context);
                       print(localAuth);
-                      if(localAuth){
+                      if(localAuth)
+                      {
                     final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
-                      QrCodeFunctions.scan(context,generatedCode,lectures.pk!,studentName);}
+                      QrCodeFunctions.scan(context,generatedCode,lectures.pk!,studentName);
+                      }
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(

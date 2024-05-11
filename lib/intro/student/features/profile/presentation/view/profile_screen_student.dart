@@ -36,15 +36,15 @@ class ProfileScreenStudent extends StatelessWidget {
                 fieldDetail: state.userData.name,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.phone,
+                fieldName: getAppLocalizations(context)!.iD,
                 fieldDetail: state.userData.nationalId,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.email,
+                fieldName: getAppLocalizations(context)!.faculty,
                 fieldDetail: state.userData.faculty!,
               ),
               UserInfoItem(
-                fieldName: getAppLocalizations(context)!.email,
+                fieldName: getAppLocalizations(context)!.grade,
                 fieldDetail: state.userData.grade!,
               ),
             ],

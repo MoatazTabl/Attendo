@@ -1,4 +1,3 @@
-import 'package:attendo/core/helpers/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +16,7 @@ class UserInfoItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 8.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             fieldName,
@@ -27,7 +26,7 @@ class UserInfoItem extends StatelessWidget {
                 ),
           ),
           SizedBox(
-            width: 220.w,
+            width: 314.w,
             height: 54.h,
             child: TextField(
               decoration: InputDecoration(
@@ -42,9 +41,12 @@ class UserInfoItem extends StatelessWidget {
                     12.w,
                   ),
                 ),
+
                 fillColor: const Color(0xffF0F3FF),
                 filled: true,
-                contentPadding: const EdgeInsets.only(left: 10),
+                contentPadding:  const EdgeInsets.symmetric(
+                  horizontal: 10
+                ),
               ),
             ),
           ),
@@ -52,4 +54,5 @@ class UserInfoItem extends StatelessWidget {
       ),
     );
   }
+
 }
