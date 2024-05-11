@@ -1,5 +1,6 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/skip_lecture_dialog.dart';
@@ -113,7 +114,11 @@ class InstructorLectureCard extends StatelessWidget {
                         "instructor":
                             instructorLecturesModel.instructorInfo?.name,
                         // "date":"2024-04-30T09:18:54"
-                        "date": context.read<HomeInstructorCubit>().dateTime.toIso8601String().split(".")[0]
+                        "date": context
+                            .read<HomeInstructorCubit>()
+                            .dateTime
+                            .toIso8601String()
+                            .split(".")[0]
                       });
                     });
                   },
@@ -125,8 +130,17 @@ class InstructorLectureCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss").format(context
+                        .read<HomeInstructorCubit>()
+                        .dateTime);
+
+                    formattedDateTime = formattedDateTime.replaceFirst(' ', 'T');
+                    InstructorDetailsReportModel instructorDetailsReportModel =
+                        InstructorDetailsReportModel(
+                            instructorLecturesModel: instructorLecturesModel,
+                            date: formattedDateTime);
                     context.push(AppRoutes.instructorLectureDetails,
-                        extra: instructorLecturesModel);
+                        extra: instructorDetailsReportModel);
                   },
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(

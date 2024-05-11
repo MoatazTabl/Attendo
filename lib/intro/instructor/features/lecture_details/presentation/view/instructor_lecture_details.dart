@@ -1,5 +1,5 @@
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
@@ -12,14 +12,15 @@ import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/start_report/start_report_cubit.dart';
 
 class InstructorLectureDetails extends StatefulWidget {
-  const InstructorLectureDetails(
-      {super.key, required this.instructorLecturesModel});
 
-  final InstructorLecturesModel instructorLecturesModel;
+
+  final InstructorDetailsReportModel instructorDetailsReportModel;
 
   @override
   State<InstructorLectureDetails> createState() =>
       _InstructorLectureDetailsState();
+
+  const InstructorLectureDetails({super.key, required this.instructorDetailsReportModel});
 }
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
@@ -29,7 +30,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
     super.initState();
     context
         .read<GenerateQrCubit>()
-        .generateQrCode(lecturePk: widget.instructorLecturesModel.pk!);
+        .generateQrCode(lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
   }
 
   @override
@@ -57,7 +58,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.instructorLecturesModel.name ?? "",
+                      widget.instructorDetailsReportModel.instructorLecturesModel.name ?? "",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: 30.sp,
                           ),
@@ -85,7 +86,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       return InkWell(
                         onTap: () {
                           context.read<GenerateQrCubit>().generateQrCode(
-                              lecturePk: widget.instructorLecturesModel.pk!);
+                              lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
                         },
                         child: Container(
                             color: Colors.white,
@@ -127,7 +128,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                         state is StartReportSuccess
                             ? null
                             : context.read<StartReportCubit>().startReport(
-                                lecturePk: widget.instructorLecturesModel.pk!);
+                                lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
                       },
                       child: state is StartReportSuccess ||
                               state is StartReportFailure
@@ -141,10 +142,10 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                 ),
                 StudentsAttendingWidget(
                   numberOfStudents:
-                      widget.instructorLecturesModel.students ?? 0,
+                      widget.instructorDetailsReportModel.instructorLecturesModel.students ?? 0,
                 ),
                 ShowStudentsListPopUpWidget(
-                  lecturePk: widget.instructorLecturesModel.pk!,
+                  instructorDetailsReportModel: widget.instructorDetailsReportModel,
                 ),
               ],
             ),

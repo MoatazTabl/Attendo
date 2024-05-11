@@ -2,6 +2,7 @@ import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
@@ -80,7 +81,7 @@ final GoRouter router = GoRouter(
           ),
         ],
         child: InstructorLectureDetails(
-          instructorLecturesModel: state.extra as InstructorLecturesModel,
+          instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,
         ),
       ),
     ),
@@ -90,7 +91,7 @@ final GoRouter router = GoRouter(
         BlocProvider(
           create: (context) => GetReportCubit(),
         ),
-      ], child: AttendancePageInstructor(lecturePk: state.extra as int,), ),
+      ], child: AttendancePageInstructor(instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,), ),
     ),
     GoRoute(
       path: AppRoutes.createLectureInstructor,

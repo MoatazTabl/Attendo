@@ -1,5 +1,6 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,9 +10,10 @@ import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/get_report_cubit.dart';
 
 class AttendancePageInstructor extends StatefulWidget {
-  final int lecturePk;
+  final InstructorDetailsReportModel instructorDetailsReportModel;
 
-  const AttendancePageInstructor({super.key, required this.lecturePk});
+
+  const AttendancePageInstructor({super.key, required this.instructorDetailsReportModel});
 
   @override
   State<AttendancePageInstructor> createState() =>
@@ -23,7 +25,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<GetReportCubit>().getReport(widget.lecturePk,context);
+    context.read<GetReportCubit>().getReport(widget.instructorDetailsReportModel.instructorLecturesModel.pk!,widget.instructorDetailsReportModel.date);
   }
 
   @override
