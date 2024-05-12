@@ -4,40 +4,40 @@ import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_mo
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/view_model/models/get_qr_code_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../core/errors/failures.dart';
 
 class QrCodeFunctions {
-  static scan(BuildContext context, String lectureCode , int lecturePk,String studentName) async {
-    try {
-      String generatedCode = await FlutterBarcodeScanner.scanBarcode(
-          "#FF0000", "Cancel", true, ScanMode.QR);
-      if (generatedCode == lectureCode) {
-      final appendStudentState =  await appendStudent(lecturePk,studentName);
-        _showDialog(context, appendStudentState);
-      } else {
-        _showDialog(context, "Wrong! This is not the correct QR code.");
-      }
-    } on Exception catch (e) {
-      if (e is DioException) {
-        final k = ServerFailures.fromDioException(e);
-        return k.errorMessage;
-      } else {
-        return "Un Expected error , try again";
-      }
-    }
-  }
+  // static scan(BuildContext context, String lectureCode , int lecturePk,String studentName) async {
+  //   try {
+  //
+  //     String generatedCode = await FlutterBarcodeScanner.scanBarcode(
+  //         "#FF0000", "Cancel", true, ScanMode.QR);
+  //     if (generatedCode == lectureCode) {
+  //     final appendStudentState =  await appendStudent(lecturePk,studentName);
+  //       customShowDialog(context, appendStudentState);
+  //     } else {
+  //       customShowDialog(context, "Wrong! This is not the correct QR code.");
+  //     }
+  //   } on Exception catch (e) {
+  //     if (e is DioException) {
+  //       final k = ServerFailures.fromDioException(e);
+  //       return k.errorMessage;
+  //     } else {
+  //       return "Un Expected error , try again";
+  //     }
+  //   }
+  // }
 
-  static void _showDialog(BuildContext context, String message) {
+  static void customShowDialog(BuildContext context, String message) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("QR Code Scan Result"),
           content: Text(message),
-          actions: <Widget>[
+          actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();

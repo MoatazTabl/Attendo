@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
@@ -23,12 +26,30 @@ class InstructorLectureDetails extends StatefulWidget {
 }
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
+  late Timer timer;
+
   @override
   void initState() {
     super.initState();
+    context.read<GetReportCubit>().getReport(
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!,
+        widget.instructorDetailsReportModel.date);
     context.read<GenerateQrCubit>().generateQrCode(
         lecturePk:
-            widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+
+    timer = Timer.periodic(const Duration(seconds: 6), (Timer timer) {
+      context.read<GenerateQrCubit>().generateQrCode(
+          lecturePk:
+          widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+    });
+  }
+
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -57,11 +78,15 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   children: [
                     Text(
                       widget.instructorDetailsReportModel
-                              .instructorLecturesModel.name ??
+                          .instructorLecturesModel.name ??
                           "",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontSize: 30.sp,
-                          ),
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                        fontSize: 30.sp,
+                      ),
                     ),
                   ],
                 ),
@@ -74,39 +99,35 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       // context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
                         color: Colors.white,
-
                         child: QrImageView(
                           embeddedImage: const AssetImage(
                               "assets/logo/Attendo primary -no background.png"),
                           embeddedImageStyle:
-                              const QrEmbeddedImageStyle(size: Size(40, 40)),
+                          const QrEmbeddedImageStyle(size: Size(40, 40)),
                           eyeStyle: const QrEyeStyle(
                               eyeShape: QrEyeShape.circle, color: Colors.black),
                           dataModuleStyle: const QrDataModuleStyle(
                               dataModuleShape: QrDataModuleShape.circle,
                               color: Colors.black),
                           data: state.qrCode,
-                          version:QrVersions.auto ,
+                          version: QrVersions.auto,
                           size: 200,
                         ),
                       );
                     } else if (state is GenerateQrLoading) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      return InkWell(
-                        onTap: () {
-                          context.read<GenerateQrCubit>().generateQrCode(
-                              lecturePk: widget.instructorDetailsReportModel
-                                  .instructorLecturesModel.pk!);
-                        },
-                        child: Container(
-                          color: Colors.white,
-                          height: 200.h,
+                      return SizedBox(
+                          height: 245.h,
                           width: 200.w,
                           child: const Center(
-                            child: Text(
-                              "Click to Generate QR ",
-                            ),
+                              child: CircularProgressIndicator()));
+                    } else {
+                      return Container(
+                        color: Colors.white,
+                        height: 200.h,
+                        width: 200.w,
+                        child: const Center(
+                          child: Text(
+                            "Error 404",
                           ),
                         ),
                       );
@@ -129,11 +150,11 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(
                             state is StartReportSuccess ||
-                                    state is StartReportFailure
+                                state is StartReportFailure
                                 ? Colors.grey
                                 : const Color(0xff3746CC)),
                         padding:
-                            const MaterialStatePropertyAll(EdgeInsets.zero),
+                        const MaterialStatePropertyAll(EdgeInsets.zero),
                         fixedSize: MaterialStatePropertyAll(
                           Size(
                             230.w,
@@ -145,37 +166,34 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                         state is StartReportSuccess
                             ? null
                             : context.read<StartReportCubit>().startReport(
-                                lecturePk: widget.instructorDetailsReportModel
-                                    .instructorLecturesModel.pk!);
+                            lecturePk: widget.instructorDetailsReportModel
+                                .instructorLecturesModel.pk!);
                       },
                       child: state is StartReportSuccess ||
-                              state is StartReportFailure
+                          state is StartReportFailure
                           ? Text(
-                              "Attendance Started",
-                              style: TextStyle(fontSize: 24.sp),
-                            )
+                        "Attendance Started",
+                        style: TextStyle(fontSize: 24.sp),
+                      )
                           : Text("Take Attendance",
-                              style: TextStyle(fontSize: 24.sp)),
+                          style: TextStyle(fontSize: 24.sp)),
                     );
                   },
                 ),
                 SizedBox(
                   height: 30.h,
                 ),
-                StudentsAttendingWidget(
-                  numberOfStudents: widget.instructorDetailsReportModel
-                          .instructorLecturesModel.students ??
-                      0,
-                ),
+                const StudentsAttendingWidget(),
                 ShowStudentsListPopUpWidget(
                   instructorDetailsReportModel:
-                      widget.instructorDetailsReportModel,
+                  widget.instructorDetailsReportModel,
                 ),
               ],
             ),
           )
         ],
-      ),
+      )
+      ,
     );
   }
 }

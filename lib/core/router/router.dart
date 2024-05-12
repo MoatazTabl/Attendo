@@ -12,7 +12,6 @@ import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cub
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';
-import 'package:attendo/intro/student/features/camera/presentation/view/camera.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,10 +48,7 @@ final GoRouter router = GoRouter(
             userData: state.extra as UserDataModel,
           )),
     ),
-    GoRoute(
-      path: AppRoutes.cameraScreen,
-      builder: (context, state) => const CameraScreen(),
-    ),
+
     GoRoute(
       path: AppRoutes.fingerPrintScanScreen,
       builder: (context, state) => const FingerPrintScanScreen(),
@@ -78,6 +74,9 @@ final GoRouter router = GoRouter(
           ),
           BlocProvider(
             create: (context) => StartReportCubit(),
+          ),
+          BlocProvider(
+            create: (context) => GetReportCubit(),
           ),
         ],
         child: InstructorLectureDetails(
