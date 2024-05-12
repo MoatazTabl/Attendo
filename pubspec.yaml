@@ -36,6 +36,7 @@ dependencies:
   # Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.
   flutter_native_splash: ^2.3.13
   #  mobile_scanner: ^5.0.0
+  mobile_scanner: ^5.1.0
   # Dart Image Library provides server and web apps the ability to load, manipulate, and save images with various image file formats.
   image: ^4.1.1
   # Flutter plugin for reading and writing simple key-value pairs.
