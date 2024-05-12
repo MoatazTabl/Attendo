@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
@@ -30,6 +31,9 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
   @override
   void initState() {
     super.initState();
+    context.read<GetReportCubit>().getReport(
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!,
+        widget.instructorDetailsReportModel.date);
     context.read<GenerateQrCubit>().generateQrCode(
         lecturePk:
         widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
@@ -112,9 +116,10 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       );
                     } else if (state is GenerateQrLoading) {
                       return SizedBox(
-                          height: 210.h,
-                          width:200.w,
-                          child: const Center(child: CircularProgressIndicator()));
+                          height: 245.h,
+                          width: 200.w,
+                          child: const Center(
+                              child: CircularProgressIndicator()));
                     } else {
                       return Container(
                         color: Colors.white,
@@ -178,11 +183,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                 SizedBox(
                   height: 30.h,
                 ),
-                StudentsAttendingWidget(
-                  numberOfStudents: widget.instructorDetailsReportModel
-                      .instructorLecturesModel.students ??
-                      0,
-                ),
+                const StudentsAttendingWidget(),
                 ShowStudentsListPopUpWidget(
                   instructorDetailsReportModel:
                   widget.instructorDetailsReportModel,
@@ -191,7 +192,8 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
             ),
           )
         ],
-      ),
+      )
+      ,
     );
   }
 }
