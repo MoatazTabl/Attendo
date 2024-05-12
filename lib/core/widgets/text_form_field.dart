@@ -13,6 +13,8 @@ class CustomTextFormField extends StatefulWidget {
   final void Function(String)? onChanged;
 
   final TextEditingController? passwordFieldController;
+  final TextInputType? textInputType;
+  final Iterable<String>? autofillHints;
 
   const CustomTextFormField(
       {super.key,
@@ -21,7 +23,9 @@ class CustomTextFormField extends StatefulWidget {
       this.prefixIcon,
       this.controller,
       this.onChanged,
-      this.passwordFieldController});
+      this.passwordFieldController,
+      this.textInputType,
+      this.autofillHints});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -63,6 +67,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         controller: widget.controller,
         obscureText: widget.isPass ? obscure : false,
         enabled: true,
+        keyboardType: widget.textInputType,
+        autofillHints: widget.autofillHints,
         decoration: InputDecoration(
           suffixIcon: widget.isPass
               ? IconButton(

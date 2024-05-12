@@ -15,7 +15,7 @@
   "lastName": "Last Name",
   "universityEmail": "University Email",
   "enterPassword": "Enter Password",
-  "reEnterPassword": "ReEnter Password",
+  "reEnterPassword": "Re-Enter Password",
   "selectFaculty": "Select Faculty",
   "selectGrade": "Select Grade",
   "scanFingerprint": "Scan Fingerprint",
@@ -46,7 +46,7 @@
   "showDetails": "Show Details",
 
   "@_QrPage": {},
-  "studentsAttending": "Students attending",
+  "studentsAttending": "Attending Students",
   "clickToShowStudents": "Click to Show Students",
 
   "@_AttendanceList": {},

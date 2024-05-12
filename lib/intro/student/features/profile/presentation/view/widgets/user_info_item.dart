@@ -41,6 +41,7 @@ class UserInfoItem extends StatelessWidget {
                     12.w,
                   ),
                 ),
+                enabled: false,
 
                 fillColor: const Color(0xffF0F3FF),
                 filled: true,

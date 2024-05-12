@@ -23,7 +23,6 @@ class AttendancePageInstructor extends StatefulWidget {
 class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<GetReportCubit>().getReport(widget.instructorDetailsReportModel.instructorLecturesModel.pk!,widget.instructorDetailsReportModel.date);
   }

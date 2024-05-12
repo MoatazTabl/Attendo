@@ -12,25 +12,23 @@ import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/start_report/start_report_cubit.dart';
 
 class InstructorLectureDetails extends StatefulWidget {
-
-
   final InstructorDetailsReportModel instructorDetailsReportModel;
 
   @override
   State<InstructorLectureDetails> createState() =>
       _InstructorLectureDetailsState();
 
-  const InstructorLectureDetails({super.key, required this.instructorDetailsReportModel});
+  const InstructorLectureDetails(
+      {super.key, required this.instructorDetailsReportModel});
 }
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    context
-        .read<GenerateQrCubit>()
-        .generateQrCode(lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+    context.read<GenerateQrCubit>().generateQrCode(
+        lecturePk:
+            widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
   }
 
   @override
@@ -58,7 +56,9 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.instructorDetailsReportModel.instructorLecturesModel.name ?? "",
+                      widget.instructorDetailsReportModel
+                              .instructorLecturesModel.name ??
+                          "",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: 30.sp,
                           ),
@@ -74,9 +74,19 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       // context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
                         color: Colors.white,
+
                         child: QrImageView(
+                          embeddedImage: const AssetImage(
+                              "assets/logo/Attendo primary -no background.png"),
+                          embeddedImageStyle:
+                              const QrEmbeddedImageStyle(size: Size(40, 40)),
+                          eyeStyle: const QrEyeStyle(
+                              eyeShape: QrEyeShape.circle, color: Colors.black),
+                          dataModuleStyle: const QrDataModuleStyle(
+                              dataModuleShape: QrDataModuleShape.circle,
+                              color: Colors.black),
                           data: state.qrCode,
-                          version: 3,
+                          version:QrVersions.auto ,
                           size: 200,
                         ),
                       );
@@ -86,14 +96,19 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       return InkWell(
                         onTap: () {
                           context.read<GenerateQrCubit>().generateQrCode(
-                              lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+                              lecturePk: widget.instructorDetailsReportModel
+                                  .instructorLecturesModel.pk!);
                         },
                         child: Container(
-                            color: Colors.white,
-                            height: 200.h,
-                            width: 200.w,
-                            child: const Center(
-                                child: Text("Click to Generate QR "))),
+                          color: Colors.white,
+                          height: 200.h,
+                          width: 200.w,
+                          child: const Center(
+                            child: Text(
+                              "Click to Generate QR ",
+                            ),
+                          ),
+                        ),
                       );
                     }
                   },
@@ -117,6 +132,8 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                                     state is StartReportFailure
                                 ? Colors.grey
                                 : const Color(0xff3746CC)),
+                        padding:
+                            const MaterialStatePropertyAll(EdgeInsets.zero),
                         fixedSize: MaterialStatePropertyAll(
                           Size(
                             230.w,
@@ -128,12 +145,17 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                         state is StartReportSuccess
                             ? null
                             : context.read<StartReportCubit>().startReport(
-                                lecturePk: widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+                                lecturePk: widget.instructorDetailsReportModel
+                                    .instructorLecturesModel.pk!);
                       },
                       child: state is StartReportSuccess ||
                               state is StartReportFailure
-                          ? const Text("Report Started")
-                          : const Text("Start Report"),
+                          ? Text(
+                              "Attendance Started",
+                              style: TextStyle(fontSize: 24.sp),
+                            )
+                          : Text("Take Attendance",
+                              style: TextStyle(fontSize: 24.sp)),
                     );
                   },
                 ),
@@ -141,11 +163,13 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   height: 30.h,
                 ),
                 StudentsAttendingWidget(
-                  numberOfStudents:
-                      widget.instructorDetailsReportModel.instructorLecturesModel.students ?? 0,
+                  numberOfStudents: widget.instructorDetailsReportModel
+                          .instructorLecturesModel.students ??
+                      0,
                 ),
                 ShowStudentsListPopUpWidget(
-                  instructorDetailsReportModel: widget.instructorDetailsReportModel,
+                  instructorDetailsReportModel:
+                      widget.instructorDetailsReportModel,
                 ),
               ],
             ),

@@ -22,6 +22,7 @@ class CustomFormElevatedButton extends StatelessWidget {
             0xff3746CC,
           ),
         ),
+
         foregroundColor: MaterialStateProperty.all(Colors.white),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
