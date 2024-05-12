@@ -75,6 +75,9 @@ final GoRouter router = GoRouter(
           BlocProvider(
             create: (context) => StartReportCubit(),
           ),
+          BlocProvider(
+            create: (context) => GetReportCubit(),
+          ),
         ],
         child: InstructorLectureDetails(
           instructorDetailsReportModel:
