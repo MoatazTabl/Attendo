@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
@@ -23,12 +25,27 @@ class InstructorLectureDetails extends StatefulWidget {
 }
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
+  late Timer timer;
+
   @override
   void initState() {
     super.initState();
     context.read<GenerateQrCubit>().generateQrCode(
         lecturePk:
-            widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+
+    timer = Timer.periodic(const Duration(seconds: 6), (Timer timer) {
+      context.read<GenerateQrCubit>().generateQrCode(
+          lecturePk:
+          widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
+    });
+  }
+
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -57,11 +74,15 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   children: [
                     Text(
                       widget.instructorDetailsReportModel
-                              .instructorLecturesModel.name ??
+                          .instructorLecturesModel.name ??
                           "",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontSize: 30.sp,
-                          ),
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                        fontSize: 30.sp,
+                      ),
                     ),
                   ],
                 ),
@@ -78,7 +99,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                           embeddedImage: const AssetImage(
                               "assets/logo/Attendo primary -no background.png"),
                           embeddedImageStyle:
-                              const QrEmbeddedImageStyle(size: Size(40, 40)),
+                          const QrEmbeddedImageStyle(size: Size(40, 40)),
                           eyeStyle: const QrEyeStyle(
                               eyeShape: QrEyeShape.circle, color: Colors.black),
                           dataModuleStyle: const QrDataModuleStyle(
@@ -90,22 +111,18 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                         ),
                       );
                     } else if (state is GenerateQrLoading) {
-                      return const CircularProgressIndicator();
+                      return SizedBox(
+                          height: 210.h,
+                          width:200.w,
+                          child: const Center(child: CircularProgressIndicator()));
                     } else {
-                      return InkWell(
-                        onTap: () {
-                          context.read<GenerateQrCubit>().generateQrCode(
-                              lecturePk: widget.instructorDetailsReportModel
-                                  .instructorLecturesModel.pk!);
-                        },
-                        child: Container(
-                          color: Colors.white,
-                          height: 200.h,
-                          width: 200.w,
-                          child: const Center(
-                            child: Text(
-                              "Click to Generate QR ",
-                            ),
+                      return Container(
+                        color: Colors.white,
+                        height: 200.h,
+                        width: 200.w,
+                        child: const Center(
+                          child: Text(
+                            "Error 404",
                           ),
                         ),
                       );
@@ -126,13 +143,14 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   builder: (context, state) {
                     return ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
+                        backgroundColor: MaterialStatePropertyAll(
                             state is StartReportSuccess ||
-                                    state is StartReportFailure
+                                state is StartReportFailure
                                 ? Colors.grey
                                 : const Color(0xff3746CC)),
-                        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
-                        fixedSize: WidgetStatePropertyAll(
+                        padding:
+                        const MaterialStatePropertyAll(EdgeInsets.zero),
+                        fixedSize: MaterialStatePropertyAll(
                           Size(
                             230.w,
                             59.h,
@@ -143,17 +161,17 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                         state is StartReportSuccess
                             ? null
                             : context.read<StartReportCubit>().startReport(
-                                lecturePk: widget.instructorDetailsReportModel
-                                    .instructorLecturesModel.pk!);
+                            lecturePk: widget.instructorDetailsReportModel
+                                .instructorLecturesModel.pk!);
                       },
                       child: state is StartReportSuccess ||
-                              state is StartReportFailure
+                          state is StartReportFailure
                           ? Text(
-                              "Attendance Started",
-                              style: TextStyle(fontSize: 24.sp),
-                            )
+                        "Attendance Started",
+                        style: TextStyle(fontSize: 24.sp),
+                      )
                           : Text("Take Attendance",
-                              style: TextStyle(fontSize: 24.sp)),
+                          style: TextStyle(fontSize: 24.sp)),
                     );
                   },
                 ),
@@ -162,12 +180,12 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                 ),
                 StudentsAttendingWidget(
                   numberOfStudents: widget.instructorDetailsReportModel
-                          .instructorLecturesModel.students ??
+                      .instructorLecturesModel.students ??
                       0,
                 ),
                 ShowStudentsListPopUpWidget(
                   instructorDetailsReportModel:
-                      widget.instructorDetailsReportModel,
+                  widget.instructorDetailsReportModel,
                 ),
               ],
             ),
