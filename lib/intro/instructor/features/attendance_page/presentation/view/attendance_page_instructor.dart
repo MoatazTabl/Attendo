@@ -96,7 +96,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                                           .titleSmall!,
                                     ),
                                     Text(
-                                      "11:00 AM",
+                                      widget.instructorDetailsReportModel.instructorLecturesModel.lectureStartTime!,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall!,
