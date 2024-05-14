@@ -6,9 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-
-import '../../../../../../../core/errors/failures.dart';
-
 part 'get_report_state.dart';
 
 class GetReportCubit extends Cubit<GetReportState> {
@@ -26,8 +23,7 @@ class GetReportCubit extends Cubit<GetReportState> {
      emit(GetReportSuccess(getReportModel: report));
     } on Exception catch (e) {
       if (e is DioException) {
-        final k = ServerFailures.fromDioException(e);
-        emit(GetReportFailure(errMessage: k.errorMessage));
+        emit(GetReportFailure(errMessage: "No Students"));
       } else {
         emit(GetReportFailure(errMessage: "Un Expected error , try again"));
       }
