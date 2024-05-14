@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/get_report_cubit.dart';
@@ -12,8 +13,8 @@ import '../view_model/cubits/get_report_cubit.dart';
 class AttendancePageInstructor extends StatefulWidget {
   final InstructorDetailsReportModel instructorDetailsReportModel;
 
-
-  const AttendancePageInstructor({super.key, required this.instructorDetailsReportModel});
+  const AttendancePageInstructor(
+      {super.key, required this.instructorDetailsReportModel});
 
   @override
   State<AttendancePageInstructor> createState() =>
@@ -21,10 +22,27 @@ class AttendancePageInstructor extends StatefulWidget {
 }
 
 class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
+  late String formattedDate;
+  late String formattedTime;
+  late DateTime dateTime;
+  late DateTime dateTimeDay;
+
   @override
   void initState() {
     super.initState();
-    context.read<GetReportCubit>().getReport(widget.instructorDetailsReportModel.instructorLecturesModel.pk!,widget.instructorDetailsReportModel.date);
+    context.read<GetReportCubit>().getReport(
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!,
+        widget.instructorDetailsReportModel.date);
+
+    dateTime = DateTime.parse(widget.instructorDetailsReportModel
+        .instructorLecturesModel.lectureStartTime!);
+
+    formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+    //-----------------------------------------------------
+    dateTimeDay = DateTime.parse(widget.instructorDetailsReportModel
+        .instructorLecturesModel.lectureStartTime!);
+
+    formattedTime = DateFormat('hh:mm:ss a').format(dateTime);
   }
 
   @override
@@ -46,82 +64,58 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                BlocBuilder<GetReportCubit, GetReportState>(
-                  builder: (context, state) {
-                    if (state is GetReportSuccess) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 300.w,
-                            height: 90.h,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                color: Colors.blue,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(
-                                  25,
-                                ),
-                                bottomRight: Radius.circular(
-                                  25,
-                                ),
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  state.getReportModel.lectureName!,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        fontSize: 28.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  height: 4.h,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      state.getReportModel.date!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!,
-                                    ),
-                                    Text(
-                                      widget.instructorDetailsReportModel.instructorLecturesModel.lectureStartTime!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 300.w,
+                      height: 90.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.blue,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(
+                            25,
                           ),
-                        ],
-                      );
-                    } else if (state is GetReportFailure) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                          bottomRight: Radius.circular(
+                            25,
+                          ),
+                        ),
+                      ),
+                      child: Column(
                         children: [
-                          Text(state.errMessage),
+                          Text(
+                            widget.instructorDetailsReportModel
+                                .instructorLecturesModel.name!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  fontSize: 28.sp,
+                                ),
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                formattedDate,
+                                style: Theme.of(context).textTheme.titleSmall!,
+                              ),
+                              Text(
+                                formattedTime,
+                                style: Theme.of(context).textTheme.titleSmall!,
+                              )
+                            ],
+                          )
                         ],
-                      );
-                    } else {
-                      return const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircularProgressIndicator(),
-                        ],
-                      );
-                    }
-                  },
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 16.h,
@@ -162,8 +156,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                           },
                           itemBuilder: (context, index) {
                             return AttendentSrudentItem(
-                              authorizationTime: state
-                                  .getReportModel.authorizationTime![index],
+                                authorizationTime: state
+                                    .getReportModel.authorizationTime![index],
                                 studentName: state
                                     .getReportModel.studentsList![index].name!,
                                 nationalId: state.getReportModel
