@@ -3,7 +3,6 @@ import 'package:attendo/core/widgets/page_indicator.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/instructor_lecture_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,8 +20,10 @@ class HomeInstructor extends StatefulWidget {
 }
 
 class _HomeInstructorState extends State<HomeInstructor> {
-  final PageController _pageController =
-      PageController(initialPage: 0, viewportFraction: 0.5, );
+  final PageController _pageController = PageController(
+    initialPage: 0,
+    viewportFraction: 0.5,
+  );
 
   @override
   void initState() {
@@ -38,7 +39,6 @@ class _HomeInstructorState extends State<HomeInstructor> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       physics: const NeverScrollableScrollPhysics(),
-
       slivers: [
         SliverPersistentHeader(
           delegate: DatePiker(userData: widget.userData),
@@ -46,7 +46,6 @@ class _HomeInstructorState extends State<HomeInstructor> {
           floating: false,
         ),
         SliverFillRemaining(
-
           child: BlocBuilder<HomeInstructorCubit, HomeInstructorState>(
             builder: (context, state) {
               return state.maybeWhen(

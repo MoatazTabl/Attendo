@@ -130,11 +130,11 @@ class InstructorLectureCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss").format(context
-                        .read<HomeInstructorCubit>()
-                        .dateTime);
+                    String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
+                        .format(context.read<HomeInstructorCubit>().dateTime);
 
-                    formattedDateTime = formattedDateTime.replaceFirst(' ', 'T');
+                    formattedDateTime =
+                        formattedDateTime.replaceFirst(' ', 'T');
                     InstructorDetailsReportModel instructorDetailsReportModel =
                         InstructorDetailsReportModel(
                             instructorLecturesModel: instructorLecturesModel,
@@ -143,23 +143,23 @@ class InstructorLectureCard extends StatelessWidget {
                         extra: instructorDetailsReportModel);
                   },
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
+                    fixedSize: WidgetStateProperty.all(
                       Size(215.w, 56.h),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       const Color(
                         0xff3746CC,
                       ),
                     ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           22.w,
                         ),
                       ),
                     ),
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
                   ),
                   child: Text(
                     getAppLocalizations(context)!.showDetails,

@@ -42,12 +42,9 @@ class UserInfoItem extends StatelessWidget {
                   ),
                 ),
                 enabled: false,
-
                 fillColor: const Color(0xffF0F3FF),
                 filled: true,
-                contentPadding:  const EdgeInsets.symmetric(
-                  horizontal: 10
-                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
               ),
             ),
           ),
@@ -55,5 +52,4 @@ class UserInfoItem extends StatelessWidget {
       ),
     );
   }
-
 }

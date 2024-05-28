@@ -1,11 +1,15 @@
-import 'package:attendo/intro/student/features/home/Presentation/view/widgets/attendance_item_card.dart';
 import 'package:attendo/intro/student/features/home/data/models/students_lectures_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'attendance_item_card.dart';
+
 class CardPageView extends StatefulWidget {
   const CardPageView(
-      {super.key, required this.pageController, required this.lectures,required this.studentName});
+      {super.key,
+      required this.pageController,
+      required this.lectures,
+      required this.studentName});
 
   final PageController pageController;
   final List<StudentsLecturesModel> lectures;

@@ -77,17 +77,24 @@ final GoRouter router = GoRouter(
           ),
         ],
         child: InstructorLectureDetails(
-          instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,
+          instructorDetailsReportModel:
+              state.extra as InstructorDetailsReportModel,
         ),
       ),
     ),
     GoRoute(
       path: AppRoutes.attendancePageInstructor,
-      builder: (context, state) => MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => GetReportCubit(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => GetReportCubit(),
+          ),
+        ],
+        child: AttendancePageInstructor(
+          instructorDetailsReportModel:
+              state.extra as InstructorDetailsReportModel,
         ),
-      ], child: AttendancePageInstructor(instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,), ),
+      ),
     ),
     GoRoute(
       path: AppRoutes.createLectureInstructor,

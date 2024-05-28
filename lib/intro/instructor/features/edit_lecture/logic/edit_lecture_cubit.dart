@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edit_lecture_cubit.freezed.dart';
+
 part 'edit_lecture_state.dart';
 
 class EditLectureCubit extends Cubit<EditLectureState> {

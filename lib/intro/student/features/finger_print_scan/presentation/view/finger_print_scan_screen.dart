@@ -62,25 +62,25 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
               }
             },
             style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all(
+              fixedSize: WidgetStateProperty.all(
                 Size(258.w, 89.h),
               ),
-              backgroundColor: MaterialStateProperty.all(
+              backgroundColor: WidgetStateProperty.all(
                 const Color(0xff2403F1).withOpacity(
                   .42,
                 ),
               ),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              shape: WidgetStateProperty.all(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     32.w,
                   ),
                 ),
               ),
-              shadowColor: MaterialStateProperty.all(Colors.transparent),
-              elevation: MaterialStateProperty.all(0),
-              padding: MaterialStateProperty.all(
+              shadowColor: WidgetStateProperty.all(Colors.transparent),
+              elevation: WidgetStateProperty.all(0),
+              padding: WidgetStateProperty.all(
                 EdgeInsets.zero,
               ),
             ),
@@ -99,25 +99,25 @@ class _FingerPrintScanScreenState extends State<FingerPrintScanScreen> {
             child: ElevatedButton(
               onPressed: () async {},
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(
+                fixedSize: WidgetStateProperty.all(
                   Size(258.w, 89.h),
                 ),
-                backgroundColor: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(
                   const Color(0xff2403F1).withOpacity(
                     .42,
                   ),
                 ),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                shape: MaterialStateProperty.all(
+                foregroundColor: WidgetStateProperty.all(Colors.white),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       32.w,
                     ),
                   ),
                 ),
-                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                elevation: MaterialStateProperty.all(0),
-                padding: MaterialStateProperty.all(
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                elevation: WidgetStateProperty.all(0),
+                padding: WidgetStateProperty.all(
                   EdgeInsets.zero,
                 ),
               ),

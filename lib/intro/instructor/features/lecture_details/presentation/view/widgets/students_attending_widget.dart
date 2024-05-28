@@ -4,11 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/helpers/common.dart';
 
 class StudentsAttendingWidget extends StatelessWidget {
-
-
-
   final int numberOfStudents;
-
 
   const StudentsAttendingWidget({super.key, required this.numberOfStudents});
 
@@ -39,7 +35,7 @@ class StudentsAttendingWidget extends StatelessWidget {
           CircleAvatar(
             backgroundColor: Colors.black,
             radius: 35.w,
-            child:  Text(
+            child: Text(
               '$numberOfStudents',
               style: const TextStyle(
                 color: Colors.white,

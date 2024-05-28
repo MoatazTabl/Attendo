@@ -12,8 +12,8 @@ import '../view_model/cubits/get_report_cubit.dart';
 class AttendancePageInstructor extends StatefulWidget {
   final InstructorDetailsReportModel instructorDetailsReportModel;
 
-
-  const AttendancePageInstructor({super.key, required this.instructorDetailsReportModel});
+  const AttendancePageInstructor(
+      {super.key, required this.instructorDetailsReportModel});
 
   @override
   State<AttendancePageInstructor> createState() =>
@@ -24,7 +24,9 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
   @override
   void initState() {
     super.initState();
-    context.read<GetReportCubit>().getReport(widget.instructorDetailsReportModel.instructorLecturesModel.pk!,widget.instructorDetailsReportModel.date);
+    context.read<GetReportCubit>().getReport(
+        widget.instructorDetailsReportModel.instructorLecturesModel.pk!,
+        widget.instructorDetailsReportModel.date);
   }
 
   @override
@@ -162,8 +164,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                           },
                           itemBuilder: (context, index) {
                             return AttendentSrudentItem(
-                              authorizationTime: state
-                                  .getReportModel.authorizationTime![index],
+                                authorizationTime: state
+                                    .getReportModel.authorizationTime![index],
                                 studentName: state
                                     .getReportModel.studentsList![index].name!,
                                 nationalId: state.getReportModel
@@ -185,16 +187,16 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                 ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
+                    fixedSize: WidgetStateProperty.all(
                       Size(340.w, 56.h),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       const Color(
                         0xff3746CC,
                       ),
                     ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           22.w,

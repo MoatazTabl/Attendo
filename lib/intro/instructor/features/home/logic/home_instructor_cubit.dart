@@ -7,12 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_instructor_cubit.freezed.dart';
+
 part 'home_instructor_state.dart';
 
 class HomeInstructorCubit extends Cubit<HomeInstructorState> {
   HomeInstructorCubit() : super(const HomeInstructorState.initial());
 
-  DateTime dateTime=DateTime.now();
+  DateTime dateTime = DateTime.now();
 
   Future<void> getInstructorLectures({required Map data}) async {
     emit(const HomeInstructorState.dataFetching());

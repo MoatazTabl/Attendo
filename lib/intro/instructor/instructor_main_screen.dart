@@ -63,7 +63,11 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                           .getInstructorLectures(data: {
                         "instructor": widget.userData.name,
                         // "date":"2024-04-30T09:18:54"
-                        "date": context.read<HomeInstructorCubit>().dateTime.toIso8601String().split(".")[0]
+                        "date": context
+                            .read<HomeInstructorCubit>()
+                            .dateTime
+                            .toIso8601String()
+                            .split(".")[0]
                       });
                     });
                   },

@@ -5,14 +5,17 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../../core/app_images.dart';
 
 class AttendentSrudentItem extends StatelessWidget {
- final String studentName;
+  final String studentName;
 
- final String nationalId;
+  final String nationalId;
 
- final String authorizationTime;
+  final String authorizationTime;
 
   const AttendentSrudentItem(
-      {super.key, required this.studentName, required this.nationalId,required this.authorizationTime});
+      {super.key,
+      required this.studentName,
+      required this.nationalId,
+      required this.authorizationTime});
 
   @override
   Widget build(BuildContext context) {

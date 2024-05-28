@@ -8,16 +8,17 @@ import '../../../../../../../core/app_images.dart';
 import '../../../../../../../core/helpers/common.dart';
 
 class ShowStudentsListPopUpWidget extends StatelessWidget {
- final InstructorDetailsReportModel instructorDetailsReportModel;
+  final InstructorDetailsReportModel instructorDetailsReportModel;
 
-
-  const ShowStudentsListPopUpWidget({super.key, required this.instructorDetailsReportModel});
+  const ShowStudentsListPopUpWidget(
+      {super.key, required this.instructorDetailsReportModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push("/attendancePageInstructor",extra: instructorDetailsReportModel);
+        context.push("/attendancePageInstructor",
+            extra: instructorDetailsReportModel);
       },
       child: Stack(
         alignment: Alignment.center,

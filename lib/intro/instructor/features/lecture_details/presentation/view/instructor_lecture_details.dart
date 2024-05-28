@@ -74,7 +74,6 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       // context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
                         color: Colors.white,
-
                         child: QrImageView(
                           embeddedImage: const AssetImage(
                               "assets/logo/Attendo primary -no background.png"),
@@ -86,7 +85,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                               dataModuleShape: QrDataModuleShape.circle,
                               color: Colors.black),
                           data: state.qrCode,
-                          version:QrVersions.auto ,
+                          version: QrVersions.auto,
                           size: 200,
                         ),
                       );
@@ -127,14 +126,13 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   builder: (context, state) {
                     return ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
+                        backgroundColor: WidgetStatePropertyAll(
                             state is StartReportSuccess ||
                                     state is StartReportFailure
                                 ? Colors.grey
                                 : const Color(0xff3746CC)),
-                        padding:
-                            const MaterialStatePropertyAll(EdgeInsets.zero),
-                        fixedSize: MaterialStatePropertyAll(
+                        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+                        fixedSize: WidgetStatePropertyAll(
                           Size(
                             230.w,
                             59.h,

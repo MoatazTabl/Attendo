@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -18,7 +19,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -98,7 +98,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller:
                                   context.read<UserCubit>().signUpNationalId,
                               textInputType: TextInputType.number,
-
                             ),
                             SizedBox(
                               height: 16.h,
@@ -145,7 +144,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               passwordFieldController:
                                   context.read<UserCubit>().signUpPassword,
                               autofillHints: const [AutofillHints.newPassword],
-
                             ),
                             SizedBox(
                               height: 16.h,
