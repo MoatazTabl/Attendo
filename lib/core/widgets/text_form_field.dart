@@ -55,7 +55,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             if (!emailValid) {
               return "Please,enter a valid Email ";
             }
-          } else if (widget.isPass && widget.hintText == "ReEnter Password" ||
+          } else if (widget.isPass && widget.hintText == "Re-Enter Password" ||
               widget.isPass && widget.hintText == "إعادة إدخال كلمة المرور") {
             if (value != widget.passwordFieldController!.text) {
               return "Passwords do not match";
