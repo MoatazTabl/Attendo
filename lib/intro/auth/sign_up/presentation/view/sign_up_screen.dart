@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_device_identifier/mobile_device_identifier.dart';
 import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -150,8 +151,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             SizedBox(
                               height: 16.h,
                             ),
-
-                            //getAppLocalizations(context)!.selectFaculty,
                             Visibility(
                               visible: context.read<UserCubit>().isStudent,
                               child: CustomFormDropDownButton(
@@ -187,21 +186,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             state is SignUpLoading
                                 ? const CircularProgressIndicator()
                                 : CustomFormElevatedButton(
-                                    onPressed: () {
-                                      if (context
-                                          .read<UserCubit>()
-                                          .formKey
-                                          .currentState!
-                                          .validate()) {
-                                        setState(() {});
-                                        context.read<UserCubit>().signUp();
-                                      } else {
-                                        context
-                                                .read<UserCubit>()
-                                                .autoValidateMode =
-                                            AutovalidateMode.always;
-                                        setState(() {});
-                                      }
+                                    onPressed: () async{
+                                       final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
+                                       context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
+                                           if (context
+                                               .read<UserCubit>()
+                                               .formKey
+                                               .currentState!
+                                               .validate()) {
+                                             setState(() {});
+                                             context.read<UserCubit>().signUp();
+                                           } else {
+                                             context
+                                                 .read<UserCubit>()
+                                                 .autoValidateMode =
+                                                 AutovalidateMode.always;
+                                             setState(() {});
+                                           }
+
+
                                     },
                                     title: getAppLocalizations(context)!.signUp,
                                   ),
