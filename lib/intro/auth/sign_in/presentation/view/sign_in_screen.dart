@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_device_identifier/mobile_device_identifier.dart';
 
 import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
@@ -142,7 +143,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         state is LoginLoading
                             ? const CircularProgressIndicator()
                             : CustomFormElevatedButton(
-                          onPressed: () {
+                          onPressed: () async{
+                            final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
+                            context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
                             if (context
                                 .read<UserCubit>()
                                 .logInFormKey
