@@ -144,8 +144,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             ? const CircularProgressIndicator()
                             : CustomFormElevatedButton(
                           onPressed: () async{
-                            final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
-                            context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
+                           if(!domainTypeCheck)
+                             {
+                               final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
+                               context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
+                             }
                             if (context
                                 .read<UserCubit>()
                                 .logInFormKey
