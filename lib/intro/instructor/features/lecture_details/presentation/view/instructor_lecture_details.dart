@@ -6,7 +6,9 @@ import 'package:attendo/intro/instructor/features/attendance_page/presentation/v
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -54,6 +56,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
 
   @override
   Widget build(BuildContext context) {
+    bool lectureStarted = false;
     return Scaffold(
       body: Stack(
         children: [
@@ -164,10 +167,12 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       ),
                       onPressed: () {
                         state is StartReportSuccess
-                            ? null
+                            ? !lectureStarted
                             : context.read<StartReportCubit>().startReport(
                             lecturePk: widget.instructorDetailsReportModel
                                 .instructorLecturesModel.pk!);
+                        !lectureStarted;
+
                       },
                       child: state is StartReportSuccess ||
                           state is StartReportFailure
@@ -184,9 +189,12 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   height: 30.h,
                 ),
                 const StudentsAttendingWidget(),
-                ShowStudentsListPopUpWidget(
-                  instructorDetailsReportModel:
-                  widget.instructorDetailsReportModel,
+                Visibility(
+                  visible: lectureStarted,
+                  child: ShowStudentsListPopUpWidget(
+                    instructorDetailsReportModel:
+                    widget.instructorDetailsReportModel,
+                  ),
                 ),
               ],
             ),

@@ -59,6 +59,8 @@ class UserCubit extends Cubit<UserState> {
   //Sign up grade
   String? signUpFaculty;
 
+  String? deviceId;
+
   SignInModel? user;
 
   clearSignUpFields() {
@@ -80,6 +82,7 @@ class UserCubit extends Cubit<UserState> {
         "national_id": signUpNationalId.text,
         "faculty": signUpFaculty,
         "grade": signUpGrade,
+        "device_id": deviceId
       });
       emit(SignUpSuccess());
     } on Exception catch (e) {
@@ -96,9 +99,10 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(LoginLoading());
       final response =
-          await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
+      await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
         "email": logInEmail.text,
         "password": logInPassword.text,
+        "device_id": deviceId
       });
       user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user!.token);
