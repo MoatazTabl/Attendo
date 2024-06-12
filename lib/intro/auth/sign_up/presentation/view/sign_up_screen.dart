@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_device_identifier/mobile_device_identifier.dart';
 import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -187,8 +186,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ? const CircularProgressIndicator()
                                 : CustomFormElevatedButton(
                                     onPressed: () async{
-                                       final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
-                                       context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
                                            if (context
                                                .read<UserCubit>()
                                                .formKey

@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:mobile_device_identifier/mobile_device_identifier.dart';
 
 import '../models/sign_in_model.dart';
 import '../models/user_data_model.dart';
@@ -70,6 +71,12 @@ class UserCubit extends Cubit<UserState> {
     signUpEmail.clear();
     signUpPassword.clear();
     confirmPassword.clear();
+  }
+
+  getDeviceId()
+  async {
+    final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
+   deviceId = mobileDeviceIdentifier;
   }
 
   signUp() async {

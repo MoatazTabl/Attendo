@@ -13,7 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_device_identifier/mobile_device_identifier.dart';
 
 import '../../../../../core/widgets/custom_form_elevated_button.dart';
 
@@ -28,6 +27,16 @@ class _SignInScreenState extends State<SignInScreen> {
   bool rememberMe = false;
   late UserDataModel userDataModel;
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context
+        .read<UserCubit>()
+        .getDeviceId();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
@@ -35,6 +44,9 @@ class _SignInScreenState extends State<SignInScreen> {
         .read<UserCubit>()
         .logInEmail
         .text);
+
+
+
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
@@ -144,11 +156,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             ? const CircularProgressIndicator()
                             : CustomFormElevatedButton(
                           onPressed: () async{
-                           if(!domainTypeCheck)
-                             {
-                               final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
-                               context.read<UserCubit>().deviceId = mobileDeviceIdentifier;
-                             }
                             if (context
                                 .read<UserCubit>()
                                 .logInFormKey
