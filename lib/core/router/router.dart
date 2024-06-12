@@ -20,7 +20,6 @@ import 'package:go_router/go_router.dart';
 import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
-import '../../../intro/student/features/finger_print_scan/presentation/view/finger_print_scan_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: AppRoutes.signInScreen,
@@ -48,12 +47,6 @@ final GoRouter router = GoRouter(
             userData: state.extra as UserDataModel,
           )),
     ),
-
-    GoRoute(
-      path: AppRoutes.fingerPrintScanScreen,
-      builder: (context, state) => const FingerPrintScanScreen(),
-    ),
-
     // ------------------ instructorScreen ----------------------
 
     GoRoute(
