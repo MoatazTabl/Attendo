@@ -166,13 +166,11 @@ class _AttendanceCardState extends State<AttendanceCard>
                       //     await LocalAuth().authenticateWithBiometrics(context);
                       // print(localAuth);
                       if (true) {
-                        final generatedCode = await QrCodeFunctions()
-                            .getLectureCode(widget.lectures.pk!);
+                        // final generatedCode = await QrCodeFunctions()
+                        //     .getLectureCode(widget.lectures.pk!);
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => MobileScannerWindow(
-                              lectureCode: generatedCode, lecturePk: widget.lectures.pk!, studentName: widget.studentName,
-                            ),
+                            builder: (context) => const BarcodeScannerWithController()
                           ),
                         );
                         // final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
@@ -236,117 +234,3 @@ class _AttendanceCardState extends State<AttendanceCard>
   }
 }
 
-class MobileScannerWindow extends StatefulWidget {
-  const MobileScannerWindow({super.key, required this.lectureCode, required this.lecturePk, required this.studentName});
-
-  final String lectureCode;
-  final int lecturePk;
-  final String studentName;
-
-  @override
-  State<MobileScannerWindow> createState() => _MobileScannerWindowState();
-}
-
-class _MobileScannerWindowState extends State<MobileScannerWindow>
-    with WidgetsBindingObserver {
-  MobileScannerController mobileScannerController = MobileScannerController(
-      autoStart: true,
-      facing: CameraFacing.back,
-      formats: [BarcodeFormat.qrCode],
-    detectionSpeed: DetectionSpeed.noDuplicates,
-    detectionTimeoutMs: 500
-  );
-  StreamSubscription<Object?>? _subscription;
-  Barcode? _barcode;
-
-  Future<void> _handleBarcode(BarcodeCapture barcodes) async {
-    try {
-      String? generatedCode = _barcode?.rawValue;
-      if (generatedCode == widget.lectureCode) {
-        final appendStudentState =
-            await QrCodeFunctions.appendStudent(widget.lecturePk, widget.studentName);
-        if (mounted) {
-          QrCodeFunctions.customShowDialog(context, appendStudentState);
-        }
-      } else {
-        QrCodeFunctions.customShowDialog(context, "Wrong! This is not the correct QR code.");
-      }
-    } on Exception catch (e) {
-      if (e is DioException) {
-        final k = ServerFailures.fromDioException(e);
-        if (kDebugMode) {
-          print(k.errorMessage);
-        }
-      }
-    }
-    if (mounted) {
-      setState(() async {
-        _barcode = barcodes.barcodes.firstOrNull;
-
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-
-    // Start listening to the barcode events.
-    _subscription = mobileScannerController.barcodes.listen(_handleBarcode);
-
-    // Finally, start the scanner itself.
-    unawaited(mobileScannerController.start());
-    super.initState();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // If the controller is not ready, do not try to start or stop it.
-    // Permission dialogs can trigger lifecycle changes before the controller is ready.
-    if (!mobileScannerController.value.isInitialized) {
-      return;
-    }
-
-    switch (state) {
-      case AppLifecycleState.detached:
-      case AppLifecycleState.hidden:
-      case AppLifecycleState.paused:
-        return;
-      case AppLifecycleState.resumed:
-        // Restart the scanner when the app is resumed.
-        // Don't forget to resume listening to the barcode events.
-        _subscription = mobileScannerController.barcodes.listen(_handleBarcode);
-
-        unawaited(mobileScannerController.start());
-      case AppLifecycleState.inactive:
-        // Stop the scanner when the app is paused.
-        // Also stop the barcode events subscription.
-        unawaited(_subscription?.cancel());
-        _subscription = null;
-        unawaited(mobileScannerController.stop());
-    }
-  }
-
-  @override
-  Future<void> dispose() async {
-    // Stop listening to lifecycle changes.
-    WidgetsBinding.instance.removeObserver(this);
-    // Stop listening to the barcode events.
-    await _subscription?.cancel();
-    _subscription = null;
-    // Dispose the widget itself.
-    // Finally, dispose of the controller.
-    await mobileScannerController.dispose();
-    super.dispose();
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: MobileScanner(
-        controller: mobileScannerController,
-      ),
-    );
-  }
-}
