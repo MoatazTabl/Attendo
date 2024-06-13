@@ -12,15 +12,15 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   # A flutter plugin for adapting screen and font size.
-  flutter_screenutil: ^5.9.0
+  flutter_screenutil: ^5.9.1
   # A  Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling
   google_fonts: ^6.2.1
   # A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more
-  go_router: ^13.2.0
+  go_router: ^14.1.3
   # A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and videos, and streaming image buffers to Dart.
-  camera: ^0.10.5+9
+  camera: ^0.11.0
   # A flutter plugin for save image to gallery
   image_gallery_saver: ^2.0.3
   # Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
@@ -28,17 +28,17 @@ dependencies:
   # A Flutter plugin to use Google's ML Kit Object Detection and Tracking to detect and track objects in an image or live camera feed.
   # google_mlkit_object_detection: ^0.11.0
   # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files
-  flutter_svg: ^2.0.7
+  flutter_svg: ^2.0.10+1
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
   qr_flutter: ^4.1.0
   # Render After Effects animations natively on Flutter. This package is a pure Dart implementation of a Lottie player.
-  lottie: ^3.1.0
+  lottie: ^3.1.2
   # Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.
-  flutter_native_splash: ^2.3.13
+  flutter_native_splash: ^2.4.0
   #  mobile_scanner: ^5.0.0
-  mobile_scanner: ^5.1.0
+  mobile_scanner: ^5.1.1
   # Dart Image Library provides server and web apps the ability to load, manipulate, and save images with various image file formats.
-  image: ^4.1.1
+  image: ^4.2.0
   # Flutter plugin for reading and writing simple key-value pairs.
   shared_preferences: ^2.2.3
   # This small library helps you to decode Json Web Tokens, you can also know if a JWT is already expired.
@@ -55,15 +55,13 @@ dependencies:
   dartz: ^0.10.1
   # Flutter plugin for discovering the state of the network (WiFi & mobile/cellular) connectivity on Android and iOS.
 #  connectivity_plus: ^6.0.3
-  smooth_page_indicator: ^1.0.0
-  table_calendar: ^3.0.9
+  smooth_page_indicator: ^1.1.0
+  table_calendar: ^3.1.1
   date_picker_timeline:
     path: ./date_picker_timeline-1.2.5/
   freezed_annotation: ^2.4.1
-  flutter_barcode_scanner: ^2.0.0
   local_auth: ^2.2.0
   mobile_device_identifier: ^0.0.2
-
 
 
 
@@ -72,8 +70,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
-  build_runner: ^2.4.9
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.10
   freezed: ^2.5.2
   flutter_launcher_icons: "^0.13.1"
 
