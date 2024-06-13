@@ -20,6 +20,9 @@ import 'package:go_router/go_router.dart';
 import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
+import '../../intro/student/features/scan_qr/data/model/qr_model.dart';
+import '../../intro/student/features/scan_qr/logic/qr_cubit.dart';
+import '../../intro/student/features/scan_qr/presentation/view/scan_qr.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: AppRoutes.signInScreen,
@@ -38,14 +41,24 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.mainScreen,
       builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => HomeCubit(),
-            ),
-          ],
-          child: MainScreen(
-            userData: state.extra as UserDataModel,
-          )),
+        providers: [
+          BlocProvider(
+            create: (context) => HomeCubit(),
+          ),
+        ],
+        child: MainScreen(
+          userData: state.extra as UserDataModel,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.scanQr,
+      builder: (context, state) => BlocProvider(
+        create: (context) => QrCubit(),
+        child: ScanQr(
+          qrModel: state.extra as QrModel,
+        ),
+      ),
     ),
     // ------------------ instructorScreen ----------------------
 
@@ -73,7 +86,8 @@ final GoRouter router = GoRouter(
           ),
         ],
         child: InstructorLectureDetails(
-          instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,
+          instructorDetailsReportModel:
+              state.extra as InstructorDetailsReportModel,
         ),
       ),
     ),
