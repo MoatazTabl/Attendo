@@ -1,10 +1,6 @@
 part of 'qr_cubit.dart';
 
-@freezed
-class QrState with _$QrState {
-  const factory QrState.initial() = _Initial;
+@immutable
+sealed class QrState {}
 
-  const factory QrState.scanComplete() = ScanComplete;
-
-  const factory QrState.scanError() = ScanError;
-}
+final class QrInitial extends QrState {}

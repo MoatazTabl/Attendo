@@ -1,14 +1,15 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/student/features/home/data/models/students_lectures_model.dart';
+import 'package:attendo/intro/student/features/scan_qr/data/model/qr_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../scan_qr/presentation/view/scan_qr.dart';
 
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard(
@@ -158,18 +159,17 @@ class _AttendanceCardState extends State<AttendanceCard>
                     onPressed: () async {
                       // bool localAuth =
                       //     await LocalAuth().authenticateWithBiometrics(context);
-                      // print(localAuth);
+
                       if (true) {
                         // final generatedCode = await QrCodeFunctions()
                         //     .getLectureCode(widget.lectures.pk!);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const BarcodeScannerWithController(),
+                        context.push(
+                          AppRoutes.scanQr,
+                          extra: QrModel(
+                            studentName: widget.studentName,
+                            lectureId: widget.lectures.pk!,
                           ),
                         );
-                        // final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
-                        //   QrCodeFunctions.scan(context,generatedCode,lectures.pk!,studentName);
                       }
                     },
                     style: ButtonStyle(

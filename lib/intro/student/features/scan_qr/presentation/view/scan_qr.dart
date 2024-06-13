@@ -1,20 +1,24 @@
 import 'dart:async';
 
+import 'package:attendo/intro/student/features/scan_qr/data/model/qr_model.dart';
+import 'package:attendo/intro/student/features/scan_qr/logic/qr_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'widgets/scanner_error_widget.dart';
 
-class BarcodeScannerWithController extends StatefulWidget {
-  const BarcodeScannerWithController({super.key});
+class ScanQr extends StatefulWidget {
+  const ScanQr({super.key, required this.qrModel});
+
+  final QrModel qrModel;
 
   @override
-  State<BarcodeScannerWithController> createState() =>
-      _BarcodeScannerWithControllerState();
+  State<ScanQr> createState() => _ScanQrState();
 }
 
-class _BarcodeScannerWithControllerState
-    extends State<BarcodeScannerWithController> with WidgetsBindingObserver {
+class _ScanQrState extends State<ScanQr> with WidgetsBindingObserver {
   final MobileScannerController controller = MobileScannerController(
     formats: [BarcodeFormat.qrCode],
     useNewCameraSelector: true,
@@ -27,22 +31,7 @@ class _BarcodeScannerWithControllerState
 
   Barcode? _barcode;
   StreamSubscription<Object?>? _subscription;
-
-  Widget _buildBarcode(Barcode? value) {
-    if (value == null) {
-      return const Text(
-        'Scan something!',
-        overflow: TextOverflow.fade,
-        style: TextStyle(color: Colors.white),
-      );
-    }
-
-    return Text(
-      value.displayValue ?? 'No display value.',
-      overflow: TextOverflow.fade,
-      style: const TextStyle(color: Colors.white),
-    );
-  }
+  late Future<String> lectureCode;
 
   void _handleBarcode(BarcodeCapture barcodes) {
     if (mounted) {
@@ -59,6 +48,7 @@ class _BarcodeScannerWithControllerState
 
     _subscription = controller.barcodes.listen(_handleBarcode);
 
+    lectureCode = context.read<QrCubit>().getCode(widget.qrModel.lectureId);
     unawaited(controller.start());
   }
 
@@ -87,12 +77,24 @@ class _BarcodeScannerWithControllerState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('With controller')),
+      appBar: AppBar(
+        title: const Text(
+          'With controller',
+        ),
+      ),
       backgroundColor: Colors.black,
       body: Stack(
         children: [
           MobileScanner(
             controller: controller,
+            onDetect: (barcodes) async {
+              String? scannedQr = barcodes.barcodes.first.rawValue;
+              if (scannedQr == await lectureCode) {
+                context.read<QrCubit>().appendStudent(
+                    widget.qrModel.lectureId, widget.qrModel.studentName);
+                context.pop();
+              }
+            },
             errorBuilder: (context, error, child) {
               return ScannerErrorWidget(error: error);
             },
@@ -108,10 +110,12 @@ class _BarcodeScannerWithControllerState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                      child: Center(
-                          child: BuildBarCode(
-                    barcode: _barcode,
-                  ))),
+                    child: Center(
+                      child: BuildBarCode(
+                        barcode: _barcode,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
