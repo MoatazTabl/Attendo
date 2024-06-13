@@ -6,9 +6,7 @@ import 'package:attendo/intro/instructor/features/attendance_page/presentation/v
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -151,14 +149,13 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   builder: (context, state) {
                     return ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
+                        backgroundColor: WidgetStatePropertyAll(
                             state is StartReportSuccess ||
                                 state is StartReportFailure
                                 ? Colors.grey
                                 : const Color(0xff3746CC)),
-                        padding:
-                        const MaterialStatePropertyAll(EdgeInsets.zero),
-                        fixedSize: MaterialStatePropertyAll(
+                        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+                        fixedSize: WidgetStatePropertyAll(
                           Size(
                             230.w,
                             59.h,

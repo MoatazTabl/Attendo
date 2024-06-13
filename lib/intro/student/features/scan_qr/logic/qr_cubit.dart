@@ -21,7 +21,7 @@ class QrCubit extends Cubit<QrState> {
     return lectureCode.qrCode;
   }
 
-  Future<String> appendStudent(int lectureId, String studentName) async {
+  Future<void> appendStudent(int lectureId, String studentName) async {
     try {
       final response =
           await ApiService().post(endpoint: ApiStrings.appendStudent, data: {
@@ -31,13 +31,11 @@ class QrCubit extends Cubit<QrState> {
         },
       );
       final AppendStudentModel message = AppendStudentModel.fromJson(response);
-      return message.message;
+      emit(QrSuccess(message.message));
     } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
-        return k.errorMessage;
-      } else {
-        return "Un Expected error , try again";
+        emit(QrError(k.errorMessage));
       }
     }
   }

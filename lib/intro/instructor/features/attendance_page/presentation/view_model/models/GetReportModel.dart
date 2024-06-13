@@ -3,6 +3,7 @@
 /// students_list : [{"user_id":60,"name":"Moaz Omran20","national_id":"302021011"}]
 /// date : "2024-05-10"
 /// authorization_time : ["20:18:54"]
+library;
 
 class GetReportModel {
   GetReportModel({
