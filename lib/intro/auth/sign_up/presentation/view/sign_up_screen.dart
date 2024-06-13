@@ -148,8 +148,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             SizedBox(
                               height: 16.h,
                             ),
-
-                            //getAppLocalizations(context)!.selectFaculty,
                             Visibility(
                               visible: context.read<UserCubit>().isStudent,
                               child: CustomFormDropDownButton(
@@ -185,21 +183,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             state is SignUpLoading
                                 ? const CircularProgressIndicator()
                                 : CustomFormElevatedButton(
-                                    onPressed: () {
-                                      if (context
-                                          .read<UserCubit>()
-                                          .formKey
-                                          .currentState!
-                                          .validate()) {
-                                        setState(() {});
-                                        context.read<UserCubit>().signUp();
-                                      } else {
-                                        context
-                                                .read<UserCubit>()
-                                                .autoValidateMode =
-                                            AutovalidateMode.always;
-                                        setState(() {});
-                                      }
+                                    onPressed: () async{
+                                           if (context
+                                               .read<UserCubit>()
+                                               .formKey
+                                               .currentState!
+                                               .validate()) {
+                                             setState(() {});
+                                             context.read<UserCubit>().signUp();
+                                           } else {
+                                             context
+                                                 .read<UserCubit>()
+                                                 .autoValidateMode =
+                                                 AutovalidateMode.always;
+                                             setState(() {});
+                                           }
+
+
                                     },
                                     title: getAppLocalizations(context)!.signUp,
                                   ),

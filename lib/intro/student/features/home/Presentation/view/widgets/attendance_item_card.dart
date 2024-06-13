@@ -1,12 +1,18 @@
+import 'dart:async';
+
 import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/student/features/home/data/models/students_lectures_model.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../../scan_qr/presentation/view/scan_qr.dart';
 
@@ -164,8 +170,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                         //     .getLectureCode(widget.lectures.pk!);
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const BarcodeScannerWithController(),
+                            builder: (context) => const BarcodeScannerWithController()
                           ),
                         );
                         // final generatedCode = await QrCodeFunctions().getLectureCode(lectures.pk!);
@@ -173,7 +178,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                       }
                     },
                     style: ButtonStyle(
-                      shape: WidgetStateProperty.all(
+                      shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             32,
@@ -182,10 +187,11 @@ class _AttendanceCardState extends State<AttendanceCard>
                       ),
                       enableFeedback: true,
                       backgroundColor:
-                          const WidgetStatePropertyAll(Colors.transparent),
-                      shadowColor: WidgetStateProperty.all(Colors.transparent),
-                      elevation: WidgetStateProperty.all(0),
-                      padding: WidgetStateProperty.all(
+                          const MaterialStatePropertyAll(Colors.transparent),
+                      shadowColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      elevation: MaterialStateProperty.all(0),
+                      padding: MaterialStateProperty.all(
                         EdgeInsets.zero,
                       ),
                     ),
@@ -227,3 +233,4 @@ class _AttendanceCardState extends State<AttendanceCard>
     return dateFormat;
   }
 }
+

@@ -27,10 +27,26 @@ class _SignInScreenState extends State<SignInScreen> {
   bool rememberMe = false;
   late UserDataModel userDataModel;
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context
+        .read<UserCubit>()
+        .getDeviceId();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
-        .hasMatch(context.read<UserCubit>().logInEmail.text);
+        .hasMatch(context
+        .read<UserCubit>()
+        .logInEmail
+        .text);
+
+
+
 
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
@@ -52,8 +68,14 @@ class _SignInScreenState extends State<SignInScreen> {
             }
             GlobalSnackBar.show(
                 context, getAppLocalizations(context)!.loggedInSuccessfully);
-            context.read<UserCubit>().logInEmail.clear();
-            context.read<UserCubit>().logInPassword.clear();
+            context
+                .read<UserCubit>()
+                .logInEmail
+                .clear();
+            context
+                .read<UserCubit>()
+                .logInPassword
+                .clear();
           } else if (state is LoginFailure) {
             GlobalSnackBar.show(context, state.errMessage);
           }
@@ -76,8 +98,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: AutofillGroup(
                   child: Form(
                     autovalidateMode:
-                        context.read<UserCubit>().autoValidateModeSignIn,
-                    key: context.read<UserCubit>().logInFormKey,
+                    context
+                        .read<UserCubit>()
+                        .autoValidateModeSignIn,
+                    key: context
+                        .read<UserCubit>()
+                        .logInFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -99,22 +125,28 @@ class _SignInScreenState extends State<SignInScreen> {
                           height: 36.h,
                         ),
                         CustomTextFormField(
-                          controller: context.read<UserCubit>().logInEmail,
+                          controller: context
+                              .read<UserCubit>()
+                              .logInEmail,
                           hintText: getAppLocalizations(context)!.signInEmail,
                           isPass: false,
                           prefixIcon: Icons.person,
                           textInputType: TextInputType.emailAddress,
                           autofillHints: const [AutofillHints.email],
+                    
                         ),
                         SizedBox(
                           height: 16.h,
                         ),
                         CustomTextFormField(
-                          controller: context.read<UserCubit>().logInPassword,
+                          controller: context
+                              .read<UserCubit>()
+                              .logInPassword,
                           hintText: getAppLocalizations(context)!.password,
                           isPass: true,
                           prefixIcon: Icons.lock,
                           autofillHints: const [AutofillHints.password],
+                    
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 22.w, right: 25.w),
@@ -123,22 +155,24 @@ class _SignInScreenState extends State<SignInScreen> {
                         state is LoginLoading
                             ? const CircularProgressIndicator()
                             : CustomFormElevatedButton(
-                                onPressed: () {
-                                  if (context
-                                      .read<UserCubit>()
-                                      .logInFormKey
-                                      .currentState!
-                                      .validate()) {
-                                    setState(() {});
-                                    context.read<UserCubit>().signIn();
-                                  } else {
-                                    context.read<UserCubit>().autoValidateMode =
-                                        AutovalidateMode.always;
-                                    setState(() {});
-                                  }
-                                },
-                                title: "Log In",
-                              ),
+                          onPressed: () async{
+                            if (context
+                                .read<UserCubit>()
+                                .logInFormKey
+                                .currentState!
+                                .validate()) {
+                              setState(() {});
+                              context.read<UserCubit>().signIn();
+                            } else {
+                              context
+                                  .read<UserCubit>()
+                                  .autoValidateMode =
+                                  AutovalidateMode.always;
+                              setState(() {});
+                            }
+                          },
+                          title: "Log In",
+                        ),
                         const Spacer(),
                         Padding(
                           padding: EdgeInsets.only(bottom: 20.h),
