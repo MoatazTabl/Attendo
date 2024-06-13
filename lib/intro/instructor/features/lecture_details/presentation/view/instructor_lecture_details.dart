@@ -186,12 +186,9 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   height: 30.h,
                 ),
                 const StudentsAttendingWidget(),
-                Visibility(
-                  visible: lectureStarted,
-                  child: ShowStudentsListPopUpWidget(
-                    instructorDetailsReportModel:
-                    widget.instructorDetailsReportModel,
-                  ),
+                ShowStudentsListPopUpWidget(
+                  instructorDetailsReportModel:
+                  widget.instructorDetailsReportModel,
                 ),
               ],
             ),
