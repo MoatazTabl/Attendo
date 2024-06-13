@@ -2,8 +2,7 @@ class AppRoutes {
   static const String signInScreen = "/";
   static const String signUpScreen = "/signUpScreen";
   static const String mainScreen = "/mainScreen";
-  static const String cameraScreen = "/cameraScreen";
-  static const String fingerPrintScanScreen = "/fingerPrintScanScreen";
+  static const String scanQr = "/scanQr";
 
   static const String instructorMainScreen = "/instructorMainScreen";
   static const String instructorLectureDetails = "/instructorLectureDetails";

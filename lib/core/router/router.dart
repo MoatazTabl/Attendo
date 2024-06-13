@@ -13,6 +13,9 @@ import 'package:attendo/intro/instructor/features/lecture_details/presentation/v
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
+import 'package:attendo/intro/student/features/scan_qr/data/model/qr_model.dart';
+import 'package:attendo/intro/student/features/scan_qr/logic/qr_cubit.dart';
+import 'package:attendo/intro/student/features/scan_qr/presentation/view/scan_qr.dart';
 import 'package:attendo/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -38,14 +41,24 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.mainScreen,
       builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => HomeCubit(),
-            ),
-          ],
-          child: MainScreen(
-            userData: state.extra as UserDataModel,
-          )),
+        providers: [
+          BlocProvider(
+            create: (context) => HomeCubit(),
+          ),
+        ],
+        child: MainScreen(
+          userData: state.extra as UserDataModel,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: AppRoutes.scanQr,
+      builder: (context, state) => BlocProvider(
+        create: (context) => QrCubit(),
+        child: ScanQr(
+          qrModel: state.extra as QrModel,
+        ),
+      ),
     ),
     // ------------------ instructorScreen ----------------------
 
