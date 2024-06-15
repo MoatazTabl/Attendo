@@ -186,12 +186,6 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                             56.h,
                           ),
                         ),
-                        maximumSize: WidgetStateProperty.all(
-                          Size(
-                            215.w,
-                            56.h,
-                          ),
-                        ),
                       ),
                       onPressed: () {
                         autoValidateMode = AutovalidateMode.onUserInteraction;
