@@ -44,7 +44,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   themeMode = !themeMode;
                   setState(() {});
                 },
-                trackOutlineColor: MaterialStateProperty.all(Colors.black54),
+                trackOutlineColor: WidgetStateProperty.all(Colors.black54),
                 activeColor: const Color(0xff3746CC),
                 inactiveThumbColor: const Color(0xff2403F1).withOpacity(.7),
               ),
@@ -120,18 +120,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             context.go("/");
           },
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(
+            fixedSize: WidgetStateProperty.all(
               Size(215.w, 56.h),
             ),
-            backgroundColor: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(
               const Color(
                 0xFFCC3741,
               ),
             ),
-            foregroundColor: MaterialStateProperty.all(
+            foregroundColor: WidgetStateProperty.all(
               Colors.white,
             ),
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                   18.w,

@@ -180,13 +180,7 @@ class _CreateLectureInstructorState extends State<CreateLectureInstructor> {
                     },
                     builder: (context, state) => ElevatedButton(
                       style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all(
-                          Size(
-                            215.w,
-                            56.h,
-                          ),
-                        ),
-                        maximumSize: MaterialStateProperty.all(
+                        fixedSize: WidgetStateProperty.all(
                           Size(
                             215.w,
                             56.h,

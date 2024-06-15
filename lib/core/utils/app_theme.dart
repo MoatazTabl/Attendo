@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 final ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   textTheme: textTheme,
-colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
+  colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(const Color(0xff3746CC)),
-      foregroundColor: MaterialStateProperty.all(Colors.white),
-      shadowColor: MaterialStateProperty.all(
+      backgroundColor: WidgetStateProperty.all(const Color(0xff3746CC)),
+      foregroundColor: WidgetStateProperty.all(Colors.white),
+      shadowColor: WidgetStateProperty.all(
         const Color(
           0xff707070,
         ),
       ),
-      elevation: MaterialStateProperty.all(
+      elevation: WidgetStateProperty.all(
         5,
       ),
     ),

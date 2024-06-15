@@ -179,16 +179,16 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                 ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(
+                    fixedSize: WidgetStateProperty.all(
                       Size(340.w, 56.h),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       const Color(
                         0xff3746CC,
                       ),
                     ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           22.w,

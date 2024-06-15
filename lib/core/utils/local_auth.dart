@@ -10,7 +10,7 @@ class LocalAuth {
   Future<bool> authenticateWithBiometrics(BuildContext context) async {
     late bool didAuthenticate;
     try {
-       didAuthenticate = await _auth.authenticate(
+      didAuthenticate = await _auth.authenticate(
         localizedReason: getAppLocalizations(context)!.authReason,
         options: const AuthenticationOptions(),
       );

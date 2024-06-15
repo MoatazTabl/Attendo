@@ -3,14 +3,16 @@
 /// students_list : [{"user_id":60,"name":"Moaz Omran20","national_id":"302021011"}]
 /// date : "2024-05-10"
 /// authorization_time : ["20:18:54"]
+library;
 
 class GetReportModel {
   GetReportModel({
-      this.lecturePk, 
-      this.lectureName, 
-      this.studentsList, 
-      this.date, 
-      this.authorizationTime,});
+    this.lecturePk,
+    this.lectureName,
+    this.studentsList,
+    this.date,
+    this.authorizationTime,
+  });
 
   GetReportModel.fromJson(dynamic json) {
     lecturePk = json['lecture_pk'];
@@ -22,8 +24,11 @@ class GetReportModel {
       });
     }
     date = json['date'];
-    authorizationTime = json['authorization_time'] != null ? json['authorization_time'].cast<String>() : [];
+    authorizationTime = json['authorization_time'] != null
+        ? json['authorization_time'].cast<String>()
+        : [];
   }
+
   num? lecturePk;
   String? lectureName;
   List<StudentsList>? studentsList;
@@ -41,7 +46,6 @@ class GetReportModel {
     map['authorization_time'] = authorizationTime;
     return map;
   }
-
 }
 
 /// user_id : 60
@@ -50,15 +54,17 @@ class GetReportModel {
 
 class StudentsList {
   StudentsList({
-      this.userId, 
-      this.name, 
-      this.nationalId,});
+    this.userId,
+    this.name,
+    this.nationalId,
+  });
 
   StudentsList.fromJson(dynamic json) {
     userId = json['user_id'];
     name = json['name'];
     nationalId = json['national_id'];
   }
+
   num? userId;
   String? name;
   String? nationalId;
@@ -70,5 +76,4 @@ class StudentsList {
     map['national_id'] = nationalId;
     return map;
   }
-
 }

@@ -31,8 +31,7 @@ class DatePickerWidget extends StatelessWidget {
           "instructor": userData.name,
           "date": date.toIso8601String().split(".")[0]
         });
-          context.read<HomeInstructorCubit>().dateTime = date;
-
+        context.read<HomeInstructorCubit>().dateTime = date;
       },
     );
   }
