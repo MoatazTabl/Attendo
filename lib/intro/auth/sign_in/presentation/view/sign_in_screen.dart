@@ -29,7 +29,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
 @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context
         .read<UserCubit>()
@@ -44,10 +43,6 @@ class _SignInScreenState extends State<SignInScreen> {
         .read<UserCubit>()
         .logInEmail
         .text);
-
-
-
-
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) async {

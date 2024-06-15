@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:attendo/intro/student/features/scan_qr/data/model/qr_model.dart';
-import 'package:attendo/intro/student/features/scan_qr/logic/qr_cubit.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/widgets/mobile_scanner_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 
