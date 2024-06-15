@@ -13,12 +13,10 @@ class MobileScannerWidget extends StatelessWidget {
   const MobileScannerWidget({
     super.key,
     required this.controller,
-    required this.lectureCode,
     required this.scanQrModel,
   });
 
   final MobileScannerController controller;
-  final Future<String> lectureCode;
   final ScanQr scanQrModel;
 
   @override
@@ -41,12 +39,21 @@ class MobileScannerWidget extends StatelessWidget {
             },
             onDetect: (barcodes) async {
               String? scannedQr = barcodes.barcodes.first.rawValue;
+              late Future<String> lectureCode;
+              lectureCode = context.read<QrCubit>().getCode(
+                  scanQrModel.qrModel.lectureId);
+
               if (scannedQr == await lectureCode) {
                 context.read<QrCubit>().appendStudent(
                     scanQrModel.qrModel.lectureId,
                     scanQrModel.qrModel.studentName);
                 GlobalSnackBar.show(
                     context, "Attendance has been taken successfully");
+                context.pop();
+              }
+              if (scannedQr != await lectureCode) {
+                GlobalSnackBar.show(
+                    context, "Qr code is not correct");
                 context.pop();
               }
             },

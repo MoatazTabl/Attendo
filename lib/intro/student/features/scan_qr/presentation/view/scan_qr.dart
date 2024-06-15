@@ -29,7 +29,6 @@ class _ScanQrState extends State<ScanQr> with WidgetsBindingObserver {
   );
 
   StreamSubscription<Object?>? _subscription;
-  late Future<String> lectureCode;
 
   @override
   void initState() {
@@ -38,7 +37,6 @@ class _ScanQrState extends State<ScanQr> with WidgetsBindingObserver {
 
     _subscription = controller.barcodes.listen(_handleBarcode);
 
-    lectureCode = context.read<QrCubit>().getCode(widget.qrModel.lectureId);
     unawaited(controller.start());
   }
 
@@ -80,7 +78,6 @@ class _ScanQrState extends State<ScanQr> with WidgetsBindingObserver {
       backgroundColor: Colors.black,
       body: MobileScannerWidget(
           controller: controller,
-          lectureCode: lectureCode,
           scanQrModel: widget),
     );
   }
