@@ -31,7 +31,7 @@ class Attendo extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              theme: lightMode,
+              theme: AppTheme.lightMode,
               locale: Locale(UserLanguageService.getPreferredLanguage),
               routerConfig: router,
             );
