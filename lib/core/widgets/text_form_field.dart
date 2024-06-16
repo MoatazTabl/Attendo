@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
 
   final bool isPass;
 
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
 
   final TextEditingController? controller;
 
@@ -32,13 +33,12 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  void Function(String)? onChanged;
   bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: TextFormField(
         validator: (value) {
           if (value!.isEmpty) {
@@ -69,35 +69,40 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         enabled: true,
         keyboardType: widget.textInputType,
         autofillHints: widget.autofillHints,
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           suffixIcon: widget.isPass
               ? IconButton(
                   onPressed: () {
-                    setState(() {
-                      obscure = !obscure;
-                    });
+                    obscure = !obscure;
                   },
-                  icon: Icon(
-                    Icons.remove_red_eye,
-                    color: obscure ? Colors.black : const Color(0xff3746CC),
+                  icon: SvgPicture.asset(
+                    "assets/images/svg/obscure_icon.svg",
+                    colorFilter: ColorFilter.mode(
+                      obscure ? Colors.black : const Color(0xff3746CC),
+                      BlendMode.srcIn,
+                    ),
                   ),
                 )
-              : const SizedBox(),
-          prefixIcon: widget.prefixIcon == null
-              ? null
-              : Icon(
-                  widget.prefixIcon,
-                  color: Colors.black,
-                ),
-          hintText: widget.hintText,
+              : null,
+
+          prefixIcon: widget.prefixIcon,
+          prefixText: "  ",
+          prefixIconConstraints: const BoxConstraints(
+            maxHeight: 22,
+            maxWidth: 22,
+          ),
+
+          // hintText: widget.hintText,
           hintStyle:
               Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 18.sp),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.w),
-              borderSide: BorderSide.none),
-          filled: true,
-          fillColor: const Color(0xfff0f3ff),
-          contentPadding: const EdgeInsets.only(left: 10),
+          border: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(
+                0xffA0A0A0,
+              ),
+            ),
+          ),
         ),
       ),
     );

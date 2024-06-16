@@ -19,13 +19,13 @@ class CustomFormElevatedButton extends StatelessWidget {
         ),
         backgroundColor: WidgetStateProperty.all(
           const Color(
-            0xff3746CC,
+            0xff0066FF,
           ),
         ),
         foregroundColor: WidgetStateProperty.all(Colors.white),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.w),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),
@@ -34,8 +34,9 @@ class CustomFormElevatedButton extends StatelessWidget {
         title == "Log In"
             ? getAppLocalizations(context)!.logIn
             : getAppLocalizations(context)!.signUp,
-        style:
-            Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16.sp),
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+              fontSize: 25.sp,
+            ),
       ),
     );
   }

@@ -27,7 +27,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     screens = [
       HomeScreenStudent(
@@ -53,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Colors.transparent,
           body: screens[index],
           bottomNavigationBar: Theme(
-            data: lightMode.copyWith(
+            data: AppTheme.lightMode.copyWith(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
             ),
