@@ -29,6 +29,11 @@ abstract class AppImages {
   static const String calenderIcon = 'assets/images/svg/calendar_icon.svg';
   static const String timeIcon = 'assets/images/svg/time_icon.svg';
   static const String locationIcon = 'assets/images/svg/location_Icon.svg';
+  static const String dropDownIcon = 'assets/images/svg/drop_down_icon.svg';
+  static const String passwordIcon = 'assets/images/svg/password_icon.svg';
+  static const String emailIcon = 'assets/images/svg/email_icon.svg';
+  static const String nationalIdIcon = 'assets/images/svg/national_id_icon.svg';
+  static const String nameIcon = "assets/images/svg/name_icon.svg";
 
   static const String noAvailableLectures =
       'assets/images/svg/no_available_lectures.svg';
