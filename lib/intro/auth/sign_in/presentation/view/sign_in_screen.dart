@@ -65,7 +65,6 @@ class _SignInScreenState extends State<SignInScreen> {
       builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppTheme.filledWhite,
           body: SafeArea(
             child: Container(
               height: 1.sh,
@@ -105,16 +104,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         SizedBox(
                           height: 36.h,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.w),
-                          child: const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Email Address"),
-                          ),
-                        ),
+
                         CustomTextFormField(
                           controller: context.read<UserCubit>().logInEmail,
-                          hintText: getAppLocalizations(context)!.signInEmail,
                           isPass: false,
                           prefixIcon: SvgPicture.asset(
                             "assets/images/svg/email_icon.svg",
@@ -124,20 +116,15 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           textInputType: TextInputType.emailAddress,
                           autofillHints: const [AutofillHints.email],
+                          textFieldLabel:
+                              getAppLocalizations(context)!.signInEmail,
                         ),
                         SizedBox(
                           height: 16.h,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.w),
-                          child: const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("Password"),
-                          ),
-                        ),
+
                         CustomTextFormField(
                           controller: context.read<UserCubit>().logInPassword,
-                          hintText: getAppLocalizations(context)!.password,
                           isPass: true,
                           prefixIcon: SvgPicture.asset(
                             "assets/images/svg/password_icon.svg",
@@ -146,6 +133,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             fit: BoxFit.contain,
                           ),
                           autofillHints: const [AutofillHints.password],
+                          textFieldLabel:
+                              getAppLocalizations(context)!.password,
                         ),
                         // Padding(
                         //   padding: EdgeInsets.only(left: 22.w, right: 25.w),

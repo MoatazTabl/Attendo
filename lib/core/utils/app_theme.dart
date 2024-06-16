@@ -7,6 +7,7 @@ class AppTheme {
   static final ThemeData lightMode = ThemeData(
     brightness: Brightness.light,
     textTheme: textTheme,
+    scaffoldBackgroundColor: filledWhite,
     colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
