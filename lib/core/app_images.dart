@@ -34,6 +34,8 @@ abstract class AppImages {
   static const String emailIcon = 'assets/images/svg/email_icon.svg';
   static const String nationalIdIcon = 'assets/images/svg/national_id_icon.svg';
   static const String nameIcon = "assets/images/svg/name_icon.svg";
+  static const String lightBulbIcon = "assets/images/svg/light_bulb_icon.svg";
+  static const String languageIcon = "assets/images/svg/language_icon.svg";
 
   static const String noAvailableLectures =
       'assets/images/svg/no_available_lectures.svg';

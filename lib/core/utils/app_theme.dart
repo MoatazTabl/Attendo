@@ -2,6 +2,7 @@ import 'package:attendo/core/utils/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  static const Color mainBlue = Color(0xff0066FF);
   static const Color filledWhite = Color(0xfff6f9ff);
   static const Color boxStrokeColor = Color(0xffEAECF0);
   static final ThemeData lightMode = ThemeData(
