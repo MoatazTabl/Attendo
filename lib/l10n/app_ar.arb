@@ -37,8 +37,7 @@
   "grade":"السنه",
 
   "@_settingsPage": {},
-  "light": "ساطع",
-  "dark": "مظلم",
+  "darkMode": "الوضع الداكن",
   "language": "اللغة",
   "logOut": "تسجيل الخروج",
 

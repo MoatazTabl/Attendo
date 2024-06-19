@@ -19,7 +19,6 @@
   "reEnterPassword": "Re-Enter Password",
   "selectFaculty": "Select Faculty",
   "selectGrade": "Select Grade",
-  "scanFingerprint": "Scan Fingerprint",
   "emailCreatedSuccessfully": "Your Email has been created Successfully",
 
   "@_BottomNavBar": {},
@@ -38,8 +37,7 @@
   "grade":"Grade",
 
   "@_settingsPage": {},
-  "light": "Light",
-  "dark": "Dark",
+  "darkMode": "Dark Mode",
   "language": "Language",
   "logOut": "Log Out",
 
