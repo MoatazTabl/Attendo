@@ -25,6 +25,16 @@ abstract class AppImages {
   static const String attendanceSuccessCheck =
       'assets/images/attendance_success_check.png';
 
+  // BottomNavigationBar
+  static const String homeIcon = "assets/images/svg/home_icon.svg";
+  static const String selectedHomeIcon = "assets/images/svg/selected_home.svg";
+  static const String profileIcon = "assets/images/svg/profile_icon.svg";
+  static const String selectedProfileIcon =
+      "assets/images/svg/selected_profile.svg";
+  static const String settingsIcon = "assets/images/svg/settings_icon.svg";
+  static const String selectedSettingsIcon =
+      "assets/images/svg/selected_settings.svg";
+
   static const String arrowDownIcon = 'assets/images/svg/arrow_down_icon.svg';
   static const String calenderIcon = 'assets/images/svg/calendar_icon.svg';
   static const String timeIcon = 'assets/images/svg/time_icon.svg';

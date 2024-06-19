@@ -1,4 +1,3 @@
-import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'core/app_images.dart';
 import 'intro/settings/presentation/view/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -39,62 +39,52 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        width: 1.sw,
-        height: 1.sh,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
+    return Scaffold(
+      body: SafeArea(child: screens[index]),
+      bottomNavigationBar: Theme(
+        data: AppTheme.lightMode.copyWith(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: screens[index],
-          bottomNavigationBar: Theme(
-            data: AppTheme.lightMode.copyWith(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+        child: BottomNavigationBar(
+          currentIndex: index,
+          iconSize: 32.w,
+          elevation: 2,
+          backgroundColor: Colors.white,
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppImages.homeIcon,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppImages.selectedHomeIcon,
+              ),
+              label: getAppLocalizations(context)!.home,
             ),
-            child: BottomNavigationBar(
-              currentIndex: index,
-              iconSize: 32.w,
-              items: [
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/home_icon.svg",
-                  ),
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/selected_home.svg",
-                  ),
-                  label: getAppLocalizations(context)!.home,
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/profile_icon.svg",
-                  ),
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/selected_profile.svg",
-                  ),
-                  label: getAppLocalizations(context)!.profile,
-                ),
-                BottomNavigationBarItem(
-                  label: getAppLocalizations(context)!.settings,
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/settings_icon.svg",
-                  ),
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/selected_settings.svg",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ],
-              onTap: (value) {
-                index = value;
-                setState(() {});
-              },
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppImages.profileIcon,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppImages.selectedProfileIcon,
+              ),
+              label: getAppLocalizations(context)!.profile,
             ),
-          ),
+            BottomNavigationBarItem(
+              label: getAppLocalizations(context)!.settings,
+              icon: SvgPicture.asset(
+                AppImages.settingsIcon,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppImages.selectedSettingsIcon,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ],
+          onTap: (value) {
+            index = value;
+            setState(() {});
+          },
         ),
       ),
     );
