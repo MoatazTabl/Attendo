@@ -84,22 +84,22 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
                 return ScannerErrorWidget(error: error);
               },
               onDetect: (barcodes) async {
+                if (_isProcessing) return; // Prevent multiple detections
+                setState(() {
+                  _isProcessing = true;
+                });
                 String? scannedQr = barcodes.barcodes.first.rawValue;
                 late Future<String> lectureCode;
-                lectureCode = context.read<QrCubit>().getCode(
-                    widget.scanQrModel.qrModel.lectureId);
+                lectureCode = context
+                    .read<QrCubit>()
+                    .getCode(widget.scanQrModel.qrModel.lectureId);
 
                 if (scannedQr == await lectureCode) {
                   context.read<QrCubit>().appendStudent(
                       widget.scanQrModel.qrModel.lectureId,
                       widget.scanQrModel.qrModel.studentName);
-                  GlobalSnackBar.show(
-                      context, "Attendance has been taken successfully");
-                  context.pop();
-                }
-                if (scannedQr != await lectureCode) {
-                  GlobalSnackBar.show(
-                      context, "Qr code is not correct");
+                } else {
+                  GlobalSnackBar.show(context, "Qr code is not correct");
                   context.pop();
                 }
               },
