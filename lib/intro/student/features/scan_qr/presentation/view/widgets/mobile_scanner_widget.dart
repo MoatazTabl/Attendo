@@ -31,9 +31,11 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: Container(height: 90,child: Image.asset("assets/images/failed.png",fit: BoxFit.fill,)),
+          icon: Container(height: 90,
+              child: Image.asset(
+                "assets/images/failed.png", fit: BoxFit.fill,)),
           content: Text(message),
-          title:  Text("Failed",style: TextStyle(color: Colors.white),),
+          title: Text("Failed", style: TextStyle(color: Colors.white),),
           backgroundColor: Color(0XFFD64556),
           actions: <Widget>[
             Center(
@@ -61,54 +63,64 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       height: 200,
     );
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Center(
-          child: MobileScanner(
-            fit: BoxFit.fill,
-            controller: widget.controller,
-            scanWindow: scanWindow,
-            errorBuilder: (context, error, child) {
-              return ScannerErrorWidget(error: error);
-            },
-            onDetect: (barcodes) async {
-              String? scannedQr = barcodes.barcodes.first.rawValue;
-              late Future<String> lectureCode;
-              lectureCode = context.read<QrCubit>().getCode(
-                  widget.scanQrModel.qrModel.lectureId);
+    return BlocListener<QrCubit,QrState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is QrSuccess) {
+          showCustomDialog(context, state.successMessage);
+        } else if (state is QrError) {
+          showCustomDialog(context, state.errorMessage);
+        }
+      },
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Center(
+            child: MobileScanner(
+              fit: BoxFit.fill,
+              controller: widget.controller,
+              scanWindow: scanWindow,
+              errorBuilder: (context, error, child) {
+                return ScannerErrorWidget(error: error);
+              },
+              onDetect: (barcodes) async {
+                String? scannedQr = barcodes.barcodes.first.rawValue;
+                late Future<String> lectureCode;
+                lectureCode = context.read<QrCubit>().getCode(
+                    widget.scanQrModel.qrModel.lectureId);
 
-              if (scannedQr == await lectureCode) {
-                context.read<QrCubit>().appendStudent(
-                    widget.scanQrModel.qrModel.lectureId,
-                    widget.scanQrModel.qrModel.studentName);
-                GlobalSnackBar.show(
-                    context, "Attendance has been taken successfully");
-                context.pop();
+                if (scannedQr == await lectureCode) {
+                  context.read<QrCubit>().appendStudent(
+                      widget.scanQrModel.qrModel.lectureId,
+                      widget.scanQrModel.qrModel.studentName);
+                  GlobalSnackBar.show(
+                      context, "Attendance has been taken successfully");
+                  context.pop();
+                }
+                if (scannedQr != await lectureCode) {
+                  GlobalSnackBar.show(
+                      context, "Qr code is not correct");
+                  context.pop();
+                }
+              },
+            ),
+          ),
+          ValueListenableBuilder(
+            valueListenable: widget.controller,
+            builder: (context, value, child) {
+              if (!value.isInitialized ||
+                  !value.isRunning ||
+                  value.error != null) {
+                return const SizedBox();
               }
-              if (scannedQr != await lectureCode) {
-                GlobalSnackBar.show(
-                    context, "Qr code is not correct");
-                context.pop();
-              }
+
+              return CustomPaint(
+                painter: ScannerOverlay(scanWindow: scanWindow),
+              );
             },
           ),
-        ),
-        ValueListenableBuilder(
-          valueListenable: widget.controller,
-          builder: (context, value, child) {
-            if (!value.isInitialized ||
-                !value.isRunning ||
-                value.error != null) {
-              return const SizedBox();
-            }
-
-            return CustomPaint(
-              painter: ScannerOverlay(scanWindow: scanWindow),
-            );
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
