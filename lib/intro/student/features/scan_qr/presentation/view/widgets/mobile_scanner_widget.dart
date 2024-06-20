@@ -9,7 +9,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../logic/qr_cubit.dart';
 
-class MobileScannerWidget extends StatelessWidget {
+class MobileScannerWidget extends StatefulWidget {
   const MobileScannerWidget({
     super.key,
     required this.controller,
@@ -20,19 +20,54 @@ class MobileScannerWidget extends StatelessWidget {
   final ScanQr scanQrModel;
 
   @override
+  State<MobileScannerWidget> createState() => _MobileScannerWidgetState();
+}
+
+class _MobileScannerWidgetState extends State<MobileScannerWidget> {
+  bool _isProcessing = false;
+
+  void showCustomDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon: Container(height: 90,child: Image.asset("assets/images/failed.png",fit: BoxFit.fill,)),
+          content: Text(message),
+          title:  Text("Failed",style: TextStyle(color: Colors.white),),
+          backgroundColor: Color(0XFFD64556),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    _isProcessing = false; // Allow processing again
+                  });
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scanWindow = Rect.fromCenter(
       center: MediaQuery.sizeOf(context).center(Offset.zero),
       width: 200,
       height: 200,
     );
+
     return Stack(
       fit: StackFit.expand,
       children: [
         Center(
           child: MobileScanner(
             fit: BoxFit.fill,
-            controller: controller,
+            controller: widget.controller,
             scanWindow: scanWindow,
             errorBuilder: (context, error, child) {
               return ScannerErrorWidget(error: error);
@@ -41,12 +76,12 @@ class MobileScannerWidget extends StatelessWidget {
               String? scannedQr = barcodes.barcodes.first.rawValue;
               late Future<String> lectureCode;
               lectureCode = context.read<QrCubit>().getCode(
-                  scanQrModel.qrModel.lectureId);
+                  widget.scanQrModel.qrModel.lectureId);
 
               if (scannedQr == await lectureCode) {
                 context.read<QrCubit>().appendStudent(
-                    scanQrModel.qrModel.lectureId,
-                    scanQrModel.qrModel.studentName);
+                    widget.scanQrModel.qrModel.lectureId,
+                    widget.scanQrModel.qrModel.studentName);
                 GlobalSnackBar.show(
                     context, "Attendance has been taken successfully");
                 context.pop();
@@ -60,7 +95,7 @@ class MobileScannerWidget extends StatelessWidget {
           ),
         ),
         ValueListenableBuilder(
-          valueListenable: controller,
+          valueListenable: widget.controller,
           builder: (context, value, child) {
             if (!value.isInitialized ||
                 !value.isRunning ||
