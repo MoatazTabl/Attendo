@@ -14,7 +14,7 @@ class WelcomeToAttendoWidget extends StatelessWidget {
         Text(
           getAppLocalizations(context)!.welcomeTo,
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                fontSize: 40.sp,
+                fontSize: 35.sp,
               ),
         ),
         Text(

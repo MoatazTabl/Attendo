@@ -4,6 +4,7 @@ import 'package:attendo/core/widgets/custom_drop_down_button.dart';
 import 'package:attendo/core/widgets/custom_form_elevated_button.dart';
 import 'package:attendo/core/widgets/text_form_field.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
+import 'package:attendo/intro/auth/sign_up/presentation/view/widgets/image_pick_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,9 +38,16 @@ class _SignUpBodyState extends State<SignUpBody> {
                     getAppLocalizations(context)!.signUp,
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
-                  CircleAvatar(
-                    radius: 45.sp,
-                    backgroundImage: const AssetImage(AppImages.addAvatarImage),
+                  ImagePickFormWidget(
+                    controller: context.read<UserCubit>().inputController,
+                    onChanged: (value) {
+                      context.read<UserCubit>().inputController.file = value;
+                    },
+                    validator: (imageFile) {
+                      if (imageFile == null) return 'Please select an image';
+
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 7.h,

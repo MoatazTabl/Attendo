@@ -102,7 +102,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         const WelcomeToAttendoWidget(),
                         SizedBox(
-                          height: 36.h,
+                          height: 17.h,
                         ),
 
                         CustomTextFormField(

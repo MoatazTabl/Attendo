@@ -15,7 +15,7 @@ class Attendo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(412, 915),
+      designSize: const Size(375, 814),
       builder: (context, child) => MultiBlocProvider(
         providers: [
           BlocProvider(

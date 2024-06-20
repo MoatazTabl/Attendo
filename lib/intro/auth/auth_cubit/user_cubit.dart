@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:io' as io;
+import 'dart:io';
+
 import 'package:attendo/core/errors/failures.dart';
 import 'package:attendo/core/helpers/cache_helper.dart';
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
+import 'package:attendo/intro/auth/sign_up/presentation/view/widgets/image_pick_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,6 +59,8 @@ class UserCubit extends Cubit<UserState> {
   //Sign up confirm password
   TextEditingController confirmPassword = TextEditingController();
 
+  ImagePickerInputController inputController = ImagePickerInputController();
+
 //Sign up faculty
   String? signUpGrade;
 
@@ -64,7 +71,7 @@ class UserCubit extends Cubit<UserState> {
 
   SignInModel? user;
 
-  clearSignUpFields() {
+  void clearSignUpFields() {
     signUpName.clear();
     signUpLastName.clear();
     signUpNationalId.clear();
@@ -73,10 +80,15 @@ class UserCubit extends Cubit<UserState> {
     confirmPassword.clear();
   }
 
-  getDeviceId()
-  async {
+  void getDeviceId() async {
     final mobileDeviceIdentifier = await MobileDeviceIdentifier().getDeviceId();
-   deviceId = mobileDeviceIdentifier;
+    deviceId = mobileDeviceIdentifier;
+  }
+
+  String convertPhotoToString(File image) {
+    final bytes = io.File(image.path).readAsBytesSync();
+    String img64 = base64Encode(bytes);
+    return img64;
   }
 
   signUp() async {
@@ -89,7 +101,8 @@ class UserCubit extends Cubit<UserState> {
         "national_id": signUpNationalId.text,
         "faculty": signUpFaculty,
         "grade": signUpGrade,
-        "device_id": deviceId
+        "device_id": deviceId,
+        "photo": convertPhotoToString(inputController.value!)
       });
       emit(SignUpSuccess());
     } on Exception catch (e) {
@@ -105,12 +118,13 @@ class UserCubit extends Cubit<UserState> {
   signIn() async {
     try {
       emit(LoginLoading());
-      final response =
-      await ApiService().post(endpoint: ApiStrings.logInEndPoint, data: {
-        "email": logInEmail.text,
-        "password": logInPassword.text,
-        "device_id": deviceId
-      });
+      final response = await ApiService().post(
+          endpoint: ApiStrings.logInEndPoint,
+          data: {
+            "email": logInEmail.text,
+            "password": logInPassword.text,
+            "device_id": deviceId
+          });
       user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user!.token);
       CacheHelper().saveData(key: ApiStrings.token, value: user!.token);

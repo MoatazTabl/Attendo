@@ -25,17 +25,13 @@ dependencies:
   image_gallery_saver: ^2.0.3
   # Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
   permission_handler: ^11.3.1
-  # A Flutter plugin to use Google's ML Kit Object Detection and Tracking to detect and track objects in an image or live camera feed.
-  # google_mlkit_object_detection: ^0.11.0
   # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files
   flutter_svg: ^2.0.10+1
-  # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
-  qr_flutter: ^4.1.0
   # Render After Effects animations natively on Flutter. This package is a pure Dart implementation of a Lottie player.
   lottie: ^3.1.2
   # Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.
   flutter_native_splash: ^2.4.0
-  #  mobile_scanner: ^5.0.0
+  qr_flutter: ^4.1.0
   mobile_scanner: ^5.1.1
   # Dart Image Library provides server and web apps the ability to load, manipulate, and save images with various image file formats.
   image: ^4.2.0
@@ -62,7 +58,10 @@ dependencies:
   freezed_annotation: ^2.4.1
   local_auth: ^2.2.0
   mobile_device_identifier: ^0.0.2
-
+  # Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.
+  image_picker: ^1.1.2
+  # A Flutter plugin for Android, iOS and Web supports cropping images
+  image_cropper: ^7.0.5
 
 
 
