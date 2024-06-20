@@ -11,6 +11,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../core/utils/local_auth.dart';
+
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard(
       {super.key,
@@ -157,12 +159,9 @@ class _AttendanceCardState extends State<AttendanceCard>
                   ),
                   child: ElevatedButton(
                     onPressed: () async {
-                      // bool localAuth =
-                      //     await LocalAuth().authenticateWithBiometrics(context);
-
-                      if (true) {
-                        // final generatedCode = await QrCodeFunctions()
-                        //     .getLectureCode(widget.lectures.pk!);
+                      bool localAuth =
+                          await LocalAuth().authenticateWithBiometrics(context);
+                      if (localAuth) {
                         context.push(
                           AppRoutes.scanQr,
                           extra: QrModel(
