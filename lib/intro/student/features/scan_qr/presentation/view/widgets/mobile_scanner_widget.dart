@@ -26,21 +26,21 @@ class MobileScannerWidget extends StatefulWidget {
 class _MobileScannerWidgetState extends State<MobileScannerWidget> {
   bool _isProcessing = false;
 
-  void showCustomDialog(BuildContext context, String message) {
+  void showCustomFailedDialog(BuildContext context, String message) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           icon: Container(height: 90,
               child: Image.asset(
-                "assets/images/failed.png", fit: BoxFit.fill,)),
+                "assets/images/failed.png",)),
           content: Text(message),
-          title: Text("Failed", style: TextStyle(color: Colors.white),),
-          backgroundColor: Color(0XFFD64556),
+          title: const Text("Failed", style: TextStyle(color: Colors.white),),
+          backgroundColor: const Color(0XFFD64556),
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: const Text('OK'),
+                child: const Text('OK',style: TextStyle(color: Colors.white),),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setState(() {
@@ -54,7 +54,34 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       },
     );
   }
-
+  void showCustomSuccessDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon: Container(height: 90,
+              child: Image.asset(
+                "assets/images/success.png",)),
+          content: Text(message),
+          title: const Text("Success", style: TextStyle(color: Colors.white),),
+          backgroundColor: const Color(0XFF74CE68),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                child: const Text('OK',style: TextStyle(color: Colors.white),),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    _isProcessing = false; // Allow processing again
+                  });
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     final scanWindow = Rect.fromCenter(
@@ -67,9 +94,9 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       listener: (context, state) {
         // TODO: implement listener
         if (state is QrSuccess) {
-          showCustomDialog(context, state.successMessage);
+          showCustomSuccessDialog(context, state.successMessage);
         } else if (state is QrError) {
-          showCustomDialog(context, state.errorMessage);
+          showCustomFailedDialog(context, state.errorMessage);
         }
       },
       child: Stack(
@@ -99,8 +126,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
                       widget.scanQrModel.qrModel.lectureId,
                       widget.scanQrModel.qrModel.studentName);
                 } else {
-                  GlobalSnackBar.show(context, "Qr code is not correct");
-                  context.pop();
+                  showCustomFailedDialog(context, "Qr code is not correct");
                 }
               },
             ),
