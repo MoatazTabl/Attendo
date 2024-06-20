@@ -1,10 +1,8 @@
-import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/scan_qr.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/widgets/scan_window.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/widgets/scanner_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../logic/qr_cubit.dart';
