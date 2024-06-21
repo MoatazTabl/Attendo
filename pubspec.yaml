@@ -62,6 +62,8 @@ dependencies:
   image_picker: ^1.1.2
   # Flutter library to load and cache network images. Can also be used with placeholder and error widgets.
   cached_network_image: ^3.3.1
+  # A highly customizable bottom navigation bar for Flutter. Includes 17 prebuilt styles but can also be used with your custom style.
+  stylish_bottom_bar: ^1.1.0
 
 
 
