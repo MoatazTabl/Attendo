@@ -7,13 +7,12 @@ import '../../../../../../core/app_images.dart';
 import '../../../../../../core/helpers/common.dart';
 import '../../../../../../core/networking/api_strings.dart';
 import '../../../../../../core/widgets/custom_drop_down_button.dart';
-import '../../../../../../core/widgets/custom_form_elevated_button.dart';
 import '../../../../../../core/widgets/text_form_field.dart';
 
 class StudentDetailsScreen extends StatelessWidget {
-  AllStudentsModel studentDetails;
+ final AllStudentsModel studentDetails;
 
-  StudentDetailsScreen({super.key, required this.studentDetails});
+  const StudentDetailsScreen({super.key, required this.studentDetails});
 
   @override
   Widget build(BuildContext context) {
