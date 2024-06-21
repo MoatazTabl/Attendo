@@ -9,9 +9,8 @@ import 'package:attendo/intro/instructor/features/lecture_details/presentation/v
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
-import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/start_report/start_report_cubit.dart';
 
 class InstructorLectureDetails extends StatefulWidget {
@@ -27,7 +26,10 @@ class InstructorLectureDetails extends StatefulWidget {
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
   late Timer timer;
-
+  late String formattedDate;
+  late String formattedTime;
+  late DateTime dateTime;
+  late DateTime dateTimeDay;
   @override
   void initState() {
     super.initState();
@@ -43,6 +45,17 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
           lecturePk:
           widget.instructorDetailsReportModel.instructorLecturesModel.pk!);
     });
+
+    // ---------------------
+    dateTime = DateTime.parse(widget.instructorDetailsReportModel
+        .instructorLecturesModel.lectureStartTime!);
+
+    formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+    //-----------------------------------------------------
+    dateTimeDay = DateTime.parse(widget.instructorDetailsReportModel
+        .instructorLecturesModel.lectureStartTime!);
+
+    formattedTime = DateFormat('hh:mm:ss a').format(dateTime);
   }
 
 
@@ -56,18 +69,9 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
   Widget build(BuildContext context) {
     bool lectureStarted = false;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Image.asset(
-              AppImages.backgroundImage,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-          ),
           Padding(
             padding: EdgeInsets.only(
                 left: 16.sp, right: 16.sp, top: 105.sp, bottom: 50.sp),
@@ -91,14 +95,32 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                     formattedDate ,
+                      style: const TextStyle(color: Color(0xFF7A7A7A)),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      formattedTime,
+                      style: const TextStyle(color: Color(0xFF7A7A7A)),
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: 20.h,
                 ),
                 BlocBuilder<GenerateQrCubit, GenerateQrState>(
                   builder: (context, state) {
                     if (state is GenerateQrSuccess) {
-                      // context.read<GenerateQrCubit>().startLecture = true;
                       return Card(
+                        elevation: 5,
                         color: Colors.white,
                         child: QrImageView(
                           embeddedImage: const AssetImage(
@@ -117,7 +139,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       );
                     } else if (state is GenerateQrLoading) {
                       return SizedBox(
-                          height: 245.h,
+                          height: 200.h,
                           width: 200.w,
                           child: const Center(
                               child: CircularProgressIndicator()));
@@ -153,14 +175,22 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                             state is StartReportSuccess ||
                                 state is StartReportFailure
                                 ? Colors.grey
-                                : const Color(0xff3746CC)),
+                                : const Color(0xFF0066FF)),
                         padding: const WidgetStatePropertyAll(EdgeInsets.zero),
                         fixedSize: WidgetStatePropertyAll(
                           Size(
-                            230.w,
-                            59.h,
+                            250.w,
+                            73.h,
                           ),
                         ),
+                        shape: WidgetStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              22.w,
+                            ),
+                          ),
+                        ),
+
                       ),
                       onPressed: () {
                         state is StartReportSuccess
@@ -185,7 +215,9 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                 SizedBox(
                   height: 30.h,
                 ),
+                const Spacer(),
                 const StudentsAttendingWidget(),
+                const SizedBox(height: 35,),
                 ShowStudentsListPopUpWidget(
                   instructorDetailsReportModel:
                   widget.instructorDetailsReportModel,

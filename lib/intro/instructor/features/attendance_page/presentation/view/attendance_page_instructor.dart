@@ -9,8 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/get_report_cubit.dart';
 
 class AttendancePageInstructor extends StatefulWidget {
@@ -156,7 +154,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                          22.w,
+                          16.w,
                         ),
                       ),
                     ),
