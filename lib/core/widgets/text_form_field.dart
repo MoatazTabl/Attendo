@@ -16,6 +16,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? textInputType;
   final Iterable<String>? autofillHints;
   final String textFieldLabel;
+  final String? label;
 
   const CustomTextFormField(
       {super.key,
@@ -26,7 +27,7 @@ class CustomTextFormField extends StatefulWidget {
       this.passwordFieldController,
       this.textInputType,
       this.autofillHints,
-      required this.textFieldLabel});
+      required this.textFieldLabel,this.label});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -103,7 +104,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 maxHeight: 22,
                 maxWidth: 22,
               ),
-
+              label: Text(widget.label??""),
               // hintText: widget.hintText,
               hintStyle: Theme.of(context)
                   .textTheme
