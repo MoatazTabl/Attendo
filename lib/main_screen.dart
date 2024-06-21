@@ -4,8 +4,8 @@ import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/student/features/home/Presentation/view/home_screen_student.dart';
 import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 import 'core/app_images.dart';
 import 'intro/settings/presentation/view/settings_screen.dart';
@@ -40,53 +40,108 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: screens[index]),
-      bottomNavigationBar: Theme(
-        data: AppTheme.lightMode.copyWith(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: index,
-          iconSize: 32.w,
-          elevation: 2,
-          backgroundColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(
+      bottomNavigationBar: PersistentTabView(
+        tabs: [
+          PersistentTabConfig(
+            screen: HomeScreenStudent(
+              userData: widget.userData,
+            ),
+            item: ItemConfig(
+              activeColorSecondary: AppTheme.mainBlue,
+              activeForegroundColor: Colors.white,
+              inactiveIcon: SvgPicture.asset(
+                AppImages.homeIcon,
+                // colorFilter: const ColorFilter.mode(AppTheme.boxStrokeColor, BlendMode.srcIn),
+              ),
               icon: SvgPicture.asset(
                 AppImages.homeIcon,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
-              activeIcon: SvgPicture.asset(
-                AppImages.selectedHomeIcon,
-              ),
-              label: getAppLocalizations(context)!.home,
+              title: getAppLocalizations(context)!.home,
             ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppImages.profileIcon,
-              ),
-              activeIcon: SvgPicture.asset(
-                AppImages.selectedProfileIcon,
-              ),
-              label: getAppLocalizations(context)!.profile,
-            ),
-            BottomNavigationBarItem(
-              label: getAppLocalizations(context)!.settings,
-              icon: SvgPicture.asset(
+          ),
+          PersistentTabConfig(
+            screen: const ProfileScreenStudent(),
+            item: ItemConfig(
+                activeColorSecondary: AppTheme.mainBlue,
+                activeForegroundColor: Colors.white,
+                inactiveIcon: SvgPicture.asset(
+                  AppImages.profileIcon,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.profileIcon,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+                title: getAppLocalizations(context)!.profile),
+          ),
+          PersistentTabConfig(
+            screen: const SettingsScreen(),
+            item: ItemConfig(
+              activeColorSecondary: AppTheme.mainBlue,
+              activeForegroundColor: Colors.white,
+              inactiveIcon: SvgPicture.asset(
                 AppImages.settingsIcon,
               ),
-              activeIcon: SvgPicture.asset(
-                AppImages.selectedSettingsIcon,
-                fit: BoxFit.fill,
+              icon: SvgPicture.asset(
+                AppImages.settingsIcon,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
+              title: getAppLocalizations(context)!.settings,
             ),
-          ],
-          onTap: (value) {
-            index = value;
-            setState(() {});
-          },
+          ),
+        ],
+        navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
+          navBarConfig: navBarConfig,
         ),
       ),
     );
   }
 }
+//bottomNavigationBar: Theme(
+//   data: AppTheme.lightMode.copyWith(
+//     splashColor: Colors.transparent,
+//     highlightColor: Colors.transparent,
+//   ),
+//   child: BottomNavigationBar(
+//     currentIndex: index,
+//     iconSize: 32.w,
+//     elevation: 2,
+//     backgroundColor: Colors.white,
+//     items: [
+//       BottomNavigationBarItem(
+//         icon: SvgPicture.asset(
+//           AppImages.homeIcon,
+//         ),
+//         activeIcon: SvgPicture.asset(
+//           AppImages.selectedHomeIcon,
+//         ),
+//         label: getAppLocalizations(context)!.home,
+//       ),
+//       BottomNavigationBarItem(
+//         icon: SvgPicture.asset(
+//           AppImages.profileIcon,
+//         ),
+//         activeIcon: SvgPicture.asset(
+//           AppImages.selectedProfileIcon,
+//         ),
+//         label: getAppLocalizations(context)!.profile,
+//       ),
+//       BottomNavigationBarItem(
+//         label: getAppLocalizations(context)!.settings,
+//         icon: SvgPicture.asset(
+//           AppImages.settingsIcon,
+//         ),
+//         activeIcon: SvgPicture.asset(
+//           AppImages.selectedSettingsIcon,
+//           fit: BoxFit.fill,
+//         ),
+//       ),
+//     ],
+//     onTap: (value) {
+//       index = value;
+//       setState(() {});
+//     },
+//   ),

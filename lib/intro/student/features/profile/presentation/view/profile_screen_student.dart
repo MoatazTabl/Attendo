@@ -21,6 +21,9 @@ class ProfileScreenStudent extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 30.h,
+              ),
               Text(
                 getAppLocalizations(context)!.profile,
                 style: GoogleFonts.poppins(
