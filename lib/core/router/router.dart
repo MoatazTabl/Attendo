@@ -1,4 +1,5 @@
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/intro/admin/features/home/home.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
@@ -118,5 +119,11 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
+  //  -----------------------Admin---------------------
+    GoRoute(
+      path: "/adminHome",
+      builder: (context, state) => const AdminHome(),
+    ),
+
   ],
 );

@@ -29,7 +29,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: Container(height: 90,
+          icon: SizedBox(height: 90,
               child: Image.asset(
                 "assets/images/failed.png",)),
           content: Text(message),
@@ -57,7 +57,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: Container(height: 90,
+          icon: SizedBox(height: 90,
               child: Image.asset(
                 "assets/images/success.png",)),
           content: Text(message),
