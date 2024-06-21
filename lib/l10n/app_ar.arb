@@ -73,6 +73,9 @@
   "skipLecture": "تخطي المحاضرة",
   "cancel": "الغاء",
   "ok": "تأكيد",
+  "success": "نجاح",
+  "failed": "فشل",
+  "qrFailure": "رمز الاستجابة السريعة غير صحيح",
 
   "@_SnackBar": {},
   "loggedInSuccessfully": "تم تسجيل الدخول بنجاح",

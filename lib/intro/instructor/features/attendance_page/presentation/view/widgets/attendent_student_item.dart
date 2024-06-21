@@ -32,8 +32,8 @@ class AttendentSrudentItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-           "ID:${ nationalId}",
-            style:
+              "ID:$nationalId",
+              style:
                 Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           )
         ],

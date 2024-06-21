@@ -1,3 +1,5 @@
+import 'package:attendo/core/app_images.dart';
+import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/scan_qr.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/widgets/scan_window.dart';
 import 'package:attendo/intro/student/features/scan_qr/presentation/view/widgets/scanner_error_widget.dart';
@@ -29,16 +31,24 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: Container(height: 90,
+          icon: SizedBox(
+              height: 90,
               child: Image.asset(
-                "assets/images/failed.png",)),
+                AppImages.failureState,
+              )),
           content: Text(message),
-          title: const Text("Failed", style: TextStyle(color: Colors.white),),
+          title: Text(
+            getAppLocalizations(context)!.failed,
+            style: const TextStyle(color: Colors.white),
+          ),
           backgroundColor: const Color(0XFFD64556),
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: const Text('OK',style: TextStyle(color: Colors.white),),
+                child: Text(
+                  getAppLocalizations(context)!.ok,
+                  style: const TextStyle(color: Colors.white),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setState(() {
@@ -52,21 +62,31 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       },
     );
   }
+
   void showCustomSuccessDialog(BuildContext context, String message) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: Container(height: 90,
-              child: Image.asset(
-                "assets/images/success.png",)),
+          icon: SizedBox(
+            height: 90,
+            child: Image.asset(
+              AppImages.successState,
+            ),
+          ),
           content: Text(message),
-          title: const Text("Success", style: TextStyle(color: Colors.white),),
+          title: Text(
+            getAppLocalizations(context)!.success,
+            style: const TextStyle(color: Colors.white),
+          ),
           backgroundColor: const Color(0XFF74CE68),
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: const Text('OK',style: TextStyle(color: Colors.white),),
+                child: Text(
+                  getAppLocalizations(context)!.ok,
+                  style: const TextStyle(color: Colors.white),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setState(() {
@@ -80,6 +100,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final scanWindow = Rect.fromCenter(
@@ -88,9 +109,8 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       height: 200,
     );
 
-    return BlocListener<QrCubit,QrState>(
+    return BlocListener<QrCubit, QrState>(
       listener: (context, state) {
-        // TODO: implement listener
         if (state is QrSuccess) {
           showCustomSuccessDialog(context, state.successMessage);
         } else if (state is QrError) {
@@ -119,12 +139,13 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
                     .read<QrCubit>()
                     .getCode(widget.scanQrModel.qrModel.lectureId);
 
-                if (scannedQr == await lectureCode) {
+                if (scannedQr == await lectureCode && context.mounted) {
                   context.read<QrCubit>().appendStudent(
                       widget.scanQrModel.qrModel.lectureId,
                       widget.scanQrModel.qrModel.studentName);
                 } else {
-                  showCustomFailedDialog(context, "Qr code is not correct");
+                  showCustomFailedDialog(
+                      context, getAppLocalizations(context)!.qrFailure);
                 }
               },
             ),

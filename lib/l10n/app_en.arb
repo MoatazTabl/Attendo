@@ -73,6 +73,9 @@
   "cancel": "cancel",
   "ok": "OK",
   "lectures": "Lectures",
+  "success": "Success",
+  "failed": "Failed",
+  "qrFailure": "Qr code is not correct",
 
   "@_SnackBar": {},
   "loggedInSuccessfully": "Logged In Successfully",
