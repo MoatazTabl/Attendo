@@ -41,11 +41,11 @@ class ImagePickFormWidget extends FormField<File> {
             }
 
             return ImagePickWidget(
-              color: state.hasError ? Colors.red : Colors.cyan,
-              onChanged: onChangedHandler,
-            );
-          },
-        );
+        color: state.hasError ? Colors.red : Colors.cyan,
+        onChanged: onChangedHandler,
+      );
+    },
+  );
 }
 
 class ImagePickWidget extends StatefulWidget {
@@ -82,7 +82,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget>
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
 
-    _animation = Tween<double>(begin: 45.r, end: 55.r).animate(
+    _animation = Tween<double>(begin: 55.r, end: 75.r).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
@@ -111,7 +111,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 110,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, child) {
@@ -123,7 +123,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget>
               radius: _animation.value,
               backgroundColor: widget.color,
               child: CircleAvatar(
-                radius: 45.r,
+                radius: 55.r,
                 child: ValueListenableBuilder(
                   valueListenable: controller,
                   builder:
@@ -156,8 +156,9 @@ class _ImagePickWidgetState extends State<ImagePickWidget>
 
   Future<void> pickImage() async {
     try {
-      final XFile? image =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
+      final XFile? image = await ImagePicker()
+          .pickImage(source: ImageSource.gallery, imageQuality: 80);
+
       controller.file = File(image!.path);
     } on PlatformException catch (e) {
       if (kDebugMode) {

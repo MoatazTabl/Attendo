@@ -18,40 +18,38 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocConsumer<UserCubit, UserState>(
-        listener: (context, state) {
-          if (state is SignUpSuccess) {
-            GlobalSnackBar.show(context,
-                getAppLocalizations(context)!.emailCreatedSuccessfully);
-            context.pop();
-            context.read<UserCubit>().clearSignUpFields();
-          } else if (state is SignUpFailure) {
-            GlobalSnackBar.show(context, state.errMessage);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: SafeArea(
-              child: Container(
-                height: 1.sh,
-                width: 1.sw,
-                margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppTheme.boxStrokeColor,
-                  ),
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+    return BlocConsumer<UserCubit, UserState>(
+      listener: (context, state) {
+        if (state is SignUpSuccess) {
+          GlobalSnackBar.show(
+              context, getAppLocalizations(context)!.emailCreatedSuccessfully);
+          context.pop();
+          context.read<UserCubit>().clearSignUpFields();
+        } else if (state is SignUpFailure) {
+          GlobalSnackBar.show(context, state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Container(
+              height: 1.sh,
+              width: 1.sw,
+              margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AppTheme.boxStrokeColor,
                 ),
-                child: SignUpBody(
-                  state: state,
-                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: SignUpBody(
+                state: state,
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

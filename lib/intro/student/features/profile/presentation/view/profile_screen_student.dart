@@ -18,52 +18,54 @@ class ProfileScreenStudent extends StatelessWidget {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         if (state is GetUserSuccess) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 30.h,
-              ),
-              Text(
-                getAppLocalizations(context)!.profile,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.w500,
+          return SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30.h,
+                ),
+                Text(
+                  getAppLocalizations(context)!.profile,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: CachedNetworkImage(
-                  imageUrl: "${ApiStrings.baseUrl}${state.userData.photo}",
-                  height: 105.h,
-                  width: 105.h,
-                  fit: BoxFit.fill,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: CachedNetworkImage(
+                    imageUrl: "${ApiStrings.baseUrl}${state.userData.photo}",
+                    height: 105.h,
+                    width: 105.h,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              SizedBox(
-                height: 24.h,
-              ),
-              UserInfoItem(
-                fieldName: getAppLocalizations(context)!.mail,
-                fieldDetail: state.userData.nationalId,
-                iconPath: AppImages.emailIcon,
-              ),
-              UserInfoItem(
-                fieldName: getAppLocalizations(context)!.iD,
-                fieldDetail: state.userData.nationalId,
-                iconPath: AppImages.nationalIdIcon,
-              ),
-              UserInfoItem(
-                fieldName: getAppLocalizations(context)!.grade,
-                fieldDetail: state.userData.grade!,
-                iconPath: AppImages.gradeIcon,
-              ),
-            ],
+                SizedBox(
+                  height: 16.h,
+                ),
+                SizedBox(
+                  height: 24.h,
+                ),
+                UserInfoItem(
+                  fieldName: getAppLocalizations(context)!.mail,
+                  fieldDetail: state.userData.nationalId,
+                  iconPath: AppImages.emailIcon,
+                ),
+                UserInfoItem(
+                  fieldName: getAppLocalizations(context)!.iD,
+                  fieldDetail: state.userData.nationalId,
+                  iconPath: AppImages.nationalIdIcon,
+                ),
+                UserInfoItem(
+                  fieldName: getAppLocalizations(context)!.grade,
+                  fieldDetail: state.userData.grade!,
+                  iconPath: AppImages.gradeIcon,
+                ),
+              ],
+            ),
           );
         } else if (state is GetUserLoading) {
           return const CircularProgressIndicator();

@@ -40,6 +40,11 @@ class _HomeInstructorState extends State<HomeInstructor> {
     return CustomScrollView(
       physics: const NeverScrollableScrollPhysics(),
       slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 30.h,
+          ),
+        ),
         SliverPersistentHeader(
           delegate: DatePiker(userData: widget.userData),
           pinned: true,

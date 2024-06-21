@@ -52,7 +52,6 @@ class _MainScreenState extends State<MainScreen> {
                 activeForegroundColor: Colors.white,
                 inactiveIcon: SvgPicture.asset(
                   AppImages.homeIcon,
-                  // colorFilter: const ColorFilter.mode(AppTheme.boxStrokeColor, BlendMode.srcIn),
                 ),
                 icon: SvgPicture.asset(
                   AppImages.homeIcon,
