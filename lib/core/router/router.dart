@@ -1,4 +1,5 @@
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view/all_students_screen.dart';
 import 'package:attendo/intro/admin/features/commerce_grades/view/commerce_grades_screen.dart';
 import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dart';
 import 'package:attendo/intro/admin/features/home/home.dart';
@@ -133,6 +134,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/commerceGrades",
       builder: (context, state) =>  CommerceGradesScreen(),
+    ),
+    GoRoute(
+      path: "/allStudents",
+      builder: (context, state) =>  AllStudentsScreen(),
     ),
 
   ],

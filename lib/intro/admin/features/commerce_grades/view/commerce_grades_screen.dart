@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CommerceGradesScreen extends StatelessWidget {
   CommerceGradesScreen({Key? key}) : super(key: key);
@@ -21,13 +22,18 @@ class CommerceGradesScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20)),
-                  height: 50,
-                  width: 50,
-                  child: Center(child: Text(grades[index])),
+                return InkWell(
+                  onTap: () {
+                    context.push("/allStudents");
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20)),
+                    height: 50,
+                    width: 50,
+                    child: Center(child: Text(grades[index])),
+                  ),
                 ) ;
               },
               itemCount: 4,
