@@ -37,12 +37,13 @@ class StudentDetailsScreen extends StatelessWidget {
               ),
               Text(
                 studentDetails.name!,
-                style: TextStyle(color: Colors.black, fontSize: 20),
+                style: TextStyle(color: Colors.black, fontSize: 20.sp),
               ),
               SizedBox(
                 height: 32.h,
               ),
               CustomTextFormField(
+                hintText: studentDetails.name,
                 isPass: false,
                 prefixIcon: SvgPicture.asset(AppImages.nameIcon),
                 textInputType: TextInputType.name,
@@ -53,19 +54,19 @@ class StudentDetailsScreen extends StatelessWidget {
                 height: 28.h,
               ),
               CustomTextFormField(
+                hintText: studentDetails.email,
                 isPass: false,
                 prefixIcon: SvgPicture.asset(AppImages.emailIcon),
-                onChanged: (value) {
-                },
+                onChanged: (value) {},
                 textInputType: TextInputType.emailAddress,
                 autofillHints: const [AutofillHints.email],
-                textFieldLabel:
-                getAppLocalizations(context)!.universityEmail,
+                textFieldLabel: getAppLocalizations(context)!.universityEmail,
               ),
               SizedBox(
                 height: 28.h,
               ),
               CustomTextFormField(
+                hintText: studentDetails.nationalId,
                 isPass: false,
                 prefixIcon: SvgPicture.asset(
                   AppImages.nationalIdIcon,
@@ -83,46 +84,40 @@ class StudentDetailsScreen extends StatelessWidget {
                 type: "faculty",
                 fieldHint: getAppLocalizations(context)!.selectFaculty,
                 list: const ["Computers", "Commerce"],
-                onValueChanged: (selectedValue) {
-
-                },
+                onValueChanged: (selectedValue) {},
               ),
-
               CustomFormDropDownButton(
                 initialValue: studentDetails.grade!,
                 type: studentDetails.grade!,
                 fieldHint: getAppLocalizations(context)!.selectGrade,
                 list: const ["First", "Second", "Third", "Fourth"],
-                onValueChanged: (selectedValue) {
-                },
+                onValueChanged: (selectedValue) {},
               ),
-          ElevatedButton(
-            style: ButtonStyle(
-              fixedSize: WidgetStateProperty.all(
-                Size(240.w, 56.h),
-              ),
-              backgroundColor: WidgetStateProperty.all(
-                const Color(
-                  0xff0066FF,
+              ElevatedButton(
+                style: ButtonStyle(
+                  fixedSize: WidgetStateProperty.all(
+                    Size(240.w, 56.h),
+                  ),
+                  backgroundColor: WidgetStateProperty.all(
+                    const Color(
+                      0xff0066FF,
+                    ),
+                  ),
+                  foregroundColor: WidgetStateProperty.all(Colors.white),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+                child: Text(
+                  "Update Information",
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        fontSize: 16.sp,
+                      ),
                 ),
               ),
-              foregroundColor: WidgetStateProperty.all(Colors.white),
-              shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-            onPressed: () {
-
-            },
-            child: Text(
-              "Update Information",
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                fontSize: 16.sp,
-              ),
-            ),
-          ),
             ],
           ),
         ),
