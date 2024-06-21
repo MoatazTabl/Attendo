@@ -18,7 +18,7 @@ dependencies:
   # A  Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling
   google_fonts: ^6.2.1
   # A declarative router for Flutter based on Navigation 2 supporting deep linking, data-driven routes and more
-  go_router: ^14.1.3
+  go_router: ^13.2.5
   # A Flutter plugin for controlling the camera. Supports previewing the camera feed, capturing images and videos, and streaming image buffers to Dart.
   camera: ^0.11.0
   # A flutter plugin for save image to gallery
@@ -64,6 +64,7 @@ dependencies:
   cached_network_image: ^3.3.1
   # A highly customizable bottom navigation bar for Flutter. Includes 17 prebuilt styles but can also be used with your custom style.
   stylish_bottom_bar: ^1.1.0
+  persistent_bottom_nav_bar_v2: ^5.2.3
 
 
 

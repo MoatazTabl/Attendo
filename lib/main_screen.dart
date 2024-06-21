@@ -5,8 +5,7 @@ import 'package:attendo/intro/student/features/home/Presentation/view/home_scree
 import 'package:attendo/intro/student/features/profile/Presentation/view/profile_screen_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 import 'core/app_images.dart';
 import 'intro/settings/presentation/view/settings_screen.dart';
@@ -41,49 +40,62 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: screens[index]),
-      bottomNavigationBar: StylishBottomBar(
-        items: [
-          BottomBarItem(
+      bottomNavigationBar: PersistentTabView(
+        tabs: [
+          PersistentTabConfig(
+            screen: HomeScreenStudent(
+              userData: widget.userData,
+            ),
+            item: ItemConfig(
+              activeColorSecondary: AppTheme.mainBlue,
+              activeForegroundColor: Colors.white,
+              inactiveIcon: SvgPicture.asset(
+                AppImages.homeIcon,
+                // colorFilter: const ColorFilter.mode(AppTheme.boxStrokeColor, BlendMode.srcIn),
+              ),
               icon: SvgPicture.asset(
                 AppImages.homeIcon,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
-              title: Text(
-                getAppLocalizations(context)!.home,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 12,
+              title: getAppLocalizations(context)!.home,
+            ),
+          ),
+          PersistentTabConfig(
+            screen: const ProfileScreenStudent(),
+            item: ItemConfig(
+                activeColorSecondary: AppTheme.mainBlue,
+                activeForegroundColor: Colors.white,
+                inactiveIcon: SvgPicture.asset(
+                  AppImages.profileIcon,
                 ),
-              ),
-              backgroundColor: AppTheme.mainBlue),
-          BottomBarItem(
-              icon: SvgPicture.asset(
-                AppImages.profileIcon,
-              ),
-              title: Text(
-                getAppLocalizations(context)!.profile,
-                style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
-              ),
-              backgroundColor: AppTheme.mainBlue),
-          BottomBarItem(
-              title: Text(
-                getAppLocalizations(context)!.settings,
-                style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
+                icon: SvgPicture.asset(
+                  AppImages.profileIcon,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+                title: getAppLocalizations(context)!.profile),
+          ),
+          PersistentTabConfig(
+            screen: const SettingsScreen(),
+            item: ItemConfig(
+              activeColorSecondary: AppTheme.mainBlue,
+              activeForegroundColor: Colors.white,
+              inactiveIcon: SvgPicture.asset(
+                AppImages.settingsIcon,
               ),
               icon: SvgPicture.asset(
                 AppImages.settingsIcon,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
-              backgroundColor: AppTheme.mainBlue)
+              title: getAppLocalizations(context)!.settings,
+            ),
+          ),
         ],
-        option: BubbleBarOptions(
-          barStyle: BubbleBarStyle.horizontal,
+        navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
+          navBarConfig: navBarConfig,
         ),
-        currentIndex: index,
-        onTap: (value) {
-          setState(() {
-            index = value;
-          });
-        },
       ),
     );
   }
