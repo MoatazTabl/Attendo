@@ -1,10 +1,10 @@
+import 'package:attendo/intro/admin/features/home/models/students_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CsGradesScreen extends StatelessWidget {
-  CsGradesScreen({Key? key}) : super(key: key);
   List<String> grades = ["First", "Second", "Third", "Fourth"];
-
+  late StudentsModel students  ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,10 @@ class CsGradesScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    context.push("/allStudents");
+                    students = StudentsModel(department: "Computers", grade:grades[index] );
+                    print(students.grade);
+                    print(students.department);
+                    context.push("/allStudents",extra: students);
                   },
                   child: Container(
                     decoration: BoxDecoration(

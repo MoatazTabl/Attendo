@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../home/models/students_model.dart';
+
 class CommerceGradesScreen extends StatelessWidget {
   CommerceGradesScreen({Key? key}) : super(key: key);
   List<String> grades = ["First","Second","Third","Fourth"];
-
+  late StudentsModel students  ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,10 @@ class CommerceGradesScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    context.push("/allStudents");
+                    students = StudentsModel(department: "Commerce", grade:grades[index]);
+                    print(students.grade);
+                    print(students.department);
+                    context.push("/allStudents",extra: students);
                   },
                   child: Container(
                     decoration: BoxDecoration(

@@ -3,6 +3,7 @@ import 'package:attendo/intro/admin/features/all_students_screen/view/all_studen
 import 'package:attendo/intro/admin/features/commerce_grades/view/commerce_grades_screen.dart';
 import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dart';
 import 'package:attendo/intro/admin/features/home/home.dart';
+import 'package:attendo/intro/admin/features/home/models/students_model.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
@@ -137,7 +138,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/allStudents",
-      builder: (context, state) =>  AllStudentsScreen(),
+      builder: (context, state) =>  AllStudentsScreen(studentsModel: state.extra as StudentsModel,),
     ),
 
   ],
