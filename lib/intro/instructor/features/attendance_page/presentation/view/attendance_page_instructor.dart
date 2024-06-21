@@ -1,5 +1,7 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/excell_functions.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/GetReportModel.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +49,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
 
   @override
   Widget build(BuildContext context) {
+    late List<StudentsList> students;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -146,6 +150,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   child: BlocBuilder<GetReportCubit, GetReportState>(
                     builder: (context, state) {
                       if (state is GetReportSuccess) {
+                        students = state.getReportModel.studentsList!;
                         return ListView.separated(
                           separatorBuilder: (context, index) {
                             return const Divider(
@@ -177,7 +182,14 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await createExcelFile(students);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text('Excel file created successfully!')),
+                    );
+                    print(students[1].name);
+                  },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(
                       Size(340.w, 56.h),
