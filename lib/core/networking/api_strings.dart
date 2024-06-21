@@ -15,5 +15,6 @@ class ApiStrings {
   static const String getLatestCode = "getcode/";
   static const String appendStudent = "appendstudent/";
   static const String getReport = "getreport/";
+  static const String getAllStudents = "getstudents/";
 
 }
