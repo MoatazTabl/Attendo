@@ -1,4 +1,5 @@
 import 'package:attendo/core/helpers/common.dart';
+import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/attendent_student_item.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/excell_functions.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/GetReportModel.dart';
@@ -185,8 +186,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   onPressed: () async {
                     await createExcelFile(students);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text('Excel file created successfully!')),
+                      GlobalSnackBar.show(
+                          context, 'Excel file created successfully! , saved to downloads'),
                     );
                     print(students[1].name);
                   },

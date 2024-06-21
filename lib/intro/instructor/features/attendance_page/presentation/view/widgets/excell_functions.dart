@@ -52,8 +52,8 @@ Future<void> createExcelFile(List<StudentsList> students) async {
       ..createSync(recursive: true)
       ..writeAsBytesSync(fileBytes);
 
-    print("File path: ${file.path}");
-    print("File exists: ${file.existsSync()}");
+    // print("File path: ${file.path}");
+    // print("File exists: ${file.existsSync()}");
 
     // Attempt to open the file
     try {
