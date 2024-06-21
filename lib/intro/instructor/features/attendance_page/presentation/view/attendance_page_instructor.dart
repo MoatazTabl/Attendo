@@ -9,8 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../../../core/app_images.dart';
 import '../view_model/cubits/get_report_cubit.dart';
 
 class AttendancePageInstructor extends StatefulWidget {
@@ -53,18 +51,9 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
     late List<StudentsList> students;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.asset(
-              AppImages.backgroundImage,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-          ),
           SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,102 +61,63 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 300.w,
-                      height: 90.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.blue,
-                        ),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(
-                            25,
-                          ),
-                          bottomRight: Radius.circular(
-                            25,
-                          ),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            widget.instructorDetailsReportModel
-                                .instructorLecturesModel.name!,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  fontSize: 28.sp,
-                                ),
-                          ),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                formattedDate,
-                                style: Theme.of(context).textTheme.titleSmall!,
+                    Column(
+                      children: [
+                        Text(
+                          widget.instructorDetailsReportModel
+                              .instructorLecturesModel.name!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                fontSize: 28.sp,
                               ),
-                              Text(
-                                formattedTime,
-                                style: Theme.of(context).textTheme.titleSmall!,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        Text(
+                          formattedDate,
+                          style: Theme.of(context).textTheme.titleSmall!,
+                        ),
+                        Text(
+                          formattedTime,
+                          style: Theme.of(context).textTheme.titleSmall!,
+                        )
+                      ],
                     ),
                   ],
                 ),
                 SizedBox(
                   height: 16.h,
                 ),
-                Text(
-                  getAppLocalizations(context)!.attendanceList,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontSize: 30.sp,
-                      ),
-                ),
-                SizedBox(
-                  height: 19.h,
-                ),
                 Container(
-                  height: 500.h,
+                  height: 584.h,
                   width: 340.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                       25,
                     ),
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
                     color: const Color(
-                      0xFFF0F3FF,
+                      0xFFF1F1F1,
                     ),
                   ),
                   child: BlocBuilder<GetReportCubit, GetReportState>(
                     builder: (context, state) {
                       if (state is GetReportSuccess) {
                         students = state.getReportModel.studentsList!;
-                        return ListView.separated(
-                          separatorBuilder: (context, index) {
-                            return const Divider(
-                              indent: 25,
-                              endIndent: 25,
-                              color: Color(0xFF707070),
-                            );
-                          },
+                        return ListView.builder(
                           itemBuilder: (context, index) {
-                            return AttendentSrudentItem(
-                                authorizationTime: state
-                                    .getReportModel.authorizationTime![index],
-                                studentName: state
-                                    .getReportModel.studentsList![index].name!,
-                                nationalId: state.getReportModel
-                                    .studentsList![index].nationalId!);
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: AttendentSrudentItem(
+                                  authorizationTime: state
+                                      .getReportModel.authorizationTime![index],
+                                  studentName: state
+                                      .getReportModel.studentsList![index].name!,
+                                  nationalId: state.getReportModel
+                                      .studentsList![index].nationalId!),
+                            );
                           },
                           itemCount: state.getReportModel.studentsList!.length,
                         );
@@ -193,18 +143,18 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(
-                      Size(340.w, 56.h),
+                      Size(246.w, 55.h),
                     ),
                     backgroundColor: WidgetStateProperty.all(
                       const Color(
-                        0xff3746CC,
+                        0xFF0066FF,
                       ),
                     ),
                     foregroundColor: WidgetStateProperty.all(Colors.white),
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                          22.w,
+                          16.w,
                         ),
                       ),
                     ),
@@ -213,7 +163,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                     getAppLocalizations(context)!.downloadFullList,
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
-                        fontSize: 25.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
