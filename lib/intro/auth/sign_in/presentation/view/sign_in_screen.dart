@@ -47,13 +47,18 @@ class _SignInScreenState extends State<SignInScreen> {
 
             context.pushReplacement("/instructorMainScreen",
                 extra: userDataModel);
-          } else {
+          } else if( RegExp(r'@(stu)\.com$')
+              .hasMatch(context.read<UserCubit>().logInEmail.text)){
             userDataModel = await context
                 .read<UserCubit>()
                 .getUserData(userTypeEndPoint: ApiStrings.getStudent);
 
             context.pushReplacement("/mainScreen", extra: userDataModel);
           }
+          else
+            {
+              context.pushReplacement("/adminHome");
+            }
           GlobalSnackBar.show(
               context, getAppLocalizations(context)!.loggedInSuccessfully);
           context.read<UserCubit>().logInEmail.clear();
