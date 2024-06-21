@@ -32,6 +32,7 @@
   "@_profileScreen": {},
   "changePhoto": "Change Photo",
   "name": "Name",
+  "mail": "Mail",
   "iD": "ID",
   "faculty":"Faculty",
   "grade":"Grade",

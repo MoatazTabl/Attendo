@@ -60,8 +60,8 @@ dependencies:
   mobile_device_identifier: ^0.0.2
   # Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.
   image_picker: ^1.1.2
-  # A Flutter plugin for Android, iOS and Web supports cropping images
-  image_cropper: ^7.0.5
+  # Flutter library to load and cache network images. Can also be used with placeholder and error widgets.
+  cached_network_image: ^3.3.1
 
 
 

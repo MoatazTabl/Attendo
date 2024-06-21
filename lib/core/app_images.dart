@@ -46,6 +46,7 @@ abstract class AppImages {
   static const String nameIcon = "assets/images/svg/name_icon.svg";
   static const String lightBulbIcon = "assets/images/svg/light_bulb_icon.svg";
   static const String languageIcon = "assets/images/svg/language_icon.svg";
+  static const String gradeIcon = "assets/images/svg/language_icon.svg";
 
   static const String noAvailableLectures =
       'assets/images/svg/no_available_lectures.svg';
