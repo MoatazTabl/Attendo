@@ -26,6 +26,7 @@ class SettingsScreen extends StatelessWidget {
           child: Container(
             height: 170.h,
             width: 380.w,
+            margin: const EdgeInsets.all(12),
             padding: const EdgeInsets.all(4),
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(

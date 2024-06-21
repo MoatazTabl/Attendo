@@ -1,3 +1,4 @@
+import 'package:attendo/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +17,7 @@ class GlobalSnackBar {
       SnackBar(
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: const Color(0xff3746CC),
+        backgroundColor: AppTheme.mainBlue,
         showCloseIcon: true,
         width: 300.w,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),

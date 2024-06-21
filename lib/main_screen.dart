@@ -39,62 +39,64 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: PersistentTabView(
-        tabs: [
-          PersistentTabConfig(
-            screen: HomeScreenStudent(
-              userData: widget.userData,
-            ),
-            item: ItemConfig(
-              activeColorSecondary: AppTheme.mainBlue,
-              activeForegroundColor: Colors.white,
-              inactiveIcon: SvgPicture.asset(
-                AppImages.homeIcon,
-                // colorFilter: const ColorFilter.mode(AppTheme.boxStrokeColor, BlendMode.srcIn),
+    return ScaffoldMessenger(
+      child: Scaffold(
+        bottomNavigationBar: PersistentTabView(
+          tabs: [
+            PersistentTabConfig(
+              screen: HomeScreenStudent(
+                userData: widget.userData,
               ),
-              icon: SvgPicture.asset(
-                AppImages.homeIcon,
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              title: getAppLocalizations(context)!.home,
-            ),
-          ),
-          PersistentTabConfig(
-            screen: const ProfileScreenStudent(),
-            item: ItemConfig(
+              item: ItemConfig(
                 activeColorSecondary: AppTheme.mainBlue,
                 activeForegroundColor: Colors.white,
                 inactiveIcon: SvgPicture.asset(
-                  AppImages.profileIcon,
+                  AppImages.homeIcon,
+                  // colorFilter: const ColorFilter.mode(AppTheme.boxStrokeColor, BlendMode.srcIn),
                 ),
                 icon: SvgPicture.asset(
-                  AppImages.profileIcon,
+                  AppImages.homeIcon,
                   colorFilter:
                       const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
-                title: getAppLocalizations(context)!.profile),
-          ),
-          PersistentTabConfig(
-            screen: const SettingsScreen(),
-            item: ItemConfig(
-              activeColorSecondary: AppTheme.mainBlue,
-              activeForegroundColor: Colors.white,
-              inactiveIcon: SvgPicture.asset(
-                AppImages.settingsIcon,
+                title: getAppLocalizations(context)!.home,
               ),
-              icon: SvgPicture.asset(
-                AppImages.settingsIcon,
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              title: getAppLocalizations(context)!.settings,
             ),
+            PersistentTabConfig(
+              screen: const ProfileScreenStudent(),
+              item: ItemConfig(
+                  activeColorSecondary: AppTheme.mainBlue,
+                  activeForegroundColor: Colors.white,
+                  inactiveIcon: SvgPicture.asset(
+                    AppImages.profileIcon,
+                  ),
+                  icon: SvgPicture.asset(
+                    AppImages.profileIcon,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  ),
+                  title: getAppLocalizations(context)!.profile),
+            ),
+            PersistentTabConfig(
+              screen: const SettingsScreen(),
+              item: ItemConfig(
+                activeColorSecondary: AppTheme.mainBlue,
+                activeForegroundColor: Colors.white,
+                inactiveIcon: SvgPicture.asset(
+                  AppImages.settingsIcon,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.settingsIcon,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+                title: getAppLocalizations(context)!.settings,
+              ),
+            ),
+          ],
+          navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
+            navBarConfig: navBarConfig,
           ),
-        ],
-        navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
-          navBarConfig: navBarConfig,
         ),
       ),
     );
