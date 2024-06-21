@@ -22,7 +22,7 @@ class AttendentSrudentItem extends StatelessWidget {
     return ListTile(
       leading: SvgPicture.asset(
         AppImages.studentAvatarTest,
-        width: 60.w,
+        width: 50.w,
       ),
       title: Text(
         studentName,
@@ -32,21 +32,13 @@ class AttendentSrudentItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            authorizationTime,
-            style:
-                Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
-          ),
-          Text(
-            nationalId,
+           "ID:${ nationalId}",
             style:
                 Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 12),
           )
         ],
       ),
-      trailing: const CircleAvatar(
-        backgroundColor: Colors.transparent,
-        backgroundImage: AssetImage(AppImages.attendanceSuccessCheck),
-      ),
+      trailing: Text(authorizationTime)
     );
   }
 }
