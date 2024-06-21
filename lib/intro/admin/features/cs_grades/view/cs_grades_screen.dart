@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CsGradesScreen extends StatefulWidget {
-
   const CsGradesScreen({super.key});
 
   @override
@@ -11,9 +10,9 @@ class CsGradesScreen extends StatefulWidget {
 }
 
 class _CsGradesScreenState extends State<CsGradesScreen> {
- final List<String> grades = ["First", "Second", "Third", "Fourth"];
+  final List<String> grades = ["First", "Second", "Third", "Fourth"];
 
-  late StudentsModel students  ;
+  late StudentsModel students;
 
   @override
   Widget build(BuildContext context) {
@@ -23,33 +22,48 @@ class _CsGradesScreenState extends State<CsGradesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 50,
-                mainAxisSpacing: 30,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .2,
+            ),
+            const Row(
+              children: [
+                Text(
+                  "Select Grade",
+                  style: TextStyle(color: Colors.black, fontSize: 30),
+                ),
+              ],
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 20,
+                ),
+                physics: const ClampingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      students = StudentsModel(
+                          department: "Computers", grade: grades[index]);
+                      context.push("/allStudents", extra: students);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(20)),
+                      height: 50,
+                      width: 50,
+                      child: Center(
+                          child: Text(
+                        grades[index],
+                        style: const TextStyle(fontSize: 25,color: Colors.white),
+                      )),
+                    ),
+                  );
+                },
+                itemCount: 4,
               ),
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    students = StudentsModel(department: "Computers", grade:grades[index] );
-                    print(students.grade);
-                    print(students.department);
-                    context.push("/allStudents",extra: students);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 50,
-                    width: 50,
-                    child: Center(child: Text(grades[index])),
-                  ),
-                );
-              },
-              itemCount: 4,
             ),
           ],
         ),
