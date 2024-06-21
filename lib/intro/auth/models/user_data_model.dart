@@ -4,7 +4,7 @@ class UserDataModel {
   String nationalId;
   String? faculty;
   String? grade;
-  String photo;
+  String? photo;
 
   UserDataModel(
       {required this.userId,
