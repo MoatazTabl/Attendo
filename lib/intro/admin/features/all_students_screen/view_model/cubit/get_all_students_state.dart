@@ -5,7 +5,9 @@ abstract class GetAllStudentsState {}
 
 class GetAllStudentsInitial extends GetAllStudentsState {}
 class GetAllStudentsSuccess extends GetAllStudentsState {
+ List<AllStudentsModel> students;
 
+ GetAllStudentsSuccess({required this.students});
 }
 class GetAllStudentsLoading extends GetAllStudentsState {}
 class GetAllStudentsFailure extends GetAllStudentsState {

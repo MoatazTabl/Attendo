@@ -1,5 +1,6 @@
 import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/admin/features/all_students_screen/view/all_students_screen.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/cubit/get_all_students_cubit.dart';
 import 'package:attendo/intro/admin/features/commerce_grades/view/commerce_grades_screen.dart';
 import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dart';
 import 'package:attendo/intro/admin/features/home/home.dart';
@@ -98,11 +99,17 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.attendancePageInstructor,
-      builder: (context, state) => MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => GetReportCubit(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => GetReportCubit(),
+          ),
+        ],
+        child: AttendancePageInstructor(
+          instructorDetailsReportModel:
+              state.extra as InstructorDetailsReportModel,
         ),
-      ], child: AttendancePageInstructor(instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,), ),
+      ),
     ),
     GoRoute(
       path: AppRoutes.createLectureInstructor,
@@ -123,23 +130,27 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-  //  -----------------------Admin---------------------
+    //  -----------------------Admin---------------------
     GoRoute(
       path: "/adminHome",
       builder: (context, state) => const AdminHome(),
     ),
     GoRoute(
       path: "/csGrades",
-      builder: (context, state) =>  CsGradesScreen(),
+      builder: (context, state) => CsGradesScreen(),
     ),
     GoRoute(
       path: "/commerceGrades",
-      builder: (context, state) =>  CommerceGradesScreen(),
+      builder: (context, state) => CommerceGradesScreen(),
     ),
     GoRoute(
       path: "/allStudents",
-      builder: (context, state) =>  AllStudentsScreen(studentsModel: state.extra as StudentsModel,),
+      builder: (context, state) => BlocProvider(
+        create: (context) => GetAllStudentsCubit(),
+        child: AllStudentsScreen(
+          studentsModel: state.extra as StudentsModel,
+        ),
+      ),
     ),
-
   ],
 );

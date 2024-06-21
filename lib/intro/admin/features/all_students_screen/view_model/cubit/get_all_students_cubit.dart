@@ -19,10 +19,10 @@ class GetAllStudentsCubit extends Cubit<GetAllStudentsState> {
           endpoint: ApiStrings.getAllStudents,
           data: {"faculty": department, "grade": grade});
       List<AllStudentsModel> students = [];
-      for (int i = 0; i <= response.length; i++) {
-        students.add(AllStudentsModel.fromJson(response[i]));
+      for (var item in response['result']) {
+        students.add(AllStudentsModel.fromJson(item));
       }
-      emit(GetAllStudentsSuccess());
+      emit(GetAllStudentsSuccess(students: students));
     } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
