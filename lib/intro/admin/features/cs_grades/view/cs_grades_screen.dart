@@ -2,9 +2,19 @@ import 'package:attendo/intro/admin/features/home/models/students_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class CsGradesScreen extends StatelessWidget {
-  List<String> grades = ["First", "Second", "Third", "Fourth"];
+class CsGradesScreen extends StatefulWidget {
+
+  const CsGradesScreen({super.key});
+
+  @override
+  State<CsGradesScreen> createState() => _CsGradesScreenState();
+}
+
+class _CsGradesScreenState extends State<CsGradesScreen> {
+ final List<String> grades = ["First", "Second", "Third", "Fourth"];
+
   late StudentsModel students  ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

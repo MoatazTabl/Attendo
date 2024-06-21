@@ -1,7 +1,5 @@
 import 'package:attendo/intro/admin/features/all_students_screen/view_model/cubit/get_all_students_cubit.dart';
 import 'package:attendo/intro/admin/features/home/models/students_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,7 +43,7 @@ class _AllStudentsScreenState extends State<AllStudentsScreen> {
                   itemBuilder: (context, index) {
                     return Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFE8E8E8),
+                        color: const Color(0xFFE8E8E8),
                           borderRadius: BorderRadius.circular(20)),
                       height: 50,
                       width: 50,

@@ -3,10 +3,18 @@ import 'package:go_router/go_router.dart';
 
 import '../../home/models/students_model.dart';
 
-class CommerceGradesScreen extends StatelessWidget {
-  CommerceGradesScreen({Key? key}) : super(key: key);
-  List<String> grades = ["First","Second","Third","Fourth"];
+class CommerceGradesScreen extends StatefulWidget {
+  const CommerceGradesScreen({super.key});
+
+  @override
+  State<CommerceGradesScreen> createState() => _CommerceGradesScreenState();
+}
+
+class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
+ final List<String> grades = ["First","Second","Third","Fourth"];
+
   late StudentsModel students  ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

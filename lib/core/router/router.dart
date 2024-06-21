@@ -137,11 +137,11 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/csGrades",
-      builder: (context, state) => CsGradesScreen(),
+      builder: (context, state) => const CsGradesScreen(),
     ),
     GoRoute(
       path: "/commerceGrades",
-      builder: (context, state) => CommerceGradesScreen(),
+      builder: (context, state) => const CommerceGradesScreen(),
     ),
     GoRoute(
       path: "/allStudents",
