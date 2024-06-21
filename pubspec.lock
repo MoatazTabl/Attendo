@@ -572,6 +572,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
+  image_cropper:
+    dependency: "direct main"
+    description:
+      name: image_cropper
+      sha256: ee0485e232ca7e41f9397526bd911feb1996440e1e14e3d5f5240664fa435936
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.5"
+  image_cropper_for_web:
+    dependency: transitive
+    description:
+      name: image_cropper_for_web
+      sha256: ae3a307f970d1d2c286bce4519f8cb20c3f0a5332867a912366e1843e24bc8d3
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.4"
+  image_cropper_platform_interface:
+    dependency: transitive
+    description:
+      name: image_cropper_platform_interface
+      sha256: "04d0eebd5f901a4109f486d211c888f1fb25c6b70704a405fb1505cb742b05f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.3"
   image_gallery_saver:
     dependency: "direct main"
     description:
@@ -828,7 +852,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-
+  octo_image:
+    dependency: transitive
+    description:
+      name: octo_image
+      sha256: "45b40f99622f11901238e18d48f5f12ea36426d8eced9f4cbf58479c7aa2430d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   open_file:
     dependency: "direct main"
     description:
@@ -837,7 +868,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
-
   package_config:
     dependency: transitive
     description:
