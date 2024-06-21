@@ -32,6 +32,7 @@
   "@_profileScreen": {},
   "changePhoto": "تغيير الصوره",
   "name": "الاسم",
+  "mail": "الايميل",
   "iD": "هوية",
   "faculty":"الشعيه",
   "grade":"السنه",
