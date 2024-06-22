@@ -7,6 +7,7 @@ import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dar
 import 'package:attendo/intro/admin/features/home/home.dart';
 import 'package:attendo/intro/admin/features/home/models/students_model.dart';
 import 'package:attendo/intro/admin/features/student_details/presentation/view/student_details_screen.dart';
+import 'package:attendo/intro/admin/features/student_details/presentation/view_model/modify_students_cubit.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
@@ -156,8 +157,11 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: "/studentDetails",
-      builder: (context, state) => StudentDetailsScreen(
-        studentDetails: state.extra as AllStudentsModel,
+      builder: (context, state) => BlocProvider(
+        create: (context) => ModifyStudentsCubit(),
+        child: StudentDetailsScreen(
+          studentDetails: state.extra as AllStudentsModel,
+        ),
       ),
     ),
   ],

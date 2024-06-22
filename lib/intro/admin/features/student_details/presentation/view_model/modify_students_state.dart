@@ -14,3 +14,15 @@ class ModifyStudentsFailure extends ModifyStudentsState {
 
   ModifyStudentsFailure({required this.errMessage});
 }
+//-----------------------------------------------
+class DeleteStudentsSuccess extends ModifyStudentsState {
+
+}
+class DeleteStudentsLoading extends ModifyStudentsState {}
+class DeleteStudentsFailure extends ModifyStudentsState {
+
+ final String errMessage;
+
+ DeleteStudentsFailure({required this.errMessage});
+}
+
