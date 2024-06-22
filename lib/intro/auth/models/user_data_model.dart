@@ -5,6 +5,7 @@ class UserDataModel {
   String? faculty;
   String? grade;
   String? photo;
+  String? email;
 
   UserDataModel(
       {required this.userId,
@@ -12,7 +13,8 @@ class UserDataModel {
       required this.nationalId,
       this.faculty,
       this.grade,
-      required this.photo});
+      required this.photo,
+      this.email});
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) {
     return UserDataModel(
@@ -22,6 +24,7 @@ class UserDataModel {
         faculty: json["faculty"],
       grade: json["grade"],
       photo: json["photo"],
+      email: json["email"],
     );
   }
 }

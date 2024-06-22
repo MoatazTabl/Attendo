@@ -11,6 +11,7 @@ class AppRoutes {
   static const String editLectureInstructor = "/editLectureInstructor";
 
   static const String createLectureAdmin = "/createLectureAdmin";
+  static const String adminHome = "/adminHome";
   static const String adminMainScreen = "/adminMainScreen";
   static const String attendancePageAdmin = "/attendancePageAdmin";
 }

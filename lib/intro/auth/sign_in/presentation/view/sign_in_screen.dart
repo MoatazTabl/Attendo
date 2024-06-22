@@ -1,15 +1,13 @@
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/networking/api_strings.dart';
-import 'package:attendo/core/utils/app_theme.dart';
+import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/auth/auth_cubit/user_cubit.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/widgets/sign_in_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -30,84 +28,53 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool domainTypeCheck = RegExp(r'@(prof)\.com$')
-        .hasMatch(context
-        .read<UserCubit>()
-        .logInEmail
-        .text);
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
-          if (domainTypeCheck) {
+          if (RegExp(r'@(prof)\.com$')
+              .hasMatch(context.read<UserCubit>().logInEmail.text)) {
             userDataModel = await context
                 .read<UserCubit>()
                 .getUserData(userTypeEndPoint: ApiStrings.getInstructors);
 
             if (context.mounted) {
-              context.pushReplacement("/instructorMainScreen",
-                  extra: userDataModel);
+              context.go(AppRoutes.instructorMainScreen, extra: userDataModel);
             }
-          } else if(RegExp(r'@(stu)\.com$')
-              .hasMatch(context
-              .read<UserCubit>()
-              .logInEmail
-              .text)) {
+          } else if (RegExp(r'@(stu)\.com$')
+              .hasMatch(context.read<UserCubit>().logInEmail.text)) {
             userDataModel = await context
                 .read<UserCubit>()
                 .getUserData(userTypeEndPoint: ApiStrings.getStudent);
 
             if (context.mounted) {
-              context.pushReplacement("/mainScreen", extra: userDataModel);
+              context.pushReplacement(AppRoutes.mainScreen,
+                  extra: userDataModel);
             }
+          } else if (RegExp(r"@(admin)\.com$").hasMatch(
+            context.read<UserCubit>().logInEmail.text,
+          )) {
+            context.pushReplacement(AppRoutes.adminHome);
           }
-        else {
-          context.pushReplacement("/adminHome");
-        }
-        if (context.mounted) {
+          if (context.mounted) {
+            GlobalSnackBar.show(
+                context, getAppLocalizations(context)!.loggedInSuccessfully);
+            context.read<UserCubit>().logInEmail.clear();
+            context.read<UserCubit>().logInPassword.clear();
+          }
+          if (!context.mounted) return;
           GlobalSnackBar.show(
               context, getAppLocalizations(context)!.loggedInSuccessfully);
-          context
-              .read<UserCubit>()
-              .logInEmail
-              .clear();
-          context
-              .read<UserCubit>()
-              .logInPassword
-              .clear();
-        }
-
-        GlobalSnackBar.show(
-            context, getAppLocalizations(context)!.loggedInSuccessfully);
-        context
-            .read<UserCubit>()
-            .logInEmail
-            .clear();
-        context
-            .read<UserCubit>()
-            .logInPassword
-            .clear();
-      } else if (state is LoginFailure) {
-        GlobalSnackBar.show(context, state.errMessage);
+          context.read<UserCubit>().logInEmail.clear();
+          context.read<UserCubit>().logInPassword.clear();
+        } else if (state is LoginFailure) {
+          GlobalSnackBar.show(context, state.errMessage);
         }
       },
       builder: (context, state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
           body: SafeArea(
-            child: Container(
-              height: 1.sh,
-              width: 1.sw,
-              margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppTheme.boxStrokeColor,
-                ),
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: SignInBody(
-                state: state,
-              ),
+            child: SignInBody(
+              state: state,
             ),
           ),
         );
