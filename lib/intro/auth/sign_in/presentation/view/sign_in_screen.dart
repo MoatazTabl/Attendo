@@ -31,7 +31,10 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     bool domainTypeCheck = RegExp(r'@(prof)\.com$')
-        .hasMatch(context.read<UserCubit>().logInEmail.text);
+        .hasMatch(context
+        .read<UserCubit>()
+        .logInEmail
+        .text);
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
@@ -44,7 +47,11 @@ class _SignInScreenState extends State<SignInScreen> {
               context.pushReplacement("/instructorMainScreen",
                   extra: userDataModel);
             }
-          } else {
+          } else if(RegExp(r'@(stu)\.com$')
+              .hasMatch(context
+              .read<UserCubit>()
+              .logInEmail
+              .text)) {
             userDataModel = await context
                 .read<UserCubit>()
                 .getUserData(userTypeEndPoint: ApiStrings.getStudent);
@@ -53,23 +60,34 @@ class _SignInScreenState extends State<SignInScreen> {
               context.pushReplacement("/mainScreen", extra: userDataModel);
             }
           }
-          if (context.mounted) {
-            GlobalSnackBar.show(
-                context, getAppLocalizations(context)!.loggedInSuccessfully);
-            context.read<UserCubit>().logInEmail.clear();
-            context.read<UserCubit>().logInPassword.clear();
-          }
-          else
-            {
-              context.pushReplacement("/adminHome");
-            }
+        else {
+          context.pushReplacement("/adminHome");
+        }
+        if (context.mounted) {
           GlobalSnackBar.show(
               context, getAppLocalizations(context)!.loggedInSuccessfully);
-          context.read<UserCubit>().logInEmail.clear();
-          context.read<UserCubit>().logInPassword.clear();
+          context
+              .read<UserCubit>()
+              .logInEmail
+              .clear();
+          context
+              .read<UserCubit>()
+              .logInPassword
+              .clear();
+        }
 
-        } else if (state is LoginFailure) {
-          GlobalSnackBar.show(context, state.errMessage);
+        GlobalSnackBar.show(
+            context, getAppLocalizations(context)!.loggedInSuccessfully);
+        context
+            .read<UserCubit>()
+            .logInEmail
+            .clear();
+        context
+            .read<UserCubit>()
+            .logInPassword
+            .clear();
+      } else if (state is LoginFailure) {
+        GlobalSnackBar.show(context, state.errMessage);
         }
       },
       builder: (context, state) {
