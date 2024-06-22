@@ -6,30 +6,38 @@ class AppTheme {
   static const Color filledWhite = Color(0xfff6f9ff);
   static const Color boxStrokeColor = Color(0xffEAECF0);
   static final ThemeData lightMode = ThemeData(
-    brightness: Brightness.light,
-    textTheme: textTheme,
-    scaffoldBackgroundColor: filledWhite,
-    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(const Color(0xff3746CC)),
-        foregroundColor: WidgetStateProperty.all(Colors.white),
-        shadowColor: WidgetStateProperty.all(
-          const Color(
-            0xff707070,
+      brightness: Brightness.light,
+      textTheme: textTheme,
+      scaffoldBackgroundColor: filledWhite,
+      colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(const Color(0xff3746CC)),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          shadowColor: WidgetStateProperty.all(
+            const Color(
+              0xff707070,
+            ),
+          ),
+          elevation: WidgetStateProperty.all(
+            5,
           ),
         ),
-        elevation: WidgetStateProperty.all(
-          5,
-        ),
       ),
-    ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.transparent,
-      type: BottomNavigationBarType.fixed,
-      elevation: 0,
-      selectedItemColor: Color(0xff001076),
-      enableFeedback: true,
-    ),
-  );
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.transparent,
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
+        selectedItemColor: Color(0xff001076),
+        enableFeedback: true,
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+        ),
+        dragHandleColor: Color(0xff5F5F5F),
+        dragHandleSize: Size.fromRadius(6),
+      ));
 }
