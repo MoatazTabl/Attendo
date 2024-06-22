@@ -25,7 +25,6 @@ class ModifyStudentsCubit extends Cubit<ModifyStudentsState> {
   modifyStudent(AllStudentsModel studentDetails) async {
     try {
       emit(ModifyStudentsLoading());
-      final response =
           await ApiService().post(endpoint: ApiStrings.modifyStudent, data: {
         "pk": studentDetails.pk,
         "name": studentDetails.name,
@@ -50,7 +49,6 @@ class ModifyStudentsCubit extends Cubit<ModifyStudentsState> {
   deleteStudent(int studentId) async {
     try {
       emit(DeleteStudentsLoading());
-      final response =
           await ApiService().post(endpoint: ApiStrings.deleteStudent, data: {
             "user_id": studentId
           });
