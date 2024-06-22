@@ -129,7 +129,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget>
                   builder:
                       (BuildContext context, File? imgFile, Widget? child) {
                     return ClipRRect(
-                      borderRadius: BorderRadius.circular(44.r),
+                      borderRadius: BorderRadius.circular(55.r),
                       child: imgFile == null
                           ? Image.asset(
                               AppImages.addAvatarImage,
