@@ -31,8 +31,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: SizedBox(
-              height: 90,
+          icon: SizedBox(height: 90,
               child: Image.asset(
                 AppImages.failureState,
               )),

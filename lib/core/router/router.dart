@@ -1,4 +1,13 @@
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view/all_students_screen.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/cubit/get_all_students_cubit.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/AllStudentsModel.dart';
+import 'package:attendo/intro/admin/features/commerce_grades/view/commerce_grades_screen.dart';
+import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dart';
+import 'package:attendo/intro/admin/features/home/home.dart';
+import 'package:attendo/intro/admin/features/home/models/students_model.dart';
+import 'package:attendo/intro/admin/features/student_details/presentation/view/student_details_screen.dart';
+import 'package:attendo/intro/admin/features/student_details/presentation/view_model/modify_students_cubit.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
@@ -93,11 +102,17 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.attendancePageInstructor,
-      builder: (context, state) => MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (context) => GetReportCubit(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => GetReportCubit(),
+          ),
+        ],
+        child: AttendancePageInstructor(
+          instructorDetailsReportModel:
+              state.extra as InstructorDetailsReportModel,
         ),
-      ], child: AttendancePageInstructor(instructorDetailsReportModel: state.extra as InstructorDetailsReportModel,), ),
+      ),
     ),
     GoRoute(
       path: AppRoutes.createLectureInstructor,
@@ -115,6 +130,37 @@ final GoRouter router = GoRouter(
         create: (context) => EditLectureCubit(),
         child: EditLectureInstructor(
           instructorLecturesModel: state.extra as InstructorLecturesModel,
+        ),
+      ),
+    ),
+    //  -----------------------Admin---------------------
+    GoRoute(
+      path: "/adminHome",
+      builder: (context, state) => const AdminHome(),
+    ),
+    GoRoute(
+      path: "/csGrades",
+      builder: (context, state) => const CsGradesScreen(),
+    ),
+    GoRoute(
+      path: "/commerceGrades",
+      builder: (context, state) => const CommerceGradesScreen(),
+    ),
+    GoRoute(
+      path: "/allStudents",
+      builder: (context, state) => BlocProvider(
+        create: (context) => GetAllStudentsCubit(),
+        child: AllStudentsScreen(
+          studentsModel: state.extra as StudentsModel,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: "/studentDetails",
+      builder: (context, state) => BlocProvider(
+        create: (context) => ModifyStudentsCubit(),
+        child: StudentDetailsScreen(
+          studentDetails: state.extra as AllStudentsModel,
         ),
       ),
     ),

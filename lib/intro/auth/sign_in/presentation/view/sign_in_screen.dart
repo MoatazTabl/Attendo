@@ -59,6 +59,15 @@ class _SignInScreenState extends State<SignInScreen> {
             context.read<UserCubit>().logInEmail.clear();
             context.read<UserCubit>().logInPassword.clear();
           }
+          else
+            {
+              context.pushReplacement("/adminHome");
+            }
+          GlobalSnackBar.show(
+              context, getAppLocalizations(context)!.loggedInSuccessfully);
+          context.read<UserCubit>().logInEmail.clear();
+          context.read<UserCubit>().logInPassword.clear();
+
         } else if (state is LoginFailure) {
           GlobalSnackBar.show(context, state.errMessage);
         }
