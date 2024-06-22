@@ -33,6 +33,15 @@ class StudentDetailsScreen extends StatelessWidget {
             } else if (state is ModifyStudentsFailure) {
               GlobalSnackBar.show(context, state.errMessage);
             }
+            else if(state is DeleteStudentsSuccess)
+              {
+                GlobalSnackBar.show(context, "Account deleted Successfully");
+                context.pop();
+              }
+            else if(state is DeleteStudentsFailure)
+              {
+                GlobalSnackBar.show(context, state.errMessage);
+              }
           },
           builder: (context, state) {
             return SingleChildScrollView(
@@ -80,7 +89,7 @@ class StudentDetailsScreen extends StatelessWidget {
                     textInputType: TextInputType.emailAddress,
                     autofillHints: const [AutofillHints.email],
                     textFieldLabel:
-                        getAppLocalizations(context)!.universityEmail,
+                    getAppLocalizations(context)!.universityEmail,
                   ),
                   SizedBox(
                     height: 28.h,
@@ -123,47 +132,54 @@ class StudentDetailsScreen extends StatelessWidget {
                   state is ModifyStudentsLoading
                       ? const Center(child: CircularProgressIndicator())
                       : Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {
-
-                                },
-                                icon: const Icon(Icons.delete)),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                fixedSize: WidgetStateProperty.all(
-                                  Size(240.w, 56.h),
-                                ),
-                                backgroundColor: WidgetStateProperty.all(
-                                  const Color(
-                                    0xff0066FF,
-                                  ),
-                                ),
-                                foregroundColor:
-                                    WidgetStateProperty.all(Colors.white),
-                                shape: WidgetStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                              ),
-                              onPressed: () {
-                                context
-                                    .read<ModifyStudentsCubit>()
-                                    .modifyStudent(studentDetails);
-                              },
-                              child: Text(
-                                "Update Information",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge!
-                                    .copyWith(
-                                      fontSize: 16.sp,
-                                    ),
-                              ),
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          fixedSize: WidgetStateProperty.all(
+                            Size(240.w, 56.h),
+                          ),
+                          backgroundColor: WidgetStateProperty.all(
+                            const Color(
+                              0xff0066FF,
                             ),
-                          ],
+                          ),
+                          foregroundColor:
+                          WidgetStateProperty.all(Colors.white),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
                         ),
+                        onPressed: () {
+                          context
+                              .read<ModifyStudentsCubit>()
+                              .modifyStudent(studentDetails);
+                        },
+                        child: Text(
+                          "Update Information",
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .labelLarge!
+                              .copyWith(
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            context.read<ModifyStudentsCubit>().deleteStudent(
+                                studentDetails.pk!);
+
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          )),
+                    ],
+                  ),
                 ],
               ),
             );

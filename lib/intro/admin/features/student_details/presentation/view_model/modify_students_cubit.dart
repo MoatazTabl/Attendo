@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'dart:io'as io;
+import 'dart:io' as io;
 import 'dart:io';
-
 
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
@@ -24,50 +23,46 @@ class ModifyStudentsCubit extends Cubit<ModifyStudentsState> {
   }
 
   modifyStudent(AllStudentsModel studentDetails) async {
-   try
-       {
-         emit(ModifyStudentsLoading());
-         final response =
-         await ApiService().post(endpoint: ApiStrings.modifyStudent, data: {
-           "pk": studentDetails.pk,
-           "name": studentDetails.name,
-           "email": studentDetails.email,
-           "national_id": studentDetails.nationalId,
-           "device_id": studentDetails.deviceId,
-           "faculty": studentDetails.faculty,
-           "grade": studentDetails.grade
-         });
-         emit(ModifyStudentsSuccess());
-       }
-   on Exception catch (e) {
-     if (e is DioException) {
-       final k = ServerFailures.fromDioException(e);
-       emit(ModifyStudentsFailure(errMessage: k.errorMessage));
-     } else {
-       emit(ModifyStudentsFailure(errMessage: "Un Expected error , try again"));
-     }
-   }
-  }
-
-
-  deleteStudent()
-  {
-
-    try
-        {
-
-        }
-
-    on Exception catch (e) {
+    try {
+      emit(ModifyStudentsLoading());
+      final response =
+          await ApiService().post(endpoint: ApiStrings.modifyStudent, data: {
+        "pk": studentDetails.pk,
+        "name": studentDetails.name,
+        "email": studentDetails.email,
+        "national_id": studentDetails.nationalId,
+        "device_id": studentDetails.deviceId,
+        "faculty": studentDetails.faculty,
+        "grade": studentDetails.grade
+      });
+      emit(ModifyStudentsSuccess());
+    } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
         emit(ModifyStudentsFailure(errMessage: k.errorMessage));
       } else {
-        emit(ModifyStudentsFailure(errMessage: "Un Expected error , try again"));
+        emit(
+            ModifyStudentsFailure(errMessage: "Un Expected error , try again"));
       }
     }
-
   }
 
-
+  deleteStudent(int studentId) async {
+    try {
+      emit(DeleteStudentsLoading());
+      final response =
+          await ApiService().post(endpoint: ApiStrings.deleteStudent, data: {
+            "user_id": studentId
+          });
+      emit(DeleteStudentsSuccess());
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(DeleteStudentsFailure(errMessage: k.errorMessage));
+      } else {
+        emit(
+            DeleteStudentsFailure(errMessage: "Un Expected error , try again"));
+      }
+    }
+  }
 }
