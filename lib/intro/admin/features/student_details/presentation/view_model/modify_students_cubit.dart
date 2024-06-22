@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io' as io;
-import 'dart:io';
 
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
@@ -16,11 +13,6 @@ part 'modify_students_state.dart';
 class ModifyStudentsCubit extends Cubit<ModifyStudentsState> {
   ModifyStudentsCubit() : super(ModifyStudentsInitial());
 
-  String convertPhotoToString(File image) {
-    final bytes = io.File(image.path).readAsBytesSync();
-    String img64 = base64Encode(bytes);
-    return img64;
-  }
 
   modifyStudent(AllStudentsModel studentDetails) async {
     try {
