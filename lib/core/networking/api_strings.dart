@@ -18,5 +18,5 @@ class ApiStrings {
   static const String getAllStudents = "getstudents/";
   static const String modifyStudent = "modifystudent/";
   static const String deleteStudent = "deletestudent/";
-
+  static const String postLecture = "postlecture/";
 }

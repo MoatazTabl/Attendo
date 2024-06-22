@@ -1,5 +1,4 @@
 import 'package:attendo/core/helpers/common.dart';
-import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:flutter/material.dart';
@@ -81,8 +80,8 @@ class SkipLectureDialog extends StatelessWidget {
                   state.maybeWhen(
                     orElse: () {},
                     lectureSkipped: () {
-                      GlobalSnackBar.show(context,
-                          getAppLocalizations(context)!.lectureSkipped);
+                      // GlobalSnackBar.show(context,
+                      //     getAppLocalizations(context)!.lectureSkipped);
 
                       context.pop(true);
                     },

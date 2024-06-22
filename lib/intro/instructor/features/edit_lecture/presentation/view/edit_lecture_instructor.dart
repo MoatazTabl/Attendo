@@ -2,7 +2,7 @@ import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/widgets/custom_drop_down_button.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/instructor/features/create_lecture/presentation/widgets/create_lecture_text_field.dart';
+import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/widgets/create_lecture_text_field.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:flutter/material.dart';
