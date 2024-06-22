@@ -51,7 +51,7 @@ class ProfileScreenStudent extends StatelessWidget {
                 ),
                 UserInfoItem(
                   fieldName: getAppLocalizations(context)!.mail,
-                  fieldDetail: state.userData.nationalId,
+                  fieldDetail: state.userData.email ?? "",
                   iconPath: AppImages.emailIcon,
                 ),
                 UserInfoItem(
