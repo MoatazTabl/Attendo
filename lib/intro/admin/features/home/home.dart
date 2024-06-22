@@ -28,9 +28,9 @@ class AdminHome extends StatelessWidget {
                       onTap: () {
                         context.push("/csGrades");
                       }, child: Image.asset("assets/images/cs.png")),
-                  const Text(
+                   Text(
                     "Computer Science",
-                    style: TextStyle(fontSize: 26, color: Colors.black),
+                    style: TextStyle(fontSize: 26.sp, color: Colors.black),
                   ),
                   SizedBox(
                     height: 111.h,
@@ -40,9 +40,9 @@ class AdminHome extends StatelessWidget {
                         context.push("/commerceGrades");
                       },
                       child: Image.asset("assets/images/commerce.png")),
-                  const Text(
+                   Text(
                     "Commerce",
-                    style: TextStyle(fontSize: 26, color: Colors.black),
+                    style: TextStyle(fontSize: 26.sp, color: Colors.black),
                   )
                 ],
               ),

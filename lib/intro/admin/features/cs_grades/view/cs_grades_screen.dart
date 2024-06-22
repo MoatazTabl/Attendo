@@ -1,5 +1,6 @@
 import 'package:attendo/intro/admin/features/home/models/students_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CsGradesScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _CsGradesScreenState extends State<CsGradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -25,11 +27,11 @@ class _CsGradesScreenState extends State<CsGradesScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * .2,
             ),
-            const Row(
+             Row(
               children: [
                 Text(
                   "Select Grade",
-                  style: TextStyle(color: Colors.black, fontSize: 30),
+                  style: TextStyle(color: Colors.black, fontSize: 30.sp),
                 ),
               ],
             ),

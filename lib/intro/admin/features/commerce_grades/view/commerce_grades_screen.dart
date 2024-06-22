@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../home/models/students_model.dart';
@@ -18,15 +19,16 @@ class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: MediaQuery.of(context).size.height*.2,),
-            const Row(
+             Row(
               children: [
-                Text("Select Grade",style: TextStyle(color: Colors.black,fontSize: 30),),
+                Text("Select Grade",style: TextStyle(color: Colors.black,fontSize: 30.sp),),
               ],
             ),
             Expanded(
