@@ -1,13 +1,14 @@
 import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 import 'features/home/logic/home_instructor_cubit.dart';
 import 'features/home/presentation/view/home_instructor.dart';
@@ -39,18 +40,66 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        width: 1.sw,
-        height: 1.sh,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-              image: AssetImage(AppImages.backgroundImage), fit: BoxFit.fill),
-        ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: screens[index],
+    return ScaffoldMessenger(
+      child: Scaffold(
+        // body: screens[index],
+
+        bottomNavigationBar: PersistentTabView(
+          tabs: [
+            PersistentTabConfig(
+              screen: HomeInstructor(
+                userData: widget.userData,
+              ),
+              item: ItemConfig(
+                activeColorSecondary: AppTheme.mainBlue,
+                activeForegroundColor: Colors.white,
+                inactiveIcon: SvgPicture.asset(
+                  AppImages.homeIcon,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.homeIcon,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+                title: getAppLocalizations(context)!.home,
+              ),
+            ),
+            // PersistentTabConfig(
+            //   screen: const ProfileScreenStudent(),
+            //   item: ItemConfig(
+            //       activeColorSecondary: AppTheme.mainBlue,
+            //       activeForegroundColor: Colors.white,
+            //       inactiveIcon: SvgPicture.asset(
+            //         AppImages.profileIcon,
+            //       ),
+            //       icon: SvgPicture.asset(
+            //         AppImages.profileIcon,
+            //         colorFilter:
+            //             const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            //       ),
+            //       title: getAppLocalizations(context)!.profile),
+            // ),
+            PersistentTabConfig(
+              screen: const SettingsScreen(),
+              item: ItemConfig(
+                activeColorSecondary: AppTheme.mainBlue,
+                activeForegroundColor: Colors.white,
+                inactiveIcon: SvgPicture.asset(
+                  AppImages.settingsIcon,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.settingsIcon,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                ),
+                title: getAppLocalizations(context)!.settings,
+              ),
+            ),
+          ],
+          onTabChanged: (value) {
+            index = value;
+            setState(() {});
+          },
           floatingActionButton: index == 0
               ? FloatingActionButton(
                   onPressed: () {
@@ -84,38 +133,8 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                   ),
                 )
               : null,
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: index,
-            iconSize: 30.w,
-            type: BottomNavigationBarType.fixed,
-            elevation: 0,
-            selectedItemColor: const Color(0xff001076),
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  "assets/images/svg/home_icon.svg",
-                ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_home.svg",
-                ),
-                label: getAppLocalizations(context)?.home,
-              ),
-              BottomNavigationBarItem(
-                label: getAppLocalizations(context)?.settings,
-                icon: SvgPicture.asset(
-                  "assets/images/svg/settings_icon.svg",
-                ),
-                activeIcon: SvgPicture.asset(
-                  "assets/images/svg/selected_settings.svg",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ],
-            backgroundColor: Colors.transparent,
-            onTap: (value) {
-              index = value;
-              setState(() {});
-            },
+          navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
+            navBarConfig: navBarConfig,
           ),
         ),
       ),

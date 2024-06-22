@@ -33,7 +33,7 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 17.h),
+      padding: EdgeInsets.only(left: 8.w, right: 8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,8 +42,8 @@ class _CustomFormDropDownButtonState extends State<CustomFormDropDownButton> {
             style: const TextStyle(color: Color(0xffA2A2A7), fontSize: 14),
           ),
           SizedBox(
-            height: 90.h,
-            width: 370.w,
+            height: 79.h,
+            width: 339.w,
             child: DropdownButtonFormField(
               validator: (value) {
                 if (value == null || value.isEmpty) {

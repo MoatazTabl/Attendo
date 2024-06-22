@@ -161,7 +161,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                     onPressed: () async {
                       bool localAuth =
                           await LocalAuth().authenticateWithBiometrics(context);
-                      if (localAuth) {
+                      if (localAuth && context.mounted) {
                         context.push(
                           AppRoutes.scanQr,
                           extra: QrModel(

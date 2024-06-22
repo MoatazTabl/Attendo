@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/GetReportModel.dart';
+import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/get_report_model.dart';
 import 'package:excel/excel.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
@@ -11,7 +12,9 @@ Future<void> createExcelFile(List<StudentsList> students) async {
   // Request storage permissions
   var status = await Permission.storage.request();
   if (!status.isGranted) {
-    print("Storage permission denied");
+    if (kDebugMode) {
+      print("Storage permission denied");
+    }
     return;
   }
 
@@ -38,7 +41,9 @@ Future<void> createExcelFile(List<StudentsList> students) async {
 
   Directory? directory = await getExternalStorageDirectory();
   if (directory == null) {
-    print("Unable to get external storage directory");
+    if (kDebugMode) {
+      print("Unable to get external storage directory");
+    }
     return;
   }
 
@@ -58,11 +63,17 @@ Future<void> createExcelFile(List<StudentsList> students) async {
     // Attempt to open the file
     try {
       final result = await OpenFile.open(file.path);
-      print("Open result: ${result.message}");
+      if (kDebugMode) {
+        print("Open result: ${result.message}");
+      }
     } catch (e) {
-      print("Error opening file: $e");
+      if (kDebugMode) {
+        print("Error opening file: $e");
+      }
     }
   } else {
-    print("Failed to save file");
+    if (kDebugMode) {
+      print("Failed to save file");
+    }
   }
 }

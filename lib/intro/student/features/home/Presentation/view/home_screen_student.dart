@@ -39,70 +39,72 @@ class _HomeScreenStudentState extends State<HomeScreenStudent> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 30.h),
-      child: CustomScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        slivers: [
-          SliverPersistentHeader(
-            delegate: DatePiker(userData: widget.userData),
-            pinned: true,
-          ),
-          SliverFillRemaining(
-            child: BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () {
-                    return const Center(
-                      child: Icon(
-                        Icons.error,
-                        color: Colors.redAccent,
-                      ),
-                    );
-                  },
-                  dataFetching: () => const Center(
-                    child: CircularProgressIndicator(
-                      color: Color(
-                        0xff182F78,
-                      ),
-                    ),
-                  ),
-                  dataError: (error) => Center(
-                    child: Text(error),
-                  ),
-                  lecturesAvailable: (lectures) {
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CardPageView(
-                                pageController: _pageController,
-                                lectures: lectures,
-                                studentName: widget.userData.name,
-                              ),
-                            ],
-                          ),
-                        ),
-                        PageIndicator(
-                          pageController: _pageController,
-                          cardsNumber: lectures.length,
-                        ),
-                      ],
-                    );
-                  },
-                  lecturesNotAvailable: () => Center(
-                    child: SvgPicture.asset(
-                      AppImages.noAvailableLectures,
-                      width: 350.w,
-                      height: 340.h,
-                    ),
-                  ),
-                );
-              },
+      child: SafeArea(
+        child: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          slivers: [
+            SliverPersistentHeader(
+              delegate: DatePiker(userData: widget.userData),
+              pinned: true,
             ),
-          ),
-        ],
+            SliverFillRemaining(
+              child: BlocBuilder<HomeCubit, HomeState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
+                      return const Center(
+                        child: Icon(
+                          Icons.error,
+                          color: Colors.redAccent,
+                        ),
+                      );
+                    },
+                    dataFetching: () => const Center(
+                      child: CircularProgressIndicator(
+                        color: Color(
+                          0xff182F78,
+                        ),
+                      ),
+                    ),
+                    dataError: (error) => Center(
+                      child: Text(error),
+                    ),
+                    lecturesAvailable: (lectures) {
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CardPageView(
+                                  pageController: _pageController,
+                                  lectures: lectures,
+                                  studentName: widget.userData.name,
+                                ),
+                              ],
+                            ),
+                          ),
+                          PageIndicator(
+                            pageController: _pageController,
+                            cardsNumber: lectures.length,
+                          ),
+                        ],
+                      );
+                    },
+                    lecturesNotAvailable: () => Center(
+                      child: SvgPicture.asset(
+                        AppImages.noAvailableLectures,
+                        width: 350.w,
+                        height: 340.h,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
