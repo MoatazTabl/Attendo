@@ -171,8 +171,8 @@ class _CustomFloatingButtonState extends State<CustomFloatingButton> {
           ),
         ),
         child: const Icon(
-          Icons.add,
-          size: 32,
+          Icons.add_outlined,
+          size: 40,
         ),
       ),
     );
