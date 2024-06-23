@@ -45,7 +45,7 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
     dateTimeDay = DateTime.parse(widget.instructorDetailsReportModel
         .instructorLecturesModel.lectureStartTime!);
 
-    formattedTime = DateFormat('hh:mm:ss a').format(dateTime);
+    formattedTime = DateFormat('hh:mm a').format(dateTime);
   }
 
   @override
@@ -72,11 +72,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                               .textTheme
                               .titleLarge!
                               .copyWith(
-                                fontSize: 28.sp,
-                              ),
-                        ),
-                        SizedBox(
-                          height: 4.h,
+                                    fontSize: 30.sp,
+                                  ),
                         ),
                         Text(
                           formattedDate,
@@ -90,15 +87,12 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 16.h,
-                ),
                 Container(
                   height: 584.h,
-                  width: 340.w,
+                  width: 328.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      25,
+                      23,
                     ),
                     color: const Color(
                       0xFFF1F1F1,
@@ -149,14 +143,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   },
                   style: ButtonStyle(
                     fixedSize: WidgetStateProperty.all(
-                      Size(246.w, 55.h),
+                      Size(246.w, 53.h),
                     ),
-                    backgroundColor: WidgetStateProperty.all(
-                      const Color(
-                        0xFF0066FF,
-                      ),
-                    ),
-                    foregroundColor: WidgetStateProperty.all(Colors.white),
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
