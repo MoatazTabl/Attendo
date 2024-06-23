@@ -39,6 +39,10 @@ abstract class AppImages {
   static const String successState = "assets/images/success.png";
   static const String failureState = "assets/images/failed.png";
 
+  // button
+  static const String editButton = 'assets/images/svg/edit_button.svg';
+  static const String skipLectureButton = 'assets/images/skip_lecture.png';
+
   static const String arrowDownIcon = 'assets/images/svg/arrow_down_icon.svg';
   static const String calenderIcon = 'assets/images/svg/calendar_icon.svg';
   static const String timeIcon = 'assets/images/svg/time_icon.svg';

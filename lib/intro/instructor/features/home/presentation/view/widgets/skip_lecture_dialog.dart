@@ -1,3 +1,4 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
@@ -102,10 +103,14 @@ class SkipLectureDialog extends StatelessWidget {
           });
         });
       },
-      iconSize: 32,
-      icon: const Icon(
-        Icons.delete_forever,
-        color: Colors.redAccent,
+      padding: EdgeInsets.zero,
+      iconSize: 24,
+      icon: ImageIcon(
+        size: 30.h,
+        const AssetImage(
+          AppImages.skipLectureButton,
+        ),
+        color: const Color(0xffff0000),
       ),
     );
   }
