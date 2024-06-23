@@ -18,13 +18,10 @@ class StudentsAttendingWidget extends StatelessWidget {
           height: 9.h,
         ),
         Text(
-          getAppLocalizations(context)!.studentsAttending,
+          getAppLocalizations(context)!.studentsAttended,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontSize: 20.sp,
               ),
-        ),
-        SizedBox(
-          height: 16.h,
         ),
         BlocBuilder<GetReportCubit, GetReportState>(
           builder: (context, state) {
@@ -39,14 +36,11 @@ class StudentsAttendingWidget extends StatelessWidget {
             } else if (state is GetReportLoading) {
               return const Center(child: CircularProgressIndicator());
             } else {
-              return  CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 35.w,
-                child: const Text(
-                  "0",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+              return Text(
+                "0",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30.sp,
                 ),
               );
             }

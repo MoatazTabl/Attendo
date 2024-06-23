@@ -46,7 +46,9 @@
   "showDetails": "Show Details",
 
   "@_QrPage": {},
-  "studentsAttending": "Attending Students",
+  "takeAttendance": "Take Attendance",
+  "attendanceStarted": "Attendance Started",
+  "studentsAttended": "Students Attended",
   "clickToShowStudents": "Click to Show Students",
 
   "@_AttendanceList": {},

@@ -46,7 +46,9 @@
   "showDetails": "اظهار التفاصيل",
 
   "@_QrPage": {},
-  "studentsAttending": "الطلاب الحضارين",
+  "takeAttendance": "أخذ الغياب",
+  "attendanceStarted": "تم بدا أخذ الغياب",
+  "studentsAttended": "الطلاب الحضارين",
   "clickToShowStudents": "انقر لإظهار الطلاب",
 
   "@_AttendanceList": {},
