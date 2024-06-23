@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61">
-  <g id="Group_2563" data-name="Group 2563" transform="translate(-176 -787)">
-    <path id="Ellipse_154" data-name="Ellipse 154" d="M30.5,0A30.5,30.5,0,1,1,0,30.5,30.5,30.5,0,0,1,30.5,0Z" transform="translate(176 787)" fill="#001076"/>
-    <path id="Icon_open-person" data-name="Icon open-person" d="M9.97,0C7.228,0,4.985,2.792,4.985,6.231s2.243,6.231,4.985,6.231,4.985-2.792,4.985-6.231S12.712,0,9.97,0ZM4.763,12.463A4.985,4.985,0,0,0,0,17.448V19.94H19.94V17.448a4.973,4.973,0,0,0-4.763-4.985A7,7,0,0,1,9.97,14.955,7,7,0,0,1,4.763,12.463Z" transform="translate(197 807)" fill="#fff"/>
-  </g>
-</svg>
