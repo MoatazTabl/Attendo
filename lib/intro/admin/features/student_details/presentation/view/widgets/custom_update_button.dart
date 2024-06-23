@@ -1,4 +1,4 @@
-import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/AllStudentsModel.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/all_students_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

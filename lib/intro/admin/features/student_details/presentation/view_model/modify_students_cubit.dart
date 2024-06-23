@@ -1,10 +1,10 @@
 
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
-import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/AllStudentsModel.dart';
-import 'package:bloc/bloc.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/all_students_model.dart';
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/errors/failures.dart';
 

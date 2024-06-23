@@ -1,12 +1,16 @@
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
+import 'package:attendo/intro/instructor/features/edit_lecture/presentation/view/edit_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
 import 'package:attendo/intro/instructor/features/home/presentation/view/widgets/skip_lecture_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -21,160 +25,157 @@ class InstructorLectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 268.h,
-        width: 358.w,
+        height: 232.h,
+        width: 312.w,
         // padding: EdgeInsets.only(bottom: 10.h),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              25.w,
+              47.w,
+            ),
+            side: BorderSide.lerp(
+              const BorderSide(color: Color(0xffd1dafa), width: 4),
+              const BorderSide(
+                color: Color(0xffcacff3),
+                width: 4,
+              ),
+              .5,
             ),
           ),
-          color: const Color(0xFFF0F3FF).withOpacity(0.5),
+          gradient: LinearGradient(
+            colors: [
+              const Color(0xffc2cff8).withOpacity(0.5),
+              const Color(0xffeef0f6).withOpacity(0.5),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // SizedBox(
-            //   height: 15.h,
-            // ),
+            SizedBox(
+              height: 10.h,
+            ),
             Text(
               instructorLecturesModel.name ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
-                  .copyWith(fontSize: 36.sp),
+                  .copyWith(fontSize: 30.sp, fontWeight: FontWeight.w600),
             ),
-            // SizedBox(
-            //   height: 9.h,
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  instructorLecturesModel.instructorInfo?.name ?? "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 22.sp),
-                ),
-                Text(
-                  instructorLecturesModel.grade ?? "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 22.sp),
-                ),
-              ],
-            ),
-            // SizedBox(
-            //   height: 10.h,
-            // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  instructorLecturesModel.lectureStartTime?.split("T")[0] ?? "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 18.sp),
-                ),
                 Text(
                   dateTime(instructorLecturesModel.lectureStartTime) ?? "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 18.sp),
+                  style: GoogleFonts.poppins(
+                      fontSize: 20.sp, fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  instructorLecturesModel.lectureHall ?? "",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20.sp, fontWeight: FontWeight.w600),
                 ),
               ],
             ),
-            // SizedBox(
-            //   height: 9.h,
-            // ),
-            Text(
-              instructorLecturesModel.lectureHall ?? "",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 25.sp),
+            SizedBox(
+              height: 8.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context
-                        .push(AppRoutes.editLectureInstructor,
-                            extra: instructorLecturesModel)
-                        .then((value) {
-                      context
-                          .read<HomeInstructorCubit>()
-                          .getInstructorLectures(data: {
-                        "instructor":
-                            instructorLecturesModel.instructorInfo?.name,
-                        // "date":"2024-04-30T09:18:54"
-                        "date": context
-                            .read<HomeInstructorCubit>()
-                            .dateTime
-                            .toIso8601String()
-                            .split(".")[0]
-                      });
-                    });
-                  },
-                  iconSize: 32,
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.green,
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
-                        .format(context.read<HomeInstructorCubit>().dateTime);
+            ElevatedButton(
+              onPressed: () {
+                String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
+                    .format(context.read<HomeInstructorCubit>().dateTime);
 
-                    formattedDateTime =
-                        formattedDateTime.replaceFirst(' ', 'T');
-                    InstructorDetailsReportModel instructorDetailsReportModel =
-                        InstructorDetailsReportModel(
-                            instructorLecturesModel: instructorLecturesModel,
-                            date: formattedDateTime);
-                    context.push(AppRoutes.instructorLectureDetails,
-                        extra: instructorDetailsReportModel);
-                  },
-                  style: ButtonStyle(
-                    fixedSize: WidgetStateProperty.all(
-                      Size(215.w, 56.h),
-                    ),
-                    backgroundColor: WidgetStateProperty.all(
-                      const Color(
-                        0xff3746CC,
-                      ),
-                    ),
-                    foregroundColor: WidgetStateProperty.all(Colors.white),
-                    shape: WidgetStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          22.w,
-                        ),
-                      ),
-                    ),
-                    padding: WidgetStateProperty.all(EdgeInsets.zero),
-                  ),
-                  child: Text(
-                    getAppLocalizations(context)!.showDetails,
-                    style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
+                formattedDateTime = formattedDateTime.replaceFirst(' ', 'T');
+                InstructorDetailsReportModel instructorDetailsReportModel =
+                    InstructorDetailsReportModel(
+                        instructorLecturesModel: instructorLecturesModel,
+                        date: formattedDateTime);
+                context.push(AppRoutes.instructorLectureDetails,
+                    extra: instructorDetailsReportModel);
+              },
+              style: ButtonStyle(
+                fixedSize: WidgetStateProperty.all(
+                  Size(170.w, 43.h),
+                ),
+                backgroundColor: WidgetStateProperty.all(
+                  AppTheme.mainBlue,
+                ),
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                foregroundColor: WidgetStateProperty.all(Colors.white),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      16.w,
                     ),
                   ),
                 ),
-                SkipLectureDialog(
-                    instructorLecturesModel: instructorLecturesModel),
-              ],
+                enableFeedback: true,
+                padding: WidgetStateProperty.all(EdgeInsets.zero),
+              ),
+              child: Text(
+                getAppLocalizations(context)!.showDetails,
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: 30.h,
+                    child: IconButton(
+                      onPressed: () async {
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.white,
+                          isScrollControlled: true,
+                          showDragHandle: true,
+                          builder: (context) {
+                            return EditLectureInstructor1(
+                              instructorLecturesModel: instructorLecturesModel,
+                            );
+                          },
+                        ).then((value) {
+                          context
+                              .read<HomeInstructorCubit>()
+                              .getInstructorLectures(data: {
+                            "instructor":
+                                instructorLecturesModel.instructorInfo?.name,
+                            // "date":"2024-04-30T09:18:54"
+                            "date": context
+                                .read<HomeInstructorCubit>()
+                                .dateTime
+                                .toIso8601String()
+                                .split(".")[0]
+                          });
+                        });
+                      },
+                      padding: EdgeInsets.zero,
+                      // iconSize: 24,
+                      icon: SvgPicture.asset(
+                        AppImages.editButton,
+                        height: 30.h,
+                        width: 30.h,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                    child: SkipLectureDialog(
+                        instructorLecturesModel: instructorLecturesModel),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -185,5 +186,14 @@ class InstructorLectureCard extends StatelessWidget {
   String? dateTime(String? dateTime) {
     var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));
     return dateFormat;
+  }
+}
+
+class EditLectureBottomSheet extends StatelessWidget {
+  const EditLectureBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

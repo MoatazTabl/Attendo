@@ -1,5 +1,5 @@
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
-import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/AllStudentsModel.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/all_students_model.dart';
 import 'package:attendo/intro/admin/features/student_details/presentation/view/widgets/custom_update_button.dart';
 import 'package:attendo/intro/admin/features/student_details/presentation/view_model/modify_students_cubit.dart';
 import 'package:flutter/material.dart';

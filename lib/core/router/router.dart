@@ -1,7 +1,7 @@
 import 'package:attendo/core/router/app_routes.dart';
 import 'package:attendo/intro/admin/features/all_students_screen/view/all_students_screen.dart';
 import 'package:attendo/intro/admin/features/all_students_screen/view_model/cubit/get_all_students_cubit.dart';
-import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/AllStudentsModel.dart';
+import 'package:attendo/intro/admin/features/all_students_screen/view_model/model/all_students_model.dart';
 import 'package:attendo/intro/admin/features/commerce_grades/view/commerce_grades_screen.dart';
 import 'package:attendo/intro/admin/features/cs_grades/view/cs_grades_screen.dart';
 import 'package:attendo/intro/admin/features/home/home.dart';
@@ -12,8 +12,6 @@ import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/auth/sign_in/presentation/view/sign_in_screen.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
-import 'package:attendo/intro/instructor/features/create_lecture/logic/create_lecture_cubit.dart';
-import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/logic/edit_lecture_cubit.dart';
 import 'package:attendo/intro/instructor/features/edit_lecture/presentation/view/edit_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/home/data/models/instructor_lectures_model.dart';
@@ -114,15 +112,15 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-    GoRoute(
-      path: AppRoutes.createLectureInstructor,
-      builder: (context, state) => BlocProvider(
-        create: (context) => CreateLectureCubit(),
-        child: CreateLectureInstructor(
-          userDataModel: state.extra as UserDataModel,
-        ),
-      ),
-    ),
+    // GoRoute(
+    //   path: AppRoutes.createLectureInstructor,
+    //   builder: (context, state) => BlocProvider(
+    //     create: (context) => CreateLectureCubit(),
+    //     child: CreateLectureInstructor(
+    //       userDataModel: state.extra as UserDataModel,
+    //     ),
+    //   ),
+    // ),
 
     GoRoute(
       path: AppRoutes.editLectureInstructor,
