@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
-import 'core/app_images.dart';
-import 'intro/settings/presentation/view/settings_screen.dart';
+import '../../core/app_images.dart';
+import '../settings/presentation/view/settings_screen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key, required this.userData});
+class StudentMainScreen extends StatefulWidget {
+  const StudentMainScreen({super.key, required this.userData});
 
   final UserDataModel userData;
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<StudentMainScreen> createState() => _StudentMainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _StudentMainScreenState extends State<StudentMainScreen> {
   final iconList = [];
   late List<Widget> screens;
 
