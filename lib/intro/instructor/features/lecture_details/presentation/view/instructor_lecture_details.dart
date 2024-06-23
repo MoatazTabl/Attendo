@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:attendo/core/app_images.dart';
 import 'package:attendo/core/helpers/common.dart';
 import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/core/widgets/custom_snack_bar.dart';
@@ -87,11 +88,19 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
               ),
               Text(
                 formattedDate,
-                style: const TextStyle(color: Color(0xFF7A7A7A)),
+                style: const TextStyle(
+                  color: Color(
+                    0xFF7A7A7A,
+                  ),
+                ),
               ),
               Text(
                 formattedTime,
-                style: const TextStyle(color: Color(0xFF7A7A7A)),
+                style: const TextStyle(
+                  color: Color(
+                    0xFF7A7A7A,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -108,8 +117,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       ),
                       color: Colors.white,
                       child: QrImageView(
-                        embeddedImage: const AssetImage(
-                            "assets/logo/Attendo primary -no background.png"),
+                        embeddedImage: const AssetImage(AppImages.appLogo),
                         embeddedImageStyle: const QrEmbeddedImageStyle(
                           size: Size(
                             40,

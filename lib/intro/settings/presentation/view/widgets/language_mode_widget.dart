@@ -57,6 +57,7 @@ class LanguageModeWidget extends StatelessWidget {
                 ),
               ),
             ),
+            borderRadius: BorderRadius.circular(10),
             enableFeedback: true,
             hint: Text(language() ?? "English"),
             style: GoogleFonts.poppins(

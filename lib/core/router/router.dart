@@ -17,7 +17,7 @@ import 'package:attendo/intro/instructor/features/lecture_details/presentation/v
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
-import 'package:attendo/main_screen.dart';
+import 'package:attendo/intro/student/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,7 +50,7 @@ final GoRouter router = GoRouter(
             create: (context) => HomeCubit(),
           ),
         ],
-        child: MainScreen(
+        child: StudentMainScreen(
           userData: state.extra as UserDataModel,
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
+import 'package:attendo/intro/instructor/features/profile/presentation/view/profile_screen_instructor.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
         // body: screens[index],
 
         bottomNavigationBar: PersistentTabView(
+          backgroundColor: Colors.white,
           tabs: [
             PersistentTabConfig(
               screen: HomeInstructor(
@@ -62,6 +64,21 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                 ),
                 title: getAppLocalizations(context)!.home,
               ),
+            ),
+            PersistentTabConfig(
+              screen: const ProfileScreenInstructor(),
+              item: ItemConfig(
+                  activeColorSecondary: AppTheme.mainBlue,
+                  activeForegroundColor: Colors.white,
+                  inactiveIcon: SvgPicture.asset(
+                    AppImages.profileIcon,
+                  ),
+                  icon: SvgPicture.asset(
+                    AppImages.profileIcon,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  ),
+                  title: getAppLocalizations(context)!.profile),
             ),
             PersistentTabConfig(
               screen: const SettingsScreen(),
@@ -108,40 +125,55 @@ class CustomFloatingButton extends StatefulWidget {
 class _CustomFloatingButtonState extends State<CustomFloatingButton> {
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        showModalBottomSheet(
-            context: context,
-            backgroundColor: Colors.white,
-            isScrollControlled: true,
-            showDragHandle: true,
-            builder: (context) {
-              return CreateLectureBottomSheet(
-                userDataModel: widget.userData,
-              );
-            }).then((value) {
-          context.read<HomeInstructorCubit>().getInstructorLectures(data: {
-            "instructor": widget.userData.name,
-            // "date":"2024-04-30T09:18:54"
-            "date": context
-                .read<HomeInstructorCubit>()
-                .dateTime
-                .toIso8601String()
-                .split(".")[0]
-          });
-          setState(() {});
-        });
-      },
-      backgroundColor: const Color(0xff3746CC),
-      foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          36,
+    return Container(
+      decoration: const ShapeDecoration(
+        shape: CircleBorder(),
+        gradient: LinearGradient(
+          colors: [
+            Color(0xff6B73FF),
+            Color(0xff000DFF),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
       ),
-      child: const Icon(
-        Icons.add,
-        size: 32,
+      child: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              backgroundColor: Colors.white,
+              isScrollControlled: true,
+              showDragHandle: true,
+              builder: (context) {
+                return CreateLectureBottomSheet(
+                  userDataModel: widget.userData,
+                );
+              }).then((value) {
+            context.read<HomeInstructorCubit>().getInstructorLectures(data: {
+              "instructor": widget.userData.name,
+              // "date":"2024-04-30T09:18:54"
+              "date": context
+                  .read<HomeInstructorCubit>()
+                  .dateTime
+                  .toIso8601String()
+                  .split(".")[0]
+            });
+            setState(() {});
+          });
+        },
+        backgroundColor: Colors.transparent,
+        enableFeedback: true,
+        elevation: 0,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            36,
+          ),
+        ),
+        child: const Icon(
+          Icons.add,
+          size: 32,
+        ),
       ),
     );
   }

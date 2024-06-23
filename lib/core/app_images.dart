@@ -1,4 +1,8 @@
 abstract class AppImages {
+  // app logo
+  static const String appLogo =
+      "assets/logo/Attendo primary -no background.png";
+
   static const String backgroundImage = "assets/images/background.png";
 
   static const String addAvatarImage = "assets/images/picture_avatar.png";
