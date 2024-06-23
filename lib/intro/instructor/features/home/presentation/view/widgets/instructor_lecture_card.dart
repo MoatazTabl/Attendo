@@ -140,7 +140,7 @@ class InstructorLectureCard extends StatelessWidget {
                           isScrollControlled: true,
                           showDragHandle: true,
                           builder: (context) {
-                            return EditLectureInstructor1(
+                            return EditLectureInstructor(
                               instructorLecturesModel: instructorLecturesModel,
                             );
                           },
