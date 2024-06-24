@@ -1,17 +1,10 @@
-import 'package:attendo/core/app_images.dart';
-import 'package:attendo/core/helpers/common.dart';
-import 'package:attendo/core/router/app_routes.dart';
+import 'package:attendo/intro/student/features/home/Presentation/view/widgets/lecture_details_widget.dart';
+import 'package:attendo/intro/student/features/home/Presentation/view/widgets/scan_qr_button.dart';
 import 'package:attendo/intro/student/features/home/data/models/students_lectures_model.dart';
-import 'package:attendo/intro/student/features/scan_qr/data/model/qr_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
-import '../../../../../../../core/utils/local_auth.dart';
 
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard(
@@ -39,17 +32,30 @@ class _AttendanceCardState extends State<AttendanceCard>
         scale: widget.isActive ? 1.0 : 0.8,
         duration: animationTime,
         child: AnimatedContainer(
-          height: 250.h,
-          width: 340.w,
-          margin: EdgeInsets.symmetric(vertical: 10.h),
+          height: 222.h,
+          width: 312.w,
+          // padding: EdgeInsets.only(bottom: 10.h),
           decoration: ShapeDecoration(
-            image: const DecorationImage(
-                image: AssetImage(
-                  AppImages.attendanceCardBackground,
-                ),
-                fit: BoxFit.fill),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(
+                47.w,
+              ),
+              side: BorderSide.lerp(
+                const BorderSide(color: Color(0xffd1dafa), width: 4),
+                const BorderSide(
+                  color: Color(0xffcacff3),
+                  width: 4,
+                ),
+                .5,
+              ),
+            ),
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xffc2cff8).withOpacity(0.5),
+                const Color(0xffeef0f6).withOpacity(0.5),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
           duration: animationTime,
@@ -57,163 +63,24 @@ class _AttendanceCardState extends State<AttendanceCard>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                return Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    AnimatedDefaultTextStyle(
-                      style: TextStyle(
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 2
-                          ..color = Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: constraints.maxWidth / 10,
-                      ),
-                      duration: animationTime,
-                      child: Text(
-                        widget.lectures.name ?? "",
-                      ),
-                    ),
-                    AnimatedDefaultTextStyle(
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: constraints.maxWidth / 10,
-                      ),
-                      duration: animationTime,
-                      child: Text(
-                        widget.lectures.name ?? "",
-                      ),
-                    ),
-                  ],
-                );
-              }),
-              AnimatedDefaultTextStyle(
-                style: GoogleFonts.roboto(
-                  textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Colors.black,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w500),
-                ),
-                duration: animationTime,
-                child: Text(
-                  widget.lectures.instructorInfo?.name ?? "",
-                ),
+              Text(
+                widget.lectures.name ?? "",
+                style: GoogleFonts.poppins(
+                    fontSize: 28.sp, fontWeight: FontWeight.w700),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  AnimatedDefaultTextStyle(
-                    style: GoogleFonts.roboto(
-                      textStyle:
-                          Theme.of(context).textTheme.labelMedium!.copyWith(
-                                color: Colors.black,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                    ),
-                    duration: animationTime,
-                    child: Text(
-                      widget.lectures.lectureHall ?? "",
-                    ),
-                  ),
-                  AnimatedDefaultTextStyle(
-                    style: GoogleFonts.roboto(
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelMedium!
-                          .copyWith(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w500),
-                    ),
-                    duration: animationTime,
-                    child: Text(
-                      dateTime(widget.lectures.lectureStartTime) ?? "",
-                    ),
-                  ),
-                ],
+              Text(
+                widget.lectures.instructorInfo?.name ?? "",
+                style: GoogleFonts.poppins(
+                    fontSize: 20.sp, fontWeight: FontWeight.w600),
               ),
-              AnimatedContainer(
-                  duration: animationTime,
-                  curve: Curves.easeIn,
-                  height: 89.h,
-                  width: 258.w,
-                  margin: EdgeInsets.only(
-                    top: 9.h,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
-                    color: Colors.transparent,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.7),
-                        blurStyle: BlurStyle.outer,
-                        offset: const Offset(0, 0),
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      bool localAuth =
-                          await LocalAuth().authenticateWithBiometrics(context);
-                      if (localAuth && context.mounted) {
-                        context.push(
-                          AppRoutes.scanQr,
-                          extra: QrModel(
-                            studentName: widget.studentName,
-                            lectureId: widget.lectures.pk!,
-                          ),
-                        );
-                      }
-                    },
-                    style: ButtonStyle(
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            32,
-                          ),
-                        ),
-                      ),
-                      enableFeedback: true,
-                      backgroundColor:
-                          const WidgetStatePropertyAll(Colors.transparent),
-                      shadowColor: WidgetStateProperty.all(Colors.transparent),
-                      elevation: WidgetStateProperty.all(0),
-                      padding: WidgetStateProperty.all(
-                        EdgeInsets.zero,
-                      ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: 7.h,
-                          ),
-                          child: SvgPicture.asset(
-                            "assets/images/svg/scan_qr.svg",
-                            height: 50,
-                            width: 47,
-                          ),
-                        ),
-                        AnimatedDefaultTextStyle(
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 40.sp,
-                          ),
-                          duration: animationTime,
-                          child: Text(getAppLocalizations(context)!.scanQR),
-                        )
-                      ],
-                    ),
-                  )),
+              SizedBox(
+                height: 10.h,
+              ),
+              LectureDetailsWidget(lectures: widget.lectures),
+              ScanQrButton(
+                  animationTime: animationTime,
+                  lectures: widget.lectures,
+                  studentName: widget.studentName)
             ],
           ),
         ),
@@ -221,8 +88,4 @@ class _AttendanceCardState extends State<AttendanceCard>
     );
   }
 
-  String? dateTime(String? dateTime) {
-    var dateFormat = DateFormat.jm().format(DateTime.parse(dateTime ?? ""));
-    return dateFormat;
-  }
 }

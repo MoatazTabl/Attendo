@@ -4,14 +4,14 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../../core/app_images.dart';
 
-class AttendentSrudentItem extends StatelessWidget {
+class AttendanceStudentItem extends StatelessWidget {
   final String studentName;
 
   final String nationalId;
 
   final String authorizationTime;
 
-  const AttendentSrudentItem(
+  const AttendanceStudentItem(
       {super.key,
       required this.studentName,
       required this.nationalId,

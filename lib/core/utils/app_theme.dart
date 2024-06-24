@@ -9,7 +9,7 @@ class AppTheme {
       brightness: Brightness.light,
       textTheme: textTheme,
       scaffoldBackgroundColor: filledWhite,
-      colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff3b47c7)),
+      colorScheme: ColorScheme.fromSeed(seedColor: mainBlue),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(mainBlue),

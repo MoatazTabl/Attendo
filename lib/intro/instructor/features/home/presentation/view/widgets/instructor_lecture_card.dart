@@ -27,7 +27,6 @@ class InstructorLectureCard extends StatelessWidget {
       child: Container(
         height: 232.h,
         width: 312.w,
-        // padding: EdgeInsets.only(bottom: 10.h),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
@@ -64,18 +63,48 @@ class InstructorLectureCard extends StatelessWidget {
                   .titleLarge!
                   .copyWith(fontSize: 30.sp, fontWeight: FontWeight.w600),
             ),
+            SizedBox(
+              height: 15.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  dateTime(instructorLecturesModel.lectureStartTime) ?? "",
-                  style: GoogleFonts.poppins(
-                      fontSize: 20.sp, fontWeight: FontWeight.w600),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.timeIcon,
+                      width: 18,
+                      height: 18,
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      dateTime(instructorLecturesModel.lectureStartTime) ?? "",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20.sp, fontWeight: FontWeight.w600),
+                    ),
+                  ],
                 ),
-                Text(
-                  instructorLecturesModel.lectureHall ?? "",
-                  style: GoogleFonts.poppins(
-                      fontSize: 20.sp, fontWeight: FontWeight.w600),
+                SizedBox(
+                  height: 12.w,
+                ),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.locationIcon,
+                      width: 18,
+                      height: 18,
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      instructorLecturesModel.lectureHall ?? "",
+                      style: GoogleFonts.poppins(
+                          fontSize: 20.sp, fontWeight: FontWeight.w600),
+                    ),
+                  ],
                 ),
               ],
             ),
