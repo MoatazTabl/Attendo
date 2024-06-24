@@ -19,14 +19,13 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../view_model/cubits/start_report/start_report_cubit.dart';
 
 class InstructorLectureDetails extends StatefulWidget {
+  const InstructorLectureDetails(
+      {super.key, required this.instructorDetailsReportModel});
   final InstructorDetailsReportModel instructorDetailsReportModel;
 
   @override
   State<InstructorLectureDetails> createState() =>
       _InstructorLectureDetailsState();
-
-  const InstructorLectureDetails(
-      {super.key, required this.instructorDetailsReportModel});
 }
 
 class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
@@ -180,7 +179,7 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                       padding: const WidgetStatePropertyAll(EdgeInsets.zero),
                       fixedSize: WidgetStatePropertyAll(
                         Size(
-                          315.w,
+                          270.w,
                           73.h,
                         ),
                       ),
@@ -218,7 +217,10 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                 },
               ),
               const Spacer(),
-              const StudentsAttendingWidget(),
+              StudentsAttendingWidget(
+                instructorDetailsReportModel:
+                    widget.instructorDetailsReportModel,
+              ),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
