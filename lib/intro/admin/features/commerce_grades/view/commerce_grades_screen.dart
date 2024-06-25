@@ -12,7 +12,7 @@ class CommerceGradesScreen extends StatefulWidget {
 }
 
 class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
- final List<String> grades = ["First","Second","Third","Fourth"];
+ final List<String> grades = ["1st","2nd","3rd","4th"];
 
   late StudentsModel students  ;
 
@@ -45,13 +45,16 @@ class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
                       students = StudentsModel(department: "Commerce", grade:grades[index]);
                       context.push("/allStudents",extra: students);
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(20)),
-                      height: 50,
-                      width: 50,
-                      child: Center(child: Text(grades[index],style: const TextStyle(fontSize: 25,color: Colors.white),)),
+                    child: Card(
+                      elevation: 5,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFF6F6F6),
+                            borderRadius: BorderRadius.circular(20)),
+                        height: 50,
+                        width: 50,
+                        child: Center(child: Text(grades[index],style: const TextStyle(fontSize: 25,color: Colors.black),)),
+                      ),
                     ),
                   ) ;
                 },
