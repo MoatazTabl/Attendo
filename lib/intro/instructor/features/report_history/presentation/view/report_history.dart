@@ -37,10 +37,10 @@ class _ReportHistoryState extends State<ReportHistory> {
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
                  SizedBox(height: 20.h,),
-                 Text("Lectures History",style: TextStyle(fontSize: 24),),
+                 const Text("Lectures History",style: TextStyle(fontSize: 24),),
                  Expanded(
                    child: ListView.separated(separatorBuilder: (context, index) {
-                     return Divider();
+                     return const Divider();
                    }, itemBuilder: (context, index) {
                      return ListTile(
                        onTap: () {

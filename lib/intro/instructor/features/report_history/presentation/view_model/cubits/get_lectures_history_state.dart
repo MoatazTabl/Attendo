@@ -6,7 +6,7 @@ abstract class GetLecturesHistoryState {}
 class GetLecturesHistoryInitial extends GetLecturesHistoryState {}
 
 class GetLecturesHistorySuccess extends GetLecturesHistoryState {
-  List<ReportHistoryLectures> lectures;
+ final List<ReportHistoryLectures> lectures;
 
   GetLecturesHistorySuccess({required this.lectures});
 }
@@ -14,7 +14,7 @@ class GetLecturesHistorySuccess extends GetLecturesHistoryState {
 class GetLecturesHistoryLoading extends GetLecturesHistoryState {}
 
 class GetLecturesHistoryFailure extends GetLecturesHistoryState {
-  String errMessage;
+ final String errMessage;
 
   GetLecturesHistoryFailure({required this.errMessage});
 }
