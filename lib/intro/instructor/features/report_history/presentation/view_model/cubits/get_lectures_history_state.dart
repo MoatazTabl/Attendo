@@ -4,14 +4,16 @@ part of 'get_lectures_history_cubit.dart';
 abstract class GetLecturesHistoryState {}
 
 class GetLecturesHistoryInitial extends GetLecturesHistoryState {}
+
 class GetLecturesHistorySuccess extends GetLecturesHistoryState {
-  ReportHistoryLecturesModel lectures ;
+  List<ReportHistoryLecturesModel> lectures;
 
   GetLecturesHistorySuccess({required this.lectures});
 }
-class GetLecturesHistoryLoading extends GetLecturesHistoryState {}
-class GetLecturesHistoryFailure extends GetLecturesHistoryState {
 
+class GetLecturesHistoryLoading extends GetLecturesHistoryState {}
+
+class GetLecturesHistoryFailure extends GetLecturesHistoryState {
   String errMessage;
 
   GetLecturesHistoryFailure({required this.errMessage});

@@ -67,7 +67,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
               ),
             ),
             PersistentTabConfig(
-              screen: const ReportHistory(),
+              screen:  ReportHistory(userData: widget.userData,),
               item: ItemConfig(
                   activeColorSecondary: AppTheme.mainBlue,
                   activeForegroundColor: Colors.white,

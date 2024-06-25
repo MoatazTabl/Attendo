@@ -7,8 +7,8 @@ class InstructorInfo {
     pk = json['pk'];
     name = json['name'];
   }
-  int pk;
-  String name;
+  int? pk;
+  String? name;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
