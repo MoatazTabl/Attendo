@@ -13,6 +13,7 @@ class CommerceGradesScreen extends StatefulWidget {
 
 class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
  final List<String> grades = ["1st","2nd","3rd","4th"];
+ final List<String> gradesText = ["First","Second","Third","Fourth"];
 
   late StudentsModel students  ;
 
@@ -42,7 +43,7 @@ class _CommerceGradesScreenState extends State<CommerceGradesScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      students = StudentsModel(department: "Commerce", grade:grades[index]);
+                      students = StudentsModel(department: "Commerce", grade:gradesText[index]);
                       context.push("/allStudents",extra: students);
                     },
                     child: Card(

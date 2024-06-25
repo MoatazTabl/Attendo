@@ -12,6 +12,7 @@ class CsGradesScreen extends StatefulWidget {
 
 class _CsGradesScreenState extends State<CsGradesScreen> {
   final List<String> grades = ["1st","2nd","3rd","4th"];
+  final List<String> gradesText = ["First","Second","Third","Fourth"];
 
   late StudentsModel students;
 
@@ -47,7 +48,7 @@ class _CsGradesScreenState extends State<CsGradesScreen> {
                   return InkWell(
                     onTap: () {
                       students = StudentsModel(
-                          department: "Computers", grade: grades[index]);
+                          department: "Computers", grade: gradesText[index]);
                       context.push("/allStudents", extra: students);
                     },
                     child: Card(
