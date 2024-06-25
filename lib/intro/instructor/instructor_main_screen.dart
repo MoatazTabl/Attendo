@@ -4,7 +4,7 @@ import 'package:attendo/core/utils/app_theme.dart';
 import 'package:attendo/intro/auth/models/user_data_model.dart';
 import 'package:attendo/intro/instructor/features/create_lecture/presentation/view/create_lecture_instructor.dart';
 import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cubit.dart';
-import 'package:attendo/intro/instructor/features/profile/presentation/view/profile_screen_instructor.dart';
+import 'package:attendo/intro/instructor/features/report_history/presentation/view/report_history.dart';
 import 'package:attendo/intro/settings/presentation/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,13 +60,13 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                 icon: SvgPicture.asset(
                   AppImages.homeIcon,
                   colorFilter:
-                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
                 title: getAppLocalizations(context)!.home,
               ),
             ),
             PersistentTabConfig(
-              screen: const ProfileScreenInstructor(),
+              screen: ReportHistory(userData: widget.userData,),
               item: ItemConfig(
                   activeColorSecondary: AppTheme.mainBlue,
                   activeForegroundColor: Colors.white,
@@ -76,7 +76,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                   icon: SvgPicture.asset(
                     AppImages.profileIcon,
                     colorFilter:
-                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                   ),
                   title: getAppLocalizations(context)!.profile),
             ),
@@ -91,7 +91,7 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
                 icon: SvgPicture.asset(
                   AppImages.settingsIcon,
                   colorFilter:
-                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
                 title: getAppLocalizations(context)!.settings,
               ),
@@ -104,9 +104,10 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
           floatingActionButton: CustomFloatingButton(
             userData: widget.userData,
           ),
-          navBarBuilder: (NavBarConfig navBarConfig) => Style2BottomNavBar(
-            navBarConfig: navBarConfig,
-          ),
+          navBarBuilder: (NavBarConfig navBarConfig) =>
+              Style2BottomNavBar(
+                navBarConfig: navBarConfig,
+              ),
         ),
       ),
     );
