@@ -70,15 +70,10 @@ class _InstructorMainScreenState extends State<InstructorMainScreen> {
               item: ItemConfig(
                   activeColorSecondary: AppTheme.mainBlue,
                   activeForegroundColor: Colors.white,
-                  inactiveIcon: SvgPicture.asset(
-                    AppImages.profileIcon,
-                  ),
-                  icon: SvgPicture.asset(
-                    AppImages.profileIcon,
-                    colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                  ),
-                  title: getAppLocalizations(context)!.profile),
+                  inactiveIcon: const Icon(Icons.my_library_books_sharp),
+                  icon: const Icon(Icons.my_library_books_sharp),
+                  title: "Reports")
+                  // title: getAppLocalizations(context)!.profile),
             ),
             PersistentTabConfig(
               screen: const SettingsScreen(),

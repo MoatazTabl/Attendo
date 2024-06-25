@@ -62,7 +62,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
     );
   }
 
-  void showCustomSuccessDialog(BuildContext context, String message) {
+  void showCustomSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -73,7 +73,6 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
               AppImages.successState,
             ),
           ),
-          content: Text(message),
           title: Text(
             getAppLocalizations(context)!.success,
             style: const TextStyle(color: Colors.white),
@@ -111,7 +110,7 @@ class _MobileScannerWidgetState extends State<MobileScannerWidget> {
     return BlocListener<QrCubit, QrState>(
       listener: (context, state) {
         if (state is QrSuccess) {
-          showCustomSuccessDialog(context, state.successMessage);
+          showCustomSuccessDialog(context);
         } else if (state is QrError) {
           showCustomFailedDialog(context, state.errorMessage);
         }
