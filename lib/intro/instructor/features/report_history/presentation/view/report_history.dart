@@ -47,6 +47,7 @@ class _ReportHistoryState extends State<ReportHistory> {
                   "Lectures History",
                   style: TextStyle(fontSize: 24),
                 ),
+                SizedBox(height: 20.h,),
                 Expanded(
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
@@ -54,6 +55,7 @@ class _ReportHistoryState extends State<ReportHistory> {
                     },
                     itemBuilder: (context, index) {
                       return ListTile(
+                        leading: const Icon(Icons.my_library_books_sharp),
                         onTap: () {
                           context.push("/LectureReportPage",
                               extra: state.lectures[index].pk);
