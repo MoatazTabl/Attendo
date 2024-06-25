@@ -128,7 +128,6 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-
     //  -----------------------Admin---------------------
     GoRoute(
       path: "/adminHome",

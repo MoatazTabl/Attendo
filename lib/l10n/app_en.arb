@@ -49,10 +49,16 @@
   "takeAttendance": "Take Attendance",
   "attendanceStarted": "Attendance Started",
   "studentsAttended": "Students Attended",
+  "finishLecture": "Finish Lecture",
   "clickToShowStudents": "Click to Show Students",
 
   "@_AttendanceList": {},
   "attendanceList": "Attendance List",
+  "addStudent": "Add Student",
+  "add": "Add",
+  "attendedStudents": "Attended\nStudents",
+  "absentStudents": "  Absent\nStudents",
+  "attendancePercentage": "Attendance Percentage",
   "downloadFullList": "Download Full List",
 
   "@_CreateLecture": {},

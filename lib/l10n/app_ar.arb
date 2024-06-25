@@ -49,10 +49,16 @@
   "takeAttendance": "أخذ الغياب",
   "attendanceStarted": "تم بدا أخذ الغياب",
   "studentsAttended": "الطلاب الحضارين",
+  "finishLecture": "أنهاء المحاضرة",
   "clickToShowStudents": "انقر لإظهار الطلاب",
 
   "@_AttendanceList": {},
   "attendanceList": "قائمة الحضور",
+  "addStudent": "إضافة طالب",
+  "add": "إضافة",
+  "attendedStudents": "  الطلاب\nالحاضرون",
+  "absentStudents": "الطلاب\nالغائبون",
+  "attendancePercentage": "نسبه الحضور",
   "downloadFullList": "تحميل القائمة الكاملة",
 
   "@_CreateLecture": {},
