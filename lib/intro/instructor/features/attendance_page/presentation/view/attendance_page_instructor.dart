@@ -222,7 +222,6 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                               'Excel file created successfully! , saved to downloads'),
                         );
 
-                        print("Hiiiiiiiiiiiiiiiiiiiiiiiiii${students[0].name}");
                     },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.all(

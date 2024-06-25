@@ -123,7 +123,7 @@ class _LectureReportPageState extends State<LectureReportPage> {
                                       child: Text(
                                         state.reportModel[0].authorizationTime
                                             .toString(),
-                                        style: TextStyle(fontSize: 12),
+                                        style: const TextStyle(fontSize: 12),
                                       ),
                                     )),
                               );
