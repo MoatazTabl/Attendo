@@ -25,6 +25,8 @@ import 'package:go_router/go_router.dart';
 import '../../../intro/auth/sign_up/presentation/view/sign_up_screen.dart';
 import '../../../intro/instructor/features/attendance_page/presentation/view/attendance_page_instructor.dart';
 import '../../../intro/instructor/instructor_main_screen.dart';
+import '../../intro/instructor/features/report_history/presentation/view/lecture_report_page.dart';
+import '../../intro/instructor/features/report_history/presentation/view_model/cubits/get_lectures_reports_cubit.dart';
 import '../../intro/student/features/scan_qr/data/model/qr_model.dart';
 import '../../intro/student/features/scan_qr/logic/qr_cubit.dart';
 import '../../intro/student/features/scan_qr/presentation/view/scan_qr.dart';
@@ -117,15 +119,15 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-    // GoRoute(
-    //   path: AppRoutes.createLectureInstructor,
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context) => CreateLectureCubit(),
-    //     child: CreateLectureInstructor(
-    //       userDataModel: state.extra as UserDataModel,
-    //     ),
-    //   ),
-    // ),
+    GoRoute(
+      path: "/LectureReportPage",
+      builder: (context, state) => BlocProvider(
+        create: (context) => GetLecturesReportsCubit(),
+        child: LectureReportPage(
+          lecturePk: state.extra as int,
+        ),
+      ),
+    ),
 
     //  -----------------------Admin---------------------
     GoRoute(

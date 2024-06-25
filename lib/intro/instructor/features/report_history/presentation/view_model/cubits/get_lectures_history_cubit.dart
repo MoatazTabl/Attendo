@@ -15,13 +15,12 @@ class GetLecturesHistoryCubit extends Cubit<GetLecturesHistoryState> {
   getLecturesHistory(String instructorName) async {
     try {
       emit(GetLecturesHistoryLoading());
-      final response =
-          await ApiService().post(endpoint: ApiStrings.getLectureList, data: {
-        "instructor":instructorName
-      });
+      final response = await ApiService().post(
+          endpoint: ApiStrings.getLectureList,
+          data: {"instructor": instructorName});
       List<ReportHistoryLectures> lectures = [];
       for (var item in response['result']) {
-        lectures.add(ReportHistoryLectures.fromJson(item) );
+        lectures.add(ReportHistoryLectures.fromJson(item));
       }
       emit(GetLecturesHistorySuccess(lectures: lectures));
     } on Exception catch (e) {
