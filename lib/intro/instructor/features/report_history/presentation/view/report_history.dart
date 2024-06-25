@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class ReportHistory extends StatefulWidget {
   final UserDataModel userData;
@@ -15,6 +16,8 @@ class ReportHistory extends StatefulWidget {
 }
 
 class _ReportHistoryState extends State<ReportHistory> {
+  late String formattedDate;
+  late DateTime dateTime;
   @override
   void initState() {
     // TODO: implement initState
@@ -31,6 +34,9 @@ class _ReportHistoryState extends State<ReportHistory> {
       child: BlocBuilder<GetLecturesHistoryCubit, GetLecturesHistoryState>(
         builder: (context, state) {
           if (state is GetLecturesHistorySuccess) {
+            dateTime = DateTime.parse(state.lectures[0].lectureStartTime!);
+
+            formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,6 +59,7 @@ class _ReportHistoryState extends State<ReportHistory> {
                               extra: state.lectures[index].pk);
                         },
                         title: Text(state.lectures[index].name!),
+                        trailing: Text(formattedDate.toString()),
                       );
                     },
                     itemCount: state.lectures.length,
