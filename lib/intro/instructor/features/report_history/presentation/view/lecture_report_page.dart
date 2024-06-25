@@ -1,10 +1,10 @@
+import 'package:attendo/core/networking/api_strings.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../../core/app_images.dart';
 import '../../../../../../core/helpers/common.dart';
 import '../../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../attendance_page/presentation/view/widgets/excell_functions.dart';
@@ -75,11 +75,27 @@ class _LectureReportPageState extends State<LectureReportPage> {
                           child: ListView.builder(
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
+                                padding: const EdgeInsets.only(top: 5.0),
                                 child: ListTile(
-                                    leading: SvgPicture.asset(
-                                      AppImages.studentAvatarTest,
-                                      width: 50.w,
+                                    leading: CachedNetworkImage(
+                                      imageBuilder: (context, imageProvider) {
+                                        return Container(
+                                          height: 50.h,
+                                          width: 50.h,
+                                          decoration: ShapeDecoration(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  40,
+                                                ),
+                                              ),
+                                              image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.fill)),
+                                        );
+                                      },
+                                      imageUrl:
+                                          '${ApiStrings.baseUrl}${state.reportModel[0].studentsList?[index].photo}',
                                     ),
                                     title: Text(
                                       state.reportModel[0].studentsList?[index]
@@ -101,9 +117,15 @@ class _LectureReportPageState extends State<LectureReportPage> {
                                         )
                                       ],
                                     ),
-                                    trailing: Text(state
-                                        .reportModel[0].authorizationTime
-                                        .toString())),
+                                    trailing: SizedBox(
+                                      width: 100,
+                                      height: 20,
+                                      child: Text(
+                                        state.reportModel[0].authorizationTime
+                                            .toString(),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                    )),
                               );
                             },
                             itemCount:
