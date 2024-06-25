@@ -18,6 +18,7 @@ class ReportHistory extends StatefulWidget {
 class _ReportHistoryState extends State<ReportHistory> {
   late String formattedDate;
   late DateTime dateTime;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -34,41 +35,47 @@ class _ReportHistoryState extends State<ReportHistory> {
       child: BlocBuilder<GetLecturesHistoryCubit, GetLecturesHistoryState>(
         builder: (context, state) {
           if (state is GetLecturesHistorySuccess) {
-            dateTime = DateTime.parse(state.lectures[0].lectureStartTime!);
+            if (state.lectures.isEmpty) {
+              return const Center(child: Text("No Lectures"));
+            }
+            else
+              {
+                dateTime = DateTime.parse(state.lectures[0].lectureStartTime!);
 
-            formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Text(
-                  "Lectures History",
-                  style: TextStyle(fontSize: 24),
-                ),
-                SizedBox(height: 20.h,),
-                Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) {
-                      return const Divider();
-                    },
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: const Icon(Icons.my_library_books_sharp),
-                        onTap: () {
-                          context.push("/LectureReportPage",
-                              extra: state.lectures[index].pk);
+                formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    const Text(
+                      "Lectures History",
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    SizedBox(height: 20.h,),
+                    Expanded(
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) {
+                          return const Divider();
                         },
-                        title: Text(state.lectures[index].name!),
-                        trailing: Text(formattedDate.toString()),
-                      );
-                    },
-                    itemCount: state.lectures.length,
-                  ),
-                )
-              ],
-            );
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: const Icon(Icons.my_library_books_sharp),
+                            onTap: () {
+                              context.push("/LectureReportPage",
+                                  extra: state.lectures[index].pk);
+                            },
+                            title: Text(state.lectures[index].name!),
+                            trailing: Text(formattedDate.toString()),
+                          );
+                        },
+                        itemCount: state.lectures.length,
+                      ),
+                    )
+                  ],
+                );
+              }
           } else if (state is GetLecturesHistoryFailure) {
             return Center(child: Text(state.errMessage));
           } else {

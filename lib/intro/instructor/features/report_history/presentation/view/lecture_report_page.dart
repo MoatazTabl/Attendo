@@ -109,7 +109,7 @@ class _LectureReportPageState extends State<LectureReportPage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "ID:${state.reportModel[0].studentsList?[index].userId ?? ""}",
+                                          "ID:${state.reportModel[0].studentsList?[index].nationalId?? ""}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleSmall!
