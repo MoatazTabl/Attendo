@@ -6,14 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../core/app_images.dart';
 import '../../../../../../core/helpers/common.dart';
-import '../../../attendance_page/presentation/view/widgets/attendent_student_item.dart';
-import '../../../attendance_page/presentation/view/widgets/excell_functions.dart';
 import '../view_model/cubits/get_lectures_reports_cubit.dart';
 
 class LectureReportPage extends StatefulWidget {
   final int lecturePk;
 
-  LectureReportPage({required this.lecturePk});
+  const LectureReportPage({super.key, required this.lecturePk});
 
   @override
   State<LectureReportPage> createState() => _LectureReportPageState();
