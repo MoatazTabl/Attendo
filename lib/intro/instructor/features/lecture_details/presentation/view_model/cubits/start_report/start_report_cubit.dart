@@ -28,4 +28,18 @@ class StartReportCubit extends Cubit<StartReportState> {
       }
     }
   }
+
+  skipLecture({required int lecturePk}) async {
+    try {
+      await ApiService()
+          .post(endpoint: ApiStrings.skipLecture, data: {"pk": lecturePk});
+    } on Exception catch (e) {
+      if (e is DioException) {
+        final k = ServerFailures.fromDioException(e);
+        emit(StartReportFailure(errMessage: k.errorMessage));
+      } else {
+        emit(StartReportFailure(errMessage: "Un Expected error , try again"));
+      }
+    }
+  }
 }

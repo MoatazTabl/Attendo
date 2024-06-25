@@ -7,7 +7,6 @@ import 'package:attendo/core/widgets/custom_snack_bar.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/cubits/get_report_cubit.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/show_students_list_pop_up_widget.dart';
-import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/widgets/students_attending_widget.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +20,7 @@ import '../view_model/cubits/start_report/start_report_cubit.dart';
 class InstructorLectureDetails extends StatefulWidget {
   const InstructorLectureDetails(
       {super.key, required this.instructorDetailsReportModel});
+
   final InstructorDetailsReportModel instructorDetailsReportModel;
 
   @override
@@ -61,6 +61,8 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
         .instructorLecturesModel.lectureStartTime!);
 
     formattedTime = DateFormat('hh:mm a').format(dateTime);
+
+    // print("lecture pk: ${widget.instructorDetailsReportModel.instructorLecturesModel.pk}");
   }
 
   @override
@@ -169,57 +171,72 @@ class _InstructorLectureDetailsState extends State<InstructorLectureDetails> {
                   }
                 },
                 builder: (context, state) {
-                  return ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(
-                          state is StartReportSuccess ||
-                                  state is StartReportFailure
-                              ? Colors.grey
-                              : AppTheme.mainBlue),
-                      padding: const WidgetStatePropertyAll(EdgeInsets.zero),
-                      fixedSize: WidgetStatePropertyAll(
-                        Size(
-                          270.w,
-                          73.h,
+                  if (state is StartReportInitial) {
+                    return ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            const WidgetStatePropertyAll(AppTheme.mainBlue),
+                        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+                        fixedSize: WidgetStatePropertyAll(
+                          Size(
+                            270.w,
+                            73.h,
+                          ),
+                        ),
+                        shape: WidgetStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              16.w,
+                            ),
+                          ),
                         ),
                       ),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            16.w,
+                      onPressed: () {
+                        context.read<StartReportCubit>().startReport(
+                            lecturePk: widget.instructorDetailsReportModel
+                                .instructorLecturesModel.pk!);
+                        !lectureStarted;
+                      },
+                      child: Text(
+                        getAppLocalizations(context)!.takeAttendance,
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                        ),
+                      ),
+                    );
+                  } else if (state is StartReportSuccess) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        context.read<StartReportCubit>().skipLecture(
+                            lecturePk: widget.instructorDetailsReportModel
+                                .instructorLecturesModel.pk!);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            const WidgetStatePropertyAll(AppTheme.mainBlue),
+                        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+                        fixedSize: WidgetStatePropertyAll(
+                          Size(
+                            270.w,
+                            73.h,
+                          ),
+                        ),
+                        shape: WidgetStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              16.w,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    onPressed: () {
-                      state is StartReportSuccess
-                          ? !lectureStarted
-                          : context.read<StartReportCubit>().startReport(
-                              lecturePk: widget.instructorDetailsReportModel
-                                  .instructorLecturesModel.pk!);
-                      !lectureStarted;
-                    },
-                    child: state is StartReportSuccess ||
-                            state is StartReportFailure
-                        ? Text(
-                            getAppLocalizations(context)!.attendanceStarted,
-                            style: TextStyle(
-                              fontSize: 24.sp,
-                            ),
-                          )
-                        : Text(
-                            getAppLocalizations(context)!.takeAttendance,
-                            style: TextStyle(
-                              fontSize: 24.sp,
-                            ),
-                          ),
-                  );
+                      child: Text(
+                        getAppLocalizations(context)!.finishLecture,
+                      ),
+                    );
+                  } else {
+                    return const Text("");
+                  }
                 },
-              ),
-              const Spacer(),
-              StudentsAttendingWidget(
-                instructorDetailsReportModel:
-                    widget.instructorDetailsReportModel,
               ),
               const Spacer(),
               Padding(

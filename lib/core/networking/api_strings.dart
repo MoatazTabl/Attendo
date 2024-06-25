@@ -1,5 +1,5 @@
 class ApiStrings {
-  static const String baseUrl = "https://73ac-197-35-53-80.ngrok-free.app/";
+  static const String baseUrl = "https://f705-197-35-15-157.ngrok-free.app/";
 
   static const String studentLecturesEndpoint = "getstudentlectures/";
   static const String instructorLecturesEndpoint = "getinstructorlectures/";
@@ -12,9 +12,12 @@ class ApiStrings {
   static const String generateCode = "generatecode/";
   static const String qrCode = "QR_code";
   static const String startReport = "startreport/";
+  static const String skipLecture = "skiplecture/";
   static const String getLatestCode = "getcode/";
   static const String appendStudent = "appendstudent/";
   static const String getReport = "getreport/";
+  static const String getReports = "getreports/";
+  static const String getReportsStudent = "getreportstudents/";
   static const String getAllStudents = "getstudents/";
   static const String modifyStudent = "modifystudent/";
   static const String deleteStudent = "deletestudent/";

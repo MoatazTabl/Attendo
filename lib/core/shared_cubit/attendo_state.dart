@@ -5,6 +5,12 @@ sealed class AttendoState {}
 
 final class AttendoInitial extends AttendoState {}
 
+final class AttendoThemeMode extends AttendoState {
+  final ThemeData themeMode;
+
+  AttendoThemeMode({required this.themeMode});
+}
+
 final class SelectedLocale extends AttendoState {
   final Locale locale;
 

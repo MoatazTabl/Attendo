@@ -109,15 +109,6 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
-    // GoRoute(
-    //   path: AppRoutes.createLectureInstructor,
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context) => CreateLectureCubit(),
-    //     child: CreateLectureInstructor(
-    //       userDataModel: state.extra as UserDataModel,
-    //     ),
-    //   ),
-    // ),
 
     //  -----------------------Admin---------------------
     GoRoute(

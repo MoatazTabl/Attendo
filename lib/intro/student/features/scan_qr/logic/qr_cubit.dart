@@ -1,7 +1,7 @@
 import 'package:attendo/core/networking/api_service.dart';
 import 'package:attendo/core/networking/api_strings.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -35,6 +35,9 @@ class QrCubit extends Cubit<QrState> {
     } on Exception catch (e) {
       if (e is DioException) {
         final k = ServerFailures.fromDioException(e);
+        if (kDebugMode) {
+          print(k.errorMessage);
+        }
         emit(QrError(k.errorMessage));
       }
     }

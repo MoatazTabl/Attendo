@@ -1,4 +1,28 @@
-class GetReportModel {
+class GetReportsModel {
+  List<Result>? result;
+
+  GetReportsModel({this.result});
+
+  GetReportsModel.fromJson(Map<String, dynamic> json) {
+    if (json['result'] != null) {
+      result = <Result>[];
+      json['result'].forEach((v) {
+        result!.add(Result.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (result != null) {
+      data['result'] = result!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Result {
+  int? pk;
   int? lecturePk;
   String? lectureName;
   List<StudentsList>? studentsList;
@@ -9,8 +33,9 @@ class GetReportModel {
   num? absentStudents;
   num? attendancePercentage;
 
-  GetReportModel(
-      {this.lecturePk,
+  Result(
+      {this.pk,
+      this.lecturePk,
       this.lectureName,
       this.studentsList,
       this.date,
@@ -20,7 +45,8 @@ class GetReportModel {
       this.absentStudents,
       this.attendancePercentage});
 
-  GetReportModel.fromJson(Map<String, dynamic> json) {
+  Result.fromJson(Map<String, dynamic> json) {
+    pk = json['pk'];
     lecturePk = json['lecture_pk'];
     lectureName = json['lecture_name'];
     if (json['students_list'] != null) {
@@ -39,6 +65,7 @@ class GetReportModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['pk'] = pk;
     data['lecture_pk'] = lecturePk;
     data['lecture_name'] = lectureName;
     if (studentsList != null) {

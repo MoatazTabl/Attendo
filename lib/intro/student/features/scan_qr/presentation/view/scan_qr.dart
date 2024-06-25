@@ -22,7 +22,7 @@ class _ScanQrState extends State<ScanQr> with WidgetsBindingObserver {
     facing: CameraFacing.back,
     autoStart: false,
     detectionSpeed: DetectionSpeed.normal,
-    detectionTimeoutMs: 1000,
+    detectionTimeoutMs: 500,
     returnImage: false,
   );
 

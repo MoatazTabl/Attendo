@@ -11,6 +11,12 @@ class GetReportSuccess extends GetReportState {
   GetReportSuccess({required this.getReportModel});
 }
 
+class GetAttendingStudentsSuccess extends GetReportState {
+  final AttendingAnalyticsModel attendingAnalyticsModel;
+
+  GetAttendingStudentsSuccess({required this.attendingAnalyticsModel});
+}
+
 class GetReportLoading extends GetReportState {}
 
 class GetReportFailure extends GetReportState {

@@ -15,12 +15,17 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class InstructorLectureCard extends StatelessWidget {
+class InstructorLectureCard extends StatefulWidget {
   const InstructorLectureCard(
       {super.key, required this.instructorLecturesModel});
 
   final InstructorLecturesModel instructorLecturesModel;
 
+  @override
+  State<InstructorLectureCard> createState() => _InstructorLectureCardState();
+}
+
+class _InstructorLectureCardState extends State<InstructorLectureCard> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -57,7 +62,7 @@ class InstructorLectureCard extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              instructorLecturesModel.name ?? "",
+              widget.instructorLecturesModel.name ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
@@ -80,7 +85,9 @@ class InstructorLectureCard extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      dateTime(instructorLecturesModel.lectureStartTime) ?? "",
+                      dateTime(widget
+                              .instructorLecturesModel.lectureStartTime) ??
+                          "",
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp, fontWeight: FontWeight.w600),
                     ),
@@ -100,7 +107,7 @@ class InstructorLectureCard extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      instructorLecturesModel.lectureHall ?? "",
+                      widget.instructorLecturesModel.lectureHall ?? "",
                       style: GoogleFonts.poppins(
                           fontSize: 20.sp, fontWeight: FontWeight.w600),
                     ),
@@ -112,14 +119,14 @@ class InstructorLectureCard extends StatelessWidget {
               height: 8.h,
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
                     .format(context.read<HomeInstructorCubit>().dateTime);
 
                 formattedDateTime = formattedDateTime.replaceFirst(' ', 'T');
                 InstructorDetailsReportModel instructorDetailsReportModel =
                     InstructorDetailsReportModel(
-                        instructorLecturesModel: instructorLecturesModel,
+                        instructorLecturesModel: widget.instructorLecturesModel,
                         date: formattedDateTime);
                 context.push(AppRoutes.instructorLectureDetails,
                     extra: instructorDetailsReportModel);
@@ -170,15 +177,16 @@ class InstructorLectureCard extends StatelessWidget {
                           showDragHandle: true,
                           builder: (context) {
                             return EditLectureInstructor(
-                              instructorLecturesModel: instructorLecturesModel,
+                              instructorLecturesModel:
+                                  widget.instructorLecturesModel,
                             );
                           },
                         ).then((value) {
                           context
                               .read<HomeInstructorCubit>()
                               .getInstructorLectures(data: {
-                            "instructor":
-                                instructorLecturesModel.instructorInfo?.name,
+                            "instructor": widget
+                                .instructorLecturesModel.instructorInfo?.name,
                             // "date":"2024-04-30T09:18:54"
                             "date": context
                                 .read<HomeInstructorCubit>()
@@ -201,7 +209,8 @@ class InstructorLectureCard extends StatelessWidget {
                   SizedBox(
                     height: 30.h,
                     child: SkipLectureDialog(
-                        instructorLecturesModel: instructorLecturesModel),
+                        instructorLecturesModel:
+                            widget.instructorLecturesModel),
                   ),
                 ],
               ),
