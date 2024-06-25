@@ -1,12 +1,11 @@
 import 'package:attendo/core/networking/api_service.dart';
-import 'package:attendo/intro/instructor/features/report_history/presentation/view/report_history.dart';
-import 'package:attendo/intro/instructor/features/report_history/presentation/view_model/ReportHistoryLecturesModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../../../core/errors/failures.dart';
 import '../../../../../../../core/networking/api_strings.dart';
+import '../models/ReportHistoryLectures.dart';
 
 part 'get_lectures_history_state.dart';
 
@@ -18,11 +17,11 @@ class GetLecturesHistoryCubit extends Cubit<GetLecturesHistoryState> {
       emit(GetLecturesHistoryLoading());
       final response =
           await ApiService().post(endpoint: ApiStrings.getLectureList, data: {
-        {"instructor": instructorName}
+        "instructor":instructorName
       });
-      List<ReportHistoryLecturesModel> lectures = [];
+      List<ReportHistoryLectures> lectures = [];
       for (var item in response['result']) {
-        lectures.add(ReportHistoryLecturesModel.fromJson(item));
+        lectures.add(ReportHistoryLectures.fromJson(item) );
       }
       emit(GetLecturesHistorySuccess(lectures: lectures));
     } on Exception catch (e) {

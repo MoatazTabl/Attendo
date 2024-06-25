@@ -6,7 +6,7 @@ abstract class GetLecturesHistoryState {}
 class GetLecturesHistoryInitial extends GetLecturesHistoryState {}
 
 class GetLecturesHistorySuccess extends GetLecturesHistoryState {
-  List<ReportHistoryLecturesModel> lectures;
+  List<ReportHistoryLectures> lectures;
 
   GetLecturesHistorySuccess({required this.lectures});
 }

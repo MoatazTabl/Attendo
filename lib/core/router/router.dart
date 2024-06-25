@@ -16,6 +16,7 @@ import 'package:attendo/intro/instructor/features/home/logic/home_instructor_cub
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view/instructor_lecture_details.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/generate_qr/generate_qr_cubit.dart';
 import 'package:attendo/intro/instructor/features/lecture_details/presentation/view_model/cubits/start_report/start_report_cubit.dart';
+import 'package:attendo/intro/instructor/features/report_history/presentation/view_model/cubits/get_lectures_history_cubit.dart';
 import 'package:attendo/intro/student/features/home/logic/home_cubit.dart';
 import 'package:attendo/intro/student/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,8 +69,15 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: AppRoutes.instructorMainScreen,
-      builder: (context, state) => BlocProvider(
-        create: (context) => HomeInstructorCubit(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => HomeInstructorCubit(),
+          ),
+          BlocProvider(
+            create: (context) => GetLecturesHistoryCubit(),
+          ),
+        ],
         child: InstructorMainScreen(
           userData: state.extra as UserDataModel,
         ),
