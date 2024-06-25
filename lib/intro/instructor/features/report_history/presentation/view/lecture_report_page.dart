@@ -138,7 +138,9 @@ class _LectureReportPageState extends State<LectureReportPage> {
                         ElevatedButton(
                           onPressed: () async {
                             await createExcelFile(
-                                state.reportModel[0].studentsList!);
+                                state.reportModel[0].studentsList!,
+                                state.reportModel[0].lectureName!,
+                                DateTime.now().toString());
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 GlobalSnackBar.show(context,

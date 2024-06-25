@@ -6,7 +6,6 @@ import 'package:attendo/intro/instructor/features/attendance_page/presentation/v
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view/widgets/manual_add_students.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/get_report_model.dart';
 import 'package:attendo/intro/instructor/features/attendance_page/presentation/view_model/models/instructor_details_report_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -216,7 +215,8 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await createExcelFile(students);
+                      await createExcelFile(students,  widget.instructorDetailsReportModel
+                          .instructorLecturesModel.name!,formattedDate);
                         ScaffoldMessenger.of(context).showSnackBar(
                           GlobalSnackBar.show(context,
                               'Excel file created successfully! , saved to downloads'),
