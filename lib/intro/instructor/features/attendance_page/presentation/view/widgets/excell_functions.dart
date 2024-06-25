@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
-Future<void> createExcelFile(List<StudentsList> students) async {
+Future<void> createExcelFile(List<StudentsList> students,String lectureName , String date) async {
   // Request storage permissions
   var status = await Permission.storage.request();
   if (!status.isGranted) {
@@ -21,22 +21,34 @@ Future<void> createExcelFile(List<StudentsList> students) async {
   var excel = Excel.createExcel();
   Sheet sheetObject = excel['Sheet1'];
 
+  // Add lecture name and date as headers
+  sheetObject.appendRow([
+    TextCellValue(lectureName),
+  ]);
+  sheetObject.appendRow([
+    TextCellValue(date),
+  ]);
+
+  // Add an empty row for separation
+  sheetObject.appendRow([]);
+
+
   // Add headers
   sheetObject.appendRow([
-    const TextCellValue("ID"),
+    const TextCellValue("num"),
     const TextCellValue("Student name"),
     const TextCellValue("National ID"),
-    const TextCellValue("Status")
   ]);
 
   // Add student data
   for (var student in students) {
+    int i = 1;
     sheetObject.appendRow([
-      TextCellValue(student.userId.toString()),
+      TextCellValue(i.toString()),
       TextCellValue(student.name.toString()),
       TextCellValue(student.nationalId.toString()),
-      const TextCellValue("Done")
     ]);
+    i++;
   }
 
   Directory? directory = await getExternalStorageDirectory();

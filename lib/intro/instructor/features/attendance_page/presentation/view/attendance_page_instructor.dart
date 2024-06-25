@@ -217,15 +217,12 @@ class _AttendancePageInstructorState extends State<AttendancePageInstructor> {
                   ElevatedButton(
                     onPressed: () async {
                       await createExcelFile(students);
-                      if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           GlobalSnackBar.show(context,
                               'Excel file created successfully! , saved to downloads'),
                         );
-                      }
-                      if (kDebugMode) {
-                        print(students[1].name);
-                      }
+
+                        print("Hiiiiiiiiiiiiiiiiiiiiiiiiii${students[0].name}");
                     },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.all(
